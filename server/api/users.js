@@ -13,6 +13,16 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+
+// router.post('/', (req, res, next) => {
+//   User.create(req.body)
+//     // .then(user => res.json(user))
+//     // .then(() => {
+//     //   res.status(201).end()
+//     // })
+//     .catch(next)
+// })
+
 router.get('/:userId', (req, res, next) => {
   User.findOne({
     where: {
@@ -23,3 +33,15 @@ router.get('/:userId', (req, res, next) => {
     .then(user => res.json(user))
     .catch(next)
 })
+
+router.put('/:userId', (req, res, next) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      user.update(req.body)
+    })
+    .then(() => {
+      res.status(201).end()
+    })
+    .catch(next)
+})
+

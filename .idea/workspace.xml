@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9bcbdff-16ba-45a7-a1b5-185a96f81518" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract.md" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,14 +13,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5086207">
+    <splitter split-orientation="horizontal" split-proportion="0.3911525">
       <split-first>
         <leaf>
           <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/api/users.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="450">
-                  <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+                <state relative-caret-position="558">
+                  <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -32,8 +32,8 @@
           <file leaf-file-name="users.spec.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/api/users.spec.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="160">
-                  <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+                <state relative-caret-position="574">
+                  <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -41,9 +41,31 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".eslintrc.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.eslintrc.json">
-              <provider selected="true" editor-type-id="text-editor" />
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/api/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="108">
+                  <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/package.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="178">
+                  <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SocialContract.md" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SocialContract.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="378">
+                  <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+                </state>
+              </provider>
             </entry>
           </file>
         </leaf>
@@ -66,8 +88,9 @@
         <option value="$PROJECT_DIR$/server/db/models/user.js" />
         <option value="$PROJECT_DIR$/server/db/models/user.spec.js" />
         <option value="$PROJECT_DIR$/contract.md" />
-        <option value="$PROJECT_DIR$/server/api/users.spec.js" />
+        <option value="$PROJECT_DIR$/SocialContract.md" />
         <option value="$PROJECT_DIR$/server/api/users.js" />
+        <option value="$PROJECT_DIR$/server/api/users.spec.js" />
       </list>
     </option>
   </component>
@@ -83,10 +106,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1004" />
-    <option name="y" value="3" />
+    <option name="x" value="909" />
+    <option name="y" value="24" />
     <option name="width" value="916" />
-    <option name="height" value="976" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -125,6 +148,12 @@
               <item name="HabitLite" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HabitLite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HabitLite" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HabitLite" type="b2602c69:ProjectViewProjectNode" />
@@ -186,18 +215,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1525285176178</updated>
-      <workItem from="1525285177630" duration="10508000" />
+      <workItem from="1525285177630" duration="20659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10508000" />
+    <option name="totallyTimeSpent" value="20659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.062227074" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.24617904" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
@@ -234,13 +263,6 @@
         <state relative-caret-position="-8" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/db/models/user.spec.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
@@ -255,13 +277,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="6" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contract.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="100" selection-start-line="26" selection-start-column="100" selection-end-line="26" selection-end-column="100" />
         </state>
       </provider>
     </entry>
@@ -285,10 +300,41 @@
     <entry file="file://$PROJECT_DIR$/.eslintrc.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/contract.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/auth/google.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SocialContract.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/api/users.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        <state relative-caret-position="574">
+          <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -297,8 +343,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/api/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="558">
+          <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
         </state>
       </provider>
     </entry>
