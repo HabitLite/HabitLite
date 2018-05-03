@@ -1,5 +1,5 @@
 const User = require('./user')
-const Habit = require('./habit')
+const DefaultHabit = require('./defaultHabit')
 const Category = require('./category')
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,12 +14,12 @@ const Category = require('./category')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
-Category.hasMany(Habit)
-Habit.belongsTo(Category)
+Category.hasMany(DefaultHabit)
+DefaultHabit.belongsTo(Category)
 
 
 module.exports = {
   User,
-  Habit,
+  DefaultHabit,
   Category
 }

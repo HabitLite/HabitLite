@@ -2,26 +2,26 @@ const Promise = require('bluebird');
 var chai = require('chai');
 var expect = chai.expect;
 const db = require('../index')
-const Habit = db.model('habit')
+const DefaultHabit = db.model('defaultHabit')
 
-describe('Habit model', function () {
+describe('DefaultHabit model', function () {
     beforeEach(function () {
         return db.sync({ force: true })
     })
     describe('description field', function () {
-        let firstHabit
+        let firstDefaultHabit
 
         beforeEach(() => {
-            return Habit.create({
+            return DefaultHabit.create({
                 description: 'this is a test'
             })
-                .then(habit => {
-                    firstHabit = habit
+                .then(defaultHabit => {
+                    firstDefaultHabit = defaultHabit
                 })
         })
         it('description field is not empty', function () {
-            Habit.description = "this is not working";
-            expect(!!Habit.description).to.be.true;
+            DefaultHabit.description = "this is not working";
+            expect(!!DefaultHabit.description).to.be.true;
         })
     })
 })
