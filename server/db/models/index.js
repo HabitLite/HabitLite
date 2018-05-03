@@ -1,5 +1,6 @@
 const User = require('./user')
 const DefaultHabit = require('./defaultHabit')
+const CustomHabit = require('./customHabit')
 const Category = require('./category')
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -16,7 +17,8 @@ const Category = require('./category')
  */
 Category.hasMany(DefaultHabit)
 DefaultHabit.belongsTo(Category)
-
+User.hasMany(CustomHabit)
+CustomHabit.belongsTo(User)
 
 module.exports = {
   User,
