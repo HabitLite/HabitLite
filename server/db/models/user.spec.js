@@ -1,68 +1,102 @@
 /* global describe beforeEach it */
 
-const {expect} = require('chai')
+'use strict'
+
+const { expect } = require('chai')
 const db = require('../index')
 const User = db.model('user')
 
 describe('User model', function () {
   beforeEach(function () {
-    return db.sync({force: true})
+    return db.sync({ force: true })
   })
-  let cody
+
+  let user
 
   beforeEach(function () {
     return User.create({
       username: 'cody',
       password: 'bones',
       avatar: 'image',
-      level: 1,
-      XP: 0,
-      HP: 10,
-      progress: 0
+      level: 5,
+      XP: 3,
+      HP: 13,
+      progress: 13
     })
-      .then(user => {
-        cody = user
+      .then(createdUser => {
+        user = createdUser
       })
   })
 
   describe('values', function () {
     describe('username', function () {
       it('should be a string', function () {
-        expect(cody.username).to.be.a('string')
+        expect(user.username).to.be.a('string')
       })
-      it('length should be between 1 and 16', function () { //Also check to see if error is thrown
-        // let daisy = User.create({
-        //   username: 'fdlakfjdsklfslkfldkflfldflakdflksf'
-        // }) //have to call validate on value that fails
-        //expect.daisy.to.throw
-        expect(cody.username).to.have.length.above(0)
-        expect(cody.username).to.have.length.below(17)
+      it('should have a length between 1 and 16', function () {
+        expect(user.username).to.have.length.within(0, 16)
+      })
+      it('should be required', function () {
+        expect(!!user.username).to.be.true
       })
       it('should be unique') //Probably something with checking if error is thrown
     })
 
     describe('password', function () {
       it('should be a string', function () {
-        expect(cody.password).to.be.a('string')
+        expect(user.password).to.be.a('string')
       })
-      it('length should be between 1 and 16', function () {
-        expect(cody.password).to.have.length.above(0)
-        expect(cody.password).to.have.length.below(17)
+      it('should have a length between 1 and 16', function () {
+        expect(user.password).to.have.length.within(0, 16)
       })
+      it('should be required', function () {
+        expect(!!user.password).to.be.true
+      });
     })
 
-
-    xdescribe('should have avatar', function () {
-
+    describe('avatar', function () {
+      it('should be a string (url to a linked image)', function () {
+        expect(user.avatar).to.be.a('string')
+      })
+      it('should have a default of \'default image\'')
     })
 
-    xit('should have level')
+    describe('level', function () {
+      it('should be an integer', function () {
+        console.log('number is integer:', user.level);
+        expect(Number.isInteger(user.level)).to.be.true;
+      })
+      it('should be greater than or equal to 1', function () {
+        expect(user.level).to.be.above(0)
+      })
+      it('should have a default of 1')
+    })
 
-    xit('should have XP')
+    describe('XP', function () {
+      it('should be an integer', function () {
+        expect(Number.isInteger(user.XP)).to.be.true
+      })
+      it('should be greater than or equal to 0', function () {
+        expect(user.XP).to.be.above(-1)
+      })
+      it('should have a default of 0')
+    })
 
-    xit('should have HP')
+    describe('HP', function () {
+      it('should be an integer', function () {
+        expect(Number.isInteger(user.HP)).to.be.true
+      })
+      it('should be greater than or equal to 0', function () {
+        expect(user.HP).to.be.above(-1)
+      })
+      it('should have a default of 0')
+    })
 
-    xdescribe('should have progress')
-
+    describe('progress', function () {
+      it('should be an integer', function () {
+        expect(Number.isInteger(user.progress)).to.be.true
+      })
+      it('should have a default of 0')
+    })
   })
 }) // end describe('User model')
