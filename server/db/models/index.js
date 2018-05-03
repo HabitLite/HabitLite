@@ -19,9 +19,12 @@ Category.hasMany(DefaultHabit)
 DefaultHabit.belongsTo(Category)
 User.hasMany(CustomHabit)
 CustomHabit.belongsTo(User)
+Category.hasMany(CustomHabit)
+CustomHabit.belongsTo(Category)
 
 module.exports = {
   User,
   DefaultHabit,
-  Category
+  Category,
+  CustomHabit
 }

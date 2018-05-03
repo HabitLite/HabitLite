@@ -97,6 +97,55 @@ const defaultHabit = [
     }
 ]
 
+const customHabit = [
+    {
+        description: "Eat broccoli",
+        categoryId: 1,
+        userId: 1
+    },
+    {
+        description: "Avoid Pasta",
+        categoryId: 1,
+        userId: 2
+    },
+    {
+        description: "Drink water instead of soda",
+        categoryId: 1,
+        userId: 3
+    },
+    {
+        description: " Eat more snacks",
+        categoryId: 1,
+        userId: 4
+    },
+    {
+        description: "Do Yoga",
+        categoryId: 2,
+        userId: 1
+    },
+    {
+        description: "Do 10 situps",
+        categoryId: 2,
+        userId: 2
+    },
+    {
+        description: "Run for 45 min",
+        categoryId: 2,
+        userId: 3
+    },
+    {
+        description: "Do a tech talk",
+        categoryId: 3,
+        userId: 2
+    },
+    {
+        description: "Complete 10k codewars",
+        categoryId: 3,
+        userId: 4
+    }
+]
+
+
 const seed = () =>
     Promise.all(user.map(user =>
         User.create(user)
@@ -108,6 +157,10 @@ const seed = () =>
         .then(() =>
             Promise.all(defaultHabit.map(defaultHabit =>
                 DefaultHabit.create(defaultHabit)
+            )))
+        .then(() =>
+            Promise.all(customHabit.map(customHabit =>
+                CustomHabit.create(customHabit)
             )))
         .catch(err => {
             console.error(err)
