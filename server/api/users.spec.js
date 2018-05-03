@@ -47,25 +47,25 @@ describe.only('User routes', function () {
     }) // end describe ('GET /api/users')
 
 
-    describe('POST /api/users', function () {
-      it('updates database to include user', function () {
-        return request(app)
-          .post('/api/users')
-          .send({
-            username: 'honeypie',
-            password: 'tons'
-          })
-          // .expect(201)
-          // .then((res) => {
-          //   return User.findById(2)
-          // })
-          // .then(user => {
-          //   expect(user).to.be.equal({
-          //     username: 'honeypie',
-          //     password: 'tons'
-          //   })
-      })
-    }) // end describe('POST /api/users)
+    // describe('POST /api/users', function () {
+    //   it('updates database to include user', function () {
+    //     return request(app)
+    //       .post('/api/users')
+    //       .send({
+    //         username: 'honeypie',
+    //         password: 'tons'
+    //       })
+    //       // .expect(201)
+    //       // .then((res) => {
+    //       //   return User.findById(2)
+    //       // })
+    //       // .then(user => {
+    //       //   expect(user).to.be.equal({
+    //       //     username: 'honeypie',
+    //       //     password: 'tons'
+    //       //   })
+    //   })
+    // }) // end describe('POST /api/users)
 
   }) // end describe('/api/users')
 
