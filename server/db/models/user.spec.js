@@ -58,12 +58,11 @@ describe('User model', function () {
       it('should be a string (url to a linked image)', function () {
         expect(user.avatar).to.be.a('string')
       })
-      it('should have a default of \'default image\'')
+      it('should have a default value of \'default image\'')
     })
 
     describe('level', function () {
       it('should be an integer', function () {
-        console.log('number is integer:', user.level);
         expect(Number.isInteger(user.level)).to.be.true;
       })
       it('should be greater than or equal to 1', function () {
@@ -89,7 +88,7 @@ describe('User model', function () {
       it('should be greater than or equal to 0', function () {
         expect(user.HP).to.be.above(-1)
       })
-      it('should have a default of 0')
+      it('should have a default of 10')
     })
 
     describe('progress', function () {

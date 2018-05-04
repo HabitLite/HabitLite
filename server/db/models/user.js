@@ -29,7 +29,7 @@ const User = db.define('user', {
   },
   HP: {
     type: Sequelize.INTEGER,
-    defaultValue: 0,
+    defaultValue: 10,
     validate: { min: 0 }
   },
   progress: {
