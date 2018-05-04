@@ -130,6 +130,7 @@ describe.only('User routes', function () {
     describe('DELETE /api/users/:userId', function () {
       it('sends a res.body of deleted user (that does not include password)')
       it('updates database to reflect that user has been deleted')
+      it('ensures that only current user can delete zirself')
     }) // end describe('DELETE /api/users/:userId')
   }) // end describe('/api/users/:userId')
 }) // end describe('User routes')

@@ -14,19 +14,19 @@ router.get('/', (req, res, next) => {
 })
 
 
-// router.post('/', (req, res, next) => {
-//   User.create(req.body)
-//     // .then(user => res.json(user))
-//     // .then(() => {
-//     //   res.status(201).end()
-//     // })
-//     .catch(next)
-// })
+router.post('/', (req, res, next) => { //May or may not work (sorry)
+  User.create(req.body)
+    .then(user => res.json(user))
+    .then(() => {
+      res.status(201).end()
+    })
+    .catch(next)
+})
 
-router.get('/:userId', (req, res, next) => {
+router.get('/:username', (req, res, next) => { //Change test to reflect changing userId to username
   User.findOne({
     where: {
-      id: req.params.userId
+      username: req.params.username
     },
     attributes: ['id', 'username']
   })
