@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Habit = db.define('habit', {
+const DefaultHabit = db.define('defaultHabit', {
     description: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -12,4 +12,4 @@ const Habit = db.define('habit', {
     }
 })
 
-module.exports = Habit
+module.exports = DefaultHabit

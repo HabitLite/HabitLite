@@ -1,148 +1,166 @@
 const Promise = require('bluebird');
 const db = require('./db/db.js')
-const { } = require('./db/models')
+const { DefaultHabit, User, Category, CustomHabit } = require('./db/models')
 
-const tasks = [
+const user = [
     {
-        description: ' Eat three regular meals a day'
+        username: "tania",
+        password: 123
     },
     {
-        description: 'Have a well-balanced diet'
+        username: "ginny",
+        password: 123
     },
     {
-        description: 'Eat plenty of whole grains, fruit and vegetables but little fat'
+        username: "palina",
+        password: 123
     },
     {
-        description: 'Drink at least eight glasses of water every day'
-    },
-    {
-        description: 'limit salt and sugar'
-    },
-    {
-        description: 'Avoid junk food such as crisps and sweets'
-    },
-    {
-        description: 'Do not eat too much of any single food'
-    },
-    {
-        description: 'Avoid food with a lot of artificial flavours, colours or chemicals'
+        username: "priya",
+        password: 123
     }
+]
+
+const category = [
+    {
+        name: "Eat Healthy"
+    },
+    {
+        name: "Increase Physical Activity"
+    },
+    {
+        name: "Code more, become a code ninja"
+    },
 
 ]
 
-
-
-
-
-// --------------------------------------------- USERS START ----------------------------------------------
-
-
-const chance = require('chance')(123);
-const toonAvatar = require('cartoon-avatar');
-
-const numUsers = 100;
-const emails = chance.unique(chance.email, numUsers);
-
-function doTimes(n, fn) {
-    const results = [];
-    while (n--) {
-        results.push(fn());
+const defaultHabit = [
+    {
+        description: "Have a well-balanced diet",
+        categoryId: 1
+    },
+    {
+        description: "Eat plenty of whole grains, fruit and vegetables but little fat",
+        categoryId: 1
+    },
+    {
+        description: "Drink at least eight glasses of water every day",
+        categoryId: 1
+    },
+    {
+        description: " Eat three regular meals a day",
+        categoryId: 1
+    },
+    {
+        description: "limit salt and sugar",
+        categoryId: 1
+    },
+    {
+        description: "Avoid junk food such as crisps and sweets",
+        categoryId: 1
+    },
+    {
+        description: "Do not eat too much of any single food",
+        categoryId: 1
+    },
+    {
+        description: "Avoid food with a lot of artificial flavours, colours or chemicals",
+        categoryId: 1
+    },
+    {
+        description: "Walk for 30 minutes",
+        categoryId: 2
+    },
+    {
+        description: "Do 10 pushups",
+        categoryId: 2
+    },
+    {
+        description: "Dance for 10 minutes",
+        categoryId: 2
+    },
+    {
+        description: "Research a new technology",
+        categoryId: 3
+    },
+    {
+        description: "Complete one codewars",
+        categoryId: 3
+    },
+    {
+        description: "Explain Recursion to a 10 year old",
+        categoryId: 3
+    },
+    {
+        description: "Do a testing spec for a model and the model",
+        categoryId: 3
     }
-    return results;
-}
+]
 
-function randPhoto(gender) {
-    gender = gender.toLowerCase();
-    const id = chance.natural({
-        min: 1,
-        max: gender === 'female' ? 114 : 129
-    });
-    return toonAvatar.generate_avatar({ gender: gender, id: id });
-}
-
-function randUser() {
-    const gender = chance.gender();
-    return User.build({
-        name: [chance.first({ gender: gender }), chance.last()].join(' '),
-        photo: randPhoto(gender),
-        phone: chance.phone(),
-        email: emails.pop(),
-        password: chance.word(),
-        isAdmin: chance.weighted([true, false], [5, 95])
-    });
-}
-
-function randTitle() {
-    const numWords = chance.natural({
-        min: 1,
-        max: 8
-    });
-    return chance.sentence({ words: numWords })
-        .replace(/\b\w/g, function (m) {
-            return m.toUpperCase();
-        })
-        .slice(0, -1);
-}
-
-function randStory(createdUsers) {
-    const user = chance.pick(createdUsers);
-    const numPars = chance.natural({
-        min: 3,
-        max: 20
-    });
-    return Story.build({
-        author_id: user.id,
-        title: randTitle(),
-        paragraphs: chance.n(chance.paragraph, numPars)
-    });
-}
-
-function generateUsers() {
-    const users = doTimes(numUsers, randUser);
-    users.push(User.build({
-        name: 'Zeke Nierenberg',
-        photo: toonAvatar.generate_avatar({ gender: 'male' }),
-        phone: '(510) 295-5523',
-        email: 'zeke@zeke.zeke',
-        password: '123',
-        isAdmin: false
-    }));
-    users.push(User.build({
-        name: 'Omri Bernstein',
-        photo: toonAvatar.generate_avatar({ gender: 'male' }),
-        phone: '(781) 854-8854',
-        email: 'omri@omri.omri',
-        password: '123',
-        isAdmin: true
-    }));
-    users.push(User.build({
-        name: 'Tania Santamaria',
-        photo: toonAvatar.generate_avatar({ gender: 'female' }),
-        phone: '(555) 555-5555',
-        email: 't@t.t',
-        password: '123',
-        isAdmin: true
-    }));
-    return users;
-}
-
-function createUsers() {
-    return Promise.map(generateUsers(), user => user.save());
-}
-
-
-
-
+const customHabit = [
+    {
+        description: "Eat broccoli",
+        categoryId: 1,
+        userId: 1
+    },
+    {
+        description: "Avoid Pasta",
+        categoryId: 1,
+        userId: 2
+    },
+    {
+        description: "Drink water instead of soda",
+        categoryId: 1,
+        userId: 3
+    },
+    {
+        description: " Eat more snacks",
+        categoryId: 1,
+        userId: 4
+    },
+    {
+        description: "Do Yoga",
+        categoryId: 2,
+        userId: 1
+    },
+    {
+        description: "Do 10 situps",
+        categoryId: 2,
+        userId: 2
+    },
+    {
+        description: "Run for 45 min",
+        categoryId: 2,
+        userId: 3
+    },
+    {
+        description: "Do a tech talk",
+        categoryId: 3,
+        userId: 2
+    },
+    {
+        description: "Complete 10k codewars",
+        categoryId: 3,
+        userId: 4
+    }
+]
 
 
 const seed = () =>
-    Promise.all(activities.map(activity =>
-        Activities.create(activity)
+    Promise.all(user.map(user =>
+        User.create(user)
     ))
-        .then(() => createUsers())
         .then(() =>
-            Promise.all(memberships.map(membership =>
-                Membership.create(membership)
+            Promise.all(category.map(category =>
+                Category.create(category)
+            )))
+        .then(() =>
+            Promise.all(defaultHabit.map(defaultHabit =>
+                DefaultHabit.create(defaultHabit)
+            )))
+        .then(() =>
+            Promise.all(customHabit.map(customHabit =>
+                CustomHabit.create(customHabit)
             )))
         .catch(err => {
             console.error(err)
@@ -166,11 +184,3 @@ const main = () => {
 }
 
 main();
-
-
-
-
-
-
-
-
