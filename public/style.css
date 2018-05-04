@@ -12,10 +12,65 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  /* margin: 1em; */
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+/* Login / Sing Up Page */
+/* App.js */
+.login-form{
+  display: inline-block;
+  height: 500px;
+  width: 430px;
+  margin-top: 40px;
+  margin-left: 35%;
+  margin-bottom: 90px;
+  border: 1px solid;
+}
+.login, .sign-up{
+  font-size: 2.2em;
+  color: black;
+}
+.login-signup-text{
+  text-align: center;
+  margin-top: 70px;
+}
+.form-fields{
+  margin-top: 80px;
+}
+input{
+  width: 280px;
+  height: 33px;
+  /* margin: auto; */
+  margin-left: 55px
+}
+small{
+  margin-left: 60px;
+}
+.login-btn{
+  width: 120px;
+  height: 35px;
+  margin: 30px 135px;
+}
+.google-login{
+  margin: 0px 141px;
+  color: black;
+}
+
+
+/* User Dashboard  --- user-home.js
+*/
+/* navbar */
+.logout-btn{
+  float: right;
+  margin: 15px 25px;
+  color: black;
+}
+.main-page{
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px;
 }
