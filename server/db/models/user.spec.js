@@ -88,7 +88,7 @@ describe('User model', function () {
       it('should be greater than or equal to 0', function () {
         expect(user.HP).to.be.above(-1)
       })
-      it('should have a default of 0')
+      it('should have a default of 10')
     })
 
     describe('progress', function () {

@@ -1,20 +1,30 @@
 'use strict'
 
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class User extends Component {
-  constructor() {
-    super()
+const User = props => {
 
-    this.state = {
-      avatar: '',
-      username: '',
-      level: 0,
-      HP: 0,
-      XP: 0
-    }
-  }
-  render() {
-    return
-  }
+  const { avatar, username, level, HP, XP } = props
+
+  return (
+    <div {...props}>
+      <div className="avatar">
+        {avatar}
+      </div>
+      <div className="username">
+        {username}
+      </div>
+      <div className="level">
+        {level}
+      </div>
+      <div className="HP">
+        {HP}
+      </div>
+      <div className="XP">
+        {XP}
+      </div>
+    </div>
+  )
 }
+
+export default User;
