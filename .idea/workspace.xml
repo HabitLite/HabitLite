@@ -19,8 +19,8 @@
           <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/api/users.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="522">
-                  <caret line="25" column="99" selection-start-line="25" selection-start-column="99" selection-end-line="25" selection-end-column="99" />
+                <state relative-caret-position="648">
+                  <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
@@ -38,6 +38,18 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="users.spec.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/server/api/users.spec.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="304">
+                  <caret line="111" column="67" selection-start-line="111" selection-start-column="67" selection-end-line="111" selection-end-column="67" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="auth-form.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/components/auth-form.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -50,11 +62,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/store/user.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="702">
-                  <caret line="42" column="27" lean-forward="true" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+                  <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
                   </folding>
@@ -78,7 +90,7 @@
             <entry file="file://$PROJECT_DIR$/client/routes.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="756">
-                  <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+                  <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -134,11 +146,11 @@
         <option value="$PROJECT_DIR$/server/db/models/user.spec.js" />
         <option value="$PROJECT_DIR$/contract.md" />
         <option value="$PROJECT_DIR$/SocialContract.md" />
-        <option value="$PROJECT_DIR$/server/api/users.spec.js" />
         <option value="$PROJECT_DIR$/client/components/auth-form.js" />
         <option value="$PROJECT_DIR$/client/components/user-home.js" />
-        <option value="$PROJECT_DIR$/server/api/users.js" />
         <option value="$PROJECT_DIR$/client/store/user.js" />
+        <option value="$PROJECT_DIR$/server/api/users.js" />
+        <option value="$PROJECT_DIR$/server/api/users.spec.js" />
       </list>
     </option>
   </component>
@@ -276,12 +288,12 @@
       <option name="presentableId" value="Default" />
       <updated>1525285176178</updated>
       <workItem from="1525285177630" duration="21858000" />
-      <workItem from="1525442087070" duration="3471000" />
+      <workItem from="1525442087070" duration="5675000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25329000" />
+    <option name="totallyTimeSpent" value="27533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -415,16 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/users.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1942">
-          <caret line="113" column="20" lean-forward="true" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/components/auth-form.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -448,26 +450,36 @@
     <entry file="file://$PROJECT_DIR$/client/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
-          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="25" column="99" selection-start-line="25" selection-start-column="99" selection-end-line="25" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/store/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
-          <caret line="42" column="27" lean-forward="true" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/users.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="111" column="67" selection-start-line="111" selection-start-column="67" selection-end-line="111" selection-end-column="67" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

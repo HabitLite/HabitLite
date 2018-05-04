@@ -14,12 +14,9 @@ router.get('/', (req, res, next) => {
 })
 
 
-router.post('/', (req, res, next) => { //May or may not work (sorry)
+router.post('/', (req, res, next) => {
   User.create(req.body)
-    .then(user => res.json(user))
-    .then(() => {
-      res.status(201).end()
-    })
+    .then(user => res.status(201).json(user))
     .catch(next)
 })
 
@@ -34,14 +31,16 @@ router.get('/:username', (req, res, next) => { //Change test to reflect changing
     .catch(next)
 })
 
-router.put('/:userId', (req, res, next) => {
-  User.findById(req.params.userId)
-    .then(user => {
-      user.update(req.body)
-    })
-    .then(() => {
-      res.status(201).end()
-    })
-    .catch(next)
-})
+//***Only works some of the time.  Could be some async issue***
+// router.put('/:userId', (req, res, next) => {
+//   User.findById(req.params.userId)
+//     .then(user => {
+//       user.update(req.body)
+//     })
+//     .then(() => {
+//       res.status(201).end()
+//       // next()
+//     })
+//     .catch(next)
+// })
 
