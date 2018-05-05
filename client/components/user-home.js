@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Categories from './categories'
+import Habits from './habits'
 
 /**
  * COMPONENT
@@ -13,6 +14,7 @@ export const UserHome = (props) => {
     <div className="main-page">
       <h3>Welcome, {username}</h3>
       <Categories />
+      <Habits />
     </div>
   )
 }
