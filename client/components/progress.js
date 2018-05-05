@@ -10,7 +10,7 @@ class Progress extends React.Component {
   constructor() {
     super();
     this.state = {
-      percent: 25, data: this.getData(0)
+      percent: 25, data: this.getData(25)
     };
   }
 
@@ -29,7 +29,7 @@ class Progress extends React.Component {
     window.clearInterval(this.setStateInterval);
   }
 
-  getData(percent) {
+  static getData(percent) {
     return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
   }
 
@@ -87,46 +87,5 @@ export default connect(mapState)(Progress)
  */
 Progress.propTypes = {
   username: PropTypes.string
-}
+} //I know the linter is screaming here, but we'll change this from username to something else once we have said something else
 
-
-// ReactDOM.render(<Progress/>, mountNode);
-
-
-// class Progress extends React.Component {
-//   // constructor() {
-//   //   super();
-//   //   this.state = {
-//   //     username: this.props.username,
-//   //     percent: this.props.percent,
-//   //     data: this.getData(0)
-//   //   }
-//   // }
-//   //
-//   // componentDidMount() {
-//   //   let percent = 25;
-//   //   this.setStateInterval = window.setInterval(() => {
-//   //     percent += (Math.random() * 25);
-//   //     percent = (percent > 100) ? 0 : percent;
-//   //     this.setState({
-//   //       percent, data: this.getData(percent)
-//   //     });
-//   //   }, 2000);
-//   // }
-//   //
-//   // componentWillUnmount() {
-//   //   window.clearInterval(this.setStateInterval);
-//   // }
-//   //
-//   // getData(percent) {
-//   //   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
-//   // }
-//
-//   render() {
-//     return (
-//       <div>
-//         <VictoryPie/>
-//       </div>
-//     )
-//   }
-// }
