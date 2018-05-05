@@ -5,16 +5,15 @@ import { expect } from 'chai'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import TestRenderer from 'react-test-renderer'
-import User from './index'
-
+import { User } from './index'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-describe.only('<User />', function () {
+describe('<User />', function () {
 
   let UserWrapper, UserRenderer, UserInstance
 
-  const minProps = {
+  const testProps = {
         avatar: 'doggy img',
         username: 'cousin of cody',
         level: 5,
@@ -22,12 +21,12 @@ describe.only('<User />', function () {
         XP: 10
       }
 
-  const { avatar, username, level, HP, XP } = minProps
+  const { avatar, username, level, HP, XP } = testProps
 
   beforeEach('Create UserWrapper', function () {
-    UserWrapper = shallow(<User {...minProps} />)
+    UserWrapper = shallow(<User {...testProps} />)
 
-    UserRenderer = TestRenderer.create(<User {...minProps} />)
+    UserRenderer = TestRenderer.create(<User {...testProps} />)
     UserInstance = UserRenderer.root
   })
 
@@ -85,19 +84,19 @@ describe.only('<User />', function () {
 
   }) // end describe('rendering')
 
-// /* *** INSTANCE METHODS *** */
-  describe('instance methods', function () {
+// /* *** ACTIONS *** */
+  describe('actions', function () {
 
-    it('should have an instance method called `gainXP`, which takes an integer value and adds it to the user\'s current XP value')
+    it('should be able to `gainXP`, which takes an integer value and adds it to the user\'s current XP value')
 
-    it('should have an instance method called `loseXP`, which takes an integer value and subtracts it from the user\'s current XP value')
+    it('should be able to `loseXP`, which takes an integer value and subtracts it from the user\'s current XP value')
 
-    it('should have an instance method called `levelUp`, which takes a boolean called `XPat100Percent` and increments the user\'s level if true')
+    it('should be able to `levelUp`, which takes a boolean called `XPat100Percent` and increments the user\'s level if true')
 
-    it('should have an instance method called `gainHP`, which takes an integer value and adds it to the user\'s current HP value')
+    it('should be able to `gainHP`, which takes an integer value and adds it to the user\'s current HP value')
 
-    it('should have an instance method called `loseHP`, which takes an integer value and subtracts it from the user\'s current HP value')
+    it('should be able to `loseHP`, which takes an integer value and subtracts it from the user\'s current HP value')
 
-  }) // end describe('instance methods')
+  }) // end describe('actions')
 
 }) // end describe(<User /> Component)
