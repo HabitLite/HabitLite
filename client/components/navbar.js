@@ -10,7 +10,7 @@ const divStyle = {
   position: 'fixed',
   top: '0',
   width: '100%',
-  'margin-left': '-8px',
+  marginLeft: '-8px',
   height: '50px'
 };
 
