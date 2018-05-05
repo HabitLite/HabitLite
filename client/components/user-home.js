@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import Progress from './progress'
 
 /**
  * COMPONENT
@@ -11,6 +12,7 @@ export const UserHome = (props) => {
   return (
     <div className="main-page">
       <h3>Welcome, {username}</h3>
+      <Progress/>
     </div>
   )
 }
