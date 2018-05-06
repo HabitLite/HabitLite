@@ -10,7 +10,7 @@ class Progress extends React.Component {
   constructor() {
     super();
     this.state = {
-      percent: 25, data: this.getData(25)
+      percent: 25, data: Progress.getData(25)
     };
   }
 
@@ -20,7 +20,7 @@ class Progress extends React.Component {
       percent += (Math.random() * 25);
       percent = (percent > 100) ? 0 : percent;
       this.setState({
-        percent, data: this.getData(percent)
+        percent, data: Progress.getData(percent)
       });
     }, 2000);
   }
@@ -76,7 +76,7 @@ class Progress extends React.Component {
  */
 const mapState = (state) => {
   return {
-    username: state.user.username
+    XP: state.user.XP
   }
 }
 
@@ -86,6 +86,5 @@ export default connect(mapState)(Progress)
  * PROP TYPES
  */
 Progress.propTypes = {
-  username: PropTypes.string
-} //I know the linter is screaming here, but we'll change this from username to something else once we have said something else
-
+  XP: PropTypes.number
+} //I know the linter is screaming here, but we'll change this
