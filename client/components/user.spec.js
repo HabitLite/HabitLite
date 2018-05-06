@@ -13,13 +13,15 @@ describe('<User />', function () {
 
   let UserWrapper, UserRenderer, UserInstance
 
-  const testProps = {
-        avatar: 'doggy img',
-        username: 'cousin of cody',
-        level: 5,
-        HP: 10,
-        XP: 10
-      }
+  const createTestProps = () => ({
+    avatar: 'doggy img',
+    username: 'cousin of cody',
+    level: 5,
+    HP: 10,
+    XP: 10
+  })
+
+  const testProps = createTestProps()
 
   const { avatar, username, level, HP, XP } = testProps
 
@@ -55,6 +57,7 @@ describe('<User />', function () {
 
   }) // end describe('props')
 
+  /* *** RENDERING *** */
   describe('rendering', function() {
     it('should render the User component without exploding', function () {
       expect(UserWrapper).to.have.length(1)
@@ -84,19 +87,18 @@ describe('<User />', function () {
 
   }) // end describe('rendering')
 
-// /* *** ACTIONS *** */
-  describe('actions', function () {
+  /* *** INTERACTIONS *** */
+  // IMPORTANT QUESTION:  Actually, shouldn't all of these interactions be in the Habits component?
+  describe('interactions', function () {
 
     it('should be able to `gainXP`, which takes an integer value and adds it to the user\'s current XP value')
 
-    it('should be able to `loseXP`, which takes an integer value and subtracts it from the user\'s current XP value')
-
-    it('should be able to `levelUp`, which takes a boolean called `XPat100Percent` and increments the user\'s level if true')
+    it('should be able to `levelUp`, which takes a boolean denoting whether the user\'s XP is at 100% and increments the user\'s level if true')
 
     it('should be able to `gainHP`, which takes an integer value and adds it to the user\'s current HP value')
 
     it('should be able to `loseHP`, which takes an integer value and subtracts it from the user\'s current HP value')
 
-  }) // end describe('actions')
+  }) // end describe('interactions')
 
 }) // end describe(<User /> Component)

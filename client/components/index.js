@@ -6,10 +6,9 @@
 
 export { Login, Signup } from './auth-form'
 export { default as Navbar } from './navbar'
-export { default as Home } from './home'
 export { default as User } from './user'
 export { default as UserHome } from './user-home'
 // export { default as Categories } from './categories'
 // export { default as Habits } from './habits'
-// export { default as ProgressTracker } from './progress-tracker'
+// export { default as Progress } from './progress'
 
