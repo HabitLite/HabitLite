@@ -1,19 +1,19 @@
+'use strict'
+
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import Progress from './progress'
-import Categories from './categories'
-import Habits from './habits'
+import { connect } from 'react-redux'
+import { User, Categories, Habits, Progress } from './index'
 
-/**
- * COMPONENT
- */
-export const UserHome = (props) => {
-  const {username} = props
+/* *** COMPONENT *** */
+export const UserHome = props => {
+
+  const { username } = props
 
   return (
     <div className="main-page">
       <h3>Welcome, {username}</h3>
+      <User />
       <Progress />
       <Categories />
       <Habits />
@@ -21,9 +21,7 @@ export const UserHome = (props) => {
   )
 }
 
-/**
- * CONTAINER
- */
+/* *** CONTAINER *** */
 const mapState = (state) => {
   return {
     username: state.user.username
@@ -32,9 +30,7 @@ const mapState = (state) => {
 
 export default connect(mapState)(UserHome)
 
-/**
- * PROP TYPES
- */
+/* *** PROP TYPES *** */
 UserHome.propTypes = {
-  username: PropTypes.string
+  username: PropTypes.string.isRequired
 }
