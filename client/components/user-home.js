@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { /* Navbar,  */User/* , Categories, Habits, Progress  */} from './index'
+import { User, Categories, Habits, Progress } from './index'
 
 /* *** COMPONENT *** */
 export const UserHome = props => {
@@ -14,6 +14,9 @@ export const UserHome = props => {
     <div className="main-page">
       <h3>Welcome, {username}</h3>
       <User />
+      <Progress />
+      <Categories />
+      <Habits />
     </div>
   )
 }
