@@ -15,7 +15,6 @@ export const UserHome = props => {
 
       <h3 className="welcome">Welcome, {username}</h3>
       <User />
-      <Progress />
       <Categories />
       <Habits />
       <Progress />
