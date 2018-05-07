@@ -66,6 +66,10 @@ select{
   margin: 20px 20px 35px 80px;
 }
 
+/* User Summary */
+.container{
+  margin-top: 60px;
+}
 
 /* User Dashboard  --- UserHome.js
 */
@@ -114,14 +118,27 @@ ul{
 }
 
 /* Progress bar */
-.total-propgress{
-  margin-top: -100px;
-  text-align: center;
-  width: 360px;
+.total-progress{
+  margin-top: 100px;
+  /* text-align: center; */
+  width: 560px;
 }
 .progress-bar{
   width: 350px;
   float: right;
   margin-top: -520px;
   margin-right: 130px
+}
+.category-name{
+  margin-top: 590px;
+  flex-wrap: wrap;
+  width: 10px;
+  height: 40px;
+  margin-left: 550px;
+}
+.container{
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }

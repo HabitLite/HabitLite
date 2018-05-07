@@ -12,10 +12,10 @@ const getData = percent => {
  */
 const Progress = props => {
   const percent = (props.XP / (Math.pow(props.level, 2) * 10)) * 100
-
+  // console.log('props ', props.name)
     return (
       <div className="progress-bar">
-        <h1 className="total-progress">Health Eating Progress</h1>
+        <h1 className="total-progress">{props.name}</h1>
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
             standalone={false}

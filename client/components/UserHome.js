@@ -13,7 +13,7 @@ export const UserHome = props => {
   return (
     <div className="main-page">
 
-      <h3 className="welcome">Welcome, {username}</h3>
+      {/* <h3 className="welcome">Welcome, {username}</h3> */}
       <User />
       <Categories />
       <Habits />
