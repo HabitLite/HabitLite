@@ -35,7 +35,8 @@ class Progress extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="progress-bar">
+        <h1 className="total-propgress">Health Eating Progress</h1>
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
             standalone={false}

@@ -13,10 +13,10 @@ export const UserHome = (props) => {
 
   return (
     <div className="main-page">
-      <h3>Welcome, {username}</h3>
-      <Progress />
+      <h3 className="welcome">Welcome, {username}</h3>
       <Categories />
       <Habits />
+      <Progress />
     </div>
   )
 }
