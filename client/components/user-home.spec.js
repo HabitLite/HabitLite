@@ -2,21 +2,61 @@
 
 import {expect} from 'chai'
 import React from 'react'
-import enzyme, {shallow} from 'enzyme'
+import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {UserHome} from './user-home'
+import { UserHome } from './index'
 
-const adapter = new Adapter()
-enzyme.configure({adapter})
+Enzyme.configure({ adapter: new Adapter() })
 
-xdescribe('UserHome', () => {
-  let userHome
+describe('<UserHome /> Component', function () {
 
-  beforeEach(() => {
-    userHome = shallow(<UserHome email={'cody@email.com'} />)
+  let UserHomeWrapper
+
+  const createTestProps = () => ({
+    username: 'cody the pug',
   })
 
-  it('renders the email in an h3', () => {
-    expect(userHome.find('h3').text()).to.be.equal('Welcome, cody@email.com')
+  const testProps = createTestProps()
+
+  const { username } = testProps
+
+  beforeEach('Create UserHomeWrapper', function () {
+    UserHomeWrapper = shallow(<UserHome {...testProps} />)
   })
-})
+
+  /* *** PROPS *** */
+  xdescribe('props', function () {
+
+    it('should receive the user\'s username as props', function () {
+      expect(UserHomeWrapper.props()).to.have.property('username', username)
+    })
+
+  }) // end describe('props')
+
+  /* *** RENDERING *** */
+  xdescribe('rendering', function () {
+
+    it('should render itself without exploding', function () {
+      console.log('UserHomeWrapper:', UserHomeWrapper)
+      // expect(UserHomeWrapper).to.have.length(1)
+    })
+
+    it('should render the username in an h3', () => {
+      expect(UserHomeWrapper.find('h3').text()).to.be.equal(`Howdy ${username}`)
+    })
+
+    it('should render a Navbar component')
+
+    it('should render a User component', function () {
+      expect(UserHomeWrapper.find('User')).to.have.length(1)
+    })
+
+    it('should render a Categories component')
+
+    it('should render a Habits component')
+
+    it('should render a Progress component')
+
+  }) // end describe('rendering')
+
+}) // end describer('<UserHome />')

@@ -4,9 +4,8 @@ import React from 'react'
 import { expect } from 'chai'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import TestRenderer from 'react-test-renderer';
-import User from './user'
-
+import TestRenderer from 'react-test-renderer'
+import { User } from './index'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -14,20 +13,22 @@ describe('<User />', function () {
 
   let UserWrapper, UserRenderer, UserInstance
 
-  const minProps = {
-        avatar: 'doggy img',
-        username: 'cousin of cody',
-        level: 5,
-        HP: 10,
-        XP: 10
-      }
+  const createTestProps = () => ({
+    avatar: 'doggy img',
+    username: 'cousin of cody',
+    level: 5,
+    HP: 10,
+    XP: 10
+  })
 
-  const { avatar, username, level, HP, XP } = minProps
+  const testProps = createTestProps()
+
+  const { avatar, username, level, HP, XP } = testProps
 
   beforeEach('Create UserWrapper', function () {
-    UserWrapper = shallow(<User {...minProps} />)
+    UserWrapper = shallow(<User {...testProps} />)
 
-    UserRenderer = TestRenderer.create(<User {...minProps} />)
+    UserRenderer = TestRenderer.create(<User {...testProps} />)
     UserInstance = UserRenderer.root
   })
 
@@ -56,6 +57,7 @@ describe('<User />', function () {
 
   }) // end describe('props')
 
+  /* *** RENDERING *** */
   describe('rendering', function() {
     it('should render the User component without exploding', function () {
       expect(UserWrapper).to.have.length(1)
@@ -85,19 +87,18 @@ describe('<User />', function () {
 
   }) // end describe('rendering')
 
-// /* *** INSTANCE METHODS *** */
-  describe('instance methods', function () {
+  /* *** INTERACTIONS *** */
+  // IMPORTANT QUESTION:  Actually, shouldn't all of these interactions be in the Habits component?
+  describe('interactions', function () {
 
-    it('should have an instance method called `gainXP`, which takes an integer value and adds it to the user\'s current XP value')
+    it('should be able to `gainXP`, which takes an integer value and adds it to the user\'s current XP value')
 
-    it('should have an instance method called `loseXP`, which takes an integer value and subtracts it from the user\'s current XP value')
+    it('should be able to `levelUp`, which takes a boolean denoting whether the user\'s XP is at 100% and increments the user\'s level if true')
 
-    it('should have an instance method called `levelUp`, which takes a boolean called `XPat100Percent` and increments the user\'s level if true')
+    it('should be able to `gainHP`, which takes an integer value and adds it to the user\'s current HP value')
 
-    it('should have an instance method called `gainHP`, which takes an integer value and adds it to the user\'s current HP value')
+    it('should be able to `loseHP`, which takes an integer value and subtracts it from the user\'s current HP value')
 
-    it('should have an instance method called `loseHP`, which takes an integer value and subtracts it from the user\'s current HP value')
-
-  }) // end describe('instance methods')
+  }) // end describe('interactions')
 
 }) // end describe(<User /> Component)

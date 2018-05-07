@@ -40,7 +40,7 @@ describe('User model', function () {
         expect(!!user.username).to.be.true
       })
       it('should be unique') //Probably something with checking if error is thrown
-    })
+    }) // end describe('username')
 
     describe('password', function () {
       it('should be a string', function () {
@@ -51,25 +51,25 @@ describe('User model', function () {
       })
       it('should be required', function () {
         expect(!!user.password).to.be.true
-      });
-    })
+      })
+    }) // end describe('password')
 
     describe('avatar', function () {
       it('should be a string (url to a linked image)', function () {
         expect(user.avatar).to.be.a('string')
       })
       it('should have a default value of \'default image\'')
-    })
+    }) // end describe ('avatar')
 
     describe('level', function () {
       it('should be an integer', function () {
-        expect(Number.isInteger(user.level)).to.be.true;
+        expect(Number.isInteger(user.level)).to.be.true
       })
       it('should be greater than or equal to 1', function () {
         expect(user.level).to.be.above(0)
       })
       it('should have a default of 1')
-    })
+    }) // end describe('level')
 
     describe('XP', function () {
       it('should be an integer', function () {
@@ -79,7 +79,7 @@ describe('User model', function () {
         expect(user.XP).to.be.above(-1)
       })
       it('should have a default of 0')
-    })
+    }) // end describe('XP')
 
     describe('HP', function () {
       it('should be an integer', function () {
@@ -89,13 +89,13 @@ describe('User model', function () {
         expect(user.HP).to.be.above(-1)
       })
       it('should have a default of 10')
-    })
+    }) // end describe('HP')
 
     describe('progress', function () {
       it('should be an integer', function () {
         expect(Number.isInteger(user.progress)).to.be.true
       })
       it('should have a default of 0')
-    })
-  })
+    }) // end describe('progress')
+  }) // end describe('values')
 }) // end describe('User model')
