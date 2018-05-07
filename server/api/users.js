@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
     // explicitly select only the id and username fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'username']
+    attributes: ['id', 'username', 'level', 'XP', 'HP']
   })
     .then(users => res.json(users))
     .catch(next)
@@ -25,7 +25,7 @@ router.get('/:username', (req, res, next) => { //Change test to reflect changing
     where: {
       username: req.params.username
     },
-    attributes: ['id', 'username']
+    attributes: ['id', 'username', 'level', 'XP', 'HP']
   })
     .then(user => res.json(user))
     .catch(next)
