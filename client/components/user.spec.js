@@ -10,7 +10,7 @@ import User from './user'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-describe.only('<User />', function () {
+describe('<User />', function () {
 
   let UserWrapper, UserRenderer, UserInstance
 

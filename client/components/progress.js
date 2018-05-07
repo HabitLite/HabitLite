@@ -76,7 +76,8 @@ class Progress extends React.Component {
  */
 const mapState = (state) => {
   return {
-    XP: state.user.XP
+    XP: state.user.XP,
+    level: state.user.level
   }
 }
 
@@ -86,5 +87,6 @@ export default connect(mapState)(Progress)
  * PROP TYPES
  */
 Progress.propTypes = {
-  XP: PropTypes.number
+  XP: PropTypes.number,
+  level: PropTypes.number
 } //I know the linter is screaming here, but we'll change this
