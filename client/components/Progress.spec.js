@@ -5,7 +5,7 @@ import { expect } from 'chai'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import configureStore from 'redux-mock-store'
-import Progress from './progress'
+import Progress from './Progress'
 
 const middlewares = []
 const mockStore = configureStore(middlewares)

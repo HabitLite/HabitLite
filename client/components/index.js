@@ -4,10 +4,10 @@
  * having to figure out which file they belong to!
  */
 
-export { Login, Signup } from './auth-form'
-export { default as Navbar } from './navbar'
-export { default as User } from './user'
-export { default as UserHome } from './user-home'
-export { default as Categories } from './categories'
-export { default as Habits } from './habits'
-export { default as Progress } from './progress'
+export { Login, Signup } from './AuthForm'
+export { default as Navbar } from './Navbar'
+export { default as User } from './User'
+export { default as UserHome } from './UserHome'
+export { default as Categories } from './Categories'
+export { default as Habits } from './Habits'
+export { default as Progress } from './Progress'
