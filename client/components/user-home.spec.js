@@ -4,12 +4,11 @@ import {expect} from 'chai'
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import TestRenderer from 'react-test-renderer'
-import { /* Navbar,  */UserHome, User/* , Categories, Habits, Progress */ } from './index'
+import { UserHome } from './index'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-describe.only('<UserHome /> Component', function () {
+describe('<UserHome /> Component', function () {
 
   let UserHomeWrapper
 
