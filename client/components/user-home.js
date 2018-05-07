@@ -8,7 +8,7 @@ import { User, Categories, Habits, Progress } from './index'
 /* *** COMPONENT *** */
 export const UserHome = props => {
 
-  const { username } = props
+  const { email, username } = props
 
   return (
     <div className="main-page">
@@ -26,6 +26,7 @@ export const UserHome = props => {
 /* *** CONTAINER *** */
 const mapState = (state) => {
   return {
+    email: state.user.email,
     username: state.user.username
   }
 }
@@ -34,5 +35,5 @@ export default connect(mapState)(UserHome)
 
 /* *** PROP TYPES *** */
 UserHome.propTypes = {
-  username: PropTypes.string.isRequired
+  email: PropTypes.string.isRequired
 }
