@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import {update} from '../store'
 
 
 /**
@@ -7,16 +8,13 @@ import {connect} from 'react-redux'
  */
 const Habits = props => {
 
-  const updateXP = () => {
-    props.XP++ //this is more pseudocode than anything.  Will eventually want to actually update user on state
-  }
-  return (
+  return ( //eventually do for loop and stop using dummy data
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
           <ul>
-              <li><input type="checkbox" className="check" onClick={updateXP()} /><p>checkbox 1</p></li>
-              <li><input type="checkbox" className="check" onClick={updateXP()} /><p>checkbox 2</p></li>
-              <li><input type="checkbox" className="check" onClick={updateXP()} /><p>checkbox 3</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, 1, 5)} /><p>checkbox 1</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP} /><p>checkbox 2</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 3</p></li>
           </ul>
       </div>
   )
@@ -25,8 +23,17 @@ const Habits = props => {
 const mapState = state => {
   return {
     XP: state.user.XP,
-    level: state.user.level
+    level: state.user.level,
+    userId: state.user.id
   }
 }
 
-export default connect(mapState, null)(Habits);
+const mapDispatch = dispatch => {
+  return {
+    updateXP(userId, habitId, XP) {
+      dispatch(update(userId, habitId, XP))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Habits);

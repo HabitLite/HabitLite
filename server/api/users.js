@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { User, User_Habit } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -38,15 +38,24 @@ router.get('/:username', (req, res, next) => { //Change test to reflect changing
 
 
 //***Only works some of the time.  Could be some async issue***
-// router.put('/:userId', (req, res, next) => {
-//   User.findById(req.params.userId)
-//     .then(user => {
-//       user.update(req.body)
-//     })
-//     .then(() => {
-//       res.status(201).end()
-//       // next()
-//     })
-//     .catch(next)
-// })
+router.put('/:userId', (req, res, next) => {
+  //Hoping req.body comes in as:
+  // {habitId, XP(that we want to increment by)}
+  console.log("!!!!!", req.params, req.body)
+  User.findById(+req.params.userId, {
+    include: [User_Habit]
+  })
+    .then(user => {
+      console.log(user)
+      let userHabit = user.userHabits.find(habit => {
+        return habit.habitId === +req.body.habitId
+      })
+      userHabit.XP += +req.body.XP//fix
+      return userHabit.save()
+    })
+    .then(() => {
+      res.end()
+    })
+    .catch(next)
+})
 

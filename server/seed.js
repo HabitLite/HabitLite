@@ -1,5 +1,5 @@
 const db = require('../server/db')
-const {User, Category, DefaultHabit, CustomHabit} = require('../server/db/models')
+const {User, Category, CustomHabit} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -21,23 +21,7 @@ async function seed () {
     Category.create({name: 'Increase Physical Activity'}),
     Category.create({name: 'Code more, become a code ninja'})
   ])
-  const defaultHabit = await Promise.all([
-    DefaultHabit.create({description: 'Have a well-balanced diet', categoryId: 1}),
-    DefaultHabit.create({description: 'Eat plenty of whole grains, fruit and vegetables but little fat', categoryId: 1}),
-    DefaultHabit.create({description: 'Drink at least eight glasses of water every day', categoryId: 1}),
-    DefaultHabit.create({description: 'Eat three regular meals a day', categoryId: 1}),
-    DefaultHabit.create({description: 'limit salt and sugar', categoryId: 1}),
-    DefaultHabit.create({description: 'Avoid junk food such as crisps and sweets', categoryId: 1}),
-    DefaultHabit.create({description: 'Do not eat too much of any single food', categoryId: 1}),
-    DefaultHabit.create({description: 'Avoid food with a lot of artificial flavours, colours or chemicals', categoryId: 1}),
-    DefaultHabit.create({description: 'Walk for 30 minutes', categoryId: 2}),
-    DefaultHabit.create({description: 'Do 10 pushups', categoryId: 2}),
-    DefaultHabit.create({description: 'Dance for 10 minutes', categoryId: 2}),
-    DefaultHabit.create({description: 'Research a new technology', categoryId: 3}),
-    DefaultHabit.create({description: 'Complete one codewars', categoryId: 3}),
-    DefaultHabit.create({description: 'Explain Recursion to a 10 year old', categoryId: 3}),
-    DefaultHabit.create({description: 'Do a testing spec for a model and the model', categoryId: 3})
-  ])
+
   const customHabit = await Promise.all([
     CustomHabit.create({description: 'Eat broccoli', categoryId: 1, userId: 1}),
     CustomHabit.create({description: 'Avoid Pasta', categoryId: 1, userId: 2}),
