@@ -11,7 +11,7 @@ async function seed () {
     User.create({email: 'tania@gmail.com', password: '123', username: 'tania'}),
     User.create({email: 'ginny@gmail.com', password: '123', username: 'ginny'}),
     User.create({email: 'palina@email.com', password: '123', username: 'palina'}),
-    User.create({email: 'priya@email.com', password: '123', username: 'priya'}),
+    User.create({email: 'priya@email.com', password: '123', username: 'priya', XP: 100, level: 4}),
     User.create({email: 'cody@email.com', password: '123', username: 'cody'}),
     User.create({email: 'murphy@email.com', password: '123', username: 'dops'})
   ])
@@ -46,7 +46,7 @@ async function seed () {
     CustomHabit.create({description: 'Do Yoga', categoryId: 2, userId: 1}),
     CustomHabit.create({description: 'Do 10 situps', categoryId: 2, userId: 2}),
     CustomHabit.create({description: 'Do a tech talk', categoryId: 3, userId: 2}),
-    CustomHabit.create({description: 'Complete 10k codewars', categoryId: 3, userId: 4})  
+    CustomHabit.create({description: 'Complete 10k codewars', categoryId: 3, userId: 4})
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
@@ -69,7 +69,7 @@ seed()
     db.close()
     console.log('db connection closed')
   })
-  
+
 
 /*
  * note: everything outside of the async function is totally synchronous
@@ -90,19 +90,19 @@ console.log('seeding...')
 //         username: "tania"
 //     },
 //     {
-        
+
 //         email: "ginny@gmail.com",
 //         password: "123",
 //         username: "ginny"
 //     },
 //     {
-        
+
 //         email: "palina@gmail.com",
 //         password: "123",
 //         username: "palina"
 //     },
 //     {
-        
+
 //         email: "priya@gmail.com",
 //         password: "123",
 //         username: "priya"
