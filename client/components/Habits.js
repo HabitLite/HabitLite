@@ -12,8 +12,8 @@ const Habits = props => {
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
           <ul>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, 1, 5)} /><p>checkbox 1</p></li>
-              <li><input type="checkbox" className="check" onClick={props.updateXP} /><p>checkbox 2</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 1</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 2</p></li>
               <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 3</p></li>
           </ul>
       </div>

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const User_Habit = db.define('userHabit', {
+const UserHabit = db.define('userHabit', { //maybe also add HP later
   XP: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -12,5 +12,5 @@ const User_Habit = db.define('userHabit', {
   }
 })
 
-module.exports = User_Habit
+module.exports = UserHabit
 
