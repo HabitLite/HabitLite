@@ -1,5 +1,5 @@
 const db = require('../server/db')
-const {User, Category, Habit, UserHabit} = require('../server/db/models')
+const {User, Category, Habit, UserCategory} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -31,8 +31,8 @@ async function seed () {
     Habit.create({description: 'Complete 10k codewars', categoryId: 3, userId: 4})
   ])
 
-  const userHabit = await Promise.all([
-    UserHabit.create({userId: 4, habitId: 1, XP: 100})
+  const userCategory = await Promise.all([
+    UserCategory.create({userId: 4, categoryId: 1, XP: 100})
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
@@ -40,7 +40,7 @@ async function seed () {
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${category.length} categories`)
   console.log(`seeded ${habit.length} habits`)
-  console.log(`seeded ${userHabit.length} userHabits`)
+  console.log(`seeded ${userCategory.length} userHabits`)
   console.log(`seeded successfully`)
 }
 

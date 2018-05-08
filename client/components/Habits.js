@@ -30,8 +30,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    updateXP(userId, habitId, XP) {
-      dispatch(update(userId, habitId, XP))
+    updateXP(userId, categoryId, XP) {
+      dispatch(update(userId, categoryId, XP))
     }
   }
 }

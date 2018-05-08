@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User, UserHabit } = require('../db/models')
+const { User, UserCategory } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -38,14 +38,14 @@ router.get('/:username', (req, res, next) => {
 //***Test only works some of the time.  Could be some async issue or issue with test***
 router.put('/:userId', (req, res, next) => {
   User.findById(+req.params.userId, {
-    include: [UserHabit]
+    include: [UserCategory]
   })
     .then(user => {
-      let userHabit = user.userHabits.find(habit => {
-        return habit.habitId === +req.body.habitId
+      let userCategory = user.userCategories.find(category => {
+        return category.categoryId === +req.body.categoryId
       })
-      userHabit.XP += req.body.XP
-      return userHabit.save()
+      userCategory.XP += req.body.XP
+      return userCategory.save()
     })
     .then(() => {
       res.end()
