@@ -31,14 +31,15 @@ class UserSummary extends Component {
 
         // to={`/add`} params={{ test: category.id }}
         return (
-            <div className="container">
+            <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
+                <div className="container">
                 {
                     categories.map((category, i) => {
                         return (
                             <div className="category-name" style={divStyle} key={category.id}>
-                                <Link to={{pathname: '/single', state: { categ: category.id}}} className='category' key={category.id}>
-                                <div>
+                                <Link to={{pathname: '/single', state: { name: category.name}}} className='category' key={category.id}>
+                                <div className="progress-list">
                                     <Progress name={category.name} />
                                 </div>
                                 </Link>
@@ -46,9 +47,8 @@ class UserSummary extends Component {
   
                         )
                     })
-                }
-
-                    
+                }    
+                </div>   
             </div>
         )
     }
