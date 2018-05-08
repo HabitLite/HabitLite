@@ -1,55 +1,84 @@
+'use strict'
+
 /* global describe beforeEach it */
 
-import {expect} from 'chai'
+import { expect } from 'chai'
 import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import TestRenderer from 'react-test-renderer'
+import Enzyme, { mount, render, shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import { createStore } from 'redux'
+import configureStore from 'redux-mock-store'
 import { /* Navbar,  */UserHome, User/* , Categories, Habits, Progress */ } from './index'
+
+const middlewares = []
+const mockStore = configureStore(middlewares)
 
 Enzyme.configure({ adapter: new Adapter() })
 
-describe.only('<UserHome /> Component', function () {
+describe('<UserHome /> Component', function () {
 
-  let UserHomeWrapper
+  let UserHomeWrapper,
+      UserHomeRenderer,
+      UserHomeInstance
 
+  // create test props
   const createTestProps = () => ({
     username: 'cody the pug',
   })
 
   const testProps = createTestProps()
-
   const { username } = testProps
 
-  beforeEach('Create UserHomeWrapper', function () {
-    UserHomeWrapper = shallow(<UserHome {...testProps} />)
+  let testStore,
+      initialState = {
+        user: {
+          username: 'cody the pug'
+        },
+        categories: []
+      }
+
+  // beforeEach
+  beforeEach('Create testStore and static UserHomeWrapper', function () {
+    // testStore = createStore(state => state, initialState)
+    testStore = mockStore(initialState)
+
+    // create static wrapper
+    UserHomeWrapper = render(<UserHome store={testStore} {...testProps} />)
+
   })
 
-  /* *** PROPS *** */
-  xdescribe('props', function () {
+  describe('itself', function () {
+
+    beforeEach('Create shallow wrapper', function () {
+      UserHomeWrapper = shallow(<UserHome store={testStore} {...testProps} />)
+    })
+
+    it('should have expected initial state', function () {
+      expect(testStore.getState()).to.deep.equal(initialState)
+    })
 
     it('should receive the user\'s username as props', function () {
       expect(UserHomeWrapper.props()).to.have.property('username', username)
     })
 
-  }) // end describe('props')
-
-  /* *** RENDERING *** */
-  xdescribe('rendering', function () {
-
     it('should render itself without exploding', function () {
-      console.log('UserHomeWrapper:', UserHomeWrapper)
-      // expect(UserHomeWrapper).to.have.length(1)
+      expect(UserHomeWrapper).to.have.length(1)
     })
 
+  }) // end describe('itself')
+
+  describe('children', function () {
+
     it('should render the username in an h3', () => {
-      expect(UserHomeWrapper.find('h3').text()).to.be.equal(`Howdy ${username}`)
+      expect(UserHomeWrapper.text()).to.equal('Welcome, cody the pug')
     })
 
     it('should render a Navbar component')
 
     it('should render a User component', function () {
-      expect(UserHomeWrapper.find('User')).to.have.length(1)
+      console.log('UserHomeWrapper.find(User):', UserHomeWrapper.find('User'))
+      // expect(UserHomeWrapper.find(User)).to.have.length(1)
     })
 
     it('should render a Categories component')
@@ -58,6 +87,6 @@ describe.only('<UserHome /> Component', function () {
 
     it('should render a Progress component')
 
-  }) // end describe('rendering')
+  }) // end describe('children')
 
 }) // end describer('<UserHome />')
