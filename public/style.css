@@ -150,25 +150,20 @@ ul{
 
 
 /* Responsive */
-@media screen and (max-width:400px) {
+@media screen and (max-width:580px) {
   /* form */
   .login-form{
-    /* display: inline-block; */
     width: 300px;
     height: 390px;
     margin-left: 40px;
     margin-top: 40px;
-    /* margin-bottom: 90px; */
     border: 1px solid;
   }
   input{
     margin-left: 25px;
     border: 1px solid;
     width: 215px;
-    /* width: 200px;
-    height: 33px;
-    border: 1px solid;
-    margin-left: 35px; */
+  
   }
   small{
     margin-left: 40px;
