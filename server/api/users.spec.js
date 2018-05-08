@@ -12,10 +12,10 @@ describe('User routes', function () {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', function () {
+  describe('/auth/me/', function () {
     const codysUsername = 'codylovesdogs'
 
-    describe('GET /api/users', function () {
+    describe('GET /auth/me', function () {
 
       beforeEach(() => {
         return User.create({
@@ -26,7 +26,7 @@ describe('User routes', function () {
 
       it('sends a res.body of all users in database', function () {
         return request(app)
-          .get('/api/users')
+          .get('/auth/me')
           .expect(200)
           .then(res => {
             expect(res.body).to.be.an('array')
