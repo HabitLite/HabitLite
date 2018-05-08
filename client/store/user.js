@@ -39,27 +39,6 @@ export const auth = (email, password, method) => //Can make shorter
     })
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
-  // dispatch =>
-  // {
-  //   if (method === 'signup')
-  //     axios.post('/api/users', { username, password })
-  //       .then(user => {
-  //         dispatch(getUser(user.data))
-  //         history.push('/home')
-  //       }, authError => {
-  //         dispatch(getUser({error: authError}))
-  //       })
-  //       .catch(dipatchOrHistoryErr => console.error(dispatchOrHistoryErr))
-  //   if (method === 'login')
-  //     axios.get(`/api/users/${username}`)
-  //       .then(user => {
-  //         dispatch(getUser(user.data))
-  //         history.push('/home')
-  //       }, authError => {
-  //         dispatch(getUser({error: authError}))
-  //       })
-  // }
-
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -68,6 +47,10 @@ export const logout = () =>
         history.push('/login')
       })
       .catch(err => console.log(err))
+
+// export const update () => {
+//
+// }
 
 /**
  * REDUCER
