@@ -148,6 +148,45 @@ ul{
   float: left;
 }
 
+
+/* Responsive */
+@media screen and (max-width:400px) {
+  /* form */
+  .login-form{
+    /* display: inline-block; */
+    width: 300px;
+    height: 390px;
+    margin-left: 40px;
+    margin-top: 40px;
+    /* margin-bottom: 90px; */
+    border: 1px solid;
+  }
+  input{
+    margin-left: 25px;
+    border: 1px solid;
+    width: 215px;
+    /* width: 200px;
+    height: 33px;
+    border: 1px solid;
+    margin-left: 35px; */
+  }
+  small{
+    margin-left: 40px;
+  }
+  .login-btn {
+    width: 120px;
+    height: 35px;
+    margin: 30px 75px;
+    border: 1px solid;
+  } 
+  nav{
+    width: 96%;
+  }
+  .habits-list {
+    width: 350px;
+  }
+}
+
 /* Progress bar */
 .total-progress{
   margin-top: 0px;
@@ -162,4 +201,5 @@ ul{
   margin-top: -593px;
   margin-right: 130px
 }
+
 
