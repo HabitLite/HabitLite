@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const UserCategory = require('./userCategory')
 
 const User = db.define('user', {
   email: {
@@ -10,8 +11,6 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    // Making `.password` act like a func hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('password')
     }
@@ -30,8 +29,19 @@ const User = db.define('user', {
   },
   XP: {
     type: Sequelize.INTEGER,
-    defaultValue: 0,
-    validate: { min: 0 }
+    get() {
+      let sum = 0
+      UserCategory.findAll({
+        where: {
+          userId: this.dataValues.id
+        }
+      }).then(categories => {
+          categories.forEach(category => {
+            sum += category.XP
+          })
+      })
+      return sum
+      }
   },
   HP: {
     type: Sequelize.INTEGER,
@@ -45,8 +55,6 @@ const User = db.define('user', {
   },
   salt: {
     type: Sequelize.STRING,
-    // Making `.salt` act like a function hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
     get () {
       return () => this.getDataValue('salt')
     }
