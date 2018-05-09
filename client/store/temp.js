@@ -41,6 +41,27 @@ export const auth = (email, password, method) => //Can make shorter
     })
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
+  // dispatch =>
+  // {
+  //   if (method === 'signup')
+  //     axios.post('/api/users', { username, password })
+  //       .then(user => {
+  //         dispatch(getUser(user.data))
+  //         history.push('/home')
+  //       }, authError => {
+  //         dispatch(getUser({error: authError}))
+  //       })
+  //       .catch(dipatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+  //   if (method === 'login')
+  //     axios.get(`/api/users/${username}`)
+  //       .then(user => {
+  //         dispatch(getUser(user.data))
+  //         history.push('/home')
+  //       }, authError => {
+  //         dispatch(getUser({error: authError}))
+  //       })
+  // }
+
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -50,14 +71,13 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export const update = (userId, categoryId, XP = 0, HP = 0) => {
-  return dispatch => {
-      axios.put(`/api/users/${userId}`, {categoryId, XP, HP})
-        .then(_ => {
-          dispatch(updateUser(XP, HP))
-        })
-        .catch(err => console.log(err))
-  }
+export const update = (userId, habitId, XP, HP) => {
+  return dispatch =>
+    axios.put(`api/users/${userId}`, { habitId, XP, HP } )
+      .then( () => {
+        dispatch(updateUser(XP, HP))
+      })
+      .catch(console.error)
 }
 
 /**
@@ -68,13 +88,9 @@ export default function (state = defaultUser, action) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return {}
+      return defaultUser
     case UPDATE_USER:
-      return {
-        ...state,
-        XP: state.XP + action.XP,
-        HP: state.HP + action.HP
-      }
+      return {...state, XP: action.XP, HP: action.HP}
     default:
       return state
   }
