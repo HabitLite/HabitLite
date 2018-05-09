@@ -3,7 +3,7 @@
 /* global describe beforeEach afterEach it */
 
 import { expect } from 'chai'
-import { me, logout, updateHP } from './user'
+import { me, logout, update } from './user'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -54,34 +54,34 @@ describe.only('thunk creators', () => {
     })
   })
 
-  describe('updateHP', function () {
-    const testUser = {
-      id: 42,
-      HP: 10
-    }
+  describe('updateUser', function () {
+    describe('update HP', function () {
+      const testUser = {
+        id: 42,
+        XP: 50,
+        HP: 10
+      }
 
-    const userId = testUser.id
+      const userId = testUser.id
 
-    const testHP = 5
+      const testXP = testUser.XP
+      const testHP = -5
 
-    it('should subtract the user\'s HP by the correct amount (via negative HP number)', function () {
-      mockAxios.onPut(`users/${userId}/hp`).replyOnce(204)
-      return store.dispatch(updateHP(testHP))
-        .then( () => {
-          const user = store.getUser(userId)
-          expect(user.HP).to.equal(5)
-        })
-        .catch(console.error)
+      it('should subtract the user\'s HP by the correct amount (via negative HP number)', function () {
+        mockAxios.onPut(`api/users/${userId}`).replyOnce(204)
+        return store.dispatch(update(userId, null, testXP, testHP))
+          .then( () => {
+            expect(testUser.HP).to.equal(5)
+          })
+          .catch(console.err)
+      })
+
+      it('should add to the user\'s HP by the correct amount (via positive HP number)')
+
+      it('should make the user lose a total of HP that corresponds to the sum total of the habits not checked off')
+
+      it('should fire at 00:00')
     })
 
-    it('should add to the user\'s HP by the correct amount (via positive HP number)')
-
-    it('should make the user lose a total of HP that corresponds to the sum total of the habits not checked off')
-
-    it('should fire at 00:00', function () {
-      let testHour = 0
-
-      // if (!testHour) expect(user.hp).to.equal(<totalHP - habitsHP>)
-    })
   })
 })

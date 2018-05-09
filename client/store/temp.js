@@ -18,7 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-const updateUser = (XP = 0, HP = 0) => ({type: UPDATE_USER, XP, HP})
+const updateUser = XP => ({type: UPDATE_USER, XP})
 
 /**
  * THUNK CREATORS
@@ -41,27 +41,6 @@ export const auth = (email, password, method) => //Can make shorter
     })
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
-  // dispatch =>
-  // {
-  //   if (method === 'signup')
-  //     axios.post('/api/users', { username, password })
-  //       .then(user => {
-  //         dispatch(getUser(user.data))
-  //         history.push('/home')
-  //       }, authError => {
-  //         dispatch(getUser({error: authError}))
-  //       })
-  //       .catch(dipatchOrHistoryErr => console.error(dispatchOrHistoryErr))
-  //   if (method === 'login')
-  //     axios.get(`/api/users/${username}`)
-  //       .then(user => {
-  //         dispatch(getUser(user.data))
-  //         history.push('/home')
-  //       }, authError => {
-  //         dispatch(getUser({error: authError}))
-  //       })
-  // }
-
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -71,13 +50,14 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export const update = (userId, habitId, XP, HP) => {
-  return dispatch =>
-    axios.put(`api/users/${userId}`, { habitId, XP, HP } )
-      .then( () => {
-        dispatch(updateUser(XP, HP))
-      })
-      .catch(console.error)
+export const update = (userId, habitId, XP) => {
+  return dispatch => {
+      axios.put(`/api/users/${userId}`, {habitId, XP})
+        .then(_ => {
+          dispatch(updateUser(XP))
+        })
+        .catch(err => console.log(err))
+  }
 }
 
 /**
@@ -88,9 +68,9 @@ export default function (state = defaultUser, action) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return {}
     case UPDATE_USER:
-      return {...state, XP: state.XP + action.XP, HP: state.HP + action.HP}
+      return {...state, XP: action.XP}
     default:
       return state
   }
