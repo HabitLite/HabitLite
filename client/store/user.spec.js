@@ -69,7 +69,7 @@ describe.only('thunk creators', () => {
       return store.dispatch(updateHP(testHP))
         .then( () => {
           const user = store.getUser(userId)
-          expect(user.hp).to.equal(5)
+          expect(user.HP).to.equal(5)
         })
         .catch(console.error)
     })
