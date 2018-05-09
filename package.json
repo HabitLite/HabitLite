@@ -14,7 +14,7 @@
     "postinstall": "touch secrets.js",
     "seed": "node server/seed.js",
     "start": "node server",
-    "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start-dev": "NODE_ENV='development' concurrently \"npm run build-client-watch\" \"npm run start-server\"",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha -w ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
@@ -60,6 +60,7 @@
     "babel-loader": "^8.0.0-beta.2",
     "chai": "^3.5.0",
     "cheerio": "^1.0.0-rc.2",
+    "concurrently": "^3.5.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^4.10.0",

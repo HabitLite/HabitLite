@@ -1,52 +1,36 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { User, UserCategory } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
   User.findAll({
-    // explicitly select only the id and username fields - even though
+    // explicitly select only certain fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
 
-    attributes: ['id', 'email', 'username', 'level', 'XP', 'HP']
-
-    // attributes: ['id', 'email']
+    attributes: ['id', 'email', 'username', 'level']
 
   })
     .then(users => res.json(users))
     .catch(next)
 })
 
-
-// router.post('/', (req, res, next) => {
-//   User.create(req.body)
-//     .then(user => res.status(201).json(user))
-//     .catch(next)
-// })
-
-
-router.get('/:username', (req, res, next) => { //Change test to reflect changing userId to username
-  User.findOne({
-    where: {
-      username: req.params.username
-    },
-    attributes: ['id', 'username', 'level', 'XP', 'HP']
+//***Test only works some of the time.  Could be some async issue or issue with test***
+router.put('/:userId', (req, res, next) => {
+  User.findById(+req.params.userId, {
+    include: [UserCategory]
   })
-    .then(user => res.json(user))
+    .then(user => {
+      let userCategory = user.userCategories.find(category => {
+        return category.categoryId === +req.body.categoryId
+      })
+      userCategory.XP += +req.body.XP
+      userCategory.HP += +req.body.HP
+      return userCategory.save()
+    })
+    .then(() => {
+      res.end()
+    })
     .catch(next)
 })
-
-
-//***Only works some of the time.  Could be some async issue***
-// router.put('/:userId', (req, res, next) => {
-//   User.findById(req.params.userId)
-//     .then(user => {
-//       user.update(req.body)
-//     })
-//     .then(() => {
-//       res.status(201).end()
-//       // next()
-//     })
-//     .catch(next)
-// })
 
