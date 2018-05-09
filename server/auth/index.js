@@ -57,7 +57,6 @@ router.get('/me', (req, res, next) => {
       level: req.user.level,
       XP: userXP
     }
-    console.log("****************user", user)
 
     res.json(user)
   })
