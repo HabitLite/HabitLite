@@ -7,14 +7,14 @@ import {update} from '../store'
  * COMPONENT
  */
 const Habits = props => {
-
+  let categoryId = 1, XP = 5
   return ( //eventually do for loop and stop using dummy data
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
           <ul>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 1</p></li>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 2</p></li>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 3</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 1</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 2</p></li>
+              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 3</p></li>
           </ul>
       </div>
   )
