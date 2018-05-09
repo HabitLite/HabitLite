@@ -11,7 +11,7 @@ const UPDATE_USER = 'UPDATE_USER'
 /**
  * INITIAL STATE
  */
-const defaultUser = {XP: 0} //eventually want to change getUser route so it sends back user with correct XP
+const defaultUser = {} //eventually want to change getUser route so it sends back user with correct XP
 
 /**
  * ACTION CREATORS
