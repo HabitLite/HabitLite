@@ -1,7 +1,9 @@
+'use strict'
+
 /* global describe beforeEach afterEach it */
 
-import {expect} from 'chai'
-import {me, logout} from './user'
+import { expect } from 'chai'
+import { me, logout, updateHP } from './user'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -11,7 +13,7 @@ import history from '../history'
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-xdescribe('thunk creators', () => {
+describe.only('thunk creators', () => {
   let store
   let mockAxios
 
@@ -49,6 +51,37 @@ xdescribe('thunk creators', () => {
           expect(actions[0].type).to.be.equal('REMOVE_USER')
           expect(history.location.pathname).to.be.equal('/login')
         })
+    })
+  })
+
+  describe('updateHP', function () {
+    const testUser = {
+      id: 42,
+      HP: 10
+    }
+
+    const userId = testUser.id
+
+    const testHP = 5
+
+    it('should subtract the user\'s HP by the correct amount (via negative HP number)', function () {
+      mockAxios.onPut(`users/${userId}/hp`).replyOnce(204)
+      return store.dispatch(updateHP(testHP))
+        .then( () => {
+          const user = store.getUser(userId)
+          expect(user.hp).to.equal(5)
+        })
+        .catch(console.error)
+    })
+
+    it('should add to the user\'s HP by the correct amount (via positive HP number)')
+
+    it('should make the user lose a total of HP that corresponds to the sum total of the habits not checked off')
+
+    it('should fire at 00:00', function () {
+      let testHour = 0
+
+      // if (!testHour) expect(user.hp).to.equal(<totalHP - habitsHP>)
     })
   })
 })
