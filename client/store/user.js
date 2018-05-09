@@ -11,7 +11,7 @@ const UPDATE_USER = 'UPDATE_USER'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {XP: 0} //eventually want to change getUser route so it sends back user with correct XP
 
 /**
  * ACTION CREATORS
@@ -26,8 +26,10 @@ const updateUser = XP => ({type: UPDATE_USER, XP})
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
-    .then(res =>
-      dispatch(getUser(res.data || defaultUser)))
+    .then(res => {
+      console.log("**************res.data", res.data)
+      dispatch(getUser(res.data || defaultUser))
+    })
     .catch(err => console.log(err))
 
 export const auth = (email, password, method) => //Can make shorter

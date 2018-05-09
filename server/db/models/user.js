@@ -27,22 +27,25 @@ const User = db.define('user', {
     defaultValue: 1,
     validate: { min: 1 }
   },
-  XP: {
-    type: Sequelize.INTEGER,
-    get() {
-      let sum = 0
-      UserCategory.findAll({
-        where: {
-          userId: this.dataValues.id
-        }
-      }).then(categories => {
-          categories.forEach(category => {
-            sum += category.XP
-          })
-      })
-      return sum
-      }
-  },
+  // XP: {
+  //   type: Sequelize.VIRTUAL,
+  //   get: async function() {
+  //     let sum = 0
+  //     await UserCategory.findAll({
+  //       where: {
+  //         userId: this.dataValues.id
+  //       }
+  //     }).then(categories =>
+  //     {
+  //       categories.forEach(category =>
+  //       {
+  //         sum += category.dataValues.XP
+  //       })
+  //     }).catch(err => console.log(err))
+  //     console.log("*******************************sum is", sum)
+  //     return sum
+  //   }
+  // },
   HP: {
     type: Sequelize.INTEGER,
     defaultValue: 10,
