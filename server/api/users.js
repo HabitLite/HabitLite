@@ -44,7 +44,8 @@ router.put('/:userId', (req, res, next) => {
       let userCategory = user.userCategories.find(category => {
         return category.categoryId === +req.body.categoryId
       })
-      userCategory.XP += req.body.XP
+      userCategory.XP += +req.body.XP
+      userCategory.HP += +req.body.HP
       return userCategory.save()
     })
     .then(() => {
