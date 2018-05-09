@@ -54,8 +54,8 @@ const Progress = props => {
  */
 const mapState = (state) => {
   return {
-    XP: state.user.XP, //should be state.user.XP but right now XP is 0, and that wouldn't show that the graph works
-    level: state.user.level //should be state.user.level
+    XP: state.user.XP,
+    level: state.user.level
   }
 }
 

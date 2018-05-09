@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const updateUser = XP => ({type: UPDATE_USER, XP})
 
 /**
  * THUNK CREATORS
@@ -39,27 +41,6 @@ export const auth = (email, password, method) => //Can make shorter
     })
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
-  // dispatch =>
-  // {
-  //   if (method === 'signup')
-  //     axios.post('/api/users', { username, password })
-  //       .then(user => {
-  //         dispatch(getUser(user.data))
-  //         history.push('/home')
-  //       }, authError => {
-  //         dispatch(getUser({error: authError}))
-  //       })
-  //       .catch(dipatchOrHistoryErr => console.error(dispatchOrHistoryErr))
-  //   if (method === 'login')
-  //     axios.get(`/api/users/${username}`)
-  //       .then(user => {
-  //         dispatch(getUser(user.data))
-  //         history.push('/home')
-  //       }, authError => {
-  //         dispatch(getUser({error: authError}))
-  //       })
-  // }
-
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -69,6 +50,17 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+export const update = (userId, categoryId, XP) => {
+  return dispatch => {
+      axios.put(`/api/users/${userId}`, {categoryId, XP})
+        .then(_ => {
+          console.log("*********", XP)
+          dispatch(updateUser(XP))
+        })
+        .catch(err => console.log(err))
+  }
+}
+
 /**
  * REDUCER
  */
@@ -77,7 +69,9 @@ export default function (state = defaultUser, action) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return {}
+    case UPDATE_USER:
+      return {...state, XP: state.XP + action.XP} //We want the user's XP here
     default:
       return state
   }
