@@ -23,7 +23,7 @@ export const UserHome = props => {
       <Categories />
       <Habits />
       <div className="progress-bar">
-      <Progress name={singleCategoryName}/>
+      <Progress />
       </div>
     </div>
   )
