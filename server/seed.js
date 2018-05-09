@@ -33,7 +33,11 @@ async function seed () {
 
   const userCategory = await Promise.all([
     UserCategory.create({userId: 4, categoryId: 1, XP: 100}),
-    UserCategory.create({userId: 1, categoryId: 1, XP: 1})
+    UserCategory.create({userId: 1, categoryId: 1, XP: 1}),
+    UserCategory.create({userId: 2, categoryId: 1, XP: 0}),
+    UserCategory.create({userId: 3, categoryId: 1, XP: 0}),
+    UserCategory.create({userId: 5, categoryId: 1, XP: 0}),
+    UserCategory.create({userId: 6, categoryId: 1, XP: 0})
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
