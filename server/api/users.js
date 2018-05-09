@@ -41,6 +41,7 @@ router.put('/:userId', (req, res, next) => {
     include: [UserCategory]
   })
     .then(user => {
+      console.log("*****", user)
       let userCategory = user.userCategories.find(category => {
         return category.categoryId === +req.body.categoryId
       })

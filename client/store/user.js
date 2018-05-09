@@ -54,6 +54,7 @@ export const update = (userId, categoryId, XP) => {
   return dispatch => {
       axios.put(`/api/users/${userId}`, {categoryId, XP})
         .then(_ => {
+          console.log("*********", XP)
           dispatch(updateUser(XP))
         })
         .catch(err => console.log(err))
@@ -70,7 +71,7 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return {}
     case UPDATE_USER:
-      return {...state, XP: action.XP} //We want the user's XP here, but we also want to update the userCategory XP
+      return {...state, XP: state.XP + action.XP} //We want the user's XP here
     default:
       return state
   }

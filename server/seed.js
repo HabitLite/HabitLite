@@ -6,7 +6,7 @@ async function seed () {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'tania@gmail.com', password: '123', username: 'tania'}),
+    User.create({email: 'tania@gmail.com', password: '123', username: 'tania', XP: 1, level: 1}),
     User.create({email: 'ginny@gmail.com', password: '123', username: 'ginny'}),
     User.create({email: 'palina@email.com', password: '123', username: 'palina'}),
     User.create({email: 'priya@email.com', password: '123', username: 'priya', XP: 100, level: 4}),
@@ -32,7 +32,8 @@ async function seed () {
   ])
 
   const userCategory = await Promise.all([
-    UserCategory.create({userId: 4, categoryId: 1, XP: 100})
+    UserCategory.create({userId: 4, categoryId: 1, XP: 100}),
+    UserCategory.create({userId: 1, categoryId: 1, XP: 1})
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
