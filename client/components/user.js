@@ -1,8 +1,8 @@
 'use strict'
 
 import React from 'react'
-// import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 const User = props => {
 
@@ -29,26 +29,24 @@ const User = props => {
   )
 }
 
-export default User
-
 /* *** CONTAINER *** */
-// const mapState = (state) => {
-//   return {
-//     avatar: state.user.avatar,
-//     username: state.user.username,
-//     level: state.user.level,
-//     HP: state.user.HP,
-//     XP: state.user.XP
-//   }
-// }
+const mapState = (state) => {
+  return {
+    avatar: state.user.avatar,
+    username: state.user.username,
+    level: state.user.level,
+    HP: state.user.HP,
+    XP: state.user.XP
+  }
+}
 
-// export default connect(mapState)(User)
+export default connect(mapState)(User)
 
 /* *** PROP TYPES *** */
-// User.propTypes = {
-//   avatar: PropTypes.string.isRequired,
-//   username: PropTypes.string.isRequired,
-//   level: PropTypes.number.isRequired,
-//   HP: PropTypes.number.isRequired,
-//   XP: PropTypes.number.isRequired
-// }
+User.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  level: PropTypes.number.isRequired,
+  HP: PropTypes.number.isRequired,
+  XP: PropTypes.number.isRequired
+}

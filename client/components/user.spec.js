@@ -5,6 +5,7 @@ import { expect } from 'chai'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import TestRenderer from 'react-test-renderer'
+import { createStore } from 'redux'
 import { User } from './index'
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -22,13 +23,24 @@ describe('<User />', function () {
   })
 
   const testProps = createTestProps()
-
   const { avatar, username, level, HP, XP } = testProps
 
-  beforeEach('Create UserWrapper', function () {
-    UserWrapper = shallow(<User {...testProps} />)
+  const createInitialState = () => ({
+    avatar: 'puggy pugness',
+    username: 'cody the cute',
+    level: 1000,
+    HP: 52,
+    XP: 42
+  })
 
-    UserRenderer = TestRenderer.create(<User {...testProps} />)
+  const initialState = createInitialState()
+
+  const testStore = createStore(state => state, initialState)
+
+  beforeEach('Create UserWrapper', function () {
+    UserWrapper = shallow(<User store={testStore} {...testProps} />)
+
+    UserRenderer = TestRenderer.create(<User store={testStore} {...testProps} />)
     UserInstance = UserRenderer.root
   })
 
@@ -36,6 +48,7 @@ describe('<User />', function () {
   describe('props', function () {
 
     it('should receive the user\'s avatar as props', function () {
+      console.log('UserWrapper:', UserWrapper)
       expect(UserWrapper.props()).to.have.property('avatar', avatar)
     })
 
@@ -58,8 +71,9 @@ describe('<User />', function () {
   }) // end describe('props')
 
   /* *** RENDERING *** */
-  describe('rendering', function() {
+  describe.only('rendering', function() {
     it('should render the User component without exploding', function () {
+      console.log(UserWrapper)
       expect(UserWrapper).to.have.length(1)
     })
 

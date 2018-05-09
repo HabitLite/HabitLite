@@ -68,7 +68,7 @@ describe('<UserHome /> Component', function () {
 
   }) // end describe('itself')
 
-  describe('children', function () {
+  xdescribe('children', function () {
 
     it('should render the username in an h3', () => {
       expect(UserHomeWrapper.text()).to.equal('Welcome, cody the pug')
@@ -77,8 +77,8 @@ describe('<UserHome /> Component', function () {
     it('should render a Navbar component')
 
     it('should render a User component', function () {
-      console.log('UserHomeWrapper.find(User):', UserHomeWrapper.find('User'))
-      // expect(UserHomeWrapper.find(User)).to.have.length(1)
+      console.log('UserHomeWrapper.find(User):', UserHomeWrapper.get(0))
+      // expect(UserHomeWrapper.get(0)).to.have.length(1)
     })
 
     it('should render a Categories component')
