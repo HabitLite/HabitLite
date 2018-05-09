@@ -26,8 +26,9 @@ const updateUser = (XP, HP) => ({type: UPDATE_USER, XP, HP})
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
-    .then(res =>
-      dispatch(getUser(res.data || defaultUser)))
+    .then(res => {
+      dispatch(getUser(res.data || defaultUser))
+    })
     .catch(err => console.log(err))
 
 export const auth = (email, password, method) => //Can make shorter

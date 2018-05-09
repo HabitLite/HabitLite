@@ -8,32 +8,12 @@ router.get('/', (req, res, next) => {
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
 
-    attributes: ['id', 'email', 'username', 'level', 'XP', 'HP']
+    attributes: ['id', 'email', 'username', 'level']
 
   })
     .then(users => res.json(users))
     .catch(next)
 })
-
-
-// router.post('/', (req, res, next) => {
-//   User.create(req.body)
-//     .then(user => res.status(201).json(user))
-//     .catch(next)
-// })
-
-
-router.get('/:username', (req, res, next) => {
-  User.findOne({
-    where: {
-      username: req.params.username
-    },
-    attributes: ['id', 'username', 'level', 'XP', 'HP']
-  })
-    .then(user => res.json(user))
-    .catch(next)
-})
-
 
 //***Test only works some of the time.  Could be some async issue or issue with test***
 router.put('/:userId', (req, res, next) => {

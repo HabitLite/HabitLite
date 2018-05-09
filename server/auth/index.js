@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../db/models/user')
+const { User, UserCategory } = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
@@ -38,8 +38,28 @@ router.post('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/me', (req, res) => {
-  res.json(req.user)
+router.get('/me', (req, res, next) => {
+  let userXP = 0
+  UserCategory.findAll({
+    where: {
+      userId: req.user.id
+    }
+  })
+  .then(categories => {
+    categories.forEach(category => {
+      userXP += category.XP
+    })
+
+    let user = {
+      id: req.user.id,
+      email: req.user.email,
+      username: req.user.username,
+      level: req.user.level,
+      XP: userXP
+    }
+
+    res.json(user)
+  })
 })
 
 router.use('/google', require('./google'))
