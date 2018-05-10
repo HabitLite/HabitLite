@@ -52,7 +52,7 @@ export const logout = () =>
       .catch(err => console.log(err))
 
 export const update = (userId, categoryId, XP = 0, HP = 0) => {
-  return dispatch => {
+  return dispatch => { //if statement here
       axios.put(`/api/users/${userId}`, {categoryId, XP, HP})
         .then(_ => {
           dispatch(updateUser(XP, HP))

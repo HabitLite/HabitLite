@@ -12,9 +12,16 @@ const Habits = props => {
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
           <ul>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 1</p></li>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 2</p></li>
-              <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 3</p></li>
+            <div className="mdc-switch">
+              <input type="checkbox" id="basic-switch" className="mdc-switch__native-control" role="switch">
+                <div className="mdc-switch__background">
+                  <div className="mdc-switch__knob"></div>
+                </div>
+            </div>
+            <label htmlFor="basic-switch">off/on</label>
+              {/*<li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 1</p></li>*/}
+              {/*<li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 2</p></li>*/}
+              {/*<li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 3</p></li>*/}
           </ul>
       </div>
   )
