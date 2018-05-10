@@ -42,8 +42,8 @@ class Main extends Component {
 
             <MuiThemeProvider >
                 <div className="container">
-                    <AppBar title="Material-UI" />
-                    {/* <Navbar /> */}
+                    {/*<AppBar title="Material-UI" />*/}
+                     <Navbar />
                     <main>
                         <Switch>
                             {/* Routes placed here are available to all visitors */}
