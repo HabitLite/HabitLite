@@ -59,7 +59,7 @@ self.addEventListener('fetch', function(e) {
       return caches.match(e.request)
         .then(function(resp) {
           console.log('!!!! CACHE !!!!!', e.request.url, resp)
-          return resp
+          return resp || caches.match('/index.html');
         })
         .catch(function() {
           return caches.match('/index.html');
