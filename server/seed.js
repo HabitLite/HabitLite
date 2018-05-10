@@ -6,10 +6,10 @@ async function seed () {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'tania@gmail.com', password: '123', username: 'tania', XP: 1, level: 1}),
+    User.create({email: 'tania@gmail.com', password: '123', username: 'tania'}),
     User.create({email: 'ginny@gmail.com', password: '123', username: 'ginny'}),
     User.create({email: 'palina@email.com', password: '123', username: 'palina'}),
-    User.create({email: 'priya@email.com', password: '123', username: 'priya', XP: 100, level: 4}),
+    User.create({email: 'priya@email.com', password: '123', username: 'priya', level: 4}),
     User.create({email: 'cody@email.com', password: '123', username: 'cody'}),
     User.create({email: 'murphy@email.com', password: '123', username: 'dops'})
   ])
@@ -32,12 +32,12 @@ async function seed () {
   ])
 
   const userCategory = await Promise.all([
-    UserCategory.create({userId: 4, categoryId: 1, XP: 100}),
-    UserCategory.create({userId: 1, categoryId: 1, XP: 1}),
-    UserCategory.create({userId: 2, categoryId: 1, XP: 0}),
-    UserCategory.create({userId: 3, categoryId: 1, XP: 0}),
-    UserCategory.create({userId: 5, categoryId: 1, XP: 0}),
-    UserCategory.create({userId: 6, categoryId: 1, XP: 0})
+    UserCategory.create({userId: 4, categoryId: 1, XP: 100, HP: 123}),
+    UserCategory.create({userId: 1, categoryId: 1, XP: 1, HP: 234}),
+    UserCategory.create({userId: 2, categoryId: 1, XP: 0, HP: 345}),
+    UserCategory.create({userId: 3, categoryId: 1, XP: 0, HP: 456}),
+    UserCategory.create({userId: 5, categoryId: 1, XP: 0, HP: 567}),
+    UserCategory.create({userId: 6, categoryId: 1, XP: 0, HP: 678})
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

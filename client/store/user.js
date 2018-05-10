@@ -18,7 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-const updateUser = XP => ({type: UPDATE_USER, XP})
+const updateUser = (XP, HP) => ({type: UPDATE_USER, XP, HP})
 
 /**
  * THUNK CREATORS
@@ -26,8 +26,9 @@ const updateUser = XP => ({type: UPDATE_USER, XP})
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
-    .then(res =>
-      dispatch(getUser(res.data || defaultUser)))
+    .then(res => {
+      dispatch(getUser(res.data || defaultUser))
+    })
     .catch(err => console.log(err))
 
 export const auth = (email, password, method) => //Can make shorter
@@ -50,12 +51,11 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export const update = (userId, categoryId, XP) => {
+export const update = (userId, categoryId, XP = 0, HP = 0) => {
   return dispatch => {
-      axios.put(`/api/users/${userId}`, {categoryId, XP})
+      axios.put(`/api/users/${userId}`, {categoryId, XP, HP})
         .then(_ => {
-          console.log("*********", XP)
-          dispatch(updateUser(XP))
+          dispatch(updateUser(XP, HP))
         })
         .catch(err => console.log(err))
   }
@@ -71,7 +71,11 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return {}
     case UPDATE_USER:
-      return {...state, XP: state.XP + action.XP} //We want the user's XP here
+      return {
+        ...state,
+        XP: state.XP + action.XP,
+        HP: state.HP + action.HP
+      }
     default:
       return state
   }
