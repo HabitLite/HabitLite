@@ -20,7 +20,7 @@ router.put('/:userId', (req, res, next) => {
   User.findById(+req.params.userId, {
     include: [UserCategory]
   })
-    .then(user => {//if statement here based on req.body.action (where action is increment or decrement)
+    .then(user => {
       let userCategory = user.userCategories.find(category => {
         return category.categoryId === +req.body.categoryId
       })
