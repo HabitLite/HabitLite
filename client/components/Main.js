@@ -40,35 +40,35 @@ class Main extends Component {
 
         return (
 
-            <MuiThemeProvider >
-                <div className="container">
-                    <AppBar title="Material-UI" />
-                    {/* <Navbar /> */}
-                    <main>
-                        <Switch>
-                            {/* Routes placed here are available to all visitors */}
-                            <Route exact path="/login" component={Login} />
-                            <Route exact path="/signup" component={Signup} />
-                            <Route path="/personalityQuiz" component={PersonalityQuiz} />
-                            {
-                                isLoggedIn &&
-                                <Switch>
-                                    {/* Routes placed here are only available after logging in */}
-                                    {/* <Route path="/home" component={UserHome} /> */}
-                                    <Route exact path="/home" component={UserSummary} />
-                                    <Route exact path="/single" component={UserHome} />
-
-
-                                </Switch>
-                            }
-                            {/* Displays our Login component as a fallback */}
-                            <Route component={Login} />
-                        </Switch>
-                    </main>
-                </div>
-            </MuiThemeProvider>
-
-
+          <MuiThemeProvider >
+            <div className="container">
+              <div>
+                {/* <AppBar title="HabitLite" /> */}
+              </div>
+              <div>
+                {<Navbar />}
+              </div>
+              <main>
+                <Switch>
+                  {/* Routes placed here are available to all visitors */}
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/signup" component={Signup} />
+                  <Route path="/personalityQuiz" component={PersonalityQuiz} />
+                  {
+                    isLoggedIn &&
+                    <Switch>
+                      {/* Routes placed here are only available after logging in */}
+                      {/* <Route path="/home" component={UserHome} /> */}
+                      <Route exact path="/home" component={UserSummary} />
+                      <Route exact path="/single" component={UserHome} />
+                    </Switch>
+                  }
+                  {/* Displays our Login component as a fallback */}
+                  <Route component={Login} />
+                </Switch>
+              </main>
+            </div>
+          </MuiThemeProvider>
         )
     }
 }

@@ -22,6 +22,5 @@ export const UserHome = () => {
   )
 }
 
-
 export default connect()(UserHome)
 

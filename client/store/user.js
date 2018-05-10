@@ -54,7 +54,7 @@ export const logout = () =>
 export const update = (userId, categoryId, XP = 0, HP = 0) => {
   return dispatch => {
       axios.put(`/api/users/${userId}`, {categoryId, XP, HP})
-        .then(_ => {
+        .then( () => {
           dispatch(updateUser(XP, HP))
         })
         .catch(err => console.log(err))
