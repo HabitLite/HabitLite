@@ -31,7 +31,7 @@ export default class PersonalityQuiz extends Component {
             <div>
             <form onSubmit={this.handleSubmit} className='form'>
 {
-    quiz.map(quizContent)=> {
+    quiz.map((quizContent)=> {
         return(
             <h3>quizContent.
         )
