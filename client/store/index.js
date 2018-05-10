@@ -6,6 +6,7 @@ import user from './user'
 import categories from './categories'
 import personality from './personality'
 
+
 const reducer = combineReducers({ user, categories, personality })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -17,3 +18,4 @@ export default store
 export * from './user'
 export * from './categories'
 export * from './personality'
+

@@ -9,7 +9,7 @@ const filesToCache = [
   '/images/icons/music-player-120.png',
   '/images/icons/music-player-128.png',
   '/images/icons/music-player-144.png',
-
+  '/bundle.js'
 ];
 // ['./style.css']
 
@@ -42,11 +42,30 @@ self.addEventListener('activate', function(e) {
 
 //If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener('fetch', function(e) {
-  // console.log('[ServiceWorker] Fetch', e.request.url);
+  console.log('[ServiceWorker] Fetch', e.request.url);
   e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
+    // if we are online start with fetch and then cache this
+    // if we aren't online then check cache and send that
+    fetch(e.request).then(function(response) {
+      console.log('!!!! FETCH !!!!!', e.request.url, response)
+      
+      let responseClone = response.clone();
+      caches.open(cacheName).then(function(cache) {
+        cache.put(e.request, responseClone);
+      });
+      return response;
     })
+    .catch(() => {
+      return caches.match(e.request)
+        .then(function(resp) {
+          console.log('!!!! CACHE !!!!!', e.request.url, resp)
+          return resp || caches.match('/index.html');
+        })
+        .catch(function() {
+          return caches.match('/index.html');
+        })    
+    })
+    
   );
 });
 
