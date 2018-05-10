@@ -11,6 +11,7 @@ const Habits = props => {
   return ( //eventually do for loop and stop using dummy data
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
+         <button></button>
           <ul>
               <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 1</p></li>
               <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, 1, 5)} /><p>checkbox 2</p></li>
