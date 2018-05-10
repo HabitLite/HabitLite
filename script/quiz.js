@@ -1,219 +1,219 @@
 var quizQuestions = [
     {
-        question: "I rather: ",
-        answers: [
-            {
-                content: "Do yoga"
-            },
-            {
-                content: "Run"
-            },
-            {
-                content: "Lift Weights"
-            },
-            {
-                content: "Do something new every day"
-            }
+        q1: "I rather: ",
+        answer: [
+
+            "Do yoga"
+            ,
+
+            "Run"
+            ,
+
+            "Lift Weights"
+            ,
+
+            "Do something new every day"
+
 
         ]
     },
     {
-        question: "When I skip a workout is usually because: ",
-        answers: [
+        q2: "When I skip a workout is usually because: ",
+        answer: [
             {
-                content: "I’m too exhausted"
+                a1: "I’m too exhausted"
             },
             {
-                content: "I’m feeling under the weather"
+                a2: "I’m feeling under the weather"
             },
             {
-                content: "I never penciled it in, so it’s not just a priority"
+                a3: "I never penciled it in, so it’s not just a priority"
             },
             {
-                content: "It feels pointless when I’m not seeing results"
+                a4: "It feels pointless when I’m not seeing results"
             },
             {
-                content: "Something else popped up "
+                a5: "Something else popped up "
             }
         ]
     },
     {
-        question: "I feel relaxed when:",
-        answers: [
+        q3: "I feel relaxed when:",
+        answer: [
             {
-                content: "Vent to my partner"
+                a1: "Vent to my partner"
             },
             {
-                content: "Have a dance party with my kids"
+                a2: "Have a dance party with my kids"
             },
             {
-                content: "Get into a project, like baking a gorgeous cake"
+                a3: "Get into a project, like baking a gorgeous cake"
             },
             {
-                content: "Take a long walk"
+                a4: "Take a long walk"
             },
             {
-                content: "Read a book"
+                a5: "Read a book"
             }
         ]
     },
     {
-        question: "During the weekend I look forward to:",
-        answers: [
+        q4: "During the weekend I look forward to:",
+        answer: [
             {
-                content: "Finally getting to sleep in and not follow a strict schedule"
+                a1: "Finally getting to sleep in and not follow a strict schedule"
             },
             {
-                content: "Go to a trendy new restaurant"
+                a2: "Go to a trendy new restaurant"
             },
             {
-                content: "Making waffles for brunch with the family"
+                a3: "Making waffles for brunch with the family"
             },
             {
-                content: "Finishing a home improvement project"
+                a4: "Finishing a home improvement project"
             },
             {
-                content: "Being able to spend my daylight outside instead of in the office "
+                a5: "Being able to spend my daylight outside instead of in the office "
             }
         ]
     },
     {
-        question: "Best part of my workout is:",
-        answers: [
+        q5: "Best part of my workout is:",
+        answer: [
             {
-                content: "Letting out some pent-up energy"
+                a1: "Letting out some pent-up energy"
             },
             {
-                content: "Breaking the cycle of sitting all day"
+                a2: "Breaking the cycle of sitting all day"
             },
             {
-                content: "Busting some stress"
+                a3: "Busting some stress"
             },
             {
-                content: "Seeing my body change"
+                a4: "Seeing my body change"
             },
             {
-                content: "Escaping the world for a little bit"
+                a5: "Escaping the world for a little bit"
             }
         ]
     },
     {
-        question: "I stay motivated during a project by:",
-        answers: [
+        q6: "I stay motivated during a project by:",
+        answer: [
             {
-                content: "The thought of how great it will feel when I’m done"
+                a1: "The thought of how great it will feel when I’m done"
             },
             {
-                content: "Encouraging words from those around me"
+                a2: "Encouraging words from those around me"
             },
             {
-                content: "Seeing my little successes along the way"
+                a3: "Seeing my little successes along the way"
             },
             {
-                content: "The fear of failing"
+                a4: "The fear of failing"
             },
             {
-                content: "Remembering how each task fits into the big picture"
+                a5: "Remembering how each task fits into the big picture"
             }
         ]
     },
     {
-        question: "The best part about eating out is: ",
-        answers: [
+        q7: "The best part about eating out is: ",
+        answer: [
             {
-                content: "Inviting friends along to make an event of it"
+                a1: "Inviting friends along to make an event of it"
             },
             {
-                content: "Filling my cravings for my go-to dish"
+                a2: "Filling my cravings for my go-to dish"
             },
             {
-                content: "Tasting dishes, I could never make for myself"
+                a3: "Tasting dishes, I could never make for myself"
             },
             {
-                content: "Knowing I’ve reached the end of a productive week"
+                a4: "Knowing I’ve reached the end of a productive week"
             },
             {
-                content: "Relaxing instead of stressing about the cooking"
+                a5: "Relaxing instead of stressing about the cooking"
             }
         ]
     },
     {
-        question: "My mornings look like: ",
-        answers: [
+        q8: "My mornings look like: ",
+        answer: [
             {
-                content: "Setting my alarm early so I can feel awake by the tie I actually have to be productive"
+                a1: "Setting my alarm early so I can feel awake by the tie I actually have to be productive"
             },
             {
-                content: "Following the routine that I’ve planned down to the minute"
+                a2: "Following the routine that I’ve planned down to the minute"
             },
             {
-                content: "Waking up a bit before my alarm, then taking my time to get ready"
+                a3: "Waking up a bit before my alarm, then taking my time to get ready"
             },
             {
-                content: "Spending too much time searching for my keays of phone"
+                a4: "Spending too much time searching for my keays of phone"
             },
             {
-                content: "Hitting snooze three times, then making a mad dash to get out the door"
+                a5: "Hitting snooze three times, then making a mad dash to get out the door"
             }
         ]
     },
     {
-        question: "Parties are:",
-        answers: [
+        q9: "Parties are:",
+        answer: [
             {
-                content: "An opportunity to catch up with friends I don’t see often"
+                a1: "An opportunity to catch up with friends I don’t see often"
             },
             {
-                content: "They’re a nice way to get out of the house, even if I don’t know anyone there"
+                a2: "They’re a nice way to get out of the house, even if I don’t know anyone there"
             },
             {
-                content: "They’re a fun way to meet interesting people"
+                a3: "They’re a fun way to meet interesting people"
             },
             {
-                content: "They’re not awful, but I’d rather hangout at home "
+                a4: "They’re not awful, but I’d rather hangout at home "
             },
             {
-                content: "They’re just another social obligation"
+                a5: "They’re just another social obligation"
             }
         ]
     },
     {
-        question: "My biggest strength in a job interview is being :",
-        answers: [
+        q10: "My biggest strength in a job interview is being :",
+        answer: [
             {
-                content: "Persistent"
+                a1: "Persistent"
             },
             {
-                content: "Passionate"
+                a2: "Passionate"
             },
             {
-                content: "Dedicated"
+                a3: "Dedicated"
             },
             {
-                content: "Disciplined"
+                a4: "Disciplined"
             },
             {
-                content: "Team Player"
+                a5: "Team Player"
             }
         ]
     },
     {
-        question: "If someone offered me last minute tickets to a play:",
-        answers: [
+        q11: "If someone offered me last minute tickets to a play:",
+        answer: [
             {
-                content: "I would be in in a heartbeat"
+                a1: "I would be in in a heartbeat"
             },
             {
-                content: "I would have to see if I can get a babysitter"
+                a2: "I would have to see if I can get a babysitter"
             },
             {
-                content: "I would go if the plot sounds interesting"
+                a3: "I would go if the plot sounds interesting"
             },
             {
-                content: "I would go after I check the reviews"
+                a4: "I would go after I check the reviews"
             },
             {
-                content: "I would not go , I want to stay in"
+                a5: "I would not go , I want to stay in"
             }
         ]
     }

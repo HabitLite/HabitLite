@@ -10,7 +10,9 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import $ from 'jquery';
+import axios from 'axios'
+import quiz from '../../script/quiz.js'
 
 const styles = {
     customWidth: {
@@ -39,9 +41,11 @@ export default class PersonalityQuiz extends Component {
             q8: '',
             q9: '',
             q10: '',
-            q11: ''
+            q11: '',
+            insights: ''
         }
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange1 = this.handleChange1.bind(this);
+        // this.handleChange3 = this.handleChange3.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
@@ -57,11 +61,13 @@ export default class PersonalityQuiz extends Component {
             q8: this.state.q8,
             q9: this.state.q9,
             q10: this.state.q10,
-            q11: this.state.q11
+            q11: this.state.q11,
+
         }
 
 
         axios.post('/api/:userId/personality', personality)
+
             .then(res => {
                 let resultRes = res.data;
                 store.dispatch(addPersonality(resultRes))
@@ -72,108 +78,132 @@ export default class PersonalityQuiz extends Component {
             .catch(err => console.error(err))
     }
 
-    handleChange = (event, index, value) => this.setState({ value });
+    // handleChange = (event, index, value) => this.setState({ value });
+    handleChange = (event) => {
+        // console.log('!!!', event.target.name)
+        this.setState({ [event.target.name]: event.target.value })
+        // this.setState({
+        // q1: event.target.value
+        // })
+    }
+    handleChange2 = (event) => {
+        this.setState({
+
+            q2: event.target.value
+        })
+    }
+    handleChange3 = (event) => {
+        this.setState({
+
+            q3: event.target.value
+        })
+    }
 
     render() {
+        console.log("Event values ", this.state)
+        console.log("quiz", quiz)
+        // loop through quizQuestions
+        // for each question make a radio buttonGroup
+        // loop through answers and make a radioButton
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className='form'>
 
                     <h3>I rather: </h3>
-                    <RadioButtonGroup name="q1" defaultSelected="not_light">
+                    <RadioButtonGroup name="q1" defaultSelected="not_light" onChange={this.handleChange}>
 
                         <RadioButton
-                            value="q1r1"
+                            value="Do Yoga"
                             label="Do Yoga"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+
                         />
                         <RadioButton
-                            value="q1r2"
+                            value="Run"
                             label="Run"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
                         />
                         <RadioButton
-                            value="q1r3"
+                            value="Lift Weights"
                             label="Lift Weights"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
                         />
                         <RadioButton
-                            value="q1r4"
+                            value="Do something new every day"
                             label="Do something new every day"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
                         />
                     </RadioButtonGroup>
-
+                    {/* </form>
+                <form onSubmit={this.handleSubmit} className='form'> */}
                     <h3>When I skip a workout is usually because: </h3>
                     <RadioButtonGroup name="q2" defaultSelected="not_light">
 
                         <RadioButton
-                            value="q2r1"
+                            value="I’m too exhausted"
                             label="I’m too exhausted"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange2}
+
                         />
                         <RadioButton
-                            value="q2r2"
+                            value="I’m feeling under the weather"
                             label="I’m feeling under the weather"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange2}
                         />
                         <RadioButton
-                            value="q2r3"
+                            value="I never penciled it in, so it’s not just a priority"
                             label="I never penciled it in, so it’s not just a priority"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange2}
                         />
                         <RadioButton
-                            value="q2r4"
+                            value="It feels pointless when I’m not seeing results"
                             label="It feels pointless when I’m not seeing results"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange2}
                         />
                         <RadioButton
-                            value="q2r5"
+                            value="Something else popped up"
                             label="Something else popped up"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange2}
                         />
                     </RadioButtonGroup>
                     <h3>I feel relaxed when: </h3>
                     <RadioButtonGroup name="q3" defaultSelected="not_light">
 
                         <RadioButton
-                            value="q3r1"
+                            value="Vent to my partner"
                             label="Vent to my partner"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange3}
                         />
                         <RadioButton
-                            value="q3r2"
+                            value="Have a dance party with my kids"
                             label="Have a dance party with my kids"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange3}
                         />
                         <RadioButton
-                            value="q3r3"
+                            value="Get into a project, like baking a gorgeous cake"
                             label="Get into a project, like baking a gorgeous cake"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange3}
                         />
                         <RadioButton
                             value="q3r4"
                             label="Take a long walk"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange3}
                         />
                         <RadioButton
                             value="q3r5"
                             label="Read a book"
                             style={styles.radioButton}
-                            onClick={this.handleChange}
+                            onClick={this.handleChange3}
                         />
                     </RadioButtonGroup>
                     <h3>During the weekend I look forward to:</h3>
@@ -186,13 +216,13 @@ export default class PersonalityQuiz extends Component {
                             onClick={this.handleChange}
                         />
                         <RadioButton
-                            value="q4r1"
+                            value="q4r2"
                             label="Go to a trendy new restaurant"
                             style={styles.radioButton}
                             onClick={this.handleChange}
                         />
                         <RadioButton
-                            value="q4r1"
+                            value="q4r3"
                             label="Making waffles for brunch with the family"
                             style={styles.radioButton}
                             onClick={this.handleChange}
@@ -444,7 +474,8 @@ export default class PersonalityQuiz extends Component {
                     </RadioButtonGroup>
 
                     <div>
-                        <RaisedButton label="Submit" primary={true} style={styles} />
+                        <button type="submit">Submit</button>
+                        {/* <RaisedButton label="Submit" type="submit" primary={true} /> */}
                     </div>
                 </form>
             </div >
