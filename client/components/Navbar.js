@@ -18,6 +18,7 @@ const divStyle = {
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <nav>
+
       {isLoggedIn ? (
         <div style={divStyle}>
           {/* The navbar will show these links after you log in */}
@@ -33,6 +34,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <Link to="/signup" className="sign-up">Sign Up</Link>
           </div>
         )}
+
+
     </nav>
   </div>
 )

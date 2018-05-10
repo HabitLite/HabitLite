@@ -49,14 +49,14 @@ class Main extends Component {
                             {/* Routes placed here are available to all visitors */}
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
-                            <Route path="/" component={PersonalityQuiz} />
+                            <Route path="/personalityQuiz" component={PersonalityQuiz} />
                             {
                                 isLoggedIn &&
                                 <Switch>
                                     {/* Routes placed here are only available after logging in */}
                                     {/* <Route path="/home" component={UserHome} /> */}
-                                    <Route path="/home" component={UserSummary} />
-                                    <Route path="/single" component={UserHome} />
+                                    <Route exact path="/home" component={UserSummary} />
+                                    <Route exact path="/single" component={UserHome} />
 
 
                                 </Switch>
