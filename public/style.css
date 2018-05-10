@@ -19,13 +19,9 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
-  position:absolute;
-  top:50%;
 }
 
 .quiz{
-  position:absolute;
-  top:50%;
 }
 
 .container {
@@ -95,7 +91,7 @@ select{
   height: 40px;
   margin-left: 650px;
 }
-.container{  
+.container{
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -110,9 +106,6 @@ select{
 }
 .progress-list{
   width: 350px;
-  float: right;
-  margin-top: -520px;
-  margin-right: 130px
 }
 
 
@@ -120,11 +113,11 @@ select{
 */
 /* navbar */
 .logout-btn{
-  float: right;
   margin: 15px 25px;
   color: black;
 }
 .main-page{
+  display: flex;
   padding: 16px;
   margin-top: 30px;
   height: 1500px;
@@ -165,7 +158,6 @@ p{
 ul{
   margin: -140px 0 20px 0;
   list-style: none;
-  float: left;
 }
 
 
@@ -183,7 +175,7 @@ ul{
     margin-left: 25px;
     border: 1px solid;
     width: 215px;
-  
+
   }
   small{
     margin-left: 40px;
@@ -193,7 +185,7 @@ ul{
     height: 35px;
     margin: 30px 75px;
     border: 1px solid;
-  } 
+  }
   nav{
     width: 96%;
   }
@@ -212,9 +204,6 @@ ul{
 }
 .progress-bar{
   width: 350px;
-  float: right;
-  margin-top: -593px;
-  margin-right: 130px
 }
 
 

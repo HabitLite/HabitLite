@@ -55,6 +55,7 @@ export const update = (userId, categoryId, XP = 0, HP = 0) => {
   return dispatch => { //if statement here
       axios.put(`/api/users/${userId}`, {categoryId, XP, HP})
         .then(_ => {
+          console.log("!!!!!!!!!!!!!!!!!")
           dispatch(updateUser(XP, HP))
         })
         .catch(err => console.log(err))

@@ -12,6 +12,7 @@ const getData = percent => {
  */
 const Progress = props => {
   const percent = (props.XP / (Math.pow(props.level, 2) * 10)) * 100
+  console.log("Progress renders!!!!!!!!!!!!!!!!!!!!!!!!", props.XP)
     return (
       <div >
         <h1 className="total-progress">{props.name}</h1>
