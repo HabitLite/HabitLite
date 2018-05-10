@@ -4,7 +4,8 @@ var expect = chai.expect;
 const db = require('../index')
 const DefaultHabit = db.model('defaultHabit')
 
-describe('DefaultHabit model', function () {
+//Renamed from defaultHabit.spec.js since we deleted the defaultHabit model
+xdescribe('DefaultHabit model', function () {
     beforeEach(function () {
         return db.sync({ force: true })
     })
