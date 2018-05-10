@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background: #EBEBEB;
+  /* background: #EBEBEB; */
 }
 
 a {
@@ -19,6 +19,26 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+  position:absolute;
+  top:50%;
+}
+
+.quiz{
+  position:absolute;
+  top:50%;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 /* Login / Sing Up Page */
 /* App.js */
