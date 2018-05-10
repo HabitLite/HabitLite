@@ -11,6 +11,7 @@ const Habits = props => {
   return ( // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
+         <button></button>
           <ul>
               <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 1</p></li>
               <li><input type="checkbox" className="check" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 2</p></li>

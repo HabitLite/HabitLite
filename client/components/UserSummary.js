@@ -3,31 +3,79 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { User, Progress } from './index'
-import {fetchAllCategories} from '../store/categories'
+import {fetchAllCategories, postCategory} from '../store/categories'
 
 const divStyle = {
     marginTop: '590px',    
 };
 
 
-class UserSummary extends Component {
+      
+// function ChannelList (props)
+// const UserSummaryForm = (props) =>{
+
+// // class UserSummary extends Component {
+//     const { handleClick, handleChange, name} = props
+
+//     return (
+//         <div>
+//             {/* <button className="add-category" onClick={onBtnClick}>+</button>   */}
+//                     {/* {isClicked &&  */}
+//                     <div className="input-field">
+//                         <form onClick={handleClick}>
+//                             <input
+//                                 name="category"
+//                                 type="text"
+//                                 onChange={handleChange}
+//                                 value={category}
+//                             />
+//                             <button>Add</button>
+//                         </form>
+//                         </div>
+//                     {/* } */}
+//         </div>
+//     )
+// }
     
-    constructor(props) {
-        super(props);
+class UserSummary extends Component {
+    state = {
+        name: '',
+        isClicked: false
+    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         name: '',
+    //         // isClicked: false
+    //     }
+    //     // this.onBtnClick = this.onBtnClick.bind(this);
+    //     this.handleChange = this.handleChange.bind(this);
+    //     this.handleSubmit = this.handleSubmit.bind(this);
+    // }
+    onBtnClick = (e) => {
+        // e.preventDefault();
+        this.setState({isClicked: true})
+    }
+    handleChange = (event) => {     
+        this.setState({ [event.target.name]: event.target.value })
     }
 
-    componentDidMount(){
-        this.props.getAllCategories();
-        
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const name = this.state.name
+        this.props.postNewCategory({name})
+        // const name = this.state.name;
+        // this.props.postNewCategory(name)
+        this.setState({ name: ''})
     }
-    // handleClick(val){
-    //     console.log('VALUE' ,val)
-    // }
+    componentDidMount(){
+        this.props.getAllCategories();    
+    }
+    
     render() {
-        console.log('categories Data: ', this.props.categories)
+        // console.log('categories Data: ', this.props.categories)
         // // console.log('user USER ID ' , this.props.user)
         const categories = this.props.categories
-        const test = 'lol';
 
         // to={`/add`} params={{ test: category.id }}
         return (
@@ -37,26 +85,38 @@ class UserSummary extends Component {
                 {
                     categories.map((category, i) => {
                         return (
-                            <div className="category-name" style={divStyle} key={category.id}>
+                            <div className="category-name" style={divStyle} key={i}>
                                 <Link to={{pathname: '/single', state: { name: category.name}}} className='category' key={category.id}>
                                 <div className="progress-list">
                                     <Progress name={category.name} />
                                 </div>
                                 </Link>
                             </div>
-  
                         )
                     })
                 }    
-                </div>   
-            </div>
+                </div> 
+                <div>
+                    <button className="add-category" onClick={this.onBtnClick}>+</button>  
+                            {this.state.isClicked && 
+                            <div className="input-field">
+                                <form onSubmit={this.handleSubmit}>
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        value={this.category}
+                                    />
+                                    <button type="submit">Add</button>
+                                </form>
+                                </div>
+                            }
+                 </div>
+                </div>
         )
     }
+
 }
-//     margin-top: 500px;
-// display: inline-flex;
-// margin-left: 90px;
-// flex-wrap: wrap;
 const mapState = state => {
     return {
       categories: state.categories,
@@ -69,8 +129,11 @@ const mapState = state => {
    return {
      getAllCategories: () => {
        dispatch(fetchAllCategories());
+     },
+     postNewCategory: (name) => {
+        dispatch(postCategory(name))
      }
-   }
+    }
   }
   
   export default connect(mapState, mapDispatch)(UserSummary)
