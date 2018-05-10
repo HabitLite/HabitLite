@@ -2,8 +2,27 @@ const router = require('express').Router()
 const { User, UserCategory } = require('../db/models')
 module.exports = router
 
-router.post('/login', (req, res, next) => {
+const giveUserXPAndHPAccordingToCategories = (user, categories) => {
+  let userXP = 0
+  let userHP = 0
+  categories.forEach(category => {
+    userXP += category.XP
+    userHP += category.HP
+  })
 
+  return {
+    id: user.id,
+    avatar: user.avatar,
+    email: user.email,
+    username: user.username,
+    level: user.level,
+    lives: user.lives,
+    XP: userXP,
+    HP: userHP
+  }
+}
+
+router.post('/login', (req, res, next) => {
 
   User.findOne({where: {email: req.body.email}})
     .then(user => {
@@ -14,24 +33,14 @@ router.post('/login', (req, res, next) => {
         console.log('Incorrect password for user:', req.body.email)
         res.status(401).send('Wrong username and/or password')
       } else {
-        let userXP = 0
+
         UserCategory.findAll({
           where: {
             userId: user.id
           }
         })
           .then(categories => {
-              categories.forEach(category => {
-                userXP += category.XP
-              })
-
-              let updatedUser = {
-                id: user.id,
-                email: user.email,
-                username: user.username,
-                level: user.level,
-                XP: userXP
-              }
+              const updatedUser = giveUserXPAndHPAccordingToCategories(user, categories)
               req.login(updatedUser, err => (err ? next(err) : res.json(updatedUser)))
             }
           )
@@ -61,28 +70,21 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res, next) => {
-  let userXP = 0
-  UserCategory.findAll({
-    where: {
-      userId: req.user.id
-    }
-  })
-  .then(categories => {
-    categories.forEach(category => {
-      userXP += category.XP
+  if (req.user) {
+    let userXP = 0
+    UserCategory.findAll({
+      where: {
+        userId: req.user.id
+      }
     })
+    .then(categories => {
+      const user = giveUserXPAndHPAccordingToCategories(req.user, categories)
 
-    let user = {
-      id: req.user.id,
-      email: req.user.email,
-      username: req.user.username,
-      level: req.user.level,
-      XP: userXP
-    }
-
-    res.json(user)
-  })
+      res.json(user)
+    })
     // .catch(next)
+  }
+
 })
 
 router.use('/google', require('./google'))
