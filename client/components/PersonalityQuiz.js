@@ -10,7 +10,6 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import RaisedButton from 'material-ui/RaisedButton';
-import $ from 'jquery';
 import axios from 'axios'
 import quiz from '../../script/quiz.js'
 

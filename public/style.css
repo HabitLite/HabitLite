@@ -217,4 +217,7 @@ ul{
   margin-right: 130px
 }
 
-
+.form-user-name, .form-password{
+  margin-bottom:150px;
+  margin-top:150px;
+}
