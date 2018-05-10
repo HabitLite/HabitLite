@@ -11,7 +11,7 @@ import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios'
-import quizQuestions from '../../script/quiz.js'
+import quiz from '../../script/quiz.js'
 
 const styles = {
     customWidth: {

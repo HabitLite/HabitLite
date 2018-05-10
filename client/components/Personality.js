@@ -20,25 +20,44 @@ const styles = {
     margin: 12,
 };
 
-
-export default class PersonalityQuiz extends Component {
+export default class Personality extends Component {
     constructor(props) {
         super(props);
     }
 
-    render(){
+    render() {
+        console.log("inside personality")
         return (
             <div>
-            <form onSubmit={this.handleSubmit} className='form'>
-{
-    quiz.map((quizContent)=> {
-        return(
-            <h3>quizContent.
-        )
+                {/* <form onSubmit={this.handleSubmit} className='form'> */}
+                {
+                    quiz.map((quizContent, idx) => {
+                        return (
+                            <div>
 
-    }
-}
-                <h3>I rather: </h3>
+                                <h3 key={idx}>{quizContent.question}</h3>
+                                <div>
+                                    {quizContent.answers.map((ans, idx) => {
+                                        return (
+                                            <RadioButtonGroup name="q1" defaultSelected="not_light" onChange={this.handleChange}>
+
+                                                <RadioButton key={idx}
+                                                    value={ans.content}
+                                                    label={ans.content}
+                                                    style={styles.radioButton} />
+                                            </RadioButtonGroup>
+                                            // {/* <li key={idx}>{ans.content}</li> */}
+                                        )
+
+                                    })
+                                    }
+                                </div>
+                            </div>
+                        )
+
+                    })
+                }
+                {/* <h3>I rather: </h3>
                 <RadioButtonGroup name="q1" defaultSelected="not_light" onChange={this.handleChange}>
 
                     <RadioButton
@@ -46,9 +65,10 @@ export default class PersonalityQuiz extends Component {
                         label="Do Yoga"
                         style={styles.radioButton}
 
-                    />
-                    </form>
-                    </div>
+                    /> */}
+                {/* </form> */}
+            </div>
         )
 
     }
+}
