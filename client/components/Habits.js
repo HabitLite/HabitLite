@@ -8,7 +8,7 @@ import {update} from '../store'
  */
 const Habits = props => {
   let categoryId = 1, XP = 5
-  return ( //eventually do for loop and stop using dummy data
+  return ( // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
       <div className="habits-list">
          <label className="habits-label">My Habits</label>
           <ul>

@@ -1,7 +1,6 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
-const UserCategory = require('./userCategory')
 
 const User = db.define('user', {
   email: {
@@ -20,36 +19,20 @@ const User = db.define('user', {
   },
   avatar: {
     type: Sequelize.STRING,
-    defaultValue: 'default image'
+    defaultValue: 'default avatar image'
   },
   level: {
     type: Sequelize.INTEGER,
     defaultValue: 1,
     validate: { min: 1 }
   },
-  // XP: {
-  //   type: Sequelize.VIRTUAL,
-  //   get: async function() {
-  //     let sum = 0
-  //     await UserCategory.findAll({
-  //       where: {
-  //         userId: this.dataValues.id
-  //       }
-  //     }).then(categories =>
-  //     {
-  //       categories.forEach(category =>
-  //       {
-  //         sum += category.dataValues.XP
-  //       })
-  //     }).catch(err => console.log(err))
-  //     console.log("*******************************sum is", sum)
-  //     return sum
-  //   }
-  // },
-  HP: {
+  lives: {
     type: Sequelize.INTEGER,
-    defaultValue: 10,
-    validate: { min: 0 }
+    allowNull: false,
+    defaultValue: 3,
+    validate: {
+      min: 0
+    }
   },
   progress: {
     type: Sequelize.INTEGER,
