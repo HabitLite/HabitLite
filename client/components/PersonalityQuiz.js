@@ -1,302 +1,21 @@
-// import React, { Component } from 'react';
-// import { Link, Redirect } from 'react-router-dom'
-// import { addPersonality } from '../store/personality'
-// import axios from 'axios';
-
-// export default class PersonalityQuiz extends Component {
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             q1: '',
-//             q2: '',
-//             q3: '',
-//             q4: '',
-//             q5: '',
-//             q6: '',
-//             q7: '',
-//             q8: '',
-//             q9: '',
-//             q10: '',
-//             q11: ''
-//         }
-//         this.handleChange = this.handleChange.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//     }
-
-//     handleSubmit(event) {
-//         event.preventDefault();
-//         const personality = {
-//             q1: this.state.q1,
-//             q2: this.state.q2,
-//             q3: this.state.q3,
-//             q4: this.state.q4,
-//             q5: this.state.q5,
-//             q6: this.state.q6,
-//             q7: this.state.q7,
-//             q8: this.state.q8,
-//             q9: this.state.q9,
-//             q10: this.state.q10,
-//             q11: this.state.q11
-//         }
-
-
-//         axios.post('/api/:userId/personality', personality)
-//             .then(res => {
-//                 let resultRes = res.data;
-//                 store.dispatch(addPersonality(resultRes))
-//             })
-//             .then(() => {
-//                 this.props.history.push('/home')
-//             })
-//             .catch(err => console.error(err))
-//     }
-
-//     handleChange(event) {
-//         this.setState({ [event.target.name]: event.target.value })
-//     }
-//     render() {
-//         return (
-//             <div>
-//                 <form onSubmit={this.handleSubmit} className='form'>
-//                     <fieldset>
-//                         <input type="radio" name="gender" value="male" checked className="quiz" /> test<br />
-//                         <input type="radio" name="gender" value="fetest" /> Fetest<br />
-//                         <input type="radio" name="gender" value="other" /> Other
-//                     <input type="radio" name="gender" value="test" checked /> test<br />
-//                         <input type="radio" name="gender" value="fetest" /> Fetest<br />
-//                         <input type="radio" name="gender" value="other" /> Other
-//                     <input type="radio" name="gender" value="test" checked /> test<br />
-//                         <input type="radio" name="gender" value="fetest" /> Fetest<br />
-//                         <input type="radio" name="gender" value="other" /> Other
-
-//                         <h3>I rather: </h3>
-//                         <input type="radio" name="q1" value="q1" />Do yoga
-//                         <input type="radio" name="q1" value="q1" /> Run
-//                         <input type="radio" name="q1" value="q1" /> Lift Weights
-//                         <input type="radio" name="q1" value="q1" /> Do something new every day
-//                         <br />
-//                         <h3>When I skip a workout is usually because:  </h3>
-//                         <input type="radio" name="q2" value="q2" />I’m too exhausted
-//                         <input type="radio" name="q2" value="q2" /> I’m feeling under the weather
-//                         <input type="radio" name="q2" value="q2" /> I never penciled it in, so it’s not just a priority
-//                         <input type="radio" name="q2" value="q2" /> It feels pointless when I’m not seeing results
-//                         <input type="radio" name="q2" value="q2" /> Something else popped up
-//                         <br />
-//                         <h3> I feel relaxed when: </h3>
-//                         <input type="radio" name="q2" value="q2" />Have a dance party with my kids
-//                         <input type="radio" name="q2" value="q2" /> Get into a project, like baking a gorgeous cake
-//                         <input type="radio" name="q2" value="q2" /> Take a long walk
-//                         <input type="radio" name="q2" value="q2" /> Read a book
-//                         <input type="radio" name="q2" value="q2" />Vent to my partner
-//                         <br />
-//                         <h3> During the weekend I look forward to: </h3>
-
-//                         <input type="radio" name="q2" value="q2" className="container" />Finally getting to sleep in and not follow a strict schedule
-//                         <input type="radio" name="q2" value="q2" /> Go to a trendy new restaurant
-//                         <input type="radio" name="q2" value="q2" /> Making waffles for brunch with the family
-//                         <input type="radio" name="q2" value="q2" /> Finishing a home improvement project
-//                         <input type="radio" name="q2" value="q2" />Being able to spend my daylight outside instead of in the office
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-//                         <h3>  </h3>
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <input type="radio" name="q2" value="q2" />
-//                         <br />
-
-//                     </fieldset>
-//                 </form>
-//             </div>
-//         )
-//     }
-// }
-
-// {/* <h3>I rather: </h3>
-// <input type="radio" name="q1" value="q1">Do yoga </input>
-// <input type="radio" name="q1" value="q1" > Run</input>
-// <input type="radio" name="q1" value="q1"> Lift Weights</input>
-// <input type="radio" name="q1" value="q1"> Do something new every day</input>
-// <br />
-// <h3>When I skip a workout is usually because:  </h3>
-// <input type="radio" name="q1" value="q1">I’m too exhausted </input>
-// <input type="radio" name="q1" value="q1" > I’m feeling under the weather</input>
-// <input type="radio" name="q1" value="q1"> I never penciled it in, so it’s not just a priority</input>
-// <input type="radio" name="q1" value="q1"> It feels pointless when I’m not seeing results</input>
-// <input type="radio" name="q1" value="q1"> Something else popped up </input>
-// <br /> */}
-
-
-
-// import React, { Component } from 'react';
-
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-// import { deepOrange500 } from 'material-ui/styles/colors';
-// import { orange500 } from 'material-ui/styles/colors';
-// import muiThemeable from 'material-ui/styles/muiThemeable';
-
-// import RaisedButton from 'material-ui/RaisedButton';
-// import Dialog from 'material-ui/Dialog';
-// import FlatButton from 'material-ui/FlatButton';
-// import AppBar from 'material-ui/AppBar';
-// import Paper from 'material-ui/Paper';
-// import CircularProgress from 'material-ui/CircularProgress';
-// import AutoComplete from 'material-ui/AutoComplete';
-
-
-
-
-
-
-// //style for Paper
-// const style = {
-//     height: 400,
-//     width: 400,
-//     margin: 50,
-//     padding: 60,
-//     textAlign: 'center',
-//     display: 'inline-block',
-// };
-
-
-// class PersonalityQuiz extends Component {
-//     constructor(props, context) {
-//         super(props, context);
-
-//         this.state = {
-//             open: false,
-//         };
-//     }
-
-//     handleRequestClose = () => {
-//         this.setState({
-//             open: false,
-//         });
-//     }
-
-//     handleTouchTap = () => {
-//         this.setState({
-//             open: true,
-//         });
-//     }
-
-//     render() {
-//         const standardActions = (
-//             <FlatButton label="Ok" primary={true} onTouchTap={this.handleRequestClose} />
-//         );
-
-//         return (
-
-//             <MuiThemeProvider >
-//                 <div className="container">
-
-//                     <Dialog open={this.state.open} title="This is my secret" actions={standardActions} onRequestClose={this.handleRequestClose}>
-//                         I didn't get much sleep last night
-//             </Dialog>
-//                     <Paper style={style} zDepth={3} circle={true}>
-//                         <h1>Example Project</h1>
-//                         <RaisedButton label="This is my secret" secondary={true} onTouchTap={this.handleTouchTap} />
-//                     </Paper>
-//                     <br />
-//                     {/* this is my custom component */}
-
-
-//                     <br />
-//                     <AutoComplete
-//                         floatingLabelText="Type 'r', case insensitive"
-//                         filter={AutoComplete.caseInsensitiveFilter}
-//                         dataSource={fruit}
-//                     />
-//                 </div>
-//             </MuiThemeProvider>
-//         );
-//     }
-// }
-// // this data is used by the AutoComplete component
-// const fruit = [
-//     'Apple', 'Apricot', 'Avocado',
-//     'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry',
-//     'Boysenberry', 'Blood Orange',
-//     'Cantaloupe', 'Currant', 'Cherry', 'Cherimoya', 'Cloudberry',
-//     'Coconut', 'Cranberry', 'Clementine',
-//     'Damson', 'Date', 'Dragonfruit', 'Durian',
-//     'Elderberry',
-//     'Feijoa', 'Fig',
-//     'Goji berry', 'Gooseberry', 'Grape', 'Grapefruit', 'Guava',
-//     'Honeydew', 'Huckleberry',
-//     'Jabouticaba', 'Jackfruit', 'Jambul', 'Jujube', 'Juniper berry',
-//     'Kiwi fruit', 'Kumquat',
-//     'Lemon', 'Lime', 'Loquat', 'Lychee',
-//     'Nectarine',
-//     'Mango', 'Marion berry', 'Melon', 'Miracle fruit', 'Mulberry', 'Mandarine',
-//     'Olive', 'Orange',
-//     'Papaya', 'Passionfruit', 'Peach', 'Pear', 'Persimmon', 'Physalis', 'Plum', 'Pineapple',
-//     'Pumpkin', 'Pomegranate', 'Pomelo', 'Purple Mangosteen',
-//     'Quince',
-//     'Raspberry', 'Raisin', 'Rambutan', 'Redcurrant',
-//     'Salal berry', 'Satsuma', 'Star fruit', 'Strawberry', 'Squash', 'Salmonberry',
-//     'Tamarillo', 'Tamarind', 'Tomato', 'Tangerine',
-//     'Ugli fruit',
-//     'Watermelon',
-// ];
-
-
-// export default PersonalityQuiz;
-
-
 import React, { Component } from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { List, ListItem } from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
+import Checkbox from 'material-ui/Checkbox';
+import Toggle from 'material-ui/Toggle';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const styles = {
     customWidth: {
         width: 10000,
     },
+    margin: 12,
 };
 
 /**
@@ -316,94 +35,321 @@ export default class PersonalityQuiz extends Component {
     render() {
         return (
             <div>
-                <SelectField
-                    floatingLabelText="I rather:"
-                    value1={this.state.value1}
-                    onChange={this.handleChange}
-                    style={styles.customWidth}
-                // autoWidth={true}
-                >
-                    <MenuItem value1={null} primaryText="" />
-                    <MenuItem value1={1} primaryText="Do Yoga" />
-                    <MenuItem value1={2} primaryText="Run" />
-                    <MenuItem value1={3} primaryText="Lift Weights" />
-                    <MenuItem value1={4} primaryText="Do something new every day" />
-                </SelectField>
-                <br />
-                <SelectField
-                    floatingLabelText="When I skip a workout is usually because:"
-                    value2={this.state.value2}
-                    onChange={this.handleChange}
-                    style={styles.customWidth}
-                >
-                    <MenuItem value2={5} primaryText="I’m too exhausted" />
-                    <MenuItem value2={6} primaryText=" I’m feeling under the weather" />
-                    <MenuItem value2={7} primaryText=" I never penciled it in, so it’s not just a priority" />
-                    <MenuItem value2={8} primaryText=" It feels pointless when I’m not seeing results" />
-                    <MenuItem value2={9} primaryText=" Something else popped up" />
-                </SelectField>
-                <br />
-                <SelectField
-                    floatingLabelText="I feel relaxed when:"
-                    value3={this.state.value3}
-                    onChange={this.handleChange}
-                    style={styles.customWidth}
-                >
-                    <MenuItem value3={10} primaryText="Have a dance party with my kids" />
-                    <MenuItem value3={11} primaryText=" Get into a project, like baking a gorgeous cake" />
-                    <MenuItem value3={12} primaryText=" Take a long walk" />
-                    <MenuItem value3={13} primaryText=" Read a book" />
-                    <MenuItem value3={14} primaryText="Vent to my partner" />
-                    <br />
-                </SelectField>
-                <br />
-                {/* <SelectField
-                    floatingLabelText="During the weekend I look forward to: "
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    style={styles.customWidth}
-                >
-                    <MenuItem value={15} primaryText="Finally getting to sleep in and not follow a strict schedule" />
-                    <MenuItem value={16} primaryText=" Go to a trendy new restaurant" />
-                    <MenuItem value={17} primaryText=" Making waffles for brunch with the family" />
-                    <MenuItem value={18} primaryText=" Finishing a home improvement project" />
-                    <MenuItem value={19} primaryText="Being able to spend my daylight outside instead of in the office" /> */}
-                {/* <MenuItem value={1} primaryText="Do Yoga" />
-                    <MenuItem value={2} primaryText="Run" />
-                    <MenuItem value={3} primaryText="Lift Weights" />
-                    <MenuItem value={4} primaryText="Do something new every day" /> */}
-                {/* </SelectField> */}
-                {/* <SelectField floatingLabelText="Frequency" value={1} disabled={true}>
-                    <MenuItem value={5} primaryText="Disabled" />
-                    <MenuItem value={6} primaryText="Every Night" />
-                </SelectField>
-                <br />
-                <SelectField
-                    floatingLabelText="Frequency"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    style={styles.customWidth}
-                >
-                    <MenuItem value={7} primaryText="Custom width" />
-                    <MenuItem value={8} primaryText="Every Night" />
-                    <MenuItem value={9} primaryText="Weeknights" />
-                    <MenuItem value={10} primaryText="Weekends" />
-                    <MenuItem value={11} primaryText="Weekly" />
-                </SelectField>
-                <br />
-                <SelectField
-                    floatingLabelText="Frequency"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    autoWidth={true}
-                >
-                    <MenuItem value={1} primaryText="Auto width" />
-                    <MenuItem value={2} primaryText="Every Night" />
-                    <MenuItem value={3} primaryText="Weeknights" />
-                    <MenuItem value={4} primaryText="Weekends" />
-                    <MenuItem value={5} primaryText="Weekly" />
-                </SelectField> */}
-            </div>
+                <h3>I rather: </h3>
+                <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+
+                    <RadioButton
+                        value="q1r1"
+                        label="Do Yoga"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q1r2"
+                        label="Run"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q1r3"
+                        label="Lift Weights"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q1r4"
+                        label="Do something new every day"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+
+                <h3>When I skip a workout is usually because: </h3>
+                <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+
+                    <RadioButton
+                        value="q2r1"
+                        label="I’m too exhausted"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q2r2"
+                        label="I’m feeling under the weather"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q2r3"
+                        label="I never penciled it in, so it’s not just a priority"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q2r4"
+                        label="It feels pointless when I’m not seeing results"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q2r5"
+                        label="Something else popped up"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>I feel relaxed when: </h3>
+                <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+
+                    <RadioButton
+                        value="q3r1"
+                        label="Vent to my partner"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q3r2"
+                        label="Have a dance party with my kids"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q3r3"
+                        label="Get into a project, like baking a gorgeous cake"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q3r4"
+                        label="Take a long walk"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q3r5"
+                        label="Read a book"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>During the weekend I look forward to:</h3>
+                <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+
+                    <RadioButton
+                        value="q4r1"
+                        label="Finally getting to sleep in and not follow a strict schedule"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q4r1"
+                        label="Go to a trendy new restaurant"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q4r1"
+                        label="Making waffles for brunch with the family"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q4r4"
+                        label="Finishing a home improvement project "
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q4r5"
+                        label="Being able to spend my daylight outside instead of in the office "
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>Best part of my workout is:</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+
+                    <RadioButton
+                        value="q5r1"
+                        label="Letting out some pent-up energy"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q5r2"
+                        label="Breaking the cycle of sitting all day"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q5r3"
+                        label="Busting some stress"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q5r4"
+                        label="Seeing my body change"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q5r5"
+                        label="Escaping the world for a little bit"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>I stay motivated during a project by:</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+                    <RadioButton
+                        value="q6r1"
+                        label="The thought of how great it will feel when I’m done"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q6r2"
+                        label="Encouraging words from those around me"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q6r3"
+                        label="Seeing my little successes along the way"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q6r4"
+                        label="The fear of failing"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q6r5"
+                        label="Remembering how each task fits into the big picture"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>The best part about eating out is:</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+                    <RadioButton
+                        value="q7r1"
+                        label="Inviting friends along to make an event of it"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q7r2"
+                        label="Filling my cravings for my go-to dish"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q7r3"
+                        label="Tasting dishes, I could never make for myself"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q7r4"
+                        label="Knowing I’ve reached the end of a productive week"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q7r5"
+                        label="Relaxing instead of stressing about the cooking"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>My mornings look like:</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+                    <RadioButton
+                        value="q8r1"
+                        label="Setting my alarm early so I can feel awake by the tie I actually have to be productive"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q8r2"
+                        label="Following the routine that I’ve planned down to the minute"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q8r3"
+                        label="Waking up a bit before my alarm, then taking my time to get ready"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q8r4"
+                        label="Spending too much time searching for my keays of phone"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q8r5"
+                        label="Hitting snooze three times, then making a mad dash to get out the door "
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>Parties are:</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+                    <RadioButton
+                        value="q9r1"
+                        label="An opportunity to catch up with friends I don’t see often"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q9r2"
+                        label="They’re a nice way to get out of the house, even if I don’t know anyone there"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q9r3"
+                        label="They’re a fun way to meet interesting people"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q9r4"
+                        label="They’re not awful, but I’d rather hangout at home"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q9r5"
+                        label="They’re just another social obligation"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>My biggest strength in a job interview is being :</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+                    <RadioButton
+                        value="q10r1"
+                        label="Persistent"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q10r2"
+                        label="Passionate"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q10r3"
+                        label="Dedicated"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q10r4"
+                        label="Disciplined"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q10r5"
+                        label="Team Player"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+                <h3>If someone offered me last minute tickets to a play:</h3>
+                <RadioButtonGroup name="shipSpeeds" defaultSelected="not_light">
+                    <RadioButton
+                        value="q11r1"
+                        label="I would be in in a heartbeat"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q11r2"
+                        label="I would have to see if I can get a babysitter"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q11r3"
+                        label="I would go if the plot sounds interesting"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q11r4"
+                        label="I would go after I check the reviews"
+                        style={styles.radioButton}
+                    />
+                    <RadioButton
+                        value="q11r5"
+                        label="I would not go , I want to stay in"
+                        style={styles.radioButton}
+                    />
+                </RadioButtonGroup>
+
+                <div>
+                    <RaisedButton label="Submit" primary={true} style={styles} />
+                </div>
+
+            </div >
         );
     }
 }

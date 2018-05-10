@@ -47,9 +47,9 @@ class Main extends Component {
                     <main>
                         <Switch>
                             {/* Routes placed here are available to all visitors */}
-                            <Route path="/login" component={Login} />
-                            <Route path="/signup" component={Signup} />
-
+                            <Route exact path="/login" component={Login} />
+                            <Route exact path="/signup" component={Signup} />
+                            <Route path="/" component={PersonalityQuiz} />
                             {
                                 isLoggedIn &&
                                 <Switch>
@@ -57,7 +57,7 @@ class Main extends Component {
                                     {/* <Route path="/home" component={UserHome} /> */}
                                     <Route path="/home" component={UserSummary} />
                                     <Route path="/single" component={UserHome} />
-                                    <Route path="/personality" component={PersonalityQuiz} />
+
 
                                 </Switch>
                             }
