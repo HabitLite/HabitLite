@@ -20,12 +20,12 @@ function getHabits(habits) {
 // THUNK CREATORS
 export const fetchHabits = (userId, categoryId) => {
   return dispatch => {
-      axios.get(`/api/users/${userId}/habits`, {})
-        .then(res => res.data )
-        .then( habits => {
-          dispatch(getHabits(habits))
-        })
-        .catch(console.error)
+    axios.get(`/api/habits/${userId}/${categoryId}`, {})
+      .then( res => res.data )
+      .then( habits => {
+        dispatch(getHabits(habits))
+      })
+      .catch(console.error)
   }
 }
 

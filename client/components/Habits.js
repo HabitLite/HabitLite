@@ -8,17 +8,17 @@ import store, { update, fetchHabits } from '../store'
  */
 class Habits extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    console.log('this.props in constructor', props)
+    const { userId, categoryId, XP, HP } = props
 
-    const { userId, categoryId, XP, HP } = this.props
-
-    this.props.updateUser = this.props.updateUser.bind(this, userId, categoryId, XP, HP)
-    this.props.getHabits = this.props.getHabits.bind(this, userId, categoryId)
+    // props.updateUser = props.updateUser.bind(this, userId, categoryId, XP, HP)
+    // props.getHabits = props.getHabits.bind(this, userId, categoryId)
   }
 
   componentDidMount() {
-    this.props.getHabits()
+    this.props.getHabits(this.props.userId, this.props.categoryId)
   }
 
   render() {
@@ -35,7 +35,7 @@ class Habits extends React.Component {
     return ( // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
       <div className="habits-list">
         <label className="habits-label">My Habits</label>
-        <button></button>
+        {/* <button></button> */}
         <ul>
           {
             habits && habits.map( habit => {
@@ -47,8 +47,6 @@ class Habits extends React.Component {
     )
   }
 }
-
-
 
 
 // <li><input type="checkbox" className="check" onClick={props.updateUser.bind(this, props.userId, categoryId, XP)} /><p>{habit}</p></li>
@@ -75,6 +73,6 @@ const mapDispatch = dispatch => {
       dispatch(fetchHabits(userId, categoryId))
     }
   }
-} // don't we need to make a call to grab habits?
+}
 
 export default connect(mapState, mapDispatch)(Habits);

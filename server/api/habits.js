@@ -5,17 +5,17 @@ module.exports = router
 //Get all theCustom habits
 router.get('/', (req, res, next) => {
     Habit.findAll()
-        .then(habit => res.json(habit))
+        .then(habits => res.json(habits))
         .catch(next)
 })
 
 //Get allCustom habits by categoryId
-router.get('/:categoryId', (req, res, next) => {
+router.get('/:userId/:categoryId', (req, res, next) => {
     Habit.findAll({
         where: {
             categoryId: req.params.categoryId
         }
     })
-        .then(habit => res.json(habit))
+        .then(habits => res.json(habits))
         .catch(next)
 })
