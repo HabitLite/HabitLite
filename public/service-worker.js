@@ -1,7 +1,7 @@
 const cacheName = 'habitlite-v1';//STATIC_CACHE_NAME
 const filesToCache = [
-  "/", 
-  "/index.html", 
+  "/",
+  "/index.html",
   "/manifest.json",
   '/style.css',
   '/images/calm.png',
@@ -42,13 +42,13 @@ self.addEventListener('activate', function(e) {
 
 //If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener('fetch', function(e) {
-  console.log('[ServiceWorker] Fetch', e.request.url);
+  // console.log('[ServiceWorker] Fetch', e.request.url);
   e.respondWith(
     // if we are online start with fetch and then cache this
     // if we aren't online then check cache and send that
     fetch(e.request).then(function(response) {
-      console.log('!!!! FETCH !!!!!', e.request.url, response)
-      
+      // console.log('!!!! FETCH !!!!!', e.request.url, response)
+
       let responseClone = response.clone();
       caches.open(cacheName).then(function(cache) {
         cache.put(e.request, responseClone);
@@ -58,14 +58,14 @@ self.addEventListener('fetch', function(e) {
     .catch(() => {
       return caches.match(e.request)
         .then(function(resp) {
-          console.log('!!!! CACHE !!!!!', e.request.url, resp)
+          // console.log('!!!! CACHE !!!!!', e.request.url, resp)
           return resp || caches.match('/index.html');
         })
         .catch(function() {
           return caches.match('/index.html');
-        })    
+        })
     })
-    
+
   );
 });
 
