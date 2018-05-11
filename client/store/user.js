@@ -91,11 +91,6 @@ export default function(state = defaultUser, action) {
     case GET_USER:
       return action.user;
     case REMOVE_USER:
-<<<<<<< HEAD
-      return defaultUser
-    case UPDATE_USER:
-      return {...state, XP: state.XP + action.XP, HP: state.HP + action.HP}
-=======
       return {};
     case UPDATE_USER: //also update progress here
       return {
@@ -108,7 +103,6 @@ export default function(state = defaultUser, action) {
         ...state,
         level: state.level + 1
       };
->>>>>>> 1d4a39d4160b2769481812c9179664485d4fc3f6
     default:
       return state;
   }
