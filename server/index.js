@@ -7,10 +7,33 @@ const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
-const sessionStore = new SequelizeStore({db})
+const sessionStore = new SequelizeStore({ db })
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+
+const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+const personality_insights = new PersonalityInsightsV3({
+  username: "f1e45bbd-5924-4c78-ac0a-e41848fac157",
+  password: "mU0HQ8MBpf2q",
+  version_date: "2017-10-13"
+});
+
+const PersonalityTextSummaries = require('personality-text-summary');
+const v3EnglishTextSummaries = new PersonalityTextSummaries({
+  locale: 'en',
+  version: 'v3'
+});
+
+// const getTextSummary = personalityProfile => {
+//   let textSummary = v3EnglishTextSummaries.getSummary(personalityProfile);
+//   if (typeof (textSummary) !== 'string') {
+//       console.log("Could not get summary.");
+//   } else {
+//       return textSummary;
+//   }
+// };
+
 module.exports = app
 
 /**

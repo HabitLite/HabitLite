@@ -5,17 +5,18 @@ import { Router } from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import muiThemeable from 'material-ui/styles/muiThemeable';
 // establishes socket connection
 import './socket'
 
 ReactDOM.render(
   <Provider store={store}>
-
-    <Router history={history}>
-      <App />
-    </Router>
-
+    <MuiThemeProvider >
+      <Router history={history}>
+        <App />
+      </Router>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('app')
 )

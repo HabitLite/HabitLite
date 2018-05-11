@@ -18,3 +18,23 @@ router.post('/profile/:userId', (req, res, next) => {
         .then(category => res.status(201).json(category))
         .catch(next)
 })
+
+//Get personality by user 
+
+
+router.get('/profile/:userId', (req, res, next) => {
+    Personality.findAll(
+        {
+            where: {
+                userId: Number(req.params.userId)
+            }
+        })
+        .then(personality => res.json(personality))
+        .catch(next)
+})
+
+
+
+
+
+
