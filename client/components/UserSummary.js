@@ -3,60 +3,78 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { User, Progress } from './index'
-import {fetchAllCategories} from '../store/categories'
+import {fetchAllCategories, postCategory} from '../store/categories'
 
 const divStyle = {
-    marginTop: '590px',    
+    marginTop: '590px'   
 };
 
-
 class UserSummary extends Component {
-    
-    constructor(props) {
-        super(props);
+    state = {
+        name: '',
+        isClicked: false
+    }
+    onBtnClick = (e) => {
+        this.setState({isClicked: true})
+    }
+    handleChange = (event) => {     
+        this.setState({ [event.target.name]: event.target.value })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const name = this.state.name
+        this.props.postNewCategory({name})
+        this.setState({ name: ''})
+    }
     componentDidMount(){
-        this.props.getAllCategories();
-        
+        this.props.getAllCategories();    
     }
-    // handleClick(val){
-    //     console.log('VALUE' ,val)
-    // }
+    
     render() {
-        console.log('categories Data: ', this.props.categories)
-        // // console.log('user USER ID ' , this.props.user)
-        const categories = this.props.categories
-        const test = 'lol';
 
-        // to={`/add`} params={{ test: category.id }}
+        const categories = this.props.categories
+
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
-                <div className="container">
+                <div className="container-progress">
                 {
                     categories.map((category, i) => {
                         return (
-                            <div className="category-name" style={divStyle} key={category.id}>
+                            <div className="category-name" style={divStyle} key={i}>
                                 <Link to={{pathname: '/single', state: { name: category.name}}} className='category' key={category.id}>
                                 <div className="progress-list">
                                     <Progress name={category.name} />
                                 </div>
                                 </Link>
                             </div>
-  
                         )
                     })
                 }    
-                </div>   
-            </div>
+                </div> 
+                <div>
+                    <button className="add-category" onClick={this.onBtnClick}><span className="summary-plus">+</span></button>  
+                            {this.state.isClicked && 
+                            <div className="input-field">
+                                <form onSubmit={this.handleSubmit}>
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        value={this.category}
+                                        className="cat-input"
+                                    />
+                                    <button type="submit" className="cat-add">Add</button>
+                                </form>
+                                </div>
+                            }
+                 </div>
+                </div>
         )
     }
+
 }
-//     margin-top: 500px;
-// display: inline-flex;
-// margin-left: 90px;
-// flex-wrap: wrap;
 const mapState = state => {
     return {
       categories: state.categories,
@@ -69,53 +87,12 @@ const mapState = state => {
    return {
      getAllCategories: () => {
        dispatch(fetchAllCategories());
+     },
+     postNewCategory: (name) => {
+        dispatch(postCategory(name))
      }
-   }
+    }
   }
   
   export default connect(mapState, mapDispatch)(UserSummary)
-
-
-
-
-/* *** COMPONENT *** */
-// class UserSummary extends Component{
-
-//     constructor(props){
-//         super(props)
-//     }
-//     componentDidMount() {
-//         this.props.getAllCategories();
-//     }
-//     render() {
-        
-//         return (
-//             <div className="main-page">
-
-//             <h3 className="welcome">Welcome, </h3>
-//             {/* <User />
-//             <Categories />
-//             <Habits /> */}
-//             {/* <Progress /> */}
-//             </div>
-//         )
-//     }
-// }
-
-// /* *** CONTAINER *** */
-// const mapState = (state) => {
-//   return {
-//     username: state.user.username,
-//     selectedUser: state.user.id
-//   }
-// }
-// const mapDispatch = (dispatch) => {
-//     return {
-//       getAllCategories: () => {
-//          dispatch(fetchAllCategories());
-//       }
-//     }
-//  }
-
-// export default connect(mapState, mapDispatch)(UserSummary)
 

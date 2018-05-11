@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {VictoryPie, VictoryAnimation, VictoryLabel} from 'victory'
+import {levelUp} from '../store'
 
 const getData = percent => {
   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
@@ -11,7 +12,11 @@ const getData = percent => {
  * COMPONENT
  */
 const Progress = props => {
-  const percent = (props.XP / (Math.pow(props.level, 2) * 10)) * 100
+  let percent = props.progress
+  if (percent >= 100) {
+    props.incrementLevel(props.userId)
+
+  }
     return (
       <div >
         <h1 className="total-progress">{props.name}</h1>
@@ -26,7 +31,7 @@ const Progress = props => {
             labels={() => null}
             style={{
               data: { fill: (d) => {
-                  const color = d.y > 30 ? 'green' : 'red'
+                  const color = d.y > 30 ? '#DBCFA6' : '#B33B33'
                   return d.x === 1 ? color : 'transparent'
                 }
               }
@@ -52,19 +57,27 @@ const Progress = props => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
-    XP: state.user.XP, //should be state.user.XP but right now XP is 0, and that wouldn't show that the graph works
-    level: state.user.level //should be state.user.level
+    userId: state.user.id,
+    progress: state.user.progress
   }
 }
 
-export default connect(mapState)(Progress)
+const mapDispatch = dispatch => {
+  return {
+    incrementLevel(userId) {
+      dispatch(levelUp(userId))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Progress)
 
 /**
  * PROP TYPES
  */
 Progress.propTypes = {
-  XP: PropTypes.number,
-  level: PropTypes.number
+  userId: PropTypes.number,
+  progress: PropTypes.number
 }

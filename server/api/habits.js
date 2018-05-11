@@ -1,21 +1,21 @@
 const router = require('express').Router()
-const { CustomHabit } = require('../db/models')
+const { Habit } = require('../db/models')
 module.exports = router
 
 //Get all theCustom habits
 router.get('/', (req, res, next) => {
-    CustomHabit.findAll()
-        .then(habit => res.json(habit))
+    Habit.findAll()
+        .then(habits => res.json(habits))
         .catch(next)
 })
 
 //Get allCustom habits by categoryId
-router.get('/:categoryId', (req, res, next) => {
-    CustomHabit.findAll({
+router.get('/:userId/:categoryId', (req, res, next) => {
+    Habit.findAll({
         where: {
             categoryId: req.params.categoryId
         }
     })
-        .then(habit => res.json(habit))
+        .then(habits => res.json(habits))
         .catch(next)
 })

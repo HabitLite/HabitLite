@@ -1,30 +1,35 @@
 const User = require('./user')
-const DefaultHabit = require('./defaultHabit')
-const CustomHabit = require('./customHabit')
+const Habit = require('./habit')
 const Category = require('./category')
-/**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
- */
+const UserCategory = require('./userCategory')
+const Personality = require('./personality')
+const UserHabit = require('./userHabit')
+const Level = require('./level')
 
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
-Category.hasMany(DefaultHabit)
-DefaultHabit.belongsTo(Category)
-User.hasMany(CustomHabit)
-CustomHabit.belongsTo(User)
-Category.hasMany(CustomHabit)
-CustomHabit.belongsTo(Category)
+Category.hasMany(Habit)
+Habit.belongsTo(Category)
+UserCategory.belongsTo(User)
+UserCategory.belongsTo(Category)
+User.hasMany(UserCategory)
+Category.hasMany(UserCategory)
+UserHabit.belongsTo(User)
+UserHabit.belongsTo(Habit)
+User.hasMany(UserHabit)
+Habit.hasMany(UserHabit)
+Personality.belongsTo(User)
+User.hasOne(Personality)
+User.belongsTo(Level, {constraints: {
+  defaultValue: 1
+  }})
+Level.hasMany(User, {constraints: {
+    defaultValue: 1
+  }})
+
 
 module.exports = {
   User,
-  DefaultHabit,
   Category,
-  CustomHabit
+  Habit,
+  UserCategory,
+  Level
 }

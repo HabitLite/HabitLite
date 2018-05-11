@@ -1,7 +1,9 @@
 node_modules
+package-lock.json
 public/bundle.js
 public/bundle.js.map
 secrets.js
 .DS_Store
+.idea
 npm-debug.log
 yarn-error.log

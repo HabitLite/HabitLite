@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Level = require('./level')
 
 const User = db.define('user', {
   email: {
@@ -10,46 +11,50 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    // Making `.password` act like a func hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('password')
     }
   },
   username: {
-        type: Sequelize.STRING
-        // allowNull: false,
-        // validate: { len: [1, 16] 
-        // }
+    type: Sequelize.STRING
   },
   avatar: {
-        type: Sequelize.STRING,
-        defaultValue: 'default image'
+    type: Sequelize.STRING,
+    defaultValue: 'default avatar image'
   },
-  level: {
-        type: Sequelize.INTEGER,
-        defaultValue: 1,
-        validate: { min: 1 }
+  lives: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 3,
+    validate: {
+      min: 0
+    }
   },
-  XP: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-        validate: { min: 0 }
-  },
-      HP: {
-        type: Sequelize.INTEGER,
-        defaultValue: 10,
-        validate: { min: 0 }
-      },
-      progress: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-        validate: { min: 0, max: 100 }
-      },
+  // progress: {
+  //   type: Sequelize.INTEGER,
+  //   defaultValue: 0,
+  //   validate: { min: 0, max: 100 },
+  //   get: function () {
+  //     return method()
+  //     // let prevLev, currLev
+  //     // return Promise.all([
+  //     //   prevLev = Level.findOne({
+  //     //     where: {
+  //     //       levelId: +this.getDataValue('levelId') - 1
+  //     //     }
+  //     //   }),
+  //     //   currLev = Level.findOne({
+  //     //     where: {
+  //     //       levelId: +this.getDataValue('levelId')
+  //     //     }
+  //     //   })
+  //     // ]).then(() => 4000)
+  //
+  //     // return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
+  //   }
+  // },
   salt: {
     type: Sequelize.STRING,
-    // Making `.salt` act like a function hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
     get () {
       return () => this.getDataValue('salt')
     }
@@ -66,6 +71,34 @@ module.exports = User
  */
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
+}
+
+User.prototype.getProgress = async function (XP, levelId) {
+
+  const [prevLev, currLev] = await Promise.all([
+    Level.findOne({
+      where: {
+        id: +levelId - 1
+      }
+    }),
+    Level.findOne({
+      where: {
+        id: +levelId
+      }
+    })
+  ])
+    .catch(err => console.log(err))
+
+  console.log('!!!!!!!!!!!!PrevLev', prevLev)
+  console.log('!!!!!!!!!!!!CurrLev', currLev)
+
+  const prevMax = (prevLev ? prevLev.maxXP : 0)
+  const currMax = currLev.maxXP
+
+  console.log('!!!!!!!!!!!!PrevMax', prevMax)
+  console.log('!!!!!!!!!!!!CurrMax', currMax)
+
+  return ((XP - prevMax) / (currMax - prevMax)) * 100
 }
 
 /**
@@ -95,102 +128,3 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
-
-
-
-// const crypto = require('crypto')
-// const Sequelize = require('sequelize')
-// const db = require('../db')
-
-// const User = db.define('user', {
-//   email: {
-//     type: Sequelize.STRING,
-//     unique: true,
-//     allowNull: false
-//   },
-//   username: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//     validate: { len: [1, 16] }
-//   },
-//   password: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//     validate: { len: [1, 16],
-//       get() {
-//         return () => this.getDataValue('password')
-//       } 
-//     }
-//   },
-//   avatar: {
-//     type: Sequelize.STRING,
-//     defaultValue: 'default image'
-//   },
-//   level: {
-//     type: Sequelize.INTEGER,
-//     defaultValue: 1,
-//     validate: { min: 1 }
-//   },
-//   XP: {
-//     type: Sequelize.INTEGER,
-//     defaultValue: 0,
-//     validate: { min: 0 }
-//   },
-//   HP: {
-//     type: Sequelize.INTEGER,
-//     defaultValue: 10,
-//     validate: { min: 0 }
-//   },
-//   progress: {
-//     type: Sequelize.INTEGER,
-//     defaultValue: 0,
-//     validate: { min: 0, max: 100 }
-//   },
-//   salt: {
-//     type: Sequelize.STRING,
-//     // Making `.salt` act like a function hides it when serializing to JSON.
-//     // This is a hack to get around Sequelize's lack of a "private" option.
-//     get () {
-//       return () => this.getDataValue('salt')
-//     }
-//   },
-//   googleId: {
-//     type: Sequelize.STRING
-//   }
-// })
-// /**
-//  * instanceMethods
-//  */
-// User.prototype.correctPassword = function (candidatePwd) {
-//   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
-// }
-
-// /**
-//  * classMethods
-//  */
-// User.generateSalt = function () {
-//   return crypto.randomBytes(16).toString('base64')
-// }
-
-// User.encryptPassword = function (plainText, salt) {
-//   return crypto
-//     .createHash('RSA-SHA256')
-//     .update(plainText)
-//     .update(salt)
-//     .digest('hex')
-// }
-
-// /**
-//  * hooks
-//  */
-// const setSaltAndPassword = user => {
-//   if (user.changed('password')) {
-//     user.salt = User.generateSalt()
-//     user.password = User.encryptPassword(user.password(), user.salt())
-//   }
-// }
-
-// User.beforeCreate(setSaltAndPassword)
-// User.beforeUpdate(setSaltAndPassword)
-// module.exports = User
-
