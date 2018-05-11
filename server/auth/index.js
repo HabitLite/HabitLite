@@ -71,7 +71,6 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', (req, res, next) => {
   if (req.user) {
-    let userXP = 0
     UserCategory.findAll({
       where: {
         userId: req.user.id

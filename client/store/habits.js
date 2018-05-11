@@ -13,17 +13,16 @@ const GET_HABITS = 'GET_HABITS'
 //   return action;
 // }
 
-function getHabits(habits) {
-  return ({ type: GET_HABITS, habits })
-}
+const getHabits = habits => ({ type: GET_HABITS, habits })
+
 
 // THUNK CREATORS
 export const fetchHabits = (userId, categoryId) => {
   return dispatch => {
-    axios.get(`/api/habits/${userId}/${categoryId}`, {})
+    axios.get(`/api/habits/${userId}/${categoryId}`)
       .then( res => res.data )
       .then( habits => {
-        dispatch(getHabits(habits))
+        dispatch(getHabits(habits))//Something goes wrong after this point
       })
       .catch(console.error)
   }

@@ -107,9 +107,6 @@ select{
 }
 .progress-list{
   width: 350px;
-  float: right;
-  margin-top: -520px;
-  margin-right: 130px
 }
 
 
@@ -117,11 +114,11 @@ select{
 */
 /* navbar */
 .logout-btn{
-  float: right;
   margin: 15px 25px;
   color: black;
 }
 .main-page{
+  display: flex;
   padding: 16px;
   margin-top: 30px;
   height: 1500px;
@@ -162,7 +159,6 @@ p{
 ul{
   margin: -140px 0 20px 0;
   list-style: none;
-  float: left;
 }
 
 
@@ -209,9 +205,6 @@ ul{
 }
 .progress-bar{
   width: 350px;
-  float: right;
-  margin-top: -593px;
-  margin-right: 130px
 }
 
 
