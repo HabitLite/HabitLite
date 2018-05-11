@@ -13,9 +13,9 @@ const Habits = props => {
          <label className="habits-label">My Habits</label>
          {/*<button></button>*/}
           <ul>
-              <li><input name="1" type="checkbox" className="unChecked" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 1</p></li>
-              <li><input name="2" type="checkbox" className="unChecked" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 2</p></li>
-              <li><input name="3" type="checkbox" className="unChecked" onClick={props.updateXP.bind(this, props.userId, categoryId, XP)} /><p>checkbox 3</p></li>
+              <li><input name="1" type="checkbox" className="unChecked" onClick={props.updateXP.bind(this, props.userId, categoryId, props.progress, XP)} /><p>checkbox 1</p></li>
+              <li><input name="2" type="checkbox" className="unChecked" onClick={props.updateXP.bind(this, props.userId, categoryId, props.progress, XP)} /><p>checkbox 2</p></li>
+              <li><input name="3" type="checkbox" className="unChecked" onClick={props.updateXP.bind(this, props.userId, categoryId, props.progress, XP)} /><p>checkbox 3</p></li>
           </ul>
       </div>
   )
@@ -26,13 +26,14 @@ const mapState = state => {
   return {
     XP: state.user.XP,
     level: state.user.level,
-    userId: state.user.id
+    userId: state.user.id,
+    progress: state.user.progress
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    updateXP(userId, categoryId, XP, evt) {
+    updateXP(userId, categoryId, progress, XP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
       if (evt.target.className === 'checked') {
         XP = -XP
@@ -41,7 +42,7 @@ const mapDispatch = dispatch => {
       else if (evt.target.className === 'unChecked') {
         evt.target.className = 'checked'
       }
-      dispatch(updateHPXP(userId, categoryId, XP))
+      dispatch(updateHPXP(userId, categoryId, progress, XP))
 
       console.log("class", evt.target.className)
 

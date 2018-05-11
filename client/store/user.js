@@ -53,7 +53,7 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export const updateHPXP = (userId, categoryId, XP = 0, HP = 0) => {
+export const updateHPXP = (userId, categoryId, progress, XP = 0, HP = 0) => {
   return dispatch => {
       axios.put(`/api/users/${userId}`, {categoryId, XP, HP})
         .then(_ => {
