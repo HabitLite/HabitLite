@@ -35,23 +35,22 @@ const User = db.define('user', {
     defaultValue: 0,
     validate: { min: 0, max: 100 },
     get: function () {
-      return this.getDataValue('levelId')
-      // let prevLev, currLev
-      // await Promise.all([
-      //   prevLev = Level.findOne({
-      //     where: {
-      //       levelId: +this.getDataValue('levelId') - 1
-      //     }
-      //   }),
-      //   currLev = Level.findOne({
-      //     where: {
-      //       levelId: +this.getDataValue('levelId')
-      //     }
-      //   })
-      // ])
-      // console.log("!!!!!!!!!!!!!Progress is", (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP))
-      //
-      // return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
+      let prevLev, currLev
+      await Promise.all([
+        prevLev = Level.findOne({
+          where: {
+            levelId: +this.getDataValue('levelId') - 1
+          }
+        }),
+        currLev = Level.findOne({
+          where: {
+            levelId: +this.getDataValue('levelId')
+          }
+        })
+      ])
+      console.log("!!!!!!!!!!!!!Progress is", (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP))
+
+      return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
     }
   },
   salt: {

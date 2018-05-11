@@ -14,7 +14,7 @@ const getData = percent => {
 const Progress = props => {
   let percent = (props.XP - (Math.pow(props.level - 1, 2) * 10)) / ((Math.pow(props.level, 2) * 10) - (Math.pow(props.level - 1, 2) * 10)) * 100
   if (percent >= 100) {
-    props.increment(props.userId)
+    props.incrementLevel(props.userId)
 
   }
     return (
@@ -67,7 +67,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    increment(userId) {
+    incrementLevel(userId) {
       dispatch(levelUp(userId))
     }
   }
