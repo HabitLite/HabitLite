@@ -31,7 +31,7 @@ const Progress = props => {
             labels={() => null}
             style={{
               data: { fill: (d) => {
-                  const color = d.y > 30 ? 'green' : 'red'
+                  const color = d.y > 30 ? '#DBCFA6' : '#B33B33'
                   return d.x === 1 ? color : 'transparent'
                 }
               }
