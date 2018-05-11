@@ -34,3 +34,15 @@ router.put('/:userId', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/levelUp/:userId', (req, res, next) => {
+  User.findById(+req.params.userId)
+    .then(user => {
+      user.level++
+      return user.save()
+    })
+    .then(() => {
+      res.end()
+    })
+    .catch(next)
+})
+

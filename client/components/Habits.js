@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {update} from '../store'
+import {updateHPXP} from '../store'
 
 
 /**
@@ -35,13 +35,13 @@ const mapDispatch = dispatch => {
     updateXP(userId, categoryId, XP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
       if (evt.target.className === 'checked') {
-        XP = -XP
+        // XP = -XP*********need************
         evt.target.className = 'unChecked'
       }
       else if (evt.target.className === 'unChecked') {
         evt.target.className = 'checked'
       }
-      dispatch(update(userId, categoryId, XP))
+      dispatch(updateHPXP(userId, categoryId, XP))
 
       console.log("class", evt.target.className)
 

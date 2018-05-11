@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {VictoryPie, VictoryAnimation, VictoryLabel} from 'victory'
+import {levelUp} from '../store'
 
 const getData = percent => {
   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
@@ -11,7 +12,11 @@ const getData = percent => {
  * COMPONENT
  */
 const Progress = props => {
-  const percent = (props.XP / (Math.pow(props.level, 2) * 10)) * 100
+  let percent = (props.XP - (Math.pow(props.level - 1, 2) * 10)) / ((Math.pow(props.level, 2) * 10) - (Math.pow(props.level - 1, 2) * 10)) * 100
+  if (percent >= 100) {
+    props.increment(props.userId)
+    percent = (props.XP - (Math.pow(props.level - 1, 2) * 10)) / ((Math.pow(props.level, 2) * 10) - (Math.pow(props.level - 1, 2) * 10)) * 100
+  }
     return (
       <div >
         <h1 className="total-progress">{props.name}</h1>
@@ -52,14 +57,23 @@ const Progress = props => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     XP: state.user.XP,
-    level: state.user.level
+    level: state.user.level,
+    userId: state.user.id
   }
 }
 
-export default connect(mapState)(Progress)
+const mapDispatch = dispatch => {
+  return {
+    increment(userId) {
+      dispatch(levelUp(userId))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Progress)
 
 /**
  * PROP TYPES
