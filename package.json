@@ -21,6 +21,7 @@
   "author": "HabitLite",
   "license": "MIT",
   "dependencies": {
+    "@material/switch": "^0.35.0",
     "axios": "^0.15.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.16.1",
