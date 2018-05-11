@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {update} from '../store'
+import {updateHPXP} from '../store'
 
 
 /**
@@ -41,7 +41,7 @@ const mapDispatch = dispatch => {
       else if (evt.target.className === 'unChecked') {
         evt.target.className = 'checked'
       }
-      dispatch(update(userId, categoryId, XP))
+      dispatch(updateHPXP(userId, categoryId, XP))
 
       console.log("class", evt.target.className)
 

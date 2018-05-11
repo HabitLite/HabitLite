@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Level = require('./level')
 
 const User = db.define('user', {
   email: {
@@ -21,11 +22,6 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     defaultValue: 'default avatar image'
   },
-  level: {
-    type: Sequelize.INTEGER,
-    defaultValue: 1,
-    validate: { min: 1 }
-  },
   lives: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -34,11 +30,29 @@ const User = db.define('user', {
       min: 0
     }
   },
-  progress: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-    validate: { min: 0, max: 100 }
-  },
+  // progress: {
+  //   type: Sequelize.INTEGER,
+  //   defaultValue: 0,
+  //   validate: { min: 0, max: 100 },
+  //   get: function () {
+  //     return method()
+  //     // let prevLev, currLev
+  //     // return Promise.all([
+  //     //   prevLev = Level.findOne({
+  //     //     where: {
+  //     //       levelId: +this.getDataValue('levelId') - 1
+  //     //     }
+  //     //   }),
+  //     //   currLev = Level.findOne({
+  //     //     where: {
+  //     //       levelId: +this.getDataValue('levelId')
+  //     //     }
+  //     //   })
+  //     // ]).then(() => 4000)
+  //
+  //     // return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
+  //   }
+  // },
   salt: {
     type: Sequelize.STRING,
     get () {
@@ -57,6 +71,34 @@ module.exports = User
  */
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
+}
+
+User.prototype.getProgress = async function (XP, levelId) {
+
+  const [prevLev, currLev] = await Promise.all([
+    Level.findOne({
+      where: {
+        id: +levelId - 1
+      }
+    }),
+    Level.findOne({
+      where: {
+        id: +levelId
+      }
+    })
+  ])
+    .catch(err => console.log(err))
+
+  console.log('!!!!!!!!!!!!PrevLev', prevLev)
+  console.log('!!!!!!!!!!!!CurrLev', currLev)
+
+  const prevMax = (prevLev ? prevLev.maxXP : 0)
+  const currMax = currLev.maxXP
+
+  console.log('!!!!!!!!!!!!PrevMax', prevMax)
+  console.log('!!!!!!!!!!!!CurrMax', currMax)
+
+  return ((XP - prevMax) / (currMax - prevMax)) * 100
 }
 
 /**
