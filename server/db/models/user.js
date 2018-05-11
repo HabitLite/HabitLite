@@ -3,10 +3,6 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const Level = require('./level')
 
-const method = () => {
-  console.log Level.findAll().then(() => 3000)
-}
-
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
@@ -34,29 +30,29 @@ const User = db.define('user', {
       min: 0
     }
   },
-  progress: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-    validate: { min: 0, max: 100 },
-    get: function () {
-      return method()
-      // let prevLev, currLev
-      // return Promise.all([
-      //   prevLev = Level.findOne({
-      //     where: {
-      //       levelId: +this.getDataValue('levelId') - 1
-      //     }
-      //   }),
-      //   currLev = Level.findOne({
-      //     where: {
-      //       levelId: +this.getDataValue('levelId')
-      //     }
-      //   })
-      // ]).then(() => 4000)
-
-      // return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
-    }
-  },
+  // progress: {
+  //   type: Sequelize.INTEGER,
+  //   defaultValue: 0,
+  //   validate: { min: 0, max: 100 },
+  //   get: function () {
+  //     return method()
+  //     // let prevLev, currLev
+  //     // return Promise.all([
+  //     //   prevLev = Level.findOne({
+  //     //     where: {
+  //     //       levelId: +this.getDataValue('levelId') - 1
+  //     //     }
+  //     //   }),
+  //     //   currLev = Level.findOne({
+  //     //     where: {
+  //     //       levelId: +this.getDataValue('levelId')
+  //     //     }
+  //     //   })
+  //     // ]).then(() => 4000)
+  //
+  //     // return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
+  //   }
+  // },
   salt: {
     type: Sequelize.STRING,
     get () {
@@ -77,23 +73,32 @@ User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
 
-User.prototype.getProgress = async function () {
-  let prevLev, currLev
+User.prototype.getProgress = async function (XP, levelId) {
 
-  Promise.all([
-    prevLev = Level.findOne({
+  const [prevLev, currLev] = await Promise.all([
+    Level.findOne({
       where: {
-        levelId: +this.getDataValue('levelId') - 1
+        id: +levelId - 1
       }
     }),
-    currLev = Level.findOne({
+    Level.findOne({
       where: {
-        levelId: +this.getDataValue('levelId')
+        id: +levelId
       }
     })
   ])
+    .catch(err => console.log(err))
 
-  return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
+  console.log('!!!!!!!!!!!!PrevLev', prevLev)
+  console.log('!!!!!!!!!!!!CurrLev', currLev)
+
+  const prevMax = (prevLev ? prevLev.maxXP : 0)
+  const currMax = currLev.maxXP
+
+  console.log('!!!!!!!!!!!!PrevMax', prevMax)
+  console.log('!!!!!!!!!!!!CurrMax', currMax)
+
+  return ((XP - prevMax) / (currMax - prevMax)) * 100
 }
 
 /**

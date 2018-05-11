@@ -28,9 +28,9 @@ router.put('/:userId', (req, res, next) => {
       userCategory.HP += +req.body.HP
       return userCategory.save()
     })
-    .then(() => {
-      res.end()
-    })
+    // .then(() => {
+    //   res.end()
+    // })
     .catch(next)
 })
 
@@ -43,9 +43,9 @@ router.put('/levelUp/:userId', (req, res, next) => {
       // user.progress = (user.XP - lastMaxXP) / (currentMaxXP - lastMaxXP)
       return user.save()
     })
-    .then(() => {
-      res.end()
-    })
+    // .then(() => {
+    //   res.end()
+    // })
     .catch(next)
 })
 

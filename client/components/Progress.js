@@ -12,7 +12,7 @@ const getData = percent => {
  * COMPONENT
  */
 const Progress = props => {
-  let percent = (props.XP - (Math.pow(props.level - 1, 2) * 10)) / ((Math.pow(props.level, 2) * 10) - (Math.pow(props.level - 1, 2) * 10)) * 100
+  let percent = props.progress
   if (percent >= 100) {
     props.incrementLevel(props.userId)
 
@@ -59,9 +59,8 @@ const Progress = props => {
  */
 const mapState = state => {
   return {
-    XP: state.user.XP,
-    level: state.user.levelId,
-    userId: state.user.id
+    userId: state.user.id,
+    progress: state.user.progress
   }
 }
 
@@ -79,6 +78,6 @@ export default connect(mapState, mapDispatch)(Progress)
  * PROP TYPES
  */
 Progress.propTypes = {
-  XP: PropTypes.number,
-  level: PropTypes.number
+  userId: PropTypes.number,
+  progress: PropTypes.number
 }

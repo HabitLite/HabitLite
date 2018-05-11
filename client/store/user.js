@@ -82,7 +82,7 @@ export default function (state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return {}
-    case UPDATE_USER:
+    case UPDATE_USER: //also update progress here
       return {
         ...state,
         XP: state.XP + action.XP,

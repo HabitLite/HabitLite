@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { User, UserCategory } = require('../db/models')
 module.exports = router
 
-const giveUserXPAndHPAccordingToCategories = (user, categories) => {
+const getUser = (user, categories) => {
   let userXP = 0
   let userHP = 0
   categories.forEach(category => {
@@ -10,19 +10,23 @@ const giveUserXPAndHPAccordingToCategories = (user, categories) => {
     userHP += category.HP
   })
 
-  console.log("!!!!!!!!!!Progress s", user.progress)
+  console.log("USERXP", userXP)
+  console.log("USER.LEVELID", user.levelId)
 
-  return {
-    id: user.id,
-    avatar: user.avatar,
-    email: user.email,
-    username: user.username,
-    progress: user.progress,
-    levelId: user.levelId,
-    lives: user.lives,
-    XP: userXP,
-    HP: userHP
-  }
+  return user.getProgress(userXP, user.levelId).then(progress => {
+    return {
+      id: user.id,
+      avatar: user.avatar,
+      email: user.email,
+      username: user.username,
+      progress: progress,
+      levelId: user.levelId,
+      lives: user.lives,
+      XP: userXP,
+      HP: userHP
+    }
+  })
+
 }
 
 router.post('/login', (req, res, next) => {
@@ -42,11 +46,11 @@ router.post('/login', (req, res, next) => {
             userId: user.id
           }
         })
-          .then(categories => {
-              const updatedUser = giveUserXPAndHPAccordingToCategories(user, categories)
-              req.login(updatedUser, err => (err ? next(err) : res.json(updatedUser)))
-            }
-          )
+          .then(categories => getUser(user, categories))
+          .then(updatedUser => {
+            req.login(updatedUser, err => (err ? next(err) : res.json(updatedUser)))
+
+          })
           // .catch(next)
       }
     })
@@ -79,14 +83,10 @@ router.get('/me', (req, res, next) => {
         userId: req.user.id
       }
     })
-    .then(categories => {
-      const user = giveUserXPAndHPAccordingToCategories(req.user, categories)
-
-      res.json(user)
-    })
-    // .catch(next)
+    .then(categories => getUser(req.user, categories))
+      .then(user => res.json(user))
   }
-
 })
+    // .catch(next)
 
 router.use('/google', require('./google'))
