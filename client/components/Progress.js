@@ -60,7 +60,7 @@ const Progress = props => {
 const mapState = state => {
   return {
     XP: state.user.XP,
-    level: state.user.level,
+    level: state.user.levelId,
     userId: state.user.id
   }
 }

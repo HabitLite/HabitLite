@@ -21,11 +21,6 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     defaultValue: 'default avatar image'
   },
-  level: {
-    type: Sequelize.INTEGER,
-    defaultValue: 1,
-    validate: { min: 1 }
-  },
   lives: {
     type: Sequelize.INTEGER,
     allowNull: false,

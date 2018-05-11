@@ -15,7 +15,7 @@ const giveUserXPAndHPAccordingToCategories = (user, categories) => {
     avatar: user.avatar,
     email: user.email,
     username: user.username,
-    level: user.level,
+    levelId: user.levelId,
     lives: user.lives,
     XP: userXP,
     HP: userHP
@@ -71,7 +71,6 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', (req, res, next) => {
   if (req.user) {
-    let userXP = 0
     UserCategory.findAll({
       where: {
         userId: req.user.id

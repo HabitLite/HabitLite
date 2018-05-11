@@ -1,26 +1,35 @@
 const db = require('../server/db')
-const {User, Category, Habit, UserCategory} = require('../server/db/models')
+const {User, Category, Habit, UserCategory, Level} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'tania@gmail.com', password: '123', username: 'tania'}),
-    User.create({email: 'ginny@gmail.com', password: '123', username: 'ginny'}),
-    User.create({email: 'palina@email.com', password: '123', username: 'palina'}),
-    User.create({email: 'priya@email.com', password: '123', username: 'priya', level: 4}),
-    User.create({email: 'cody@email.com', password: '123', username: 'cody'}),
-    User.create({email: 'murphy@email.com', password: '123', username: 'dops'})
+  const levels = await Promise.all([
+    Level.create({maxHP: 10, maxXP: 10}),
+    Level.create({maxHP: 11, maxXP: 40}),
+    Level.create({maxHP: 13, maxXP: 90}),
+    Level.create({maxHP: 15, maxXP: 160}),
+    Level.create({maxHP: 20, maxXP: 250}),
+    Level.create({maxHP: 23, maxXP: 360})
   ])
 
-  const category = await Promise.all([
+  const users = await Promise.all([
+    User.create({email: 'tania@gmail.com', password: '123', username: 'tania', levelId: 1}),
+    User.create({email: 'ginny@gmail.com', password: '123', username: 'ginny', levelId: 1}),
+    User.create({email: 'palina@email.com', password: '123', username: 'palina', levelId: 1}),
+    User.create({email: 'priya@email.com', password: '123', username: 'priya', levelId: 1}),
+    User.create({email: 'cody@email.com', password: '123', username: 'cody', levelId: 1}),
+    User.create({email: 'murphy@email.com', password: '123', username: 'dops', levelId: 1})
+  ])
+
+  const categories = await Promise.all([
     Category.create({name: 'Eat Healthy'}),
     Category.create({name: 'Increase Physical Activity'}),
     Category.create({name: 'Code more, become a code ninja'})
   ])
 
-  const habit = await Promise.all([
+  const habits = await Promise.all([
     Habit.create({description: 'Eat broccoli', categoryId: 1, userId: 1}),
     Habit.create({description: 'Avoid Pasta', categoryId: 1, userId: 2}),
     Habit.create({description: 'Drink water instead of soda', categoryId: 1, userId: 3}),
@@ -31,7 +40,7 @@ async function seed () {
     Habit.create({description: 'Complete 10k codewars', categoryId: 3, userId: 4})
   ])
 
-  const userCategory = await Promise.all([
+  const userCategories = await Promise.all([
     UserCategory.create({userId: 4, categoryId: 1, XP: 100, HP: 123}),
     UserCategory.create({userId: 1, categoryId: 1, XP: 1, HP: 234}),
     UserCategory.create({userId: 2, categoryId: 1, XP: 0, HP: 345}),
@@ -43,9 +52,10 @@ async function seed () {
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${category.length} categories`)
-  console.log(`seeded ${habit.length} habits`)
-  console.log(`seeded ${userCategory.length} userHabits`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${habits.length} habits`)
+  console.log(`seeded ${userCategories.length} userCategories`)
+  console.log(`seeded ${levels.length} levels`)
   console.log(`seeded successfully`)
 }
 

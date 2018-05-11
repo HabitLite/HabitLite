@@ -37,7 +37,7 @@ router.put('/:userId', (req, res, next) => {
 router.put('/levelUp/:userId', (req, res, next) => {
   User.findById(+req.params.userId)
     .then(user => {
-      user.level++
+      user.levelId++
       return user.save()
     })
     .then(() => {

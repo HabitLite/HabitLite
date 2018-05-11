@@ -20,7 +20,7 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const updateUser = (XP, HP) => ({type: UPDATE_USER, XP, HP})
-const updateLevel = level => ({type: UPDATE_LEVEL, level})
+const updateLevel = () => ({type: UPDATE_LEVEL})
 
 /**
  * THUNK CREATORS
@@ -66,8 +66,8 @@ export const updateHPXP = (userId, categoryId, XP = 0, HP = 0) => {
 export const levelUp = (userId) => {
   return dispatch => {
     axios.put(`api/users/levelUp/${userId}`)
-      .then(res => {
-        dispatch(updateLevel(res.data))
+      .then(() => {
+        dispatch(updateLevel())
       })
       .catch(err => console.log(err))
   }
@@ -91,7 +91,7 @@ export default function (state = defaultUser, action) {
     case UPDATE_LEVEL:
       return {
         ...state,
-        level: action.level
+        level: state.level + 1
       }
     default:
       return state
