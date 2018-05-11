@@ -1,16 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { update, fetchHabits } from '../store'
-
+import { connect } from 'react-redux';
+import { update, fetchHabits } from '../store';
 
 /**
  * COMPONENT
  */
 class Habits extends React.Component {
-
   constructor(props) {
-    super(props)
-    console.log('this.props in constructor', props)
+    super(props);
+
     // const { userId, categoryId, XP, HP } = props
 
     // props.updateUser = props.updateUser.bind(this, userId, categoryId, XP, HP)
@@ -18,36 +16,42 @@ class Habits extends React.Component {
   }
 
   componentDidMount() {
-
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1", this.props.getHabits(this.props.userId, this.props.categoryId))
+    this.props.getHabits(this.props.userId, this.props.categoryId);
   }
 
   render() {
-
-    const { habits } = this.props
-
-    console.log('habits in HABITs: ', habits)
-
-
+    const { habits } = this.props;
 
     // const addHPFromIncompleteHabits = () => {
 
     // }
-    return ( // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
+    // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
+    return (
       <div className="habits-list">
         <label className="habits-label">My Habits</label>
         {/* <button></button> */}
         <ul>
-          {
-            habits && habits.map( habit => {
+          {habits &&
+            habits.map(habit => {
               return (
-                <li key={habit.id}><input type="checkbox" className="unChecked" onClick={this.props.updateUser.bind(this, this.props.userId, habit.categoryId, this.props.XP)} /><p>{habit}</p></li>
-              )
-            })
-          }
+                <li key={habit.id}>
+                  <input
+                    type="checkbox"
+                    className="unChecked"
+                    onClick={this.props.updateUser.bind(
+                      this,
+                      this.props.userId,
+                      habit.categoryId,
+                      this.props.XP
+                    )}
+                  />
+                  <p>{habit.description}</p>
+                </li>
+              );
+            })}
         </ul>
       </div>
-    )
+    );
   }
 }
 
@@ -58,34 +62,31 @@ const mapState = state => {
     XP: state.user.XP,
     HP: state.user.HP,
     categoryId: 1,
-    habits: state.user.habits
-  }
-}
+    habits: state.habits
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     getHabits(userId, categoryId) {
-      dispatch(fetchHabits(userId, categoryId))
+      dispatch(fetchHabits(userId, categoryId));
     },
     updateUser(userId, categoryId, XP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
       if (evt.target.className === 'checked') {
-        XP = -XP
-        evt.target.className = 'unChecked'
+        XP = -XP;
+        evt.target.className = 'unChecked';
+      } else if (evt.target.className === 'unChecked') {
+        evt.target.className = 'checked';
       }
-      else if (evt.target.className === 'unChecked') {
-        evt.target.className = 'checked'
-      }
-      dispatch(update(userId, categoryId, XP))
+      dispatch(update(userId, categoryId, XP));
 
-      console.log("class", evt.target.className)
-
+      console.log('class', evt.target.className);
     }
-  }
-}
+  };
+};
 
 export default connect(mapState, mapDispatch)(Habits);
-
 
 // {/*<div className="habits-list">*/}
 //   {/*<label className="habits-label">My Habits</label>*/}
