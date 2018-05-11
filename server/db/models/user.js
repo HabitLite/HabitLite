@@ -3,6 +3,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const Level = require('./level')
 
+const method = () => {
+  console.log Level.findAll().then(() => 3000)
+}
+
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
@@ -35,22 +39,22 @@ const User = db.define('user', {
     defaultValue: 0,
     validate: { min: 0, max: 100 },
     get: function () {
-      let prevLev, currLev
-      await Promise.all([
-        prevLev = Level.findOne({
-          where: {
-            levelId: +this.getDataValue('levelId') - 1
-          }
-        }),
-        currLev = Level.findOne({
-          where: {
-            levelId: +this.getDataValue('levelId')
-          }
-        })
-      ])
-      console.log("!!!!!!!!!!!!!Progress is", (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP))
+      return method()
+      // let prevLev, currLev
+      // return Promise.all([
+      //   prevLev = Level.findOne({
+      //     where: {
+      //       levelId: +this.getDataValue('levelId') - 1
+      //     }
+      //   }),
+      //   currLev = Level.findOne({
+      //     where: {
+      //       levelId: +this.getDataValue('levelId')
+      //     }
+      //   })
+      // ]).then(() => 4000)
 
-      return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
+      // return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
     }
   },
   salt: {
@@ -71,6 +75,25 @@ module.exports = User
  */
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
+}
+
+User.prototype.getProgress = async function () {
+  let prevLev, currLev
+
+  Promise.all([
+    prevLev = Level.findOne({
+      where: {
+        levelId: +this.getDataValue('levelId') - 1
+      }
+    }),
+    currLev = Level.findOne({
+      where: {
+        levelId: +this.getDataValue('levelId')
+      }
+    })
+  ])
+
+  return (this.getDataValue('XP') - prevLev.maxXP) / (currLev.maxXP - prevLev.maxXP)
 }
 
 /**
