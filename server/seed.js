@@ -48,7 +48,7 @@ async function seed() {
     Habit.create({ description: 'Have 5 small meals instead of 3 big meals today', habitGroup: "StructureD", categoryId: 1 })
   ])
 
-  const userCategory = await Promise.all([
+  const userCategories = await Promise.all([
     UserCategory.create({ userId: 4, categoryId: 1, XP: 100, HP: 123 }),
     UserCategory.create({ userId: 1, categoryId: 1, XP: 1, HP: 234 }),
     UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 345 }),
@@ -68,9 +68,9 @@ async function seed() {
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${category.length} categories`)
-  console.log(`seeded ${habit.length} habit`)
-  console.log(`seeded ${userCategory.length} userCategories`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${habits.length} habit`)
+  console.log(`seeded ${userCategories.length} userCategories`)
   console.log(`seeded ${userHabit.length} userHabits`)
   console.log(`seeded ${levels.length} levels`)
   console.log(`seeded successfully`)

@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios'
 import defaultquiz from '../../script/quiz.js'
 import { postPersonality } from '../store'
+import { Link } from 'react-router-dom';
 
 const styles = {
     customWidth: {
@@ -46,7 +47,9 @@ class Personality extends Component {
                 {
                     quiz.map((question, idx) => <Question key={question.question} {...question} onChange={this.handleQuestion(idx)} />)
                 }
-                <input type="submit" />
+                <Link to="/home">
+                    <input type="submit" />
+                </Link>
             </form>
         )
     }
