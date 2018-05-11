@@ -15,7 +15,7 @@ const Progress = props => {
   let percent = (props.XP - (Math.pow(props.level - 1, 2) * 10)) / ((Math.pow(props.level, 2) * 10) - (Math.pow(props.level - 1, 2) * 10)) * 100
   if (percent >= 100) {
     props.increment(props.userId)
-    percent = (props.XP - (Math.pow(props.level - 1, 2) * 10)) / ((Math.pow(props.level, 2) * 10) - (Math.pow(props.level - 1, 2) * 10)) * 100
+
   }
     return (
       <div >

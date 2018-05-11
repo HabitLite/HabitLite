@@ -10,11 +10,14 @@ const giveUserXPAndHPAccordingToCategories = (user, categories) => {
     userHP += category.HP
   })
 
+  console.log("!!!!!!!!!!Progress s", user.progress)
+
   return {
     id: user.id,
     avatar: user.avatar,
     email: user.email,
     username: user.username,
+    progress: user.progress,
     levelId: user.levelId,
     lives: user.lives,
     XP: userXP,
