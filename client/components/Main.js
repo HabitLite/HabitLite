@@ -49,7 +49,7 @@ class Main extends Component {
                             {/* Routes placed here are available to all visitors */}
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
-                            <Route exact path="/personality" component={Personality} />
+                            <Route path="/personality/profile/:userId" component={Personality} />
                             <Route path="/personalityQuiz" component={PersonalityQuiz} />
 
                             {

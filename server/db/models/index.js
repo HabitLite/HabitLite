@@ -26,5 +26,6 @@ module.exports = {
   User,
   Category,
   Habit,
-  UserCategory
+  UserCategory,
+  Personality
 }

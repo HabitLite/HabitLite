@@ -1,3 +1,6 @@
+
+
+
 var quizQuestions = [
     {
         qnumber: "q1",
