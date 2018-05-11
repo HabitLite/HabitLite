@@ -29,9 +29,6 @@ form div {
   display: inline-block;
 }
 
-.quiz {
-  
-}
 
 .container {
   display: block;
@@ -45,7 +42,8 @@ form div {
   -ms-user-select: none;
   user-select: none; 
 }
-/* Login / Sing Up Page */
+
+/* Login / Sing Up Page   ------- >>>>> */
 /* App.js */
 .login-form{
   display: inline-block;
@@ -102,7 +100,12 @@ select{
   margin: 80px 20px 35px 120px;
 }
 
-/* User Summary */
+
+
+
+
+
+/* User Summary   ------- >>>>> */
 .add-category{
   width: 50px;
   height: 50px;
@@ -168,7 +171,10 @@ select{
 
 
 
-/* User Dashboard  --- UserHome.js
+
+
+
+/* User Dashboard  --- UserHome.js   ------- >>>>>
 */
 /* navbar */
 .logout-btn{
@@ -201,11 +207,15 @@ select{
 }
 
 
-/* User Panel */
+
+
+
+
+/* User Panel   ------- >>>>>  */
 .user-panel{
   display: inline-flex;
   /* margin-left: 140px; */
-  margin-left: 50px;
+  margin-left: 140px;
   margin-top: 30px;
 }
 /* border-left: thick solid #ff0000; */
@@ -223,6 +233,9 @@ span{
   color: #a7a5a5;
 }
 
+ 
+
+
 
 
 /* Welcome */
@@ -239,7 +252,9 @@ span{
 
 
 
-/* Habits list*/
+
+
+/* Habits list      ------- >>>>> */
 .habits-list{
   display: grid;
     /* border: 1px solid; */
@@ -283,10 +298,34 @@ ul{
 
 
 
+/* Progress bar   ------- >>>>> */
+.total-progress{
+  margin-top: 0px;
+  margin-left: 50px;
+  /* text-align: center; */
+  width: 560px;
+  color: #5a5959;
+  font-size: 1.4em;
+}
+.progress-bar{
+  width: 350px;
+  margin-left: 791px;
+  margin-top: -500px;
+}
 
 
 
-/* Responsive */
+
+
+
+/* Group Page   ------- >>>>>  */
+
+.group{
+  text-align: center;
+}
+
+
+/* Responsive    ------- >>>>> */
 @media screen and (max-width:580px) {
   /* form */
   .login-form{
@@ -317,24 +356,13 @@ ul{
   .habits-list {
     width: 350px;
   }
+
+  .category-list{
+    text-align: center;
+    font-size: 3.3em;
+    color: #782F4D;
+    width: 560px;
+    margin-left: 120px;
+  }
 }
 
-/* Progress bar */
-.total-progress{
-  margin-top: 0px;
-  margin-left: 50px;
-  /* text-align: center; */
-  width: 560px;
-  color: #5a5959;
-  font-size: 1.4em;
-}
-.progress-bar{
-  width: 350px;
-  margin-left: 791px;
-  margin-top: -500px;
-}
-
-.form-user-name, .form-password{
-  margin-bottom:150px;
-  margin-top:150px;
-}
