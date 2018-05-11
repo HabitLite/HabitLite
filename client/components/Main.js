@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, UserSummary, PersonalityQuiz, Navbar } from './index.js'
+import { Login, Signup, UserHome, UserSummary, PersonalityQuiz, Navbar, Group } from './index.js'
 import { me } from '../store'
 // import { MuiThemeProvider } from 'material-ui/styles/MuiThemeProvider';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -20,6 +20,7 @@ import { orange500 } from 'material-ui/styles/colors';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import AppBar from 'material-ui/AppBar';
+
 
 /**
  * COMPONENT
@@ -57,6 +58,7 @@ class Main extends Component {
                                   {/* <Route path="/home" component={UserHome} /> */}
                                   <Route exact path="/home" component={UserSummary} />
                                   <Route exact path="/single" component={UserHome} />
+                                  <Route exact path="/group" component={Group} />
 
 
                               </Switch>
