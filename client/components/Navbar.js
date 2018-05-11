@@ -6,8 +6,9 @@ import { logout } from '../store'
 
 const divStyle = {
   // background: '#dcd0b4',
-  overflow: 'hidden',
-  position: 'fixed',
+  // overflow: 'hidden',
+  display: 'inline-flex',
+  // position: 'fixed',
   top: '0',
   width: '100%',
   marginLeft: '-8px',
@@ -16,13 +17,16 @@ const divStyle = {
 
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
+
   <div>
     <nav>
 
       {isLoggedIn ? (
         <div style={divStyle}>
           {/* The navbar will show these links after you log in */}
-          {/* <Link to="/home">Home</Link> */}
+          <Link to="/home" className="nav-links">Summary</Link>
+          <Link to="/" className="nav-links">Group</Link>
+          
           <a href="#" onClick={handleClick} className="logout-btn">
             Logout
             </a>

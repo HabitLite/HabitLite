@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 
 router.use('/users', require('./users'))
-router.use('/c/habit', require('./habit'))
+router.use('/habits', require('./habits'))
 router.use('/categories', require('./categories'))
 router.use('/personality', require('./personality'))
 

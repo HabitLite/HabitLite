@@ -9,24 +9,24 @@ const User = props => {
   const { avatar, username, level, lives, HP, XP } = props
 
   return (
-    <div {...props}>
+    <div className="user-panel">
       <div className="avatar">
-        Avatar: {avatar}
+        {/* Avatar: {avatar} */}
       </div>
       <div className="username">
-        Username: {username}
+        <span>Username </span><br/>{username}
       </div>
       <div className="level">
-        Level: {level}
+      <span>Level</span><br/>{level}
       </div>
       <div className="lives">
-        Lives: {lives}
+      <span> Lives </span><br/>{lives}
       </div>
       <div className="HP">
-        HP: {HP}
+      <span>HP </span><br/>{HP}
       </div>
       <div className="XP">
-        Total XP: {XP}
+      <span>Total XP </span><br/>{XP}
       </div>
     </div>
   )
@@ -37,7 +37,7 @@ const mapState = state => {
   return {
     avatar: state.user.avatar,
     username: state.user.username,
-    level: state.user.level,
+    level: state.user.levelId,
     lives: state.user.lives,
     HP: state.user.HP,
     XP: state.user.XP
