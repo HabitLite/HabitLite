@@ -334,4 +334,7 @@ ul{
   margin-top: -500px;
 }
 
-
+.form-user-name, .form-password{
+  margin-bottom:150px;
+  margin-top:150px;
+}

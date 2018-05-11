@@ -18,12 +18,16 @@ User.hasMany(UserHabit)
 Habit.hasMany(UserHabit)
 Personality.belongsTo(User)
 User.hasOne(Personality)
-User.belongsTo(Level, {constraints: {
-  defaultValue: 1
-  }})
-Level.hasMany(User, {constraints: {
+User.belongsTo(Level, {
+  constraints: {
     defaultValue: 1
-  }})
+  }
+})
+Level.hasMany(User, {
+  constraints: {
+    defaultValue: 1
+  }
+})
 
 
 module.exports = {
@@ -31,5 +35,7 @@ module.exports = {
   Category,
   Habit,
   UserCategory,
+  Personality,
+  UserHabit,
   Level
 }

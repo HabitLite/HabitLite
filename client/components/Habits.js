@@ -47,6 +47,7 @@ class Habits extends React.Component {
 }
 
 const mapState = state => {
+  console.log('STATE!!!!!!!', state)
   return {
     userId: state.user.id,
     level: state.user.level,
