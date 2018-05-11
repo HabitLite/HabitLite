@@ -6,54 +6,15 @@ import { User, Progress } from './index'
 import {fetchAllCategories, postCategory} from '../store/categories'
 
 const divStyle = {
-    marginTop: '590px',    
+    marginTop: '590px'   
 };
 
-
-      
-// function ChannelList (props)
-// const UserSummaryForm = (props) =>{
-
-// // class UserSummary extends Component {
-//     const { handleClick, handleChange, name} = props
-
-//     return (
-//         <div>
-//             {/* <button className="add-category" onClick={onBtnClick}>+</button>   */}
-//                     {/* {isClicked &&  */}
-//                     <div className="input-field">
-//                         <form onClick={handleClick}>
-//                             <input
-//                                 name="category"
-//                                 type="text"
-//                                 onChange={handleChange}
-//                                 value={category}
-//                             />
-//                             <button>Add</button>
-//                         </form>
-//                         </div>
-//                     {/* } */}
-//         </div>
-//     )
-// }
-    
 class UserSummary extends Component {
     state = {
         name: '',
         isClicked: false
     }
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         name: '',
-    //         // isClicked: false
-    //     }
-    //     // this.onBtnClick = this.onBtnClick.bind(this);
-    //     this.handleChange = this.handleChange.bind(this);
-    //     this.handleSubmit = this.handleSubmit.bind(this);
-    // }
     onBtnClick = (e) => {
-        // e.preventDefault();
         this.setState({isClicked: true})
     }
     handleChange = (event) => {     
@@ -64,8 +25,6 @@ class UserSummary extends Component {
         e.preventDefault();
         const name = this.state.name
         this.props.postNewCategory({name})
-        // const name = this.state.name;
-        // this.props.postNewCategory(name)
         this.setState({ name: ''})
     }
     componentDidMount(){
@@ -73,15 +32,13 @@ class UserSummary extends Component {
     }
     
     render() {
-        // console.log('categories Data: ', this.props.categories)
-        // // console.log('user USER ID ' , this.props.user)
+
         const categories = this.props.categories
 
-        // to={`/add`} params={{ test: category.id }}
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
-                <div className="container">
+                <div className="container-progress">
                 {
                     categories.map((category, i) => {
                         return (
@@ -97,7 +54,7 @@ class UserSummary extends Component {
                 }    
                 </div> 
                 <div>
-                    <button className="add-category" onClick={this.onBtnClick}>+</button>  
+                    <button className="add-category" onClick={this.onBtnClick}><span className="summary-plus">+</span></button>  
                             {this.state.isClicked && 
                             <div className="input-field">
                                 <form onSubmit={this.handleSubmit}>
@@ -106,8 +63,9 @@ class UserSummary extends Component {
                                         type="text"
                                         onChange={this.handleChange}
                                         value={this.category}
+                                        className="cat-input"
                                     />
-                                    <button type="submit">Add</button>
+                                    <button type="submit" className="cat-add">Add</button>
                                 </form>
                                 </div>
                             }
@@ -137,48 +95,4 @@ const mapState = state => {
   }
   
   export default connect(mapState, mapDispatch)(UserSummary)
-
-
-
-
-/* *** COMPONENT *** */
-// class UserSummary extends Component{
-
-//     constructor(props){
-//         super(props)
-//     }
-//     componentDidMount() {
-//         this.props.getAllCategories();
-//     }
-//     render() {
-        
-//         return (
-//             <div className="main-page">
-
-//             <h3 className="welcome">Welcome, </h3>
-//             {/* <User />
-//             <Categories />
-//             <Habits /> */}
-//             {/* <Progress /> */}
-//             </div>
-//         )
-//     }
-// }
-
-// /* *** CONTAINER *** */
-// const mapState = (state) => {
-//   return {
-//     username: state.user.username,
-//     selectedUser: state.user.id
-//   }
-// }
-// const mapDispatch = (dispatch) => {
-//     return {
-//       getAllCategories: () => {
-//          dispatch(fetchAllCategories());
-//       }
-//     }
-//  }
-
-// export default connect(mapState, mapDispatch)(UserSummary)
 
