@@ -37,7 +37,7 @@ const mapState = state => {
   return {
     avatar: state.user.avatar,
     username: state.user.username,
-    level: state.user.level,
+    level: state.user.levelId,
     lives: state.user.lives,
     HP: state.user.HP,
     XP: state.user.XP
