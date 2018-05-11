@@ -9,6 +9,10 @@ const Habit = db.define('habit', {
         validate: {
             notEmpty: true
         }
+    },
+    habitGroup: {
+        type: Sequelize.ENUM,
+        values: ['Default', 'Custom', 'ChallengeD', "LoveD", "StructureD"]
     }
 })
 
