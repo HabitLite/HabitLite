@@ -1,5 +1,6 @@
 var quizQuestions = [
     {
+        qnumber: "q1",
         question: "I rather: ",
         answers: [
             {
@@ -18,6 +19,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q2",
         question: "When I skip a workout is usually because: ",
         answers: [
             {
@@ -38,6 +40,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q3",
         question: "I feel relaxed when:",
         answers: [
             {
@@ -58,6 +61,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q4",
         question: "During the weekend I look forward to:",
         answers: [
             {
@@ -78,6 +82,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q5",
         question: "Best part of my workout is:",
         answers: [
             {
@@ -98,6 +103,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q6",
         question: "I stay motivated during a project by:",
         answers: [
             {
@@ -118,6 +124,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q7",
         question: "The best part about eating out is: ",
         answers: [
             {
@@ -138,6 +145,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q8",
         question: "My mornings look like: ",
         answers: [
             {
@@ -158,6 +166,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q9",
         question: "Parties are:",
         answers: [
             {
@@ -178,6 +187,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q10",
         question: "My biggest strength in a job interview is being :",
         answers: [
             {
@@ -198,6 +208,7 @@ var quizQuestions = [
         ]
     },
     {
+        qnumber: "q11",
         question: "If someone offered me last minute tickets to a play:",
         answers: [
             {

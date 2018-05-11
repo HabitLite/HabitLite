@@ -23,52 +23,76 @@ const styles = {
 export default class Personality extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            q1: '',
+            q2: '',
+            q3: '',
+            q4: '',
+            q5: '',
+            q6: '',
+            q7: '',
+            q8: '',
+            q9: '',
+            q10: '',
+            q11: '',
+        }
+    }
+
+    handleChange = (event) => {
+        console.log('!!!', event.target.name)
+        this.setState({ [event.target.name]: event.target.value })
     }
 
     render() {
-        console.log("inside personality")
+        console.log("inside personality and this is the STATE ", this.state)
         return (
             <div>
-                {/* <form onSubmit={this.handleSubmit} className='form'> */}
-                {
-                    quiz.map((quizContent, idx) => {
-                        return (
-                            <div>
+                <form onSubmit={this.handleSubmit} className='form'>
+                    {
+                        quiz.map((quizContent, idx) => {
+                            return (
+                                <span key={idx}>
 
-                                <h3 key={idx}>{quizContent.question}</h3>
-                                <div>
-                                    {quizContent.answers.map((ans, idx) => {
-                                        return (
-                                            <RadioButtonGroup name="q1" defaultSelected="not_light" onChange={this.handleChange}>
+                                    <h3 >{quizContent.question}</h3>
+                                    {/* {console.log("question number", quizContent.qnumber)} */}
+                                    <RadioButtonGroup name={quizContent.qnumber} defaultSelected="not_light" onChange={this.handleChange}>
 
-                                                <RadioButton key={idx}
+                                        {quizContent.answers.map((ans, id) => {
+                                            return (
+                                                <RadioButton key={id}
                                                     value={ans.content}
                                                     label={ans.content}
-                                                    style={styles.radioButton} />
-                                            </RadioButtonGroup>
-                                            // {/* <li key={idx}>{ans.content}</li> */}
-                                        )
+                                                    style={styles.radioButton}
+                                                />
 
-                                    })
-                                    }
-                                </div>
-                            </div>
-                        )
+                                            )
+                                        })
+                                        }
 
-                    })
-                }
-                {/* <h3>I rather: </h3>
-                <RadioButtonGroup name="q1" defaultSelected="not_light" onChange={this.handleChange}>
-
-                    <RadioButton
-                        value="Do Yoga"
-                        label="Do Yoga"
-                        style={styles.radioButton}
-
-                    /> */}
-                {/* </form> */}
+                                    </RadioButtonGroup>
+                                </span>
+                            )
+                        })
+                    }
+                </form>
             </div>
         )
 
     }
 }
+
+
+{/* <div>
+    <form onSubmit={this.handleSubmit} className='form'>
+
+        <h3>I rather: </h3>
+        <RadioButtonGroup name="q1" defaultSelected="not_light" onChange={this.handleChange}>
+
+            <RadioButton
+                value="Do Yoga"
+                label="Do Yoga"
+                style={styles.radioButton}
+
+            />
+            
+        </RadioButtonGroup> */}
