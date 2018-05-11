@@ -28,9 +28,24 @@ router.put('/:userId', (req, res, next) => {
       userCategory.HP += +req.body.HP
       return userCategory.save()
     })
-    .then(() => {
-      res.end()
+    // .then(() => {
+    //   res.end()
+    // })
+    .catch(next)
+})
+
+router.put('/levelUp/:userId', (req, res, next) => {
+  User.findById(+req.params.userId)
+    .then(user => {
+      // const lastMaxXP = user.getLevel().maxXP
+      user.levelId++
+      // const currentMaxXP = user.getLevel().maxXP
+      // user.progress = (user.XP - lastMaxXP) / (currentMaxXP - lastMaxXP)
+      return user.save()
     })
+    // .then(() => {
+    //   res.end()
+    // })
     .catch(next)
 })
 

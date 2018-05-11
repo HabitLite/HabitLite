@@ -6,15 +6,6 @@ import { update, fetchHabits } from '../store';
  * COMPONENT
  */
 class Habits extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // const { userId, categoryId, XP, HP } = props
-
-    // props.updateUser = props.updateUser.bind(this, userId, categoryId, XP, HP)
-    // props.getHabits = props.getHabits.bind(this, userId, categoryId)
-  }
-
   componentDidMount() {
     this.props.getHabits(this.props.userId, this.props.categoryId);
   }
@@ -42,7 +33,7 @@ class Habits extends React.Component {
                       this,
                       this.props.userId,
                       habit.categoryId,
-                      this.props.XP
+                      this.props.habitXP
                     )}
                   />
                   <p>{habit.description}</p>
@@ -62,7 +53,8 @@ const mapState = state => {
     XP: state.user.XP,
     HP: state.user.HP,
     categoryId: 1,
-    habits: state.habits
+    habits: state.habits,
+    habitXP: 5
   };
 };
 
@@ -76,6 +68,8 @@ const mapDispatch = dispatch => {
       if (evt.target.className === 'checked') {
         XP = -XP;
         evt.target.className = 'unChecked';
+      } else if (evt.target.className === 'unChecked') {
+        evt.target.className = 'checked';
       } else if (evt.target.className === 'unChecked') {
         evt.target.className = 'checked';
       }

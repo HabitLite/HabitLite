@@ -25,3 +25,14 @@ describe('levelUP()', function () {
   })
 })
 ```
+
+  
+//in user/levelUp api route, progress should be set depending on XP-(last_level's_maxXP) / (current_level's_maxXP - last_level's_maxXP)
+  //last level will be the level before updating the level while current level will be the level after updating the level
+    //will have to hold some values in lets or consts
+
+//progress should also update every time user gains XP...
+  //because of this, perhaps level table should also store previous level's max XP
+  
+//could just make getter for progress in user for above
+  //every time user gains XP, in updateUser progress will also be updated and sent back
