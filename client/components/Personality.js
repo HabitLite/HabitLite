@@ -48,7 +48,7 @@ class Personality extends Component {
                     quiz.map((question, idx) => <Question key={question.question} {...question} onChange={this.handleQuestion(idx)} />)
                 }
                 <Link to="/home">
-                    <input type="submit" />
+                    <input type="submit" className="submit-quiz"/>
                 </Link>
             </form>
         )
@@ -57,7 +57,7 @@ class Personality extends Component {
 
 const Question = ({ question, answers, onChange }) =>
     <React.Fragment>
-        <h3 >{question}: </h3>
+        <h3 className="question">{question}: </h3>
         <RadioButtonGroup defaultSelected="not_light" onChange={onChange}>{
             answers.map((ans, id) =>
                 <RadioButton key={ans.content}
