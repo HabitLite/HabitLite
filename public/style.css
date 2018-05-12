@@ -65,7 +65,10 @@ form div {
   margin-left: 560px;
 }
 .form-fields{
-  margin-top: 80px;
+  margin: 85px 0px 0px 18px;
+}
+.form-user-name{
+  margin: 10px 0 10px 0;
 }
 input{
   width: 280px;
@@ -80,11 +83,12 @@ input{
 }
 small{
   margin-left: 60px;
+  color: #a7a5a5;
 }
 .login-btn{
   width: 120px;
   height: 35px;
-  margin: 30px 135px;
+  margin: 65px 135px;
   border: none;
   font-size: 1.3em;
   color: #5a5959;
@@ -94,9 +98,8 @@ small{
   margin: 0px 141px;
   color: black;
 }
-select{
-  height: 46px;
-  width: 30%;
+.select-field{
+  width: 418px;
   margin: 80px 20px 35px 120px;
 }
 
@@ -278,7 +281,7 @@ span{
   height: 50px;
   border-radius: 50%;
   position: relative;
-  margin: -24px 10px -18px 337px;
+  margin: -42px 10px -13px 337px;
   border: none;
   background: white;
   box-shadow: 7px 9px 34px -6px #999;
@@ -316,7 +319,7 @@ p{
   margin-top: 010px; */
 }
 ul{
-  margin: 20px 10px 20px -60px;
+  margin: 31px 10px 20px -60px;
   list-style: none;
 }
 
@@ -329,7 +332,11 @@ ul{
   font-size: .7em;
   background: white;
 }
+.categ-name{
+  text-align: center;
+  color: #5a5959;
 
+}
 
 
 
