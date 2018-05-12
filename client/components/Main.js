@@ -60,7 +60,7 @@ class Main extends Component {
                                     {/* Routes placed here are only available after logging in */}
                                     {/* <Route path="/home" component={UserHome} /> */}
                                     <Route exact path="/home" component={UserSummary} />
-                                    <Route exact path="/single/:category/:username" component={UserHome} />
+                                    <Route exact path="/:username/:category/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
 
 
