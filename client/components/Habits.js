@@ -20,7 +20,7 @@ class Habits extends React.Component {
     return (
       <div className="habits-list">
         <label className="habits-label">My Habits</label>
-        {/* <button></button> */}
+        <button className="add-habit-btn"><span className="plus">+</span></button>
         <ul>
           {habits &&
             habits.map(habit => {

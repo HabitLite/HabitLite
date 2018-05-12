@@ -56,7 +56,7 @@ class UserSummary extends Component {
                     }
                 </div>
                 <div>
-                    <button className="add-category" onClick={this.onBtnClick}><span className="summary-plus">+</span></button>
+                    <button className="add-category" onClick={this.onBtnClick}><span className="plus">+</span></button>
                     {this.state.isClicked &&
                         <div className="input-field">
                             <form onSubmit={this.handleSubmit}>
