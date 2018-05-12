@@ -6,6 +6,8 @@ import axios from 'axios';
 // ACTION TYPES
 // const WRITE_CATEGORY_NAME = 'WRITE_CATEGORY_NAME';
 const GET_HABITS = 'GET_HABITS';
+const ADD_HABIT = 'ADD_HABIT'
+const DELETE_HABIT = 'DELETE_HABIT';
 
 // ACTION CREATORS
 // export function writeCategoryName (categoryName) {
@@ -14,6 +16,12 @@ const GET_HABITS = 'GET_HABITS';
 // }
 
 const getHabits = habits => ({ type: GET_HABITS, habits });
+export function addHabit(habit) {
+  return { type: ADD_HABIT, habit}
+}
+const deleteHabit = habit => {
+    return {type: DELETE_HABIT, habit}
+}
 
 // THUNK CREATORS
 export const fetchHabits = (userId, categoryId) => {
@@ -27,6 +35,8 @@ export const fetchHabits = (userId, categoryId) => {
       .catch(console.error);
   };
 };
+
+
 
 // REDUCER
 export default function(state = [], action) {
