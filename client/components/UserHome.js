@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { User, Categories, Habits, Progress } from './index'
 
 /* *** COMPONENT *** */
-export const UserHome = () => {
+export const UserHome = (props) => {
+
   return (
     <div className="main-page">
 
@@ -16,7 +17,8 @@ export const UserHome = () => {
       <Categories />
       <Habits />
       <div className="progress-bar">
-      <Progress />
+        <h2>{props.match.params.category}</h2>
+        <Progress />
       </div>
     </div>
   )
