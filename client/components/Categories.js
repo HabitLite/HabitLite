@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {fetchAllCategories} from '../store/categories'
-
+import { connect } from 'react-redux'
+import { fetchAllCategories } from '../store/categories'
+import { Link } from 'react-router-dom';
 
 /**
  * COMPONENT
  */
 class Categories extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             selectedCategory: '' //category ID
-        //   listOpen: false,
-        //   headerTitle: this.props.title
+            //   listOpen: false,
+            //   headerTitle: this.props.title
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -35,7 +35,7 @@ class Categories extends Component {
     //       listOpen: !prevState.listOpen
     //     }))
     // }
-    
+
     render() {
         const categories = this.props.categories;
         const listOpen = this.state
@@ -55,28 +55,29 @@ class Categories extends Component {
                 <select onChange={this.handleChange} name="selectedCategory">
                     <option>Select a category</option>
                     {
-                            categories.map(category => {
-                                return (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
-                                )
-                            })
-                        }
+                        categories.map(category => {
+                            return (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                            )
+                        })
+                    }
                 </select>
             </div>
-        )}
+        )
     }
+}
 
 const mapState = (state) => {
     return {
-      categories: state.categories,
+        categories: state.categories,
     }
 }
-  
+
 const mapDispatch = (dispatch) => {
-   return {
-     getAllCategories: () => {
-        dispatch(fetchAllCategories());
-     }
+    return {
+        getAllCategories: () => {
+            dispatch(fetchAllCategories());
+        }
     }
 }
 export default connect(mapState, mapDispatch)(Categories)
