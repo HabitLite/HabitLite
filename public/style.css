@@ -287,6 +287,27 @@ span{
   font-size: 2.1em;
   margin: 26px 4px;
 }
+
+.input-field-habit{
+  width: 280px;
+  height: 33px;
+  position: absolute;
+  margin: 83px 10px 10px 24px;
+}
+.habit-input{
+  width: 230px;
+  border: none;
+  background: white;
+  border-bottom: 2px solid #a7a5a5;
+}
+
+.habit-add{
+  border: none;
+  background: white;
+  font-size: .8em;
+  margin: -40px 10px -11px;
+  color: #a7a5a5;
+}
 p{
   margin-left: 100px;
   margin-top: -29px;
@@ -297,6 +318,16 @@ p{
 ul{
   margin: 20px 10px 20px -60px;
   list-style: none;
+}
+
+.delete-habit{
+  width: 33px;
+  height: 24px;
+  margin-left: 18px;
+  border: none;
+  color: #a7a5a5;
+  font-size: .7em;
+  background: white;
 }
 
 
