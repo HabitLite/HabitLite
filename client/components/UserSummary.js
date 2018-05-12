@@ -17,7 +17,8 @@ class UserSummary extends Component {
         this.state = {
             name: '',
             isClicked: false,
-            username: ''
+            username: '',
+            userId: ''
         }
     }
     onBtnClick = (e) => {
@@ -41,7 +42,7 @@ class UserSummary extends Component {
     render() {
 
         const categories = this.props.categories
-        const username = this.props.username || ''
+        const userId = this.props.userId || ''
         console.log("STATE IN USER SUMMARY", this.props)
 
         return (
@@ -52,7 +53,7 @@ class UserSummary extends Component {
                         categories.map((category, i) => {
                             return (
                                 <div className="category-name" style={divStyle} key={i}>
-                                    <Link to={{ pathname: `/${username}/${category.name}`, state: { name: category.name } }} className='category' key={category.id}>
+                                    <Link to={{ pathname: `/${userId}/${category.name}`, state: { name: category.name } }} className='category' key={category.id}>
                                         <div className="progress-list">
                                             <Progress name={category.name} />
                                         </div>
@@ -88,7 +89,8 @@ const mapState = state => {
     return {
         categories: state.categories,
         username: state.user.username,
-        email: state.user.email
+        email: state.user.email,
+        userId: state.user.id
     }
 }
 

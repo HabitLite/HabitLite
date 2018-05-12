@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { update, fetchHabits, postHabit } from '../store';
+import store, { update, fetchHabits, postHabit } from '../store';
 
 
 /**
@@ -8,33 +8,37 @@ import { update, fetchHabits, postHabit } from '../store';
  */
 class Habits extends Component {
   state = {
+
+    isClicked: false,
+    habitGroup: '',
     description: '',
-    isClicked: false
+    categoryId: ''
   }
-  onBtnClick = (e) => {
+  onBtnClick = (event) => {
     this.setState({ isClicked: true })
   }
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const description = this.state.description
-    this.props.postNewCategory({ description })
-    this.setState({ description: '' })
-  }
   componentDidMount() {
     this.props.getHabits(this.props.userId, this.props.categoryId);
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postNewHabit(userId, Habit)
+    const habit = {
+      habitGroup: 'Custom',
+      description: this.state.description,
+      categoryId: this.props.categoryId
+    }
+    const userId = this.props.userId || '';
+    this.props.postNewHabit(userId, habit)
   }
 
   render() {
     const { habits } = this.props;
-
+    console.log("HABITS .... STATE", this.state)
+    console.log("HABITS .... PROPS", this.props)
     // const addHPFromIncompleteHabits = () => {
 
     // }
@@ -50,7 +54,7 @@ class Habits extends Component {
                 name="description"
                 type="text"
                 onChange={this.handleChange}
-                value={this.category}
+                value={this.state.description}
                 className="habit-input"
               />
               <button type="submit" className="habit-add">Add</button>
@@ -98,7 +102,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    postNewHabit: (userId, habit) => {
+    postNewHabit(userId, habit) {
       dispatch(postHabit(userId, habit))
     },
     getHabits(userId, categoryId) {

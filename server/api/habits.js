@@ -10,15 +10,15 @@ router.get('/', (req, res, next) => {
 })
 
 //Get allCustom habits by categoryId
-// router.get('/:userId/:categoryId', (req, res, next) => {
-//     Habit.findAll({
-//         where: {
-//             categoryId: req.params.categoryId
-//         }
-//     })
-//         .then(habits => res.json(habits))
-//         .catch(next)
-// })
+router.get('/:userId/:categoryId', (req, res, next) => {
+    Habit.findAll({
+        where: {
+            categoryId: req.params.categoryId
+        }
+    })
+        .then(habits => res.json(habits))
+        .catch(next)
+})
 
 
 router.post('/:userId/:categoryId', (req, res, next) => {
