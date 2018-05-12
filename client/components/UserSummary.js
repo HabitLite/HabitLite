@@ -4,15 +4,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { User, Progress } from './index'
 import { fetchAllCategories, postCategory } from '../store/categories'
+import { me } from '../store';
 
 const divStyle = {
     marginTop: '590px'
 };
 
 class UserSummary extends Component {
-    state = {
-        name: '',
-        isClicked: false
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            name: '',
+            isClicked: false,
+            username: ''
+        }
     }
     onBtnClick = (e) => {
         this.setState({ isClicked: true })
@@ -29,11 +35,14 @@ class UserSummary extends Component {
     }
     componentDidMount() {
         this.props.getAllCategories();
+        this.props.loadInitialData()
     }
 
     render() {
 
         const categories = this.props.categories
+        const username = this.props.username || ''
+        console.log("STATE IN USER SUMMARY", this.props)
 
         return (
             <div className="summary-container">
@@ -43,7 +52,7 @@ class UserSummary extends Component {
                         categories.map((category, i) => {
                             return (
                                 <div className="category-name" style={divStyle} key={i}>
-                                    <Link to={{ pathname: '/single', state: { name: category.name } }} className='category' key={category.id}>
+                                    <Link to={{ pathname: `/${username}/${category.name}`, state: { name: category.name } }} className='category' key={category.id}>
                                         <div className="progress-list">
                                             <Progress name={category.name} />
                                         </div>
@@ -78,13 +87,16 @@ class UserSummary extends Component {
 const mapState = state => {
     return {
         categories: state.categories,
-        user: state.user.id,
+        username: state.user.username,
         email: state.user.email
     }
 }
 
 const mapDispatch = dispatch => {
     return {
+        loadInitialData() {
+            dispatch(me())
+        },
         getAllCategories: () => {
             dispatch(fetchAllCategories());
         },
