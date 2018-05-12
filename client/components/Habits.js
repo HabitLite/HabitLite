@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { update, fetchHabits } from '../store';
+import { update, fetchHabits, postHabit } from '../store';
 
 /**
  * COMPONENT
  */
-class Habits extends React.Component {
+class Habits extends Component {
   componentDidMount() {
     this.props.getHabits(this.props.userId, this.props.categoryId);
+  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.postNewHabit(userId, Habit)
   }
 
   render() {
@@ -55,12 +59,16 @@ const mapState = state => {
     HP: state.user.HP,
     categoryId: 1,
     habits: state.habits,
-    habitXP: 5
+    habitXP: 5,
+    habit: state.habit
   };
 };
 
 const mapDispatch = dispatch => {
   return {
+    postNewHabit: (userId, habit) => {
+      dispatch(postHabit(userId, habit))
+    },
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));
     },

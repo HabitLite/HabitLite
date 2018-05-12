@@ -6,6 +6,8 @@ import axios from 'axios';
 // ACTION TYPES
 // const WRITE_CATEGORY_NAME = 'WRITE_CATEGORY_NAME';
 const GET_HABITS = 'GET_HABITS';
+const ADD_HABIT = 'ADD_HABIT';
+const DELETE_HABIT = 'DELETE_HABIT'
 
 // ACTION CREATORS
 // export function writeCategoryName (categoryName) {
@@ -14,6 +16,10 @@ const GET_HABITS = 'GET_HABITS';
 // }
 
 const getHabits = habits => ({ type: GET_HABITS, habits });
+
+const addHabit = habit => ({ type: ADD_HABIT, habit });
+
+const deleteHabit = habit => ({ type: DELETE_HABIT, habit });
 
 // THUNK CREATORS
 export const fetchHabits = (userId, categoryId) => {
@@ -28,13 +34,37 @@ export const fetchHabits = (userId, categoryId) => {
   };
 };
 
+const postHabit = (userId, habit) => {
+  return dispatch => {
+    return axios.post(`/${userId}/${categoryId}`, { habit })
+      .then(res => {
+        console.log("INSIDE POST THUNK", res)
+        dispatch(addHabit(res.data))
+      })
+      .catch(err => console.log(err))
+  }
+}
+
+// const deleteHabit = (userId, habit)=>{
+//   return dispatch => {
+//     return axios.delete(`/${userId}/${categoryId}`, { habit })
+//       .then(res => {
+//         console.log("INSIDE Delete THUNK", res)
+//         dispatch(deleteHabit(res.data))
+//       })
+//       .catch(err => console.log(err))
+//   }
+// }
+
 // REDUCER
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     // case WRITE_CATEGORY_NAME:
     //   return action.categoryName;
     case GET_HABITS:
       return action.habits;
+    case ADD_HABIT:
+      return state.concat([action.habit])
     default:
       return state;
   }
