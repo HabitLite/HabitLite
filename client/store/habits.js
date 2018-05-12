@@ -16,6 +16,12 @@ const DELETE_HABIT = 'DELETE_HABIT'
 // }
 
 const getHabits = habits => ({ type: GET_HABITS, habits });
+export function addHabit(habit) {
+  return { type: ADD_HABIT, habit }
+}
+const deleteHabit = habit => {
+  return { type: DELETE_HABIT, habit }
+}
 
 const addHabit = habit => ({ type: ADD_HABIT, habit });
 

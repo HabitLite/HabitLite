@@ -41,16 +41,6 @@ class Categories extends Component {
         const listOpen = this.state
         console.log('selected categ: ', this.state.selectedCategory)
         return (
-            // <div className="dd-wrapper">
-            //     <div className="dd-header" onClick={() => this.toggleList()}>
-            //         <div className="dd-header-title"></div>
-            //     </div>
-            //     {listOpen && <ul className="dd-list">
-            //         {categories.map((category) => (
-            //          <li className="dd-list-item" key={category.id} >{category.name}</li>
-            //          ))}
-            //     </ul>}
-            // </div>
             <div className="categories">
                 <select onChange={this.handleChange} name="selectedCategory">
                     <option>Select a category</option>

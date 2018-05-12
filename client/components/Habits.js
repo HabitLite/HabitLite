@@ -2,10 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { update, fetchHabits, postHabit } from '../store';
 
+
 /**
  * COMPONENT
  */
 class Habits extends Component {
+  state = {
+    description: '',
+    isClicked: false
+  }
+  onBtnClick = (e) => {
+    this.setState({ isClicked: true })
+  }
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const description = this.state.description
+    this.props.postNewCategory({ description })
+    this.setState({ description: '' })
+  }
   componentDidMount() {
     this.props.getHabits(this.props.userId, this.props.categoryId);
   }
@@ -24,7 +42,21 @@ class Habits extends Component {
     return (
       <div className="habits-list">
         <label className="habits-label">My Habits</label>
-        <button className="add-habit-btn"><span className="plus">+</span></button>
+        <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
+        {this.state.isClicked &&
+          <div className="input-field-habit">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                name="description"
+                type="text"
+                onChange={this.handleChange}
+                value={this.category}
+                className="habit-input"
+              />
+              <button type="submit" className="habit-add">Add</button>
+            </form>
+          </div>
+        }
         <ul>
           {habits &&
             habits.map(habit => {
@@ -40,7 +72,7 @@ class Habits extends Component {
                       this.props.habitXP
                     )}
                   />
-                  <p>{habit.description}</p>
+                  <p>{habit.description}<button className="delete-habit">X</button></p>
                 </li>
               );
             })}
