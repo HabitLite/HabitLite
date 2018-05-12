@@ -17,7 +17,7 @@ export const UserHome = (props) => {
       <Categories />
       <Habits />
       <div className="progress-bar">
-        <h2>{props.match.params.category}</h2>
+        <h2 className="categ-name">{props.match.params.category}</h2>
         <Progress />
       </div>
     </div>

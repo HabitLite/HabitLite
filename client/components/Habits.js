@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { update, fetchHabits } from '../store';
+import Checkbox from 'material-ui/Checkbox';
 
 
 /**
@@ -58,7 +59,22 @@ class Habits extends React.Component {
             habits.map(habit => {
               return (
                 <li key={habit.id}>
-                  <input
+                  <Checkbox className="unChecked"
+                    onClick={this.props.updateUser.bind(
+                      this,
+                      this.props.userId,
+                      habit.categoryId,
+                      this.props.habitXP
+                    )}
+                    style={{
+                      width: '50%',
+                      margin: '10px 60px 4px 60px'
+                    }}
+                    iconStyle={{
+                      fill: '#8099a0'
+                    }}
+                  />
+                  {/* <input
                     type="checkbox"
                     className="unChecked"
                     onClick={this.props.updateUser.bind(
@@ -67,7 +83,7 @@ class Habits extends React.Component {
                       habit.categoryId,
                       this.props.habitXP
                     )}
-                  />
+                  /> */}
                   <p>{habit.description}<button className="delete-habit">X</button></p>
                 </li>
               );
