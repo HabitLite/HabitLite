@@ -59,11 +59,13 @@ class Habits extends React.Component {
             habits.map(habit => {
               return (
                 <li key={habit.id}>
-                  <Checkbox className="unChecked"
+                  <Checkbox
+                    className="unChecked"
                     onClick={this.props.updateUser.bind(
                       this,
                       this.props.userId,
                       habit.categoryId,
+                      this.props.progress,
                       this.props.habitXP
                     )}
                     style={{
@@ -96,7 +98,6 @@ class Habits extends React.Component {
 }
 
 const mapState = state => {
-  console.log('STATE!!!!!!!', state)
   return {
     userId: state.user.id,
     progress: state.user.progress,
@@ -123,7 +124,6 @@ const mapDispatch = dispatch => {
       }
       dispatch(update(userId, categoryId, progress, XP))
 
-      console.log("class", evt.target.className)
     }
   };
 };
