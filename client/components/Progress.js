@@ -11,7 +11,7 @@ const getData = percent => {
 /**
  * COMPONENT
  */
-const Progress = props => { //if props.category, make it a pie chart
+const Progress = props => { 
   let percent = props.progress
   if (percent >= 100) {
     props.incrementLevel(props.userId)
