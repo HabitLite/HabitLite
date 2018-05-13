@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
-import { User, Categories, Habits, Progress } from './index'
+import { User, Categories, Progress } from './index'
 
 /* *** COMPONENT *** */
 export const UserHome = () => {
@@ -14,9 +13,10 @@ export const UserHome = () => {
       {/* <Link to="home" className="arrow"><img src="./images/left-arrow.png"/></Link> */}
       <User />
       <Categories />
-      <Habits />
       <div className="progress-bar">
-        Total Progress
+        Total Progress {/* ***Please read*** This could potentially go in the Progress component, but it should go inside an "if (!props.category)" statement
+                        Why? Because the total progress only displays in the UserHome page, where a category is not being passed into the Progress component
+                        Otherwise it only shows how much a particular category contributes to the overall progress */}
         <Progress />
       </div>
     </div>

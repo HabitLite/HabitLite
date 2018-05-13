@@ -7,11 +7,12 @@ import { update, fetchHabits } from '../store';
  */
 class Habits extends React.Component {
   componentDidMount() {
-    this.props.getHabits(this.props.userId, this.props.categoryId);
+    this.props.getHabits(this.props.userId, 3); //instead of 3, should be this.props.categoryId
   }
 
   render() {
     const { habits } = this.props;
+    console.log("!!!!!!!!!!1p", this.props.categoryId)
 
     // const addHPFromIncompleteHabits = () => {
 
@@ -51,7 +52,6 @@ const mapState = state => {
   return {
     userId: state.user.id,
     progress: state.user.progress,
-    categoryId: 1,
     habits: state.habits,
     habitXP: 5
   }

@@ -30,7 +30,7 @@ router.put('/:userId', (req, res, next) => {
       // userCategory.save()
 
       user.getProgress().then(progress => {
-        res.json(+progress)
+        res.json(progress)
       })
         .then(userCategory.save())//Will it cause issues if it occurs concurrently with res.json? Prob not... But still
     })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchAllCategories} from '../store/categories'
+import {Habits} from './index'
 
 
 /**
@@ -51,18 +52,19 @@ class Categories extends Component {
             //     </ul>}
             // </div>
             <div className="categories">
-                <select onChange={this.handleChange} name="selectedCategory">
-                    <option>Select a category</option>
-                    {
-                            categories.map(category => {
-                              if (this.props.userCategories.some(o => {return o.categoryId === category.id})) {
-                                return (
-                                  <option key={category.id} value={category.id}>{category.name}</option>
-                                )
-                            }
-                            })
-                        }
-                </select>
+              <select onChange={this.handleChange} name="selectedCategory">
+                  <option>Select a category</option>
+                  {
+                          categories.map(category => {
+                            if (this.props.userCategories.some(o => {return o.categoryId === category.id})) {
+                              return (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                              )
+                          }
+                          })
+                      }
+              </select>
+              <Habits categoryId={this.state.selectedCategory} />
             </div>
         )}
     }
