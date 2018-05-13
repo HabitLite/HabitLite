@@ -16,12 +16,29 @@ const DELETE_HABIT = 'DELETE_HABIT'
 // }
 
 const getHabits = habits => ({ type: GET_HABITS, habits });
-const addHabit = (habit) => ({ type: ADD_HABIT, habit })
+
 
 const deleteHabit = habit => {
   return { type: DELETE_HABIT, habit }
 }
 
+export function addHabit(habit) {
+  return { type: ADD_HABIT, habit }
+}
+
+export const postHabit = (userId, categoryId, habit) => {
+  return dispatch => {
+    return axios.post(`/api/habits/${userId}/${categoryId}`, habit)
+      .then(res => {
+        console.log("INSIDE POST THUNK", res.data)
+        return res.data
+      })
+      .then(newHabit => {
+        dispatch(addHabit(newHabit))
+      })
+      .catch(err => console.log(err))
+  }
+}
 
 
 
@@ -38,16 +55,6 @@ export const fetchHabits = (userId, categoryId) => {
   };
 };
 
-const postHabit = (userId, habit) => {
-  return dispatch => {
-    return axios.post(`api/habits/${userId}/${categoryId}`, { habit })
-      .then(res => {
-        console.log("INSIDE POST THUNK", res)
-        dispatch(addHabit(res.data))
-      })
-      .catch(err => console.log(err))
-  }
-}
 
 // const deleteHabit = (userId, habit)=>{
 //   return dispatch => {
@@ -61,14 +68,14 @@ const postHabit = (userId, habit) => {
 // }
 
 // REDUCER
-export default function (state = [], action) {
+export default function reducer(state = [], action) {
   switch (action.type) {
     // case WRITE_CATEGORY_NAME:
     //   return action.categoryName;
     case GET_HABITS:
       return action.habits;
     case ADD_HABIT:
-      return state.concat([action.habit])
+      return [...state, action.habit]
     default:
       return state;
   }

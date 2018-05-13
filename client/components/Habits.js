@@ -1,38 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store, { update, fetchHabits, postHabit } from '../store';
+import { update, fetchHabits } from '../store';
+import { postHabit } from '../store/habits'
 
 
-/**
- * COMPONENT
- */
 class Habits extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-    isClicked: false,
-    habitGroup: '',
-    description: '',
-    categoryId: ''
+      isClicked: false,
+      habit: {},
+      description: '',
+
+    }
   }
+  componentDidMount() {
+    this.props.getHabits(this.props.userId, this.props.categoryId);
+  }
+  // componentDidUpdate() {
+  //   this.props.getHabits(this.props.userId, this.props.categoryId);
+  // }
+  // componentWillUpdate() {
+  //   this.props.getHabits(this.props.userId, this.props.categoryId);
+  // }
   onBtnClick = (event) => {
     this.setState({ isClicked: true })
   }
   handleChange = (event) => {
+    console.log("EVENTSSSSS ", event.target)
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  componentDidMount() {
-    this.props.getHabits(this.props.userId, this.props.categoryId);
-  }
   handleSubmit = (event) => {
     event.preventDefault();
     const habit = {
-      habitGroup: 'Custom',
+      habitGroup: "Custom",
       description: this.state.description,
-      categoryId: this.props.categoryId
     }
     const userId = this.props.userId || '';
-    this.props.postNewHabit(userId, habit)
+    const categoryId = this.props.categoryId || '';
+    this.props.postNewHabit(userId, categoryId, habit)
+    this.setState({ habit: {} })
   }
 
   render() {
@@ -54,7 +63,7 @@ class Habits extends Component {
                 name="description"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.description}
+                value={this.description}
                 className="habit-input"
               />
               <button type="submit" className="habit-add">Add</button>
@@ -96,14 +105,14 @@ const mapState = state => {
     categoryId: 1,
     habits: state.habits,
     habitXP: 5,
-    habit: state.habit
+
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    postNewHabit(userId, habit) {
-      dispatch(postHabit(userId, habit))
+    postNewHabit: (userId, categoryId, habit) => {
+      dispatch(postHabit(userId, categoryId, habit))
     },
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));

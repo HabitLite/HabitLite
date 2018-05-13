@@ -40,23 +40,30 @@ class Categories extends Component {
         const categories = this.props.categories;
         const listOpen = this.state
         console.log('selected categ: ', this.state.selectedCategory)
+        // ({ match: { params, url } })
+        // const url = this.props.match.params.url
         return (
             <div className="categories">
                 <select onChange={this.handleChange} name="selectedCategory">
                     <option>Select a category</option>
                     {
-                        categories.map(category => {
-                            return (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            )
-                        })
+                        categories.map(category =>
+                            // <Link key={category.id} to={url.replace(`{params.categoryId}`, `category.id`)}>
+
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                            // {/* </Link> */ }
+                        )
                     }
                 </select>
             </div>
         )
     }
 }
-
+// categories.map(category => {
+//     return (
+//         <option key={category.id} value={category.id}>{category.name}</option>
+//     )
+// })
 const mapState = (state) => {
     return {
         categories: state.categories,
