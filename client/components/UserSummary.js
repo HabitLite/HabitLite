@@ -53,7 +53,7 @@ class UserSummary extends Component {
                       if (userCategory) {
                         return (
                             <div className="category-name" style={divStyle} key={category.id}>
-                                <Link to={{pathname: '/single', state: { name: category.name}}} className="category" key={category.id}>
+                                <Link to={{pathname: '/${username}/${category.name}', state: { name: category.name}}} className="category" key={category.id}>
                                 <div className="progress-list">
                                   {category.name}
                                   <Progress category={userCategory} />
