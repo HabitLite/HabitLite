@@ -24,6 +24,9 @@ class Habits extends Component {
   // componentWillUpdate() {
   //   this.props.getHabits(this.props.userId, this.props.categoryId);
   // }
+  // shouldComponentUpdate(nextState) {
+  //   return nextState !== this.state
+  // }
   onBtnClick = (event) => {
     this.setState({ isClicked: true })
   }
@@ -42,6 +45,16 @@ class Habits extends Component {
     const categoryId = this.props.categoryId || '';
     this.props.postNewHabit(userId, categoryId, habit)
     this.setState({ habit: {} })
+    this.handleClear(event)
+  }
+  handleClear = (event) => {
+    event.preventDefault();
+    this.setState({
+      isClicked: false,
+      habit: {},
+      description: '',
+
+    })
   }
 
   render() {
@@ -55,7 +68,7 @@ class Habits extends Component {
     return (
       <div className="habits-list">
         <label className="habits-label">My Habits</label>
-        <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
+        <button className="add-habit-btn" onClick={this.onBtnClick} ><span className="plus">+</span></button>
         {this.state.isClicked &&
           <div className="input-field-habit">
             <form onSubmit={this.handleSubmit}>
@@ -66,7 +79,7 @@ class Habits extends Component {
                 value={this.description}
                 className="habit-input"
               />
-              <button type="submit" className="habit-add">Add</button>
+              <button type="submit" className="habit-add" >Add</button>
             </form>
           </div>
         }
@@ -91,6 +104,7 @@ class Habits extends Component {
             })}
         </ul>
       </div>
+
     );
   }
 }
