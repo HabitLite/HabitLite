@@ -114,14 +114,7 @@ const mapDispatch = dispatch => {
     },
     updateUser(userId, categoryId, progress, XP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
-      if (evt.target.className === 'checked') {
-        XP = -XP;
-        evt.target.className = 'unChecked';
-      } else if (evt.target.className === 'unChecked') {
-        evt.target.className = 'checked';
-      } else if (evt.target.className === 'unChecked') {
-        evt.target.className = 'checked';
-      }
+      if (!evt.target.checked) XP = -XP;
       dispatch(update(userId, categoryId, progress, XP))
 
     }
