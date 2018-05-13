@@ -41,13 +41,14 @@ class UserSummary extends Component {
                 <div className="container-progress">
                 {
                     categories.map(category => {
-                      if (this.props.userCategories.includes({categoryId: category.id})) {
-                        console.log('!!!!!!!!!!!!!!!run')
+                      const userCategory = this.props.userCategories.find(userCat => {return (userCat.categoryId === category.id)})
+                      if (userCategory) {
                         return (
                             <div className="category-name" style={divStyle} key={category.id}>
-                                <Link to={{pathname: '/single', state: { name: category.name}}} className='category' key={category.id}>
+                                <Link to={{pathname: '/single', state: { name: category.name}}} className="category" key={category.id}>
                                 <div className="progress-list">
-                                    <Progress category={category} />
+                                  {category.name}
+                                  <Progress category={userCategory} />
                                 </div>
                                 </Link>
                             </div>

@@ -38,7 +38,6 @@ class Categories extends Component {
 
     render() {
         const categories = this.props.categories;
-        console.log("!!!!!!!!!!!c", categories)
         console.log('selected categ: ', this.state.selectedCategory)
         return (
             // <div className="dd-wrapper">
@@ -56,7 +55,7 @@ class Categories extends Component {
                     <option>Select a category</option>
                     {
                             categories.map(category => {
-                              if (this.props.userCategories.includes({categoryId: category.id})) {
+                              if (this.props.userCategories.some(o => {return o.categoryId === category.id})) {
                                 return (
                                   <option key={category.id} value={category.id}>{category.name}</option>
                                 )
