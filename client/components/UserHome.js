@@ -11,17 +11,16 @@ export const UserHome = () => {
     <div className="main-page">
 
       {/* <h3 className="welcome">Welcome, {username}</h3> */}
-      <Link to="home" className="arrow"><img src="./images/left-arrow.png"/></Link>
+      {/* <Link to="home" className="arrow"><img src="./images/left-arrow.png"/></Link> */}
       <User />
       <Categories />
       <Habits />
       <div className="progress-bar">
-      <Progress />
+        <Progress />
       </div>
     </div>
   )
 }
-
 
 export default connect()(UserHome)
 

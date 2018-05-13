@@ -26,26 +26,23 @@ router.put('/:userId', (req, res, next) => {
       })
       userCategory.XP += +req.body.XP
       userCategory.HP += +req.body.HP
-      return userCategory.save()
+
+      // userCategory.save()
+
+      user.getProgress().then(progress => {
+        res.json(+progress)
+      })
+        .then(userCategory.save())//Will it cause issues if it occurs concurrently with res.json? Prob not... But still
     })
-    // .then(() => {
-    //   res.end()
-    // })
     .catch(next)
 })
 
 router.put('/levelUp/:userId', (req, res, next) => {
   User.findById(+req.params.userId)
     .then(user => {
-      // const lastMaxXP = user.getLevel().maxXP
       user.levelId++
-      // const currentMaxXP = user.getLevel().maxXP
-      // user.progress = (user.XP - lastMaxXP) / (currentMaxXP - lastMaxXP)
-      return user.save()
+      user.save()
     })
-    // .then(() => {
-    //   res.end()
-    // })
     .catch(next)
 })
 
