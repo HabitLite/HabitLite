@@ -3,7 +3,18 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchAllCategories} from '../store/categories'
 import {Habits} from './index'
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
+const styles = {
+    customWidth: {
+      width: 347,
+      marginTop: 87,
+      marginRight: 18,
+      marginBottom: 55,
+      marginLeft: 155,
+    }
+  }
 
 /**
  * COMPONENT
@@ -13,8 +24,9 @@ class Categories extends Component {
     constructor(props){
         super(props)
         this.state = {
-            selectedCategory: '' //category ID
-        //   listOpen: false,
+            selectedCategory: '', //category ID
+            value: null
+            //   listOpen: false,
         //   headerTitle: this.props.title
         }
         this.handleChange = this.handleChange.bind(this);
@@ -41,30 +53,41 @@ class Categories extends Component {
         const categories = this.props.categories;
         console.log('selected categ: ', this.state.selectedCategory)
         return (
-            // <div className="dd-wrapper">
-            //     <div className="dd-header" onClick={() => this.toggleList()}>
-            //         <div className="dd-header-title"></div>
-            //     </div>
-            //     {listOpen && <ul className="dd-list">
-            //         {categories.map((category) => (
-            //          <li className="dd-list-item" key={category.id} >{category.name}</li>
-            //          ))}
-            //     </ul>}
-            // </div>
             <div className="categories">
-              <select onChange={this.handleChange} name="selectedCategory">
-                  <option>Select a category</option>
-                  {
-                          categories.map(category => {
-                            if (this.props.userCategories.some(o => {return o.categoryId === category.id})) {
-                              return (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                              )
-                          }
-                          })
-                      }
-              </select>
-              <Habits categoryId={this.state.selectedCategory} />
+
+                <SelectField className="select-field"
+                    style={styles.customWidth}
+                    floatingLabelText="Select a category"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    iconStyle={{
+                      fill: '#8099a0'
+                    }}
+                    >
+                    <MenuItem value={null} primaryText="" />
+                    {
+                            categories.map(category => {
+                              if (this.props.userCategories.some(userCat => {return userCat.categoryId === category.id})) {
+                                return (
+                                    <MenuItem key={category.id} value={category.id}primaryText={category.name} />
+                                )
+                              }
+                            })
+                    }
+                </SelectField>
+                <Habits categoryId={this.state.selectedCategory} />
+  {/* <select onChange={this.handleChange} name="selectedCategory">
+                    <option>Select a category</option>
+                    {
+                            categories.map(category => {
+                              if (this.props.userCategories.some(o => {return o.categoryId === category.id})) {
+                                return (
+                                  <option key={category.id} value={category.id}>{category.name}</option>
+                                )
+                            }
+                            })
+                        }
+                </select> */}
             </div>
         )}
     }

@@ -45,7 +45,8 @@ form div {
   -ms-user-select: none;
   user-select: none;
 }
-/* Login / Sing Up Page */
+
+/* Login / Sing Up Page   ------- >>>>> */
 /* App.js */
 .login-form{
   display: inline-block;
@@ -67,7 +68,10 @@ form div {
   margin-left: 560px;
 }
 .form-fields{
-  margin-top: 80px;
+  margin: 85px 0px 0px 18px;
+}
+.form-user-name{
+  margin: 10px 0 10px 0;
 }
 input{
   width: 280px;
@@ -82,11 +86,12 @@ input{
 }
 small{
   margin-left: 60px;
+  color: #a7a5a5;
 }
 .login-btn{
   width: 120px;
   height: 35px;
-  margin: 30px 135px;
+  margin: 65px 135px;
   border: none;
   font-size: 1.3em;
   color: #5a5959;
@@ -96,25 +101,29 @@ small{
   margin: 0px 141px;
   color: black;
 }
-select{
-  height: 46px;
-  width: 30%;
+.select-field{
+  width: 418px;
   margin: 80px 20px 35px 120px;
 }
 
-/* User Summary */
+
+
+
+
+
+/* User Summary   ------- >>>>> */
 .add-category{
   width: 50px;
   height: 50px;
   border-radius: 50%;
   position: absolute;
-  margin: -1430px 10px 30px 1252px;
+  margin: -823px 10px 30px 1255px;
   background: #f5f5f4;
   border: none;
   box-shadow: 7px 9px 34px -6px #999;
   /* box-shadow: 11px 13px 18px -8px #999; */
 }
-.summary-plus{
+.plus{
   font-size: 2.1em;
   margin: 26px 4px;
   color: #5a5959;
@@ -138,8 +147,8 @@ select{
 .category-list{
   text-align: center;
   font-size: 2.3em;
-  color: #782F4D;
-  /* color: #5a5959; */
+  /* color: #782F4D; */
+  color: #5a5959;
 }
 .summary-container{
   margin-top: 130px;
@@ -151,7 +160,7 @@ select{
   width: 280px;
   height: 33px;
   position: absolute;
-  margin: -1419px 10px 10px 886px;
+  margin: -790px 10px 10px 886px;
 }
 .cat-input{
   border: none;
@@ -168,7 +177,10 @@ select{
 
 
 
-/* User Dashboard  --- UserHome.js
+
+
+
+/* User Dashboard  --- UserHome.js   ------- >>>>>
 */
 /* navbar */
 .logout-btn{
@@ -201,11 +213,15 @@ select{
 }
 
 
-/* User Panel */
+
+
+
+
+/* User Panel   ------- >>>>>  */
 .user-panel{
   display: inline-flex;
   /* margin-left: 140px; */
-  margin-left: 50px;
+  margin-left: 140px;
   margin-top: 30px;
 }
 /* border-left: thick solid #ff0000; */
@@ -225,6 +241,9 @@ span{
 
 
 
+
+
+
 /* Welcome */
 .welcome{
   font-size: 2.5em;
@@ -239,11 +258,14 @@ span{
 
 
 
-/* Habits list*/
+
+
+/* Habits list      ------- >>>>> */
 .habits-list{
   display: grid;
     /* border: 1px solid; */
     height: 30%;
+    overflow: scroll;
     /* height: 20%; */
     width: 419px;
     background: white;
@@ -253,20 +275,44 @@ span{
 .habits-label{
   text-align: center;
   font-size: 1.8em;
-  margin: 30px 0px 20px 0px;
-  /* color: #a7a5a5; */
-  color: #782F4D;
+  margin: 42px 0px 20px 0px;
+  color: #a7a5a5;
+  /* color: #782F4D; */
 }
-.add-habit{
+.add-habit-btn{
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  position: absolute;
-  margin: 67px 10px 30px 333px;
+  position: relative;
+  margin: -42px 10px -13px 337px;
+  border: none;
+  background: white;
+  box-shadow: 7px 9px 34px -6px #999;
 }
 .plus{
   font-size: 2.1em;
   margin: 26px 4px;
+}
+
+.input-field-habit{
+  width: 280px;
+  height: 33px;
+  position: absolute;
+  margin: 83px 10px 10px 24px;
+}
+.habit-input{
+  width: 230px;
+  border: none;
+  background: white;
+  border-bottom: 2px solid #a7a5a5;
+}
+
+.habit-add{
+  border: none;
+  background: white;
+  font-size: .8em;
+  margin: -40px 10px -11px;
+  color: #a7a5a5;
 }
 p{
   margin-left: 100px;
@@ -276,51 +322,29 @@ p{
   margin-top: 010px; */
 }
 ul{
-  margin: -140px 0 20px 0;
+  margin: 31px 10px 20px -60px;
   list-style: none;
 }
 
+.delete-habit{
+  width: 33px;
+  height: 24px;
+  margin-left: 18px;
+  border: none;
+  color: #a7a5a5;
+  font-size: .7em;
+  background: white;
+}
+.categ-name{
+  text-align: center;
+  color: #5a5959;
 
-
-
-
-
-
-/* Responsive */
-@media screen and (max-width:580px) {
-  /* form */
-  .login-form{
-    width: 300px;
-    height: 390px;
-    margin-left: 40px;
-    margin-top: 40px;
-    border: 1px solid;
-  }
-  input{
-    margin-left: 25px;
-    border: 1px solid;
-    width: 215px;
-
-  }
-  small{
-    margin-left: 40px;
-  }
-  .login-btn {
-    width: 120px;
-    height: 35px;
-    margin: 30px 75px;
-    border: 1px solid;
-  }
-  nav{
-    width: 96%;
-  }
-  .habits-list {
-    width: 350px;
-  }
 }
 
-/* Progress bar */
-.progress{
+
+
+/* Progress bar   ------- >>>>> */
+.total-progress{
   margin-top: 0px;
   margin-left: 50px;
   /* text-align: center; */
@@ -333,5 +357,92 @@ ul{
   margin-left: 791px;
   margin-top: -500px;
 }
+
+
+
+
+
+
+/* Group Page   ------- >>>>>  */
+
+.group{
+  text-align: center;
+}
+
+
+/* Personality  Page*/
+.question{
+  margin-left: 130px;
+}
+
+form div{
+  margin: 0;
+}
+
+.submit-quiz{
+  border: none;
+  font-size: 1.2em;
+}
+
+/* Responsive    ------- >>>>> */
+@media screen and (max-width:580px) {
+  /* form */
+  .login-form {
+    width: 300px;
+    height: 390px;
+    margin-left: 40px;
+    margin-top: 40px;
+    border: 1px solid;
+  }
+
+  input {
+    margin-left: 25px;
+    border: 1px solid;
+    width: 215px;
+
+  }
+
+  small {
+    margin-left: 40px;
+  }
+
+  .login-btn {
+    width: 120px;
+    height: 35px;
+    margin: 30px 75px;
+    border: 1px solid;
+  }
+
+  nav {
+    width: 96%;
+  }
+
+  .habits-list {
+    width: 350px;
+  }
+
+  .category-list {
+    text-align: center;
+    font-size: 3.3em;
+    color: #782F4D;
+    width: 560px;
+    margin-left: 120px;
+  }
+}
+
+/*!* Progress bar *!*/
+  /*.progress{*/
+    /*margin-top: 0px;*/
+    /*margin-left: 50px;*/
+    /*!* text-align: center; *!*/
+    /*width: 560px;*/
+    /*color: #5a5959;*/
+    /*font-size: 1.4em;*/
+  /*}*/
+  /*.progress-bar{*/
+    /*width: 350px;*/
+    /*margin-left: 791px;*/
+    /*margin-top: -500px;*/
+  /*}*/
 
 

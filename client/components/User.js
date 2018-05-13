@@ -11,6 +11,7 @@ const User = props => {
   return (
     <div className="user-panel">
       <div className="avatar">
+      <img className="user-image" src="../images/user.png"></img>
         {/* Avatar: {avatar} */}
       </div>
       <div className="username">

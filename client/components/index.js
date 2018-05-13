@@ -12,4 +12,6 @@ export { default as UserSummary } from './UserSummary'
 export { default as Categories } from './Categories'
 export { default as Habits } from './Habits'
 export { default as Progress } from './Progress'
-export { default as PersonalityQuiz } from './PersonalityQuiz'
+export { default as Group } from './Group'
+export { default as Personality } from './Personality'
+

@@ -8,7 +8,7 @@ const Personality = db.define('personality', {
     },
     habitGroup: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }
 })
 

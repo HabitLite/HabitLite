@@ -18,13 +18,9 @@
      <meta name="msapplication-TileImage" content="./images/icons/music-player-144.png">
 
     <link rel="stylesheet" href="/style.css" />
-    <script defer src="/bundle.js" function moveWin()
-    {  
-      window.scroll(0,10000);
-      setTimeout('moveWin();',1900);
-    }></script>
+    <script defer src="/bundle.js"></script>
   </head>
-  <body  onLoad="moveWin();">
+  <body>
     <div id="app"></div>
     <script type="text/javascript">
       if (navigator.serviceWorker.controller) {

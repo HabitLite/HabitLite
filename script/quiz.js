@@ -1,6 +1,10 @@
+
+
+
 var quizQuestions = [
     {
-        question: "I rather: ",
+        qnumber: "q1",
+        question: "I rather ",
         answers: [
             {
                 content: "Do yoga"
@@ -16,9 +20,11 @@ var quizQuestions = [
             }
 
         ]
-    },
+    }
+    ,
     {
-        question: "When I skip a workout is usually because: ",
+        qnumber: "q2",
+        question: "When I skip a workout is usually because ",
         answers: [
             {
                 content: "I’m too exhausted"
@@ -38,7 +44,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "I feel relaxed when:",
+        qnumber: "q3",
+        question: "I feel relaxed when ",
         answers: [
             {
                 content: "Vent to my partner"
@@ -58,7 +65,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "During the weekend I look forward to:",
+        qnumber: "q4",
+        question: "During the weekend I look forward to ",
         answers: [
             {
                 content: "Finally getting to sleep in and not follow a strict schedule"
@@ -78,7 +86,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "Best part of my workout is:",
+        qnumber: "q5",
+        question: "Best part of my workout is ",
         answers: [
             {
                 content: "Letting out some pent-up energy"
@@ -98,7 +107,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "I stay motivated during a project by:",
+        qnumber: "q6",
+        question: "I stay motivated during a project by ",
         answers: [
             {
                 content: "The thought of how great it will feel when I’m done"
@@ -118,7 +128,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "The best part about eating out is: ",
+        qnumber: "q7",
+        question: "The best part about eating out is ",
         answers: [
             {
                 content: "Inviting friends along to make an event of it"
@@ -138,7 +149,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "My mornings look like: ",
+        qnumber: "q8",
+        question: "My mornings look like ",
         answers: [
             {
                 content: "Setting my alarm early so I can feel awake by the tie I actually have to be productive"
@@ -158,7 +170,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "Parties are:",
+        qnumber: "q9",
+        question: "Parties are ",
         answers: [
             {
                 content: "An opportunity to catch up with friends I don’t see often"
@@ -178,7 +191,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "My biggest strength in a job interview is being :",
+        qnumber: "q10",
+        question: "My biggest strength in a job interview is being ",
         answers: [
             {
                 content: "Persistent"
@@ -198,7 +212,8 @@ var quizQuestions = [
         ]
     },
     {
-        question: "If someone offered me last minute tickets to a play:",
+        qnumber: "q11",
+        question: "If someone offered me last minute tickets to a play ",
         answers: [
             {
                 content: "I would be in in a heartbeat"

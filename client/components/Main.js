@@ -1,25 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, UserSummary, PersonalityQuiz, Navbar } from './index.js'
+
+import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group } from './index.js'
+
 import { me } from '../store'
 // import { MuiThemeProvider } from 'material-ui/styles/MuiThemeProvider';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 // , {createMuiTheme } from 'material-ui/styles/MuiThemeProvider';
 //'material-ui/styles'
-import { withStyles } from 'material-ui/styles';
+// import { withStyles } from 'material-ui/styles';
 
 //import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import MyAwesomeReactComponent from './components/MyAwesomeReactComponent'
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import { deepOrange500 } from 'material-ui/styles/colors';
-import { orange500 } from 'material-ui/styles/colors';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+// import { deepOrange500 } from 'material-ui/styles/colors';
+// import { orange500 } from 'material-ui/styles/colors';
+// import muiThemeable from 'material-ui/styles/muiThemeable';
+//
+// import AppBar from 'material-ui/AppBar';
 
-import AppBar from 'material-ui/AppBar';
 
 /**
  * COMPONENT
@@ -40,33 +43,36 @@ class Main extends Component {
 
         return (
 
-          <MuiThemeProvider >
-              <div className="container">
-                  {/*<AppBar title="Material-UI" />*/}
-                   <Navbar />
-                  <main>
-                      <Switch>
-                          {/* Routes placed here are available to all visitors */}
-                          <Route exact path="/login" component={Login} />
-                          <Route exact path="/signup" component={Signup} />
-                          <Route path="/personalityQuiz" component={PersonalityQuiz} />
-                          {
-                              isLoggedIn &&
-                              <Switch>
-                                  {/* Routes placed here are only available after logging in */}
-                                  {/* <Route path="/home" component={UserHome} /> */}
-                                  <Route exact path="/home" component={UserSummary} />
-                                  <Route exact path="/single" component={UserHome} />
+
+            <MuiThemeProvider >
+                <div className="container">
+                    {/*<AppBar title="Material-UI" />*/}
+                    <Navbar />
+                    <main>
+                        <Switch>
+                            {/* Routes placed here are available to all visitors */}
+                            <Route exact path="/login" component={Login} />
+                            <Route exact path="/signup" component={Signup} />
+                            <Route path="/personality" component={Personality} />
+                            {
+                                isLoggedIn &&
+                                <Switch>
+                                    {/* Routes placed here are only available after logging in */}
+                                    {/* <Route path="/home" component={UserHome} /> */}
+                                    <Route exact path="/home" component={UserSummary} />
+                                    <Route exact path="/single" component={UserHome} />
+                                    <Route exact path="/group" component={Group} />
 
 
-                              </Switch>
-                          }
-                          {/* Displays our Login component as a fallback */}
-                          <Route component={Login} />
-                      </Switch>
-                  </main>
-              </div>
-          </MuiThemeProvider>
+                                </Switch>
+                            }
+                            {/* Displays our Login component as a fallback */}
+                            <Route component={Login} />
+                        </Switch>
+                    </main>
+                </div>
+            </MuiThemeProvider>
+
 
         )
     }
