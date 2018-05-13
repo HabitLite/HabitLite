@@ -1,17 +1,14 @@
 const router = require('express').Router()
-const { User, UserCategory } = require('../db/models')
+const { User, UserCategory, UserHabit } = require('../db/models')
 module.exports = router
 
-const getUser = (user, categories) => {
+const getUser = user => {
   let userXP = 0
   let userHP = 0
-  categories.forEach(category => {
+  user.userCategories.forEach(category => {
     userXP += category.XP
     userHP += category.HP
   })
-
-  console.log("USERXP", userXP)
-  console.log("USER.LEVELID", user.levelId)
 
   return user.getProgress(userXP, user.levelId).then(progress => {
     return {
@@ -24,7 +21,8 @@ const getUser = (user, categories) => {
       lives: user.lives,
       XP: userXP,
       HP: userHP,
-      categories: categories
+      categories: user.userCategories,
+      habits: user.userHabits
     }
   })
 
@@ -32,7 +30,10 @@ const getUser = (user, categories) => {
 
 router.post('/login', (req, res, next) => {
 
-  User.findOne({where: {email: req.body.email}})
+  User.findOne({
+    where: {email: req.body.email},
+    include: [UserCategory, UserHabit]
+    })
     .then(user => {
       if (!user) {
         console.log('No such user found:', req.body.email)
@@ -42,12 +43,7 @@ router.post('/login', (req, res, next) => {
         res.status(401).send('Wrong username and/or password')
       } else {
 
-        UserCategory.findAll({
-          where: {
-            userId: user.id
-          }
-        })
-          .then(categories => getUser(user, categories))
+        getUser(user)
           .then(updatedUser => {
             req.login(updatedUser, err => (err ? next(err) : res.json(updatedUser)))
 
@@ -79,13 +75,22 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', (req, res, next) => {
   if (req.user) {
-    UserCategory.findAll({
-      where: {
-        userId: req.user.id
-      }
+    Promise.all([
+      UserCategory.findAll({
+        where: {
+          userId: req.user.id
+        }
+      }),
+      UserHabit.findAll({
+        where: {
+          userId: req.user.id
+        }
+      })
+    ])
+    .then(([categories, habits]) => {
+      getUser({...req.user, userCategories: categories, userHabits: habits})
     })
-    .then(categories => getUser(req.user, categories))
-      .then(user => res.json(user))
+    .then(user => res.json(user))
   }
 })
     // .catch(next)

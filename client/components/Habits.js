@@ -57,26 +57,30 @@ class Habits extends React.Component {
         <ul>
           {habits &&
             habits.map(habit => {
-              return (
-                <li key={habit.id}>
-                  <Checkbox
-                    className="unChecked"
-                    onClick={this.props.updateUser.bind(
-                      this,
-                      this.props.userId,
-                      habit.categoryId,
-                      this.props.progress,
-                      this.props.habitXP
-                    )}
-                    style={{
-                      width: '50%',
-                      margin: '10px 60px 4px 60px'
-                    }}
-                    iconStyle={{
-                      fill: '#8099a0'
-                    }}
-                  />
-                  {/* <input
+              const userHabit = this.props.userHabits.find(userHab => {return (userHab.habitId === habit.id)})
+              console.log("CCCCCCCCc", userHabit)
+              if (userHabit) {
+                return (
+                  <li key={habit.id}>
+                    <Checkbox
+                      className="unChecked"
+                      onClick={this.props.updateUser.bind(
+                        this,
+                        this.props.userId,
+                        habit.categoryId,
+                        this.props.progress,
+                        this.props.habitXP
+                      )}
+                      style={{
+                        width: '50%',
+                        margin: '10px 60px 4px 60px'
+                      }}
+                      iconStyle={{
+                        fill: '#8099a0'
+                      }}
+                      checked={userHabit.checked}
+                    />
+                    {/* <input
                     type="checkbox"
                     className="unChecked"
                     onClick={this.props.updateUser.bind(
@@ -87,9 +91,10 @@ class Habits extends React.Component {
                       this.props.habitXP
                     )}
                   /> */}
-                  <p>{habit.description}<button className="delete-habit">X</button></p>
-                </li>
-              );
+                    <p>{habit.description}<button className="delete-habit">X</button></p>
+                  </li>
+                )
+              }
             })}
         </ul>
       </div>
@@ -103,6 +108,7 @@ const mapState = state => {
     progress: state.user.progress,
     categoryId: 1,
     habits: state.habits,
+    userHabits: state.user.habits,
     habitXP: 5
   }
 }

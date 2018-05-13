@@ -17,6 +17,10 @@ const UserHabit = db.define('userHabit', {
             notEmpty: true,
             min: 0
         }
+    },
+    checked: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
     }
 })
 
