@@ -97,7 +97,7 @@ export default function(state = defaultUser, action) {
         ...state,
         progress: action.progress,
         XP: state.XP + action.XP,
-        HP: state.XP + action.HP
+        HP: state.HP + action.HP
       }
     case UPDATE_LEVEL:
       return {
