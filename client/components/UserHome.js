@@ -16,6 +16,7 @@ export const UserHome = () => {
       <Categories />
       <Habits />
       <div className="progress-bar">
+        Total Progress
         <Progress />
       </div>
     </div>

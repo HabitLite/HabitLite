@@ -26,7 +26,7 @@ const Progress = props => { //if props.category, make it a pie chart
             animate={{ duration: 1000 }}
             width={400} height={400}
             data={getData(percent)}
-            innerRadius={120}
+            innerRadius={props.category ? 0 : 120}
             cornerRadius={25}
             labels={() => null}
             style={{
