@@ -61,7 +61,7 @@ class Main extends Component {
                                     {/* <Route path="/home" component={UserHome} /> */}
                                     <Route exact path="/home" component={UserSummary} />
                                     {/*<Route exact path="/single" component={UserHome} />*/}
-                                    <Route exact path="/:userId/:category/" component={UserHome} />
+                                    <Route exact path="/:username/:category/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
 
 
