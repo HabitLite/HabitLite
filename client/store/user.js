@@ -17,10 +17,10 @@ const defaultUser = {};
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({ type: GET_USER, user });
-const removeUser = () => ({ type: REMOVE_USER });
-const updateUser = (XP, HP) => ({ type: UPDATE_USER, XP, HP });
-const updateLevel = () => ({ type: UPDATE_LEVEL });
+const getUser = user => ({ type: GET_USER, user })
+const removeUser = () => ({ type: REMOVE_USER })
+const updateUser = (progress, XP, HP) => ({ type: UPDATE_USER, progress, XP, HP })
+const updateLevel = () => ({ type: UPDATE_LEVEL })
 
 /**
  * THUNK CREATORS
@@ -29,9 +29,9 @@ export const me = () => dispatch =>
   axios
     .get('/auth/me')
     .then(res => {
-      dispatch(getUser(res.data || defaultUser));
+      dispatch(getUser(res.data || defaultUser))
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 
 export const auth = (
   email,
@@ -42,12 +42,12 @@ export const auth = (
     .post(`/auth/${method}`, { email, password })
     .then(
       res => {
-        dispatch(getUser(res.data));
-        history.push('/home');
+        dispatch(getUser(res.data))
+        history.push('/home')
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({ error: authError }));
+        dispatch(getUser({ error: authError }))
       }
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
@@ -56,19 +56,19 @@ export const logout = () => dispatch =>
   axios
     .post('/auth/logout')
     .then(_ => {
-      dispatch(removeUser());
-      history.push('/login');
+      dispatch(removeUser())
+      history.push('/login')
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 
-export const update = (userId, categoryId, XP = 0, HP = 0) => {
+export const update = (userId, categoryId, progress, userXP, incrXP = 0, HP = 0) => {
   return dispatch => {
     axios
-      .put(`/api/users/${userId}`, { categoryId, XP, HP })
-      .then(() => {
-        dispatch(updateUser(XP, HP));
+      .put(`/api/users/${userId}`, { categoryId, progress, userXP, incrXP, HP })
+      .then(res => {
+        dispatch(updateUser(res.data, incrXP, HP))
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   };
 };
 
@@ -77,9 +77,9 @@ export const levelUp = userId => {
     axios
       .put(`api/users/levelUp/${userId}`)
       .then(() => {
-        dispatch(updateLevel());
+        dispatch(updateLevel())
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   };
 };
 
@@ -89,21 +89,22 @@ export const levelUp = userId => {
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user;
+      return action.user
     case REMOVE_USER:
       return {};
-    case UPDATE_USER: //also update progress here
+    case UPDATE_USER:
       return {
         ...state,
+        progress: action.progress,
         XP: state.XP + action.XP,
         HP: state.HP + action.HP
-      };
+      }
     case UPDATE_LEVEL:
       return {
         ...state,
         level: state.level + 1
       };
     default:
-      return state;
+      return state
   }
 }

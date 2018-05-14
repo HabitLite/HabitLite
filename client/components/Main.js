@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group } from './index.js'
@@ -10,18 +10,18 @@ import { me } from '../store'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 // , {createMuiTheme } from 'material-ui/styles/MuiThemeProvider';
 //'material-ui/styles'
-import { withStyles } from 'material-ui/styles';
+// import { withStyles } from 'material-ui/styles';
 
 //import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import MyAwesomeReactComponent from './components/MyAwesomeReactComponent'
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import { deepOrange500 } from 'material-ui/styles/colors';
-import { orange500 } from 'material-ui/styles/colors';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-
-import AppBar from 'material-ui/AppBar';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+// import { deepOrange500 } from 'material-ui/styles/colors';
+// import { orange500 } from 'material-ui/styles/colors';
+// import muiThemeable from 'material-ui/styles/muiThemeable';
+//
+// import AppBar from 'material-ui/AppBar';
 
 
 /**
@@ -60,6 +60,7 @@ class Main extends Component {
                                     {/* Routes placed here are only available after logging in */}
                                     {/* <Route path="/home" component={UserHome} /> */}
                                     <Route exact path="/home" component={UserSummary} />
+                                    {/*<Route exact path="/single" component={UserHome} />*/}
                                     <Route exact path="/:username/:category/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
 
