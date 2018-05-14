@@ -59,6 +59,7 @@ class Categories extends Component {
                     floatingLabelText="Select a category"
                     value={this.state.value}
                     onChange={this.handleChange}
+                    name="selectedCategory"
                     iconStyle={{
                       fill: '#8099a0'
                     }}

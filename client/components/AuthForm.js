@@ -10,21 +10,32 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error, isLoggedIn } = props
 
   return (
-    <div className="login-form">
-      <form onSubmit={handleSubmit} name={name} className="form-fields">
-        <div className="form-user-name">
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
-        </div>
-        <div className="form-password">
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button className="login-btn" type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
+    <div className="login-page-container">
+      <div className="login-page-text">
+        <h1 className="login-welcome">Welcome to Habitlite</h1>
+        <p className="login-paragraph">
+        Trying to eat healthy? Get in shape? Stop smoking? 
+        Look no further! HabitLite is here to help you establish 
+        those habits that will lead to your achieving those goals. 
+        Customize your habits, earn rewards, and track your progress. 
+        HabitLite does it all.</p>
+      </div>
+      <div className="login-form">
+        <form onSubmit={handleSubmit} name={name} className="form-fields">
+          <div className="form-user-name">
+            <label htmlFor="email"><small>Email</small></label>
+            <input name="email" type="text" />
+          </div>
+          <div className="form-password">
+            <label htmlFor="password"><small>Password</small></label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button className="login-btn" type="submit">{displayName}</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+      </div>
     </div>
   )
 }

@@ -49,16 +49,21 @@ class UserSummary extends Component {
                 <h2 className="category-list">Your Summary</h2>
                 <div className="container-progress">
                     {
-                        categories.map((category, i) => {
+                        categories.map(category => {
+                          const userCategory = this.props.userCategories.find(userCat => {return (userCat.categoryId === category.id)})
+                          if (userCategory) {
                             return (
-                                <div className="category-name" style={divStyle} key={i}>
-                                    <Link to={{ pathname: `/${userId}/${category.name}`, state: { name: category.name } }} className='category' key={category.id}>
-                                        <div className="progress-list">
-                                            <Progress name={category.name} />
-                                        </div>
-                                    </Link>
-                                </div>
+                              <div className="category-name" style={divStyle} key={category.id}>
+                                <Link to={{pathname: `/${userId}/${category.name}`, state: {name: category.name}}}
+                                      className="category" key={category.id}>
+                                  <div className="progress-list">
+                                    {category.name}
+                                    <Progress category={userCategory} />
+                                  </div>
+                                </Link>
+                              </div>
                             )
+                          }
                         })
                     }
                 </div>

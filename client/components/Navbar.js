@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 
 const divStyle = {
-  // background: '#dcd0b4',
-  // overflow: 'hidden',
   display: 'inline-flex',
-  // position: 'fixed',
   top: '0',
   width: '100%',
   marginLeft: '-8px',
   height: '50px'
 };
+const navStyle = {
+  display: 'inline-flex',
+   marginLeft: '952px',
+   width: '450px'
+
+}
 
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
@@ -32,7 +35,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             </a>
         </div>
       ) : (
-          <div className="login-signup-text">
+          <div className="login-signup-text" style={navStyle}>
             {/* The navbar will show these links before you log in */}
             <Link to="/login" className="login">Login/</Link>
             <Link to="/signup" className="sign-up">Sign Up</Link>
