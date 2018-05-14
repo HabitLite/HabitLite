@@ -121,7 +121,7 @@ class Habits extends Component {
                         this.props.habitListXP
                       )}
                     /> */}
-                    <p>{habitList.habit.description}<button className="delete-habit">X</button></p>
+                    <p className="list">{habitList.habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
@@ -159,7 +159,7 @@ class Habits extends Component {
                         this.props.habitXP
                       )}
                     /> */}
-                    <p>{habit.description}<button className="delete-habit">X</button></p>
+                    <p className="list">{habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
