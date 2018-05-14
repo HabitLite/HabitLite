@@ -1,0 +1,1 @@
+Trying to eat healthy? Get in shape? Stop smoking? Look no further! HabitLite is here to help you establish those habits that will lead to your achieving those goals. Customize your habits, earn rewards, and track your progress. HabitLite does it all.
