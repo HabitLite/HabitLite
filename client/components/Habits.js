@@ -63,10 +63,17 @@ class Habits extends Component {
     })
   }
 
+
   render() {
     const { habits } = this.props;
+    let toDos = [];
+    let myHabits = []
+    toDos = habits.filter(habit => habit.complete === false)
+    myHabits = habits.filter(habit => habit.complete === true)
     console.log("HABITS .... STATE", this.state)
     console.log("HABITS .... PROPS", this.props)
+    console.log("false habits", toDos)
+    console.log("true habits ", myHabits)
     // const addHPFromIncompleteHabits = () => {
 
     // }
@@ -92,46 +99,9 @@ class Habits extends Component {
             </div>
           }
           <ul>
-            {habits &&
-              habits.map(habitList => {
-                return (
-                  <li key={habitList.id}>
-                    <Checkbox
-                      className="unChecked"
-                      onClick={this.props.updateUser.bind(
-                        this,
-                        habitList.categoryId,
-                        this.props.habitXP
-                      )}
-                      style={{
-                        width: '50%',
-                        margin: '10px 60px 4px 60px'
-                      }}
-                      iconStyle={{
-                        fill: '#8099a0'
-                      }}
-                    />
-                    {/* <input
-                      type="checkbox"
-                      className="unChecked"
-                      onClick={this.props.updateUser.bind(
-                        this,
-                        this.props.userId,
-                        habitList.categoryId,
-                        this.props.habitListXP
-                      )}
-                    /> */}
-                    <p className="list">{habitList.habit.description}<button className="delete-habit">X</button></p>
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
-        <div className="to-dos-list">
-          <label className="habits-label">My Habits</label>
-          <ul>
-            {habits &&
-              habits.map(habit => {
+
+            {toDos &&
+              toDos.map(habit => {
                 return (
                   <li key={habit.id}>
                     <Checkbox
@@ -149,17 +119,37 @@ class Habits extends Component {
                         fill: '#8099a0'
                       }}
                     />
-                    {/* <input
-                      type="checkbox"
+
+                    <p className="list">{habit.habit.description}<button className="delete-habit">X</button></p>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+        <div className="to-dos-list">
+          <label className="habits-label">My Habits</label>
+          <ul>
+            {myHabits &&
+              myHabits.map(habit => {
+                return (
+                  <li key={habit.id}>
+                    <Checkbox
                       className="unChecked"
                       onClick={this.props.updateUser.bind(
                         this,
-                        this.props.userId,
                         habit.categoryId,
                         this.props.habitXP
                       )}
-                    /> */}
-                    <p className="list">{habit.description}<button className="delete-habit">X</button></p>
+                      style={{
+                        width: '50%',
+                        margin: '10px 60px 4px 60px'
+                      }}
+                      iconStyle={{
+                        fill: '#8099a0'
+                      }}
+                    />
+
+                    <p className="list">{habit.habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
@@ -207,13 +197,3 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Habits);
 
-// {/*<div className="habits-list">*/}
-//   {/*<label className="habits-label">My Habits</label>*/}
-//   {/*<div className="mdc-switch">*/}
-//     {/*<input type="checkbox" id="basic-switch" className="mdc-switch__native-control" role="switch" />*/}
-//     {/*<div className="mdc-switch__background">*/}
-//       {/*<div className="mdc-switch__knob"></div>*/}
-//     {/*</div>*/}
-//   {/*</div>*/}
-//   {/*<label htmlFor="basic-switch">off/on</label>*/}
-// {/*</div>*/}
