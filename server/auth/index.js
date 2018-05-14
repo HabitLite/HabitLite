@@ -23,8 +23,7 @@ const getUser = (user, categories) => {
       levelId: user.levelId,
       lives: user.lives,
       XP: userXP,
-      HP: userHP,
-      categories: categories
+      HP: userHP
     }
   })
 

@@ -29,9 +29,6 @@ form div {
   display: inline-block;
 }
 
-.quiz {
-
-}
 
 .container {
   display: block;
@@ -43,7 +40,7 @@ form div {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; 
 }
 
 /* Login / Sing Up Page   ------- >>>>> */
@@ -79,7 +76,7 @@ input{
   background: #f5f5f4;
   border: none;
   border-bottom: 2px solid #a7a5a5;
-  /* position: absolute;
+  /* position: absolute;    
   margin: -810px 10px 30px 1252px; */
   /* margin: auto; */
   margin-left: 55px
@@ -185,7 +182,7 @@ small{
 /* navbar */
 .logout-btn{
   margin: 15px 1096px;
-  color:  #5a5959;
+  color:  #5a5959; 
   float: right;
   font-size: .8em;
 }
@@ -239,7 +236,7 @@ span{
   color: #a7a5a5;
 }
 
-
+ 
 
 
 
@@ -387,41 +384,36 @@ form div{
 /* Responsive    ------- >>>>> */
 @media screen and (max-width:580px) {
   /* form */
-  .login-form {
+  .login-form{
     width: 300px;
     height: 390px;
     margin-left: 40px;
     margin-top: 40px;
     border: 1px solid;
   }
-
-  input {
+  input{
     margin-left: 25px;
     border: 1px solid;
     width: 215px;
 
   }
-
-  small {
+  small{
     margin-left: 40px;
   }
-
   .login-btn {
     width: 120px;
     height: 35px;
     margin: 30px 75px;
     border: 1px solid;
   }
-
-  nav {
+  nav{
     width: 96%;
   }
-
   .habits-list {
     width: 350px;
   }
 
-  .category-list {
+  .category-list{
     text-align: center;
     font-size: 3.3em;
     color: #782F4D;
@@ -429,20 +421,4 @@ form div{
     margin-left: 120px;
   }
 }
-
-/*!* Progress bar *!*/
-  /*.progress{*/
-    /*margin-top: 0px;*/
-    /*margin-left: 50px;*/
-    /*!* text-align: center; *!*/
-    /*width: 560px;*/
-    /*color: #5a5959;*/
-    /*font-size: 1.4em;*/
-  /*}*/
-  /*.progress-bar{*/
-    /*width: 350px;*/
-    /*margin-left: 791px;*/
-    /*margin-top: -500px;*/
-  /*}*/
-
 

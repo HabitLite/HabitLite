@@ -11,7 +11,7 @@ const getData = percent => {
 /**
  * COMPONENT
  */
-const Progress = props => { 
+const Progress = props => {
   let percent = props.progress
   if (percent >= 100) {
     props.incrementLevel(props.userId)
@@ -19,14 +19,14 @@ const Progress = props => {
   }
     return (
       <div >
-        <h1 className="progress">{props.name}</h1>
+        <h1 className="total-progress">{props.name}</h1>
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
             standalone={false}
             animate={{ duration: 1000 }}
             width={400} height={400}
             data={getData(percent)}
-            innerRadius={props.category ? 0 : 120}
+            innerRadius={120}
             cornerRadius={25}
             labels={() => null}
             style={{
@@ -57,17 +57,10 @@ const Progress = props => {
 /**
  * CONTAINER
  */
-const mapState = (state, ownProps) => {
-  let progress
-  if (ownProps.category) {
-    progress = state.user.XP ? ((ownProps.category.XP / state.user.XP) * 100) : 0
-  }
-  else {
-    progress = state.user.progress
-  }
+const mapState = state => {
   return {
     userId: state.user.id,
-    progress: progress
+    progress: state.user.progress
   }
 }
 

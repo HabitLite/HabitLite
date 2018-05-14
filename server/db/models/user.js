@@ -89,8 +89,14 @@ User.prototype.getProgress = async function (XP, levelId) {
   ])
     .catch(err => console.log(err))
 
+  console.log('!!!!!!!!!!!!PrevLev', prevLev)
+  console.log('!!!!!!!!!!!!CurrLev', currLev)
+
   const prevMax = (prevLev ? prevLev.maxXP : 0)
   const currMax = currLev.maxXP
+
+  console.log('!!!!!!!!!!!!PrevMax', prevMax)
+  console.log('!!!!!!!!!!!!CurrMax', currMax)
 
   return ((XP - prevMax) / (currMax - prevMax)) * 100
 }
