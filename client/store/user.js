@@ -61,12 +61,12 @@ export const logout = () => dispatch =>
     })
     .catch(err => console.log(err))
 
-export const update = (userId, categoryId, progress, XP = 0, HP = 0) => {
+export const update = (userId, categoryId, progress, userXP, incrXP = 0, HP = 0) => {
   return dispatch => {
     axios
-      .put(`/api/users/${userId}`, { categoryId, progress, XP, HP })
+      .put(`/api/users/${userId}`, { categoryId, progress, userXP, incrXP, HP })
       .then(res => {
-        dispatch(updateUser(res.data, XP, HP))
+        dispatch(updateUser(res.data, incrXP, HP))
       })
       .catch(err => console.log(err))
   };

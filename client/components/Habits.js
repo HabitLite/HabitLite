@@ -66,6 +66,7 @@ class Habits extends React.Component {
                       this.props.userId,
                       habit.categoryId,
                       this.props.progress,
+                      this.props.userXP,
                       this.props.habitXP
                     )}
                     style={{
@@ -100,6 +101,7 @@ class Habits extends React.Component {
 const mapState = state => {
   return {
     userId: state.user.id,
+    userXP: state.user.XP,
     progress: state.user.progress,
     categoryId: 1,
     habits: state.habits,
@@ -112,10 +114,10 @@ const mapDispatch = dispatch => {
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));
     },
-    updateUser(userId, categoryId, progress, XP, evt) {
+    updateUser(userId, categoryId, progress, userXP, incrXP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
-      if (!evt.target.checked) XP = -XP;
-      dispatch(update(userId, categoryId, progress, XP))
+      if (!evt.target.checked) incrXP = -incrXP;
+      dispatch(update(userId, categoryId, progress, userXP, incrXP))
 
     }
   };

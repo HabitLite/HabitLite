@@ -24,13 +24,13 @@ router.put('/:userId', (req, res, next) => {
       let userCategory = user.userCategories.find(category => {
         return category.categoryId === +req.body.categoryId
       })
-      userCategory.XP += +req.body.XP
+      userCategory.XP += +req.body.incrXP
       userCategory.HP += +req.body.HP
 
       // userCategory.save()
 
-      user.getProgress().then(progress => {
-        res.json(+progress)
+      user.getProgress(+req.body.userXP + req.body.incrXP, user.levelId).then(progress => {
+        res.json(progress)
       })
         .then(userCategory.save())//Will it cause issues if it occurs concurrently with res.json? Prob not... But still
     })
