@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group } from './index.js'
+import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group, Resources } from './index.js'
 
 import { me } from '../store'
 // import { MuiThemeProvider } from 'material-ui/styles/MuiThemeProvider';
@@ -62,6 +62,7 @@ class Main extends Component {
                                     <Route exact path="/home" component={UserSummary} />
                                     <Route exact path="/:userId/:category/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
+                                    <Route exact path="/resources" component={Resources} />
 
 
                                 </Switch>

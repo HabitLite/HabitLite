@@ -12,7 +12,8 @@ class Categories extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedCategory: '' //category ID
+            selectedCategory: '',
+            userId: '' //category ID
             //   listOpen: false,
             //   headerTitle: this.props.title
         }
@@ -23,7 +24,13 @@ class Categories extends Component {
     }
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value })
+        // window.location = document.getElementById("selectedCategory".value)
+
     }
+
+    // goToCategory() {
+    //     window.location = document.getElementById("selectedCategory".value)
+    // }
     // handleClickOutside(){
     //     this.setState({
     //       listOpen: false
@@ -37,24 +44,35 @@ class Categories extends Component {
     // }
 
     render() {
+
         const categories = this.props.categories;
         const listOpen = this.state
+
         console.log('selected categ: ', this.state.selectedCategory)
-        // ({ match: { params, url } })
+        console.log("Categories PROPS ", this.props.match)
+        console.log("SATEEAEAEW", this.state)
+        // const { params, url } = this.props.match
         // const url = this.props.match.params.url
+        // console.log(url)
         return (
             <div className="categories">
                 <select onChange={this.handleChange} name="selectedCategory">
                     <option>Select a category</option>
                     {
                         categories.map(category =>
-                            // <Link key={category.id} to={url.replace(`{params.categoryId}`, `category.id`)}>
+                            //
+                            <option key={category.id} value={category.name} >{category.name}</option>
+                            //
 
-                            <option key={category.id} value={category.id}>{category.name}</option>
-                            // {/* </Link> */ }
+
                         )
                     }
+                    {/*  */}
+                    {/* <a href={`/${userId}/${category.id}`} /> */}
                 </select>
+                <Link to={`/${this.state.userId}/${this.state.selectedCategory}`}>
+                    <button id="go">Go</button>
+                </Link>
             </div>
         )
     }
@@ -67,6 +85,7 @@ class Categories extends Component {
 const mapState = (state) => {
     return {
         categories: state.categories,
+        userId: state.user.id
     }
 }
 
