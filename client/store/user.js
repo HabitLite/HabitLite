@@ -25,9 +25,9 @@ export const me = () => dispatch =>
   axios
     .get('/auth/me')
     .then(res => {
-      dispatch(getUser(res.data || defaultUser))
+      dispatch(getUser(res.data || defaultUser));
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 
 export const auth = (
   email,
@@ -38,12 +38,12 @@ export const auth = (
     .post(`/auth/${method}`, { email, password })
     .then(
       res => {
-        dispatch(getUser(res.data))
-        history.push('/home')
+        dispatch(getUser(res.data));
+        history.push('/home');
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({ error: authError }))
+        dispatch(getUser({ error: authError }));
       }
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
@@ -52,21 +52,10 @@ export const logout = () => dispatch =>
   axios
     .post('/auth/logout')
     .then(_ => {
-      dispatch(removeUser())
-      history.push('/login')
+      dispatch(removeUser());
+      history.push('/login');
     })
-    .catch(err => console.log(err))
-
-// export const levelUp = (userId, userXP) => {
-//   return dispatch => {
-//     axios
-//       .put(`api/users/levelUp/${userId}`, {userXP})
-//       .then(res => {
-//         dispatch(updateLevel(res.data))
-//       })
-//       .catch(err => console.log(err))
-//   }
-// }
+    .catch(err => console.log(err));
 
 export const update = (categoryId, progress, incrXP = 0, HP = 0) => {
   return dispatch => {
@@ -79,17 +68,16 @@ export const update = (categoryId, progress, incrXP = 0, HP = 0) => {
   }
 }
 
-
 /**
  * REDUCER
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return action.user;
     case REMOVE_USER:
       return {};
     default:
-      return state
+      return state;
   }
 }

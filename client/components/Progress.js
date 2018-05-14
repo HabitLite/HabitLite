@@ -14,7 +14,7 @@ const Progress = props => {
 
     return (
       <div >
-        <h1 className="progress">{props.name}</h1>
+        <h1 className="total-progress">{props.name}</h1>
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
             standalone={false}

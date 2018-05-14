@@ -15,23 +15,5 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-//***Test only works some of the time.  Could be some async issue or issue with test***
 
-//
-// router.put('/levelUp/:userId', (req, res, next) => {
-//   console.log('!!!!!!!!!!!!yo')
-//   User.findById(+req.params.userId)
-//     .then(user => {
-//       user.levelId++
-//       user.save()
-//     })
-//     .then(user => {
-//       user.getProgress(+req.body.userXP, user.levelId)
-//         .then(progress => {
-//           console.log("PROGRESS!!!!!!!!!!!!!!", progress)
-//           res.json(progress)
-//         })
-//     })
-//     .catch(next)
-// })
 

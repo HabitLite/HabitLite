@@ -6,6 +6,7 @@ import user from './user'
 import habits from './habits'
 import categories from './categories'
 import personality from './personality'
+// import newHabit from './newHabit'
 
 
 const reducer = combineReducers({ user, habits, categories, personality })
@@ -20,4 +21,5 @@ export * from './user'
 export * from './habits'
 export * from './categories'
 export * from './personality'
+// export * from './newHabit'
 
