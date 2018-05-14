@@ -14,4 +14,5 @@ export { default as Habits } from './Habits'
 export { default as Progress } from './Progress'
 export { default as Group } from './Group'
 export { default as Personality } from './Personality'
+export { default as Resources } from './Resources'
 

@@ -1,32 +1,21 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {fetchAllCategories} from '../store/categories'
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-
-const styles = {
-    customWidth: {
-      width: 347,
-      marginTop: 87,
-      marginRight: 18,
-      marginBottom: 55,
-      marginLeft: 155,
-    }
-  };
+import { connect } from 'react-redux'
+import { fetchAllCategories } from '../store/categories'
+import { Link } from 'react-router-dom';
 
 /**
  * COMPONENT
  */
 class Categories extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            selectedCategory: '', //category ID
-            value: null
+            selectedCategory: '',
+            userId: '' //category ID
             //   listOpen: false,
-        //   headerTitle: this.props.title
+            //   headerTitle: this.props.title
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -35,7 +24,13 @@ class Categories extends Component {
     }
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value })
+        // window.location = document.getElementById("selectedCategory".value)
+
     }
+
+    // goToCategory() {
+    //     window.location = document.getElementById("selectedCategory".value)
+    // }
     // handleClickOutside(){
     //     this.setState({
     //       listOpen: false
@@ -47,56 +42,58 @@ class Categories extends Component {
     //       listOpen: !prevState.listOpen
     //     }))
     // }
-    
+
     render() {
+
         const categories = this.props.categories;
         const listOpen = this.state
+
         console.log('selected categ: ', this.state.selectedCategory)
+        console.log("Categories PROPS ", this.props.match)
+        console.log("SATEEAEAEW", this.state)
+        // const { params, url } = this.props.match
+        // const url = this.props.match.params.url
+        // console.log(url)
         return (
             <div className="categories">
-                <SelectField className="select-field"
-                    style={styles.customWidth}
-                    floatingLabelText="Select a category"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    iconStyle={{
-                      fill: '#8099a0'
-                    }}
-                    >
-                    <MenuItem value={null} primaryText="" />
-                    {
-                            categories.map(category => {
-                                return (
-                                    <MenuItem key={category.id} value={category.id}primaryText={category.name} />
-                                )
-                            })
-                    }
-                </SelectField>
-                {/* <select onChange={this.handleChange} name="selectedCategory">
+                <select onChange={this.handleChange} name="selectedCategory">
                     <option>Select a category</option>
                     {
-                            categories.map(category => {
-                                return (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
-                                )
-                            })
-                        }
-                </select> */}
-            </div>
-        )}
-    }
+                        categories.map(category =>
+                            //
+                            <option key={category.id} value={category.name} >{category.name}</option>
+                            //
 
-const mapState = (state) => {
-    return {
-      categories: state.categories,
+
+                        )
+                    }
+                    {/*  */}
+                    {/* <a href={`/${userId}/${category.id}`} /> */}
+                </select>
+                <Link to={`/${this.state.userId}/${this.state.selectedCategory}`}>
+                    <button id="go">Go</button>
+                </Link>
+            </div>
+        )
     }
 }
-  
+// categories.map(category => {
+//     return (
+//         <option key={category.id} value={category.id}>{category.name}</option>
+//     )
+// })
+const mapState = (state) => {
+    return {
+        categories: state.categories,
+        userId: state.user.id
+    }
+}
+
 const mapDispatch = (dispatch) => {
-   return {
-     getAllCategories: () => {
-        dispatch(fetchAllCategories());
-     }
+    return {
+        getAllCategories: () => {
+            dispatch(fetchAllCategories());
+        }
     }
 }
 export default connect(mapState, mapDispatch)(Categories)
