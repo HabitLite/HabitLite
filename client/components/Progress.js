@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {VictoryPie, VictoryAnimation, VictoryLabel} from 'victory'
-import {levelUp} from '../store'
 
 const getData = percent => {
   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
@@ -56,7 +55,7 @@ const Progress = props => {
 const mapState = (state, ownProps) => {
   let progress
   if (ownProps.category) {
-    progress = state.user.XP ? ((ownProps.category.XP / state.user.XP) * 100) : 0
+    progress = state.user.xp ? ((ownProps.category.XP / state.user.xp) * 100) : 0
   }
   else {
     progress = state.user.progress
