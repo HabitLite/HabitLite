@@ -364,7 +364,35 @@ ul{
 
 .group{
   text-align: center;
+  color: #5a5959;
+  font-size: 2em;
+  margin: 130px 0 90px 0;
 }
+.images-div{
+  display: inline-flex;
+  width: 35%;
+  height: 300px;
+  margin: 10px 457px;
+  box-shadow: 7px 9px 34px -6px #999;
+}
+.group-img{
+  width: 500px;
+  height: 300px;
+}
+.group-ckeck, .checked-filled{
+  width: 47px;
+  margin: 224px 20px 39px 48px;
+}
+.accept{
+  display: flex;
+  margin-top: -73px;
+  margin-left: 112px;
+  /* margin-bottom: 40px; */
+  font-size: 0.9em;
+}
+
+
+
 
 
 /* Personality  Page*/
@@ -420,5 +448,20 @@ form div{
     width: 560px;
     margin-left: 120px;
   }
+  /* .user-navbar{
+    margin-top: 40px;
+    width: 230px;
+    text-align: center;
+    font-size: 2.5em;
+    margin-left: 271px;
+    margin-bottom: -80px
+  }
+  .logout-btn {
+    margin-right: 20px;
+    /* margin: 15px 1096px; */
+    /* color: #5a5959;
+    float: right;
+    font-size: .8em; */ 
+
 }
 
