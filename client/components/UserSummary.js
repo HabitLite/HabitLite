@@ -92,7 +92,7 @@ const mapState = state => {
     return {
       categories: state.categories,
       username: state.user.username,
-      userCategories: state.user.categories
+      userCategories: state.user.userCategories
     }
   }
   const mapDispatch = dispatch => {

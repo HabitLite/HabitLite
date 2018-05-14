@@ -1,26 +1,18 @@
 const db = require('../server/db')
-const { User, Category, Habit, UserCategory, UserHabit, Level } = require('../server/db/models')
+const { User, Category, Habit, UserCategory, UserHabit } = require('../server/db/models')
 
 async function seed() {
   await db.sync({ force: true })
   console.log('db synced!')
 
-  const levels = await Promise.all([
-    Level.create({ maxHP: 10, maxXP: 10 }),
-    Level.create({ maxHP: 11, maxXP: 40 }),
-    Level.create({ maxHP: 13, maxXP: 90 }),
-    Level.create({ maxHP: 15, maxXP: 160 }),
-    Level.create({ maxHP: 20, maxXP: 250 }),
-    Level.create({ maxHP: 23, maxXP: 360 })
-  ])
 
   const users = await Promise.all([
-    User.create({ email: 'tania@gmail.com', password: '123', username: 'tania', levelId: 1 }),
-    User.create({ email: 'ginny@gmail.com', password: '123', username: 'ginny', levelId: 1 }),
-    User.create({ email: 'palina@email.com', password: '123', username: 'palina', levelId: 1 }),
-    User.create({ email: 'priya@email.com', password: '123', username: 'priya', levelId: 1 }),
-    User.create({ email: 'cody@email.com', password: '123', username: 'cody', levelId: 1 }),
-    User.create({ email: 'murphy@email.com', password: '123', username: 'dops', levelId: 1 })
+    User.create({ email: 'tania@gmail.com', password: '123', username: 'tania', level: 1 }),
+    User.create({ email: 'ginny@gmail.com', password: '123', username: 'ginny', level: 1 }),
+    User.create({ email: 'palina@email.com', password: '123', username: 'palina', level: 1 }),
+    User.create({ email: 'priya@email.com', password: '123', username: 'priya', level: 1 }),
+    User.create({ email: 'cody@email.com', password: '123', username: 'cody', level: 1 }),
+    User.create({ email: 'murphy@email.com', password: '123', username: 'dops', level: 1 })
 
 
   ])
@@ -80,7 +72,6 @@ async function seed() {
   console.log(`seeded ${habits.length} habit`)
   console.log(`seeded ${userCategories.length} userCategories`)
   console.log(`seeded ${userHabit.length} userHabits`)
-  console.log(`seeded ${levels.length} levels`)
   console.log(`seeded successfully`)
 }
 

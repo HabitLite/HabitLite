@@ -1,7 +1,13 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
-const Level = require('./level')
+const {levelForXP, LEVELS} = require('./level')
+const UserCategory = require('./userCategory')
+
+const stat = name => ({
+  type: Sequelize.VIRTUAL,
+  get() { return this.stats[name] }
+})
 
 const User = db.define('user', {
   email: {
@@ -22,6 +28,10 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     defaultValue: 'default avatar image'
   },
+  progress: stat('progress'),
+  level: stat('level'),
+  xp: stat('xp'),
+  hp: stat('hp'),
   lives: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -62,6 +72,10 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   }
+}, {
+  defaultScope: {
+    include: [UserCategory]
+  }
 })
 
 module.exports = User
@@ -73,26 +87,53 @@ User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
 
-User.prototype.getProgress = async function (XP, levelId) {
+User.prototype.addXP = async function (categoryId, by) {
+  const prevLevel = await this.getLevel()
 
-  const [prevLev, currLev] = await Promise.all([
-    Level.findOne({
-      where: {
-        id: +levelId - 1
-      }
-    }),
-    Level.findOne({
-      where: {
-        id: +levelId
-      }
-    })
-  ])
-    .catch(err => console.log(err))
+  await UserCategory.increment('XP', {
+    where: {
+      userId: this.id, categoryId
+    },
+    by
+  })
 
-  const prevMax = (prevLev ? prevLev.maxXP : 0)
-  const currMax = currLev.maxXP
+  const newLevel = await this.getLevel()
 
-  return ((XP - prevMax) / (currMax - prevMax)) * 100
+  return {
+    progress: await this.getProgress(),
+    newLevel,
+    prevLevel
+  }
+}
+
+User.prototype.getXP = function () {
+  return UserCategory.sum('XP', {
+    where: {
+      userId: this.id
+    }
+  })
+}
+
+User.prototype.getHP = function () {
+  return UserCategory.sum('HP', {
+    where: {
+      userId: this.id
+    }
+  })
+}
+
+User.prototype.getLevel = async function () {
+  return levelForXP(await this.getXP())
+}
+
+User.prototype.getProgress = async function () {
+
+  const currXP = await this.getXP()
+  const level = levelForXP(currXP)
+  const {maxXP} = LEVELS[level]
+  const {maxXP: lastMaxXP} = LEVELS[level - 1] || {maxXP: 0}
+
+  return ((currXP - lastMaxXP) / (maxXP - lastMaxXP)) * 100
 }
 
 /**
@@ -122,3 +163,13 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+
+User.afterFind('updateStats', async user => Object.assign(user, {
+    stats: {
+      progress: await user.getProgress(),
+      level: await user.getLevel(),
+      xp: await user.getXP(),
+      hp: await user.getHP()
+    }
+  }
+))

@@ -62,25 +62,15 @@ const mapState = (state, ownProps) => {
     progress = state.user.progress
   }
   return {
-    userId: state.user.id,
     progress: progress
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    incrementLevel(userId) {
-      dispatch(levelUp(userId))
-    }
-  }
-}
-
-export default connect(mapState, mapDispatch)(Progress)
+export default connect(mapState)(Progress)
 
 /**
  * PROP TYPES
  */
 Progress.propTypes = {
-  userId: PropTypes.number,
   progress: PropTypes.number
 }
