@@ -88,22 +88,16 @@ User.prototype.correctPassword = function (candidatePwd) {
 }
 
 User.prototype.addXP = async function (categoryId, by) {
-  const prevLevel = await this.getLevel()
 
   await UserCategory.increment('XP', {
     where: {
-      userId: this.id, categoryId
+      userId: this.id,
+      categoryId
     },
     by
   })
 
-  const newLevel = await this.getLevel()
 
-  return {
-    progress: await this.getProgress(),
-    newLevel,
-    prevLevel
-  }
 }
 
 User.prototype.getXP = function () {
