@@ -1,26 +1,28 @@
-import axios from 'axios';
-import history from '../history';
+import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER';
-const REMOVE_USER = 'REMOVE_USER';
-const UPDATE_USER = 'UPDATE_USER';
-const UPDATE_LEVEL = 'UPDATE_LEVEL';
+const GET_USER = 'GET_USER'
+const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
+const UPDATE_LEVEL = 'UPDATE_LEVEL'
+const UPDATE_HABITS = 'UPDATE_HABITS'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {};
+const defaultUser = {}
 
 /**
  * ACTION CREATORS
  */
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
-const updateUser = (progress, XP, HP) => ({ type: UPDATE_USER, progress, XP, HP })
+const updateProgress = (progress, XP, HP) => ({ type: UPDATE_PROGRESS, progress, XP, HP })
 const updateLevel = () => ({ type: UPDATE_LEVEL })
+const updateHabits = habits => ({ type: UPDATE_HABITS, habits })
 
 /**
  * THUNK CREATORS
@@ -50,7 +52,7 @@ export const auth = (
         dispatch(getUser({ error: authError }))
       }
     )
-    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 export const logout = () => dispatch =>
   axios
@@ -66,11 +68,22 @@ export const update = (userId, categoryId, progress, XP = 0, HP = 0) => {
     axios
       .put(`/api/users/${userId}`, { categoryId, progress, XP, HP })
       .then(res => {
-        dispatch(updateUser(res.data, XP, HP))
+        dispatch(updateProgress(res.data, XP, HP))
       })
       .catch(err => console.log(err))
-  };
-};
+  }
+}
+
+export const check = (userId, userHabitId) => {
+  return dispatch => {
+    axios
+      .put(`/api/users/habits/${userId}/${userHabitId}`)
+      .then(res => {
+        dispatch(updateHabits(res.data))
+      })
+      .catch(err => console.log(err))
+  }
+}
 
 export const levelUp = userId => {
   return dispatch => {
@@ -80,8 +93,8 @@ export const levelUp = userId => {
         dispatch(updateLevel())
       })
       .catch(err => console.log(err))
-  };
-};
+  }
+}
 
 /**
  * REDUCER
@@ -91,8 +104,8 @@ export default function(state = defaultUser, action) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return {};
-    case UPDATE_USER:
+      return {}
+    case UPDATE_PROGRESS:
       return {
         ...state,
         progress: action.progress,
@@ -103,7 +116,12 @@ export default function(state = defaultUser, action) {
       return {
         ...state,
         level: state.level + 1
-      };
+      }
+    case UPDATE_HABITS:
+      return {
+        ...state,
+        habits: action.habits
+      }
     default:
       return state
   }

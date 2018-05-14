@@ -2,29 +2,48 @@ const router = require('express').Router()
 const { User, UserCategory, UserHabit } = require('../db/models')
 module.exports = router
 
-const getUser = user => {
+const getUser = (user) => {
   let userXP = 0
   let userHP = 0
-  user.userCategories.forEach(category => {
-    userXP += category.XP
-    userHP += category.HP
-  })
+  let userCategories, userHabits
+  return Promise.all([
+    UserCategory.findAll({
+      where: {
+        userId: user.id
+      }
+    }),
+    UserHabit.findAll({
+      where: {
+        userId: user.id
+      }
+    })
+  ])
+    .then(([categories, habits]) => {
+      userCategories = categories
+      userHabits = habits
 
-  return user.getProgress(userXP, user.levelId).then(progress => {
-    return {
-      id: user.id,
-      avatar: user.avatar,
-      email: user.email,
-      username: user.username,
-      progress: progress,
-      levelId: user.levelId,
-      lives: user.lives,
-      XP: userXP,
-      HP: userHP,
-      categories: user.userCategories,
-      habits: user.userHabits
-    }
-  })
+      categories.forEach(category =>
+      {
+        userXP += category.XP
+        userHP += category.HP
+      })
+      return user.getProgress(userXP, user.levelId)
+    })
+    .then(progress => {
+        return {
+          id: user.id,
+          avatar: user.avatar,
+          email: user.email,
+          username: user.username,
+          progress: progress,
+          levelId: user.levelId,
+          lives: user.lives,
+          XP: userXP,
+          HP: userHP,
+          categories: userCategories,
+          habits: userHabits
+        }
+    })
 
 }
 
@@ -45,6 +64,7 @@ router.post('/login', (req, res, next) => {
 
         getUser(user)
           .then(updatedUser => {
+            console.log("updateduser!!!!!!!!!!!!!!!!!", updatedUser)
             req.login(updatedUser, err => (err ? next(err) : res.json(updatedUser)))
 
           })
@@ -75,21 +95,23 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', (req, res, next) => {
   if (req.user) {
-    Promise.all([
-      UserCategory.findAll({
-        where: {
-          userId: req.user.id
-        }
-      }),
-      UserHabit.findAll({
-        where: {
-          userId: req.user.id
-        }
-      })
-    ])
-    .then(([categories, habits]) => {
-      getUser({...req.user, userCategories: categories, userHabits: habits})
-    })
+    // Promise.all([
+    //   UserCategory.findAll({
+    //     where: {
+    //       userId: req.user.id
+    //     }
+    //   }),
+    //   UserHabit.findAll({
+    //     where: {
+    //       userId: req.user.id
+    //     }
+    //   })
+    // ])
+    // .then(([categories, habits]) => {
+    //   getUser(req.user, categories, habits)
+    //   // getUser({...req.user, userCategories: categories, userHabits: habits})
+    // })
+    getUser(req.user)
     .then(user => res.json(user))
   }
 })

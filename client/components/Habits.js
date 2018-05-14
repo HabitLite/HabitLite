@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { update, fetchHabits } from '../store';
+import { update, check, fetchHabits } from '../store';
 import Checkbox from 'material-ui/Checkbox';
 
 
@@ -12,7 +12,7 @@ class Habits extends React.Component {
     description: '',
     isClicked: false
   }
-  onBtnClick = (e) => {
+  onBtnClick = () => {
     this.setState({ isClicked: true })
   }
   handleChange = (event) => {
@@ -57,8 +57,10 @@ class Habits extends React.Component {
         <ul>
           {habits &&
             habits.map(habit => {
-              const userHabit = this.props.userHabits.find(userHab => {return (userHab.habitId === habit.id)})
-              console.log("CCCCCCCCc", userHabit)
+              console.log("userHabits!!!!!!!!!!!!!", this.props.userHabits)
+              const userHabit = this.props.userHabits.find(userHab => {
+                return ((userHab.habitId === habit.id) && (userHab.userId === this.props.userId))
+              })
               if (userHabit) {
                 return (
                   <li key={habit.id}>
@@ -69,6 +71,7 @@ class Habits extends React.Component {
                         this.props.userId,
                         habit.categoryId,
                         this.props.progress,
+                        userHabit.habitId,
                         this.props.habitXP
                       )}
                       style={{
@@ -118,11 +121,10 @@ const mapDispatch = dispatch => {
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));
     },
-    updateUser(userId, categoryId, progress, XP, evt) {
-      //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
+    updateUser(userId, categoryId, progress, userHabitId, XP, evt) {
       if (!evt.target.checked) XP = -XP;
       dispatch(update(userId, categoryId, progress, XP))
-
+      dispatch(check(userId, userHabitId))
     }
   };
 };
