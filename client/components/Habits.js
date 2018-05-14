@@ -56,6 +56,7 @@ class Habits extends Component {
       isClicked: false,
       habit: {},
       description: '',
+      complete: false
 
     })
   }
@@ -72,21 +73,21 @@ class Habits extends Component {
 
       <div className="all-habits-container">
         <div className="habits-list">
-          <label className="habits-label">My Habits</label>
+          <label className="habits-label">My To-Dos</label>
           <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
           {this.state.isClicked &&
-                          <div className="input-field-habit">
-                              <form onSubmit={this.handleSubmit}>
-                                  <input
-                                      name="description"
-                                      type="text"
-                                      onChange={this.handleChange}
-                                      value={this.description}
-                                      className="habit-input"
-                                  />
-                                  <button type="submit" className="habit-add">Add</button>
-                              </form>
-                          </div>
+            <div className="input-field-habit">
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  name="description"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.description}
+                  className="habit-input"
+                />
+                <button type="submit" className="habit-add">Add</button>
+              </form>
+            </div>
           }
           <ul>
             {habits &&
@@ -119,14 +120,14 @@ class Habits extends Component {
                         this.props.habitXP
                       )}
                     /> */}
-                    <p>{habit.description}<button className="delete-habit">X</button></p>
+                    <p>{habit.habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
           </ul>
         </div>
         <div className="to-dos-list">
-          <label className="habits-label">My To-Dos</label>
+          <label className="habits-label">My Habits</label>
           <ul>
             {habits &&
               habits.map(habit => {

@@ -9,17 +9,48 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-//Get allCustom habits by categoryId
+// //Get allCustom habits by categoryId
+// router.get('/:userId/:categoryId', (req, res, next) => {
+//     Habit.findAll({
+//         where: {
+//             categoryId: req.params.categoryId
+//         }
+//     })
+//         .then(habits => res.json(habits))
+//         .catch(next)
+// })
+
+// Get allCustom habits by categoryId WORING BY TANIA 
 router.get('/:userId/:categoryId', (req, res, next) => {
-    Habit.findAll({
+    UserHabit.findAll({
         where: {
-            categoryId: req.params.categoryId
-        }
+            userId: req.params.userId
+        },
+        include: [{
+            model: Habit,
+            where: {
+                categoryId: req.params.categoryId
+            }
+        }]
     })
         .then(habits => res.json(habits))
         .catch(next)
 })
-
+// router.get('/:userId/:categoryId', (req, res, next) => {
+//     UserHabit.findAll({
+//         where: {
+//             userId: req.params.userId
+//         }
+//     })
+//         .then(habit =>
+//             Habit.findAll({
+//                 where: {
+//                     id: habit.habitId
+//                 }
+//             }))
+//         .then(personhabit => res.json(personhabit))
+//         .catch(next)
+// })
 
 router.post('/:userId/:categoryId', (req, res, next) => {
     Habit.create({ categoryId: Number(req.params.categoryId), description: req.body.description, habitGroup: req.body.habitGroup })
