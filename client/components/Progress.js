@@ -11,12 +11,8 @@ const getData = percent => {
 /**
  * COMPONENT
  */
-const Progress = props => { 
-  let percent = props.progress
-  if (percent >= 100) {
-    props.incrementLevel(props.userId)
+const Progress = props => {
 
-  }
     return (
       <div >
         <h1 className="progress">{props.name}</h1>
@@ -25,7 +21,7 @@ const Progress = props => {
             standalone={false}
             animate={{ duration: 1000 }}
             width={400} height={400}
-            data={getData(percent)}
+            data={getData(props.progress)}
             innerRadius={props.category ? 0 : 120}
             cornerRadius={25}
             labels={() => null}
@@ -43,7 +39,7 @@ const Progress = props => {
                 <VictoryLabel
                   textAnchor="middle" verticalAnchor="middle"
                   x={200} y={200}
-                  text={`${Math.round(percent)}%`}
+                  text={`${Math.round(props.progress)}%`}
                   style={{ fontSize: 45 }}
                 />
               )

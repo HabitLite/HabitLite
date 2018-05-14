@@ -29,20 +29,41 @@ router.put('/:userId', (req, res, next) => {
 
       // userCategory.save()
 
-      user.getProgress(+req.body.userXP + req.body.incrXP, user.levelId).then(progress => {
-        res.json(progress)
-      })
+      user.getProgress(+req.body.userXP + req.body.incrXP, user.levelId)
+        .then(progress => {
+          if (progress < 100) {
+            res.json(progress)
+          }
+          else {
+            user.levelId++
+            user.save()
+              .then(newUser => {
+                newUser.getProgress(+req.body.userXP + req.body.incrXP, newUser.levelId)
+              })
+              .then(newProgress => {
+                res.json(newProgress)
+              })
+          }
+        })
         .then(userCategory.save())//Will it cause issues if it occurs concurrently with res.json? Prob not... But still
     })
     .catch(next)
 })
-
-router.put('/levelUp/:userId', (req, res, next) => {
-  User.findById(+req.params.userId)
-    .then(user => {
-      user.levelId++
-      user.save()
-    })
-    .catch(next)
-})
+//
+// router.put('/levelUp/:userId', (req, res, next) => {
+//   console.log('!!!!!!!!!!!!yo')
+//   User.findById(+req.params.userId)
+//     .then(user => {
+//       user.levelId++
+//       user.save()
+//     })
+//     .then(user => {
+//       user.getProgress(+req.body.userXP, user.levelId)
+//         .then(progress => {
+//           console.log("PROGRESS!!!!!!!!!!!!!!", progress)
+//           res.json(progress)
+//         })
+//     })
+//     .catch(next)
+// })
 

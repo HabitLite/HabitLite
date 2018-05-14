@@ -20,7 +20,7 @@ const defaultUser = {};
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const updateUser = (progress, XP, HP) => ({ type: UPDATE_USER, progress, XP, HP })
-const updateLevel = () => ({ type: UPDATE_LEVEL })
+const updateLevel = progress => ({ type: UPDATE_LEVEL, progress })
 
 /**
  * THUNK CREATORS
@@ -61,6 +61,17 @@ export const logout = () => dispatch =>
     })
     .catch(err => console.log(err))
 
+// export const levelUp = (userId, userXP) => {
+//   return dispatch => {
+//     axios
+//       .put(`api/users/levelUp/${userId}`, {userXP})
+//       .then(res => {
+//         dispatch(updateLevel(res.data))
+//       })
+//       .catch(err => console.log(err))
+//   }
+// }
+
 export const update = (userId, categoryId, progress, userXP, incrXP = 0, HP = 0) => {
   return dispatch => {
     axios
@@ -69,19 +80,9 @@ export const update = (userId, categoryId, progress, userXP, incrXP = 0, HP = 0)
         dispatch(updateUser(res.data, incrXP, HP))
       })
       .catch(err => console.log(err))
-  };
-};
+  }
+}
 
-export const levelUp = userId => {
-  return dispatch => {
-    axios
-      .put(`api/users/levelUp/${userId}`)
-      .then(() => {
-        dispatch(updateLevel())
-      })
-      .catch(err => console.log(err))
-  };
-};
 
 /**
  * REDUCER
@@ -102,7 +103,8 @@ export default function(state = defaultUser, action) {
     case UPDATE_LEVEL:
       return {
         ...state,
-        level: state.level + 1
+        level: state.level + 1,
+        progress: action.progress
       };
     default:
       return state

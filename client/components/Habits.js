@@ -12,7 +12,7 @@ class Habits extends React.Component {
     description: '',
     isClicked: false
   }
-  onBtnClick = (e) => {
+  onBtnClick = () => {
     this.setState({ isClicked: true })
   }
   handleChange = (event) => {
@@ -35,7 +35,7 @@ class Habits extends React.Component {
     // const addHPFromIncompleteHabits = () => {
 
     // }
-    // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
+    // need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
     return (
       <div className="habits-list">
         <label className="habits-label">My Habits</label>
