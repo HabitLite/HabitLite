@@ -84,7 +84,7 @@ class Habits extends React.Component {
                       this.props.habitXP
                     )}
                   /> */}
-                  <p>{habit.description}<button className="delete-habit">X</button></p>
+                  <p className="checkList">{habit.description}<button className="delete-habit">X</button></p>
                 </li>
               );
             })}
