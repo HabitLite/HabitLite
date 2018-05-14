@@ -37,58 +37,98 @@ class Habits extends React.Component {
     // }
     // TODO: eventually use map and stop using dummy data; need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
     return (
-      <div className="habits-list">
-        <label className="habits-label">My Habits</label>
-        <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
-        {this.state.isClicked &&
-                        <div className="input-field-habit">
-                            <form onSubmit={this.handleSubmit}>
-                                <input
-                                    name="description"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    value={this.category}
-                                    className="habit-input"
-                                />
-                                <button type="submit" className="habit-add">Add</button>
-                            </form>
-                        </div>
-        }
-        <ul>
-          {habits &&
-            habits.map(habit => {
-              return (
-                <li key={habit.id}>
-                  <Checkbox className="unChecked"
-                    onClick={this.props.updateUser.bind(
-                      this,
-                      this.props.userId,
-                      habit.categoryId,
-                      this.props.habitXP
-                    )}
-                    style={{
-                      width: '50%',
-                      margin: '10px 60px 4px 60px'
-                    }}
-                    iconStyle={{
-                      fill: '#8099a0'
-                    }}
-                  />
-                  {/* <input
-                    type="checkbox"
-                    className="unChecked"
-                    onClick={this.props.updateUser.bind(
-                      this,
-                      this.props.userId,
-                      habit.categoryId,
-                      this.props.habitXP
-                    )}
-                  /> */}
-                  <p>{habit.description}<button className="delete-habit">X</button></p>
-                </li>
-              );
-            })}
-        </ul>
+      <div className="all-habits-container">
+        <div className="habits-list">
+          <label className="habits-label">My Habits</label>
+          <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
+          {this.state.isClicked &&
+                          <div className="input-field-habit">
+                              <form onSubmit={this.handleSubmit}>
+                                  <input
+                                      name="description"
+                                      type="text"
+                                      onChange={this.handleChange}
+                                      value={this.category}
+                                      className="habit-input"
+                                  />
+                                  <button type="submit" className="habit-add">Add</button>
+                              </form>
+                          </div>
+          }
+          <ul>
+            {habits &&
+              habits.map(habit => {
+                return (
+                  <li key={habit.id}>
+                    <Checkbox className="unChecked"
+                      onClick={this.props.updateUser.bind(
+                        this,
+                        this.props.userId,
+                        habit.categoryId,
+                        this.props.habitXP
+                      )}
+                      style={{
+                        width: '50%',
+                        margin: '10px 60px 4px 60px'
+                      }}
+                      iconStyle={{
+                        fill: '#8099a0'
+                      }}
+                    />
+                    {/* <input
+                      type="checkbox"
+                      className="unChecked"
+                      onClick={this.props.updateUser.bind(
+                        this,
+                        this.props.userId,
+                        habit.categoryId,
+                        this.props.habitXP
+                      )}
+                    /> */}
+                    <p>{habit.description}<button className="delete-habit">X</button></p>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+        <div className="to-dos-list">
+          <label className="habits-label">My To-Dos</label>
+          <ul>
+            {habits &&
+              habits.map(habit => {
+                return (
+                  <li key={habit.id}>
+                    <Checkbox className="unChecked"
+                      onClick={this.props.updateUser.bind(
+                        this,
+                        this.props.userId,
+                        habit.categoryId,
+                        this.props.habitXP
+                      )}
+                      style={{
+                        width: '50%',
+                        margin: '10px 60px 4px 60px'
+                      }}
+                      iconStyle={{
+                        fill: '#8099a0'
+                      }}
+                    />
+                    {/* <input
+                      type="checkbox"
+                      className="unChecked"
+                      onClick={this.props.updateUser.bind(
+                        this,
+                        this.props.userId,
+                        habit.categoryId,
+                        this.props.habitXP
+                      )}
+                    /> */}
+                    <p>{habit.description}<button className="delete-habit">X</button></p>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
       </div>
     );
   }
