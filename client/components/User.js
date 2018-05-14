@@ -18,7 +18,7 @@ const User = props => {
         <span>Username </span><br/>{username}
       </div>
       <div className="level">
-      <span>Level</span><br/>{level}
+      <span>Level</span><br/>{level + 1}
       </div>
       <div className="lives">
       <span> Lives </span><br/>{lives}
@@ -38,10 +38,10 @@ const mapState = state => {
   return {
     avatar: state.user.avatar,
     username: state.user.username,
-    level: state.user.levelId,
+    level: state.user.level,
     lives: state.user.lives,
-    HP: state.user.HP,
-    XP: state.user.XP
+    HP: state.user.hp,
+    XP: state.user.xp
   }
 }
 

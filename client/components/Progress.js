@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {VictoryPie, VictoryAnimation, VictoryLabel} from 'victory'
-import {levelUp} from '../store'
 
 const getData = percent => {
   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
@@ -12,11 +11,7 @@ const getData = percent => {
  * COMPONENT
  */
 const Progress = props => {
-  let percent = props.progress
-  if (percent >= 100) {
-    props.incrementLevel(props.userId)
 
-  }
     return (
       <div >
         <h1 className="total-progress">{props.name}</h1>
@@ -25,8 +20,8 @@ const Progress = props => {
             standalone={false}
             animate={{ duration: 1000 }}
             width={400} height={400}
-            data={getData(percent)}
-            innerRadius={120}
+            data={getData(props.progress)}
+            innerRadius={props.category ? 0 : 120}
             cornerRadius={25}
             labels={() => null}
             style={{
@@ -43,7 +38,7 @@ const Progress = props => {
                 <VictoryLabel
                   textAnchor="middle" verticalAnchor="middle"
                   x={200} y={200}
-                  text={`${Math.round(percent)}%`}
+                  text={`${Math.round(props.progress)}%`}
                   style={{ fontSize: 45 }}
                 />
               )
@@ -57,27 +52,24 @@ const Progress = props => {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  let progress
+  if (ownProps.category) {
+    progress = state.user.xp ? ((ownProps.category.XP / state.user.xp) * 100) : 0
+  }
+  else {
+    progress = state.user.progress
+  }
   return {
-    userId: state.user.id,
-    progress: state.user.progress
+    progress: progress
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    incrementLevel(userId) {
-      dispatch(levelUp(userId))
-    }
-  }
-}
-
-export default connect(mapState, mapDispatch)(Progress)
+export default connect(mapState)(Progress)
 
 /**
  * PROP TYPES
  */
 Progress.propTypes = {
-  userId: PropTypes.number,
   progress: PropTypes.number
 }

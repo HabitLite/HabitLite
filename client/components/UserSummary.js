@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { User, Progress } from './index'
+import { Progress } from './index'
 import { fetchAllCategories, postCategory } from '../store/categories'
 import { me } from '../store';
 
@@ -21,7 +20,7 @@ class UserSummary extends Component {
             userId: ''
         }
     }
-    onBtnClick = (e) => {
+    onBtnClick = () => {
         this.setState({ isClicked: true })
     }
     handleChange = (event) => {
@@ -87,10 +86,9 @@ class UserSummary extends Component {
 }
 const mapState = state => {
     return {
-        categories: state.categories,
-        username: state.user.username,
-        email: state.user.email,
-        userId: state.user.id
+      categories: state.categories,
+      username: state.user.username,
+      userCategories: state.user.userCategories
     }
 }
 
