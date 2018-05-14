@@ -55,7 +55,7 @@ router.get('/:userId/:categoryId', (req, res, next) => {
 router.post('/:userId/:categoryId', (req, res, next) => {
     Habit.create({ categoryId: Number(req.params.categoryId), description: req.body.description, habitGroup: req.body.habitGroup })
         .then(habit =>
-            UserHabit.create({ habitId: Number(habit.id), userId: req.params.userId, XP: 10, HP: 100 }))
+            UserHabit.create({ habitId: Number(habit.id), userId: req.params.userId, XP: 10, HP: 100, complete: req.body.complete }))
         .then(indivhabit => res.status(201).json(indivhabit))
         .catch(next)
 })

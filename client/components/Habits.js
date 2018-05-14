@@ -13,6 +13,7 @@ class Habits extends Component {
       isClicked: false,
       habit: {},
       description: '',
+      complete: false
 
     }
   }
@@ -43,6 +44,7 @@ class Habits extends Component {
     const habit = {
       habitGroup: "Custom",
       description: this.state.description,
+      complete: false
     }
     const userId = this.props.userId || '';
     const categoryId = this.props.categoryId || '';
@@ -91,16 +93,16 @@ class Habits extends Component {
           }
           <ul>
             {habits &&
-              habits.map(habit => {
+              habits.map(habitList => {
                 return (
-                  <li key={habit.id}>
+                  <li key={habitList.id}>
                     <Checkbox
                       className="unChecked"
                       onClick={this.props.updateUser.bind(
                         this,
-                        habit.categoryId,
+                        habitList.categoryId,
                         this.props.progress,
-                        this.props.habitXP
+                        this.props.habitListXP
                       )}
                       style={{
                         width: '50%',
@@ -116,11 +118,11 @@ class Habits extends Component {
                       onClick={this.props.updateUser.bind(
                         this,
                         this.props.userId,
-                        habit.categoryId,
-                        this.props.habitXP
+                        habitList.categoryId,
+                        this.props.habitListXP
                       )}
                     /> */}
-                    <p>{habit.habit.description}<button className="delete-habit">X</button></p>
+                    <p>{habitList.habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
