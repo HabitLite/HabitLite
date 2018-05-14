@@ -11,7 +11,7 @@ const styles = {
       marginTop: 87,
       marginRight: 18,
       marginBottom: 55,
-      marginLeft: 155,
+      marginLeft: 99,
     }
   };
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group } from './index.js'
+import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group, Resources } from './index.js'
 
 import { me } from '../store'
 // import { MuiThemeProvider } from 'material-ui/styles/MuiThemeProvider';
@@ -60,8 +60,9 @@ class Main extends Component {
                                     {/* Routes placed here are only available after logging in */}
                                     {/* <Route path="/home" component={UserHome} /> */}
                                     <Route exact path="/home" component={UserSummary} />
-                                    <Route exact path="/:username/:category/" component={UserHome} />
+                                    <Route exact path="/:userId/:category/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
+                                    <Route exact path="/resources" component={Resources} />
 
 
                                 </Switch>
@@ -85,7 +86,8 @@ const mapState = (state) => {
     return {
         // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
         // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-        isLoggedIn: !!state.user.id
+        isLoggedIn: !!state.user.id,
+        userId: state.user.id
     }
 }
 

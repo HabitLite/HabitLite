@@ -3,23 +3,52 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
 
-/**
- * COMPONENT
- */
-const Group = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+
+class Group extends React.Component  {
+  state = {
+    src: "./images/checked-filled.png",
+    isClicked: false
+  }
+  onBtnClick = (e) => {
+    this.setState({ isClicked: true })
+  }
+  // handleClick = (e) => {
+  //   e.preventDefault();
+  //   const src = this.state.src;
+// }
+  render() {
+
   return (
-    <div className="group">Group Page</div>
+    <div>
+      <div className="group"><b>Groups You Can Join</b></div>
+      <div>
+        <div className="images-div">
+        <div><img src="./images/run.png" className="group-img"></img></div>
+          {this.state.isClicked ? <div><img src="./images/checked-filled.png" className="checked-filled"></img><span className="accept">Joined!</span></div> :
+          <div><img src="./images/checked.png" className="group-ckeck" onClick={this.onBtnClick}></img></div>
+          }
+        </div>
+        <div className="images-div">
+        <div><img src="./images/yoga.png" className="group-img"></img></div>
+        <div><img src="./images/checked.png" className="group-ckeck"></img></div>
+        </div>
+        <div className="images-div">
+        <div><img src="./images/cook.png" className="group-img"></img></div>
+        <div><img src="./images/checked.png" className="group-ckeck"></img></div>
+        </div>
+      </div>  
+    </div>
   )
-}    
-const mapState = state => {
-    return {
+}  
+}  
+// const mapState = state => {
+//     return {
     
-    }
-}
+//     }
+// }
       
-const mapDispatch = dispatch => {
+// const mapDispatch = dispatch => {
    
-}   
-export default connect(mapState, mapDispatch)(Group)
+// }   
+export default connect(null)(Group)
       
