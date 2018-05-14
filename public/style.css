@@ -79,7 +79,8 @@ input{
   /* position: absolute;    
   margin: -810px 10px 30px 1252px; */
   /* margin: auto; */
-  margin-left: 55px
+  margin-left: 46px;
+  margin-bottom: -21px;
 }
 small{
   margin-left: 60px;
@@ -100,7 +101,7 @@ small{
 }
 .select-field{
   width: 418px;
-  margin: 80px 20px 35px 120px;
+  margin: 87px 18px 55px 99px;
 }
 
 
@@ -258,21 +259,38 @@ span{
 
 
 /* Habits list      ------- >>>>> */
+
+.all-habits-container{
+  display: inline-flex;
+}
 .habits-list{
+  display: grid;
+    /* border: 1px solid; */
+    /* height: 30%; */
+    overflow: scroll;
+    /* height: 20%; */
+    width: 365px;
+    height: 600px;
+    background: white;
+    margin: 20px -20px 35px 87px;
+    box-shadow: 11px 13px 18px -8px #999;
+}
+.to-dos-list{
   display: grid;
     /* border: 1px solid; */
     height: 30%;
     overflow: scroll;
     /* height: 20%; */
-    width: 419px;
+    width: 365px;
+    height: 600px;
     background: white;
-    margin: 20px 20px 35px 120px;
+    margin: 20px -20px 35px 105px;
     box-shadow: 11px 13px 18px -8px #999;
 }
 .habits-label{
   text-align: center;
-  font-size: 1.8em;
-  margin: 42px 0px 20px 0px;
+  font-size: 1.5em;
+  margin: 42px -3px 21px 0px;
   color: #a7a5a5;
   /* color: #782F4D; */
 }
@@ -281,7 +299,7 @@ span{
   height: 50px;
   border-radius: 50%;
   position: relative;
-  margin: -42px 10px -13px 337px;
+  margin: -32px 10px -20px 287px;
   border: none;
   background: white;
   box-shadow: 7px 9px 34px -6px #999;
@@ -298,7 +316,7 @@ span{
   margin: 83px 10px 10px 24px;
 }
 .habit-input{
-  width: 230px;
+  width: 202px;
   border: none;
   background: white;
   border-bottom: 2px solid #a7a5a5;
@@ -308,25 +326,28 @@ span{
   border: none;
   background: white;
   font-size: .8em;
-  margin: -40px 10px -11px;
+  margin: -40px -7px -11px;
   color: #a7a5a5;
 }
 p{
   margin-left: 100px;
   margin-top: -29px;
+  margin-right: 30px;
+  margin-bottom: 33px;
+  font-size: .95em;
   color: #5a5959;
   /* margin-left: -230px;
   margin-top: 010px; */
 }
 ul{
-  margin: 31px 10px 20px -60px;
+  margin: 31px 10px 20px -55px;
   list-style: none;
 }
 
 .delete-habit{
   width: 33px;
   height: 24px;
-  margin-left: 18px;
+  margin-left: 7px;
   border: none;
   color: #a7a5a5;
   font-size: .7em;
@@ -350,9 +371,12 @@ ul{
   font-size: 1.4em;
 }
 .progress-bar{
-  width: 350px;
+  /* width: 350px;
   margin-left: 791px;
-  margin-top: -500px;
+  margin-top: -500px; */
+  width: 350px;
+  margin-left: 988px;
+  margin-top: -545px;
 }
 
 
@@ -364,7 +388,35 @@ ul{
 
 .group{
   text-align: center;
+  color: #5a5959;
+  font-size: 2em;
+  margin: 130px 0 90px 0;
 }
+.images-div{
+  display: inline-flex;
+  width: 35%;
+  height: 300px;
+  margin: 10px 457px;
+  box-shadow: 7px 9px 34px -6px #999;
+}
+.group-img{
+  width: 500px;
+  height: 300px;
+}
+.group-ckeck, .checked-filled{
+  width: 47px;
+  margin: 224px 20px 39px 48px;
+}
+.accept{
+  display: flex;
+  margin-top: -73px;
+  margin-left: 112px;
+  /* margin-bottom: 40px; */
+  font-size: 0.9em;
+}
+
+
+
 
 
 /* Personality  Page*/
@@ -420,5 +472,20 @@ form div{
     width: 560px;
     margin-left: 120px;
   }
+  /* .user-navbar{
+    margin-top: 40px;
+    width: 230px;
+    text-align: center;
+    font-size: 2.5em;
+    margin-left: 271px;
+    margin-bottom: -80px
+  }
+  .logout-btn {
+    margin-right: 20px;
+    /* margin: 15px 1096px; */
+    /* color: #5a5959;
+    float: right;
+    font-size: .8em; */ 
+
 }
 
