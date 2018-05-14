@@ -24,25 +24,28 @@ router.put('/:userId', (req, res, next) => {
       let userCategory = user.userCategories.find(category => {
         return category.categoryId === +req.body.categoryId
       })
-      userCategory.XP += +req.body.incrXP
+      userCategory.XP += +req.body.XP
       userCategory.HP += +req.body.HP
-
-      // userCategory.save()
-
-      user.getProgress(+req.body.userXP + req.body.incrXP, user.levelId).then(progress => {
-        res.json(progress)
-      })
-        .then(userCategory.save())//Will it cause issues if it occurs concurrently with res.json? Prob not... But still
+      return userCategory.save()
     })
+    // .then(() => {
+    //   res.end()
+    // })
     .catch(next)
 })
 
 router.put('/levelUp/:userId', (req, res, next) => {
   User.findById(+req.params.userId)
     .then(user => {
+      // const lastMaxXP = user.getLevel().maxXP
       user.levelId++
-      user.save()
+      // const currentMaxXP = user.getLevel().maxXP
+      // user.progress = (user.XP - lastMaxXP) / (currentMaxXP - lastMaxXP)
+      return user.save()
     })
+    // .then(() => {
+    //   res.end()
+    // })
     .catch(next)
 })
 

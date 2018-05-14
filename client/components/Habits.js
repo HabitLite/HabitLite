@@ -59,14 +59,11 @@ class Habits extends React.Component {
             habits.map(habit => {
               return (
                 <li key={habit.id}>
-                  <Checkbox
-                    className="unChecked"
+                  <Checkbox className="unChecked"
                     onClick={this.props.updateUser.bind(
                       this,
                       this.props.userId,
                       habit.categoryId,
-                      this.props.progress,
-                      this.props.userXP,
                       this.props.habitXP
                     )}
                     style={{
@@ -84,7 +81,6 @@ class Habits extends React.Component {
                       this,
                       this.props.userId,
                       habit.categoryId,
-                      this.props.progress,
                       this.props.habitXP
                     )}
                   /> */}
@@ -99,26 +95,36 @@ class Habits extends React.Component {
 }
 
 const mapState = state => {
+  console.log('STATE!!!!!!!', state)
   return {
     userId: state.user.id,
-    userXP: state.user.XP,
-    progress: state.user.progress,
+    level: state.user.level,
+    XP: state.user.XP,
+    HP: state.user.HP,
     categoryId: 1,
     habits: state.habits,
     habitXP: 5
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));
     },
-    updateUser(userId, categoryId, progress, userXP, incrXP, evt) {
+    updateUser(userId, categoryId, XP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
-      if (!evt.target.checked) incrXP = -incrXP;
-      dispatch(update(userId, categoryId, progress, userXP, incrXP))
+      if (evt.target.className === 'checked') {
+        XP = -XP;
+        evt.target.className = 'unChecked';
+      } else if (evt.target.className === 'unChecked') {
+        evt.target.className = 'checked';
+      } else if (evt.target.className === 'unChecked') {
+        evt.target.className = 'checked';
+      }
+      dispatch(update(userId, categoryId, XP));
 
+      console.log('class', evt.target.className);
     }
   };
 };

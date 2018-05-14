@@ -47,9 +47,10 @@ class Categories extends Component {
     //       listOpen: !prevState.listOpen
     //     }))
     // }
-
+    
     render() {
         const categories = this.props.categories;
+        const listOpen = this.state
         console.log('selected categ: ', this.state.selectedCategory)
         return (
             <div className="categories">
@@ -75,11 +76,9 @@ class Categories extends Component {
                     <option>Select a category</option>
                     {
                             categories.map(category => {
-                              if (this.props.userCategories.some(o => {return o.categoryId === category.id})) {
                                 return (
-                                  <option key={category.id} value={category.id}>{category.name}</option>
+                                    <option key={category.id} value={category.id}>{category.name}</option>
                                 )
-                            }
                             })
                         }
                 </select> */}
@@ -90,10 +89,9 @@ class Categories extends Component {
 const mapState = (state) => {
     return {
       categories: state.categories,
-      userCategories: state.user.categories
     }
 }
-
+  
 const mapDispatch = (dispatch) => {
    return {
      getAllCategories: () => {
