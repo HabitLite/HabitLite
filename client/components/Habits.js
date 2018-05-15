@@ -69,8 +69,6 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-    console.log("false habits", toDos)
-    console.log("true habits ", myHabits)
     // const addHPFromIncompleteHabits = () => {
 
     // }
