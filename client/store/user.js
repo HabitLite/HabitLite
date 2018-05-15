@@ -25,6 +25,7 @@ export const me = () => dispatch =>
   axios
     .get('/auth/me')
     .then(res => {
+      console.log("RESDATA**********", res.data)
       dispatch(getUser(res.data || defaultUser));
     })
     .catch(err => console.log(err));
@@ -58,10 +59,12 @@ export const logout = () => dispatch =>
     .catch(err => console.log(err));
 
 export const update = (categoryId, incrXP = 0, HP = 0) => {
+  console.log("TTTTTTTTTTTTTTTTTTTT")
   return dispatch => {
     axios
       .put('/api/xp', { categoryId, incrXP })
       .then(res => {
+        console.log("RESuser!!!!!!!!!!!!!!!!!", res.data)
         dispatch(getUser(res.data))
       })
       .catch(err => console.log(err))
@@ -72,6 +75,7 @@ export const update = (categoryId, incrXP = 0, HP = 0) => {
  * REDUCER
  */
 export default function(state = defaultUser, action) {
+  console.log("USER!!!!!!!!!!!!!!!!!!!!yay", action.user)
   switch (action.type) {
     case GET_USER:
       return action.user;

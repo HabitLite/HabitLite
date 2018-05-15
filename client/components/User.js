@@ -35,6 +35,7 @@ const User = props => {
 
 /* *** CONTAINER *** */
 const mapState = state => {
+  console.log("STATEINUSERIS", state)
   return {
     avatar: state.user.avatar,
     username: state.user.username,
