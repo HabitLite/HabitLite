@@ -14,6 +14,7 @@ const Progress = props => {
 
     return (
       <div >
+        {props.levelledUp ? (<div>Level {props.level + 1}!</div>) : (<div />)}
         <h1 className="total-progress">{props.name}</h1>
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
@@ -53,19 +54,18 @@ const Progress = props => {
  * CONTAINER
  */
 const mapState = (state, ownProps) => {
-  // console.log("STATEINPROGRESSIS", state)
   let progress
   if (ownProps.category) {
-    // console.log("state.user.xp", state.user.xp)
-    // console.log("ownProps.category", ownProps.category)
     progress = state.user.xp ? ((ownProps.category.XP / state.user.xp) * 100) : 0
-    // console.log("PROGRESS IS", progress)
   }
   else {
     progress = state.user.progress
   }
+
   return {
-    progress: progress
+    progress: progress,
+    levelledUp: state.user.levelledUp,
+    level: state.user.level
   }
 }
 
