@@ -41,6 +41,7 @@ class Habits extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const habit = {
+      habitGroup:'Custom',
       description: this.state.description,
       complete: false
     }
