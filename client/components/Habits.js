@@ -69,7 +69,7 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-
+    console.log("PROPS in habits ", this.props)
     return (
       <div className="all-habits-container">
         <div className="habits-list">
@@ -127,7 +127,7 @@ class Habits extends Component {
                 return (
                   <li key={habit.id}>
                     <Checkbox
-                      checked = {habit.complete}
+                      checked={habit.complete}
                       onClick={this.props.update.bind(
                         this,
                         habit,
