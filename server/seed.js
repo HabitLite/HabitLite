@@ -42,7 +42,7 @@ async function seed() {
 
   const userCategories = await Promise.all([
     UserCategory.create({ userId: 4, categoryId: 1, XP: 100, HP: 123 }),
-    UserCategory.create({ userId: 1, categoryId: 1, XP: 1, HP: 234 }),
+    UserCategory.create({ userId: 1, categoryId: 1, XP: 20, HP: 234 }),
     UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 345 }),
     UserCategory.create({ userId: 3, categoryId: 1, XP: 0, HP: 456 }),
     UserCategory.create({ userId: 5, categoryId: 1, XP: 0, HP: 567 }),
