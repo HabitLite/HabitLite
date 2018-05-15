@@ -9,18 +9,31 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-// //Get allCustom habits by categoryId
-// router.get('/:userId/:categoryId', (req, res, next) => {
-//     Habit.findAll({
-//         where: {
-//             categoryId: req.params.categoryId
-//         }
-//     })
-//         .then(habits => res.json(habits))
-//         .catch(next)
-// })
+// Update checked habit to "checked" or "unchecked"
+router.put('/:habitId', (req, res, next) => {
+  UserHabit.findById(req.params.habitId)
+    .then(habit => {
+      habit.complete = req.body.checked;
+      return habit.save();
+    })
+    .then(() =>
+      UserHabit.findAll({
+        where: {
+          userId: req.params.userId
+        },
+        include: [{
+          model: Habit,
+          where: {
+            categoryId: req.params.categoryId
+          }
+        }]
+      })
+    )
+    .then(habits => res.json(habits))
+    .catch(next)
+})
 
-// Get allCustom habits by categoryId WORING BY TANIA 
+// Get allCustom habits by categoryId WORING BY TANIA
 router.get('/:userId/:categoryId', (req, res, next) => {
     UserHabit.findAll({
         where: {
@@ -36,21 +49,6 @@ router.get('/:userId/:categoryId', (req, res, next) => {
         .then(habits => res.json(habits))
         .catch(next)
 })
-// router.get('/:userId/:categoryId', (req, res, next) => {
-//     UserHabit.findAll({
-//         where: {
-//             userId: req.params.userId
-//         }
-//     })
-//         .then(habit =>
-//             Habit.findAll({
-//                 where: {
-//                     id: habit.habitId
-//                 }
-//             }))
-//         .then(personhabit => res.json(personhabit))
-//         .catch(next)
-// })
 
 router.post('/:userId/:categoryId', (req, res, next) => {
     Habit.create({ categoryId: Number(req.params.categoryId), description: req.body.description, habitGroup: req.body.habitGroup })
@@ -81,7 +79,7 @@ router.post('/:userId/:categoryId', (req, res, next) => {
         .catch(next)
 })
 
-//this is supposed to be deleting the habits pby user 
+//this is supposed to be deleting the habits pby user
 
 // router.get(`/:userId/:categoryId`, (req, res, next) => {
 //     Habit.findOne(req.body, {

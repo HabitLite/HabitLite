@@ -47,7 +47,19 @@ export const fetchHabits = (userId, categoryId) => {
       .get(`/api/habits/${userId}/${categoryId}`)
       .then(res => res.data)
       .then(habits => {
-        dispatch(getHabits(habits)); //Something goes wrong after this point
+        dispatch(getHabits(habits));
+      })
+      .catch(console.error);
+  };
+};
+
+export const updateHabit = (habitId, checked) => {
+  return dispatch => {
+    axios
+      .put(`/api/habits/${habitId}`, {checked})
+      .then(res => res.data)
+      .then(habits => {
+        dispatch(getHabits(habits));
       })
       .catch(console.error);
   };
