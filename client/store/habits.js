@@ -33,7 +33,7 @@ export const postHabit = (userId, categoryId, habit) => {
         console.log("INSIDE POST THUNK", res.data)
         return res.data
       })
-      .then(newHabit => {
+      .then((newHabit) => {
         dispatch(addHabit(newHabit))
       })
       .catch(err => console.log(err))

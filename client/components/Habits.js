@@ -13,6 +13,7 @@ class Habits extends Component {
       isClicked: false,
       habit: {},
       description: '',
+      complete: false
 
     }
   }
@@ -43,6 +44,7 @@ class Habits extends Component {
     const habit = {
       habitGroup: "Custom",
       description: this.state.description,
+      complete: false
     }
     const userId = this.props.userId || '';
     const categoryId = this.props.categoryId || '';
@@ -56,14 +58,22 @@ class Habits extends Component {
       isClicked: false,
       habit: {},
       description: '',
+      complete: false
 
     })
   }
 
+
   render() {
     const { habits } = this.props;
+    let toDos = [];
+    let myHabits = []
+    toDos = habits.filter(habit => habit.complete === false)
+    myHabits = habits.filter(habit => habit.complete === true)
     console.log("HABITS .... STATE", this.state)
     console.log("HABITS .... PROPS", this.props)
+    console.log("false habits", toDos)
+    console.log("true habits ", myHabits)
     // const addHPFromIncompleteHabits = () => {
 
     // }
@@ -72,25 +82,26 @@ class Habits extends Component {
 
       <div className="all-habits-container">
         <div className="habits-list">
-          <label className="habits-label">My Habits</label>
+          <label className="habits-label">My To-Dos</label>
           <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
           {this.state.isClicked &&
-                          <div className="input-field-habit">
-                              <form onSubmit={this.handleSubmit}>
-                                  <input
-                                      name="description"
-                                      type="text"
-                                      onChange={this.handleChange}
-                                      value={this.description}
-                                      className="habit-input"
-                                  />
-                                  <button type="submit" className="habit-add">Add</button>
-                              </form>
-                          </div>
+            <div className="input-field-habit">
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  name="description"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.description}
+                  className="habit-input"
+                />
+                <button type="submit" className="habit-add">Add</button>
+              </form>
+            </div>
           }
           <ul>
-            {habits &&
-              habits.map(habit => {
+
+            {toDos &&
+              toDos.map(habit => {
                 return (
                   <li key={habit.id}>
                     <Checkbox
@@ -108,27 +119,18 @@ class Habits extends Component {
                         fill: '#8099a0'
                       }}
                     />
-                    {/* <input
-                      type="checkbox"
-                      className="unChecked"
-                      onClick={this.props.updateUser.bind(
-                        this,
-                        this.props.userId,
-                        habit.categoryId,
-                        this.props.habitXP
-                      )}
-                    /> */}
-                    <p>{habit.description}<button className="delete-habit">X</button></p>
+
+                    <p className="list">{habit.habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
           </ul>
         </div>
         <div className="to-dos-list">
-          <label className="habits-label">My To-Dos</label>
+          <label className="habits-label">My Habits</label>
           <ul>
-            {habits &&
-              habits.map(habit => {
+            {myHabits &&
+              myHabits.map(habit => {
                 return (
                   <li key={habit.id}>
                     <Checkbox
@@ -146,7 +148,7 @@ class Habits extends Component {
                         fill: '#8099a0'
                       }}
                     />
-                    <p>{habit.description}<button className="delete-habit">X</button></p>
+                    <p className="list">{habit.habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
               })}
@@ -184,9 +186,7 @@ const mapDispatch = dispatch => {
     },
     updateUser(categoryId, incrXP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
-      console.log("TARGET", evt)
       if (!evt.target.checked) incrXP = -incrXP;
-      console.log("INCRXP", incrXP)
       dispatch(update(categoryId, incrXP));
 
     }
@@ -195,13 +195,3 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Habits);
 
-// {/*<div className="habits-list">*/}
-//   {/*<label className="habits-label">My Habits</label>*/}
-//   {/*<div className="mdc-switch">*/}
-//     {/*<input type="checkbox" id="basic-switch" className="mdc-switch__native-control" role="switch" />*/}
-//     {/*<div className="mdc-switch__background">*/}
-//       {/*<div className="mdc-switch__knob"></div>*/}
-//     {/*</div>*/}
-//   {/*</div>*/}
-//   {/*<label htmlFor="basic-switch">off/on</label>*/}
-// {/*</div>*/}

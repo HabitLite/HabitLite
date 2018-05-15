@@ -91,9 +91,10 @@ class UserSummary extends Component {
 }
 const mapState = state => {
     return {
-      categories: state.categories,
-      username: state.user.username,
-      userCategories: state.user.userCategories
+        categories: state.categories,
+        username: state.user.username,
+        userCategories: state.user.userCategories,
+        userId: state.user.id
     }
 }
 

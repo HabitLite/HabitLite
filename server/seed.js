@@ -50,12 +50,16 @@ async function seed() {
   ])
 
   const userHabit = await Promise.all([
-    UserHabit.create({ userId: 4, habitId: 13, XP: 100, HP: 123 }),
-    UserHabit.create({ userId: 1, habitId: 14, XP: 1, HP: 234 }),
-    UserHabit.create({ userId: 2, habitId: 1, XP: 0, HP: 345 }),
-    UserHabit.create({ userId: 3, habitId: 2, XP: 0, HP: 456 }),
-    UserHabit.create({ userId: 5, habitId: 3, XP: 0, HP: 567 }),
-    UserHabit.create({ userId: 6, habitId: 4, XP: 0, HP: 678 })
+    UserHabit.create({ userId: 4, habitId: 13, XP: 100, HP: 123, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 14, XP: 1, HP: 234, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 1, XP: 0, HP: 345, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 2, XP: 0, HP: 456, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 3, XP: 0, HP: 567, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 4, XP: 0, HP: 678, complete: false }),
+    UserHabit.create({ userId: 1, habitId: 5, XP: 0, HP: 345, complete: false }),
+    UserHabit.create({ userId: 1, habitId: 6, XP: 0, HP: 456, complete: false }),
+    UserHabit.create({ userId: 5, habitId: 7, XP: 0, HP: 567, complete: false }),
+    UserHabit.create({ userId: 6, habitId: 8, XP: 0, HP: 678, complete: false })
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
