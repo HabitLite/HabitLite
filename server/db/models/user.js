@@ -167,3 +167,13 @@ User.afterFind('updateStats', async user => Object.assign(user, {
     }
   }
 ))
+// console.log("YO")
+// User.afterLoad('updateStats', async user => Object.assign(user, {
+//     stats: {
+//       progress: await user.getProgress(),
+//       level: await user.getLevel(),
+//       xp: await user.getXP(),
+//       hp: await user.getHP()
+//     }
+//   }
+// ))

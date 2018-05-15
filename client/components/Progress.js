@@ -53,6 +53,7 @@ const Progress = props => {
  * CONTAINER
  */
 const mapState = (state, ownProps) => {
+  // console.log("STATEINPROGRESSIS", state)
   let progress
   if (ownProps.category) {
     // console.log("state.user.xp", state.user.xp)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import {fetchAllCategories, fetchHabits} from '../store'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -24,7 +25,7 @@ class Categories extends Component {
     constructor(props){
         super(props)
         this.state = {
-            selectedCategory: '', //category ID
+            selectedCategory: props.categoryId, //category ID
             value: null
         }
         // this.handleChange = this.handleChange.bind(this);
@@ -45,8 +46,8 @@ class Categories extends Component {
                 {/* <SelectField className="select-field"
                     style={styles.customWidth}
                     floatingLabelText="Select a category"
-                    value={this.state.value}
-                    onChange={this.handleChange}
+                    value={this.state.selectedCategory}
+                    onChange={this.props.handleChange.bind(this)}
                     name="selectedCategory"
                     iconStyle={{
                       fill: '#8099a0'
@@ -62,12 +63,15 @@ class Categories extends Component {
                     }
                 </SelectField> */}
                 <select onChange={this.props.handleChange.bind(this)} name="selectedCategory">
-                    {/* <option>Select a category</option> */}
+                     {/* <option>Select a category</option> */}
                     {
                         categories.map(category => {
-                            return (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            )
+                            const userCategory = this.props.userCategories.find(userCat => {return (userCat.categoryId === category.id)})
+                            if (userCategory) {
+                                return (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                )
+                            }
                         })
                     }
                 </select>
@@ -75,9 +79,12 @@ class Categories extends Component {
         )}
     }
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
     return {
       categories: state.categories,
+      categoryId: ownProps.props.match.params.categoryId,
+      userCategories: state.user.userCategories,
+
     }
 }
   
@@ -90,12 +97,13 @@ const mapDispatch = (dispatch, ownProps) => {
         getAllCategories: () => {
             dispatch(fetchAllCategories());
         },
-        handleChange(event) {
-            this.setState({ [event.target.name]: event.target.value })
+        handleChange(event, key) {
+            // console.dir("event!! ",event)
+            // this.setState({ [event.target.name]: event.target.value })
             
-            dispatch(fetchHabits(ownProps.props.match.params.userId, Number(this.state.selectedCategory), ownProps.props.history))
+            dispatch(fetchHabits(ownProps.props.match.params.userId, Number(event.target.value), ownProps.props.history))
            
         }
     }
 }
-export default connect(mapState, mapDispatch)(Categories)
+export default withRouter(connect(mapState, mapDispatch)(Categories))
