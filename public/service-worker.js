@@ -71,18 +71,20 @@ self.addEventListener('fetch', function (e) {
     );
 });
 
-// self.addEventListener("push", event => {
-//   const data = event.data.json()
-//   const { title } = data
+self.onpush = evt => console.log(evt)
 
-//   const body = {
-//     body: data.body,
-//     icon: "/images/calm.png"
-//   }
-//   // self.clients.matchAll().then(clients => {
-//   //   clients.forEach(client => client.postMessage("UPDATING"))
-//   // })
+self.addEventListener("push", event => {
+    const data = event.data.json()
+    const { title } = data
+    console.log("ADD EVENT WORKER", data)
+    const body = {
+        body: data.body,
+        icon: "/images/calm.png"
+    }
+    // self.clients.matchAll().then(clients => {
+    //   clients.forEach(client => client.postMessage("UPDATING"))
+    // })
 
-//   event.waitUntil(self.registration.showNotification(title, body))
-// })
+    event.waitUntil(self.registration.showNotification(title, body))
+})
 

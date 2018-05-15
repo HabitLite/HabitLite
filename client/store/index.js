@@ -16,6 +16,7 @@ const middleware = composeWithDevTools(applyMiddleware(
   createLogger({ collapsed: true })
 ))
 const store = createStore(reducer, middleware)
+window.store = store
 
 export default store
 export * from './user'

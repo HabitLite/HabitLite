@@ -30,7 +30,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/home" className="nav-links">Summary</Link>
           <Link to="/group" className="nav-links">Group</Link>
           <Link to="/resources" className="nav-links">Resources</Link>
-          <a href="#" onClick={handleClick} className="logout-btn">
+          <a href="#" onClick={handleClick} className="nav-links" style={{ marginLeft: "auto" }}>
             Logout
             </a>
         </div>

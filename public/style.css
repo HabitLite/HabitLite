@@ -223,12 +223,7 @@ small{
 /* User Dashboard  --- UserHome.js   ------- >>>>>
 */
 /* navbar */
-.logout-btn{
-  margin: 15px 1096px;
-  color:  #5a5959; 
-  float: right;
-  font-size: .8em;
-}
+
 .main-page{
   /* display: flex; */
   display: block;
