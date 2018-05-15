@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group, Resources } from './index.js'
+import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group, Resources, Recipes } from './index.js'
 
 import { me } from '../store'
 // import { MuiThemeProvider } from 'material-ui/styles/MuiThemeProvider';
@@ -53,7 +53,8 @@ class Main extends Component {
                             {/* Routes placed here are available to all visitors */}
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
-                            <Route path="/personality" component={Personality} />
+                            <Route path="/personality/profile/:userId" component={Personality} />
+
                             {
                                 isLoggedIn &&
                                 <Switch>
@@ -62,7 +63,8 @@ class Main extends Component {
                                     <Route exact path="/home" component={UserSummary} />
                                     <Route exact path="/:userId/:category/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
-                                    <Route exact path="/resources" component={Resources} />
+                                    <Route exact path="/resources" component={Recipes} />
+
 
 
                                 </Switch>
