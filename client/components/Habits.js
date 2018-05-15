@@ -146,16 +146,6 @@ class Habits extends Component {
                         fill: '#8099a0'
                       }}
                     />
-                    {/* <input
-                      type="checkbox"
-                      className="unChecked"
-                      onClick={this.props.updateUser.bind(
-                        this,
-                        this.props.userId,
-                        habit.categoryId,
-                        this.props.habitXP
-                      )}
-                    /> */}
                     <p>{habit.description}<button className="delete-habit">X</button></p>
                   </li>
                 );
@@ -196,6 +186,7 @@ const mapDispatch = dispatch => {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
       console.log("TARGET", evt)
       if (!evt.target.checked) incrXP = -incrXP;
+      console.log("INCRXP", incrXP)
       dispatch(update(categoryId, incrXP));
 
     }
