@@ -4,15 +4,8 @@ const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insigh
 const personality_insights = new PersonalityInsightsV3({
     username: "f1e45bbd-5924-4c78-ac0a-e41848fac157",
     password: "mU0HQ8MBpf2q",
-    version_date: "2017-10-13"
+    version_date: "  "
 });
-
-const PersonalityTextSummaries = require('personality-text-summary');
-const v3EnglishTextSummaries = new PersonalityTextSummaries({
-    locale: 'en',
-    version: 'v3'
-});
-
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -32,18 +25,9 @@ rl.question('Please enter a short paragraph for Watson to analyze...', (text) =>
         if (error)
             console.log('Error:', error);
         else
-            console.log(getTextSummary(response));
-        //console.log(JSON.stringify(response, null, 2));
-    });
+            console.log(JSON.stringify(response, null, 2));
+    }
+    );
 
     rl.close();
 });
-
-const getTextSummary = personalityProfile => {
-    let textSummary = v3EnglishTextSummaries.getSummary(personalityProfile);
-    if (typeof (textSummary) !== 'string') {
-        console.log("Could not get summary.");
-    } else {
-        return textSummary;
-    }
-};

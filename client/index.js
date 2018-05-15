@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import muiThemeable from 'material-ui/styles/muiThemeable';
 // establishes socket connection
 import './socket'
+import register from './registerServiceWorker'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,3 +21,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
+
+register()

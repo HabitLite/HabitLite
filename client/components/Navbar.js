@@ -13,8 +13,8 @@ const divStyle = {
 };
 const navStyle = {
   display: 'inline-flex',
-   marginLeft: '952px',
-   width: '450px'
+  marginLeft: '952px',
+  width: '450px'
 
 }
 
@@ -29,8 +29,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home" className="nav-links">Summary</Link>
           <Link to="/group" className="nav-links">Group</Link>
-          {/* <Link to="/resources" classname="nav-links">Resources</Link> */}
-          <a href="#" onClick={handleClick} className="logout-btn">
+          <Link to="/resources" className="nav-links">Resources</Link>
+          <a href="#" onClick={handleClick} className="nav-links" style={{ marginLeft: "auto" }}>
             Logout
             </a>
         </div>

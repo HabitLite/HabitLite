@@ -26,6 +26,7 @@ class Personality extends Component {
         const insight = this.paragraph
         this.props.postNewPersonality(userId, insight)
         this.setState({ sentences: [] })
+        this.props.history.push('/home')
     }
 
     get paragraph() {
@@ -43,14 +44,16 @@ class Personality extends Component {
         console.log("PROPS ", this.props.match.params.userId)
         const { quiz = defaultquiz } = this.props
         return (
+            // <Link to="/home">
             <form onSubmit={this.handleSubmit} className='form'>
                 {
                     quiz.map((question, idx) => <Question key={question.question} {...question} onChange={this.handleQuestion(idx)} />)
                 }
-                <Link to="/home">
-                    <input type="submit" className="submit-quiz"/>
-                </Link>
+
+                <input type="submit" className="submit-quiz" />
+
             </form>
+            // </Link> 
         )
     }
 }

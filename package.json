@@ -49,6 +49,7 @@
     "sequelize": "^4.3.1",
     "sinon": "^5.0.3",
     "socket.io": "^2.0.3",
+    "url-base64-to-uint8array": "^1.0.0",
     "victory": "^0.26.0",
     "watson-developer-cloud": "^3.4.1"
   },
