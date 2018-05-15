@@ -12,7 +12,8 @@ router.put('/', async (req, res, next) => {
   })
     .then(user => user.reload())
     .then(user => {
-    res.json(user)
+      console.log("USER!!!!!!!!!!!!!!!", user)
+      res.json(user)
     })
 
 })

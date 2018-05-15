@@ -35,14 +35,12 @@ class Habits extends Component {
     this.setState({ isClicked: true })
   }
   handleChange = (event) => {
-    console.log("EVENTSSSSS ", event.target)
     this.setState({ [event.target.name]: event.target.value })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     const habit = {
-      habitGroup: "Custom",
       description: this.state.description,
       complete: false
     }
@@ -70,9 +68,6 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-    console.log("HABITS!!!!!!!!!!!!!!!!", habits)
-    console.log("HABITS .... STATE", this.state)
-    console.log("HABITS .... PROPS", this.props)
     console.log("false habits", toDos)
     console.log("true habits ", myHabits)
     // const addHPFromIncompleteHabits = () => {
@@ -109,7 +104,7 @@ class Habits extends Component {
                       className="unChecked"
                       onClick={this.props.updateUser.bind(
                         this,
-                        habit.categoryId,
+                        habit.habit.categoryId,
                         this.props.habitXP
                       )}
                       style={{
@@ -138,7 +133,7 @@ class Habits extends Component {
                       className="unChecked"
                       onClick={this.props.updateUser.bind(
                         this,
-                        habit.categoryId,
+                        habit.habit.categoryId,
                         this.props.habitXP
                       )}
                       style={{

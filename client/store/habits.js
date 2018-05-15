@@ -7,7 +7,7 @@ import axios from 'axios';
 // const WRITE_CATEGORY_NAME = 'WRITE_CATEGORY_NAME';
 const GET_HABITS = 'GET_HABITS';
 const ADD_HABIT = 'ADD_HABIT';
-const DELETE_HABIT = 'DELETE_HABIT'
+// const DELETE_HABIT = 'DELETE_HABIT'
 
 // ACTION CREATORS
 // export function writeCategoryName (categoryName) {
@@ -17,10 +17,10 @@ const DELETE_HABIT = 'DELETE_HABIT'
 
 const getHabits = habits => ({ type: GET_HABITS, habits });
 
-
-const deleteHabit = habit => {
-  return { type: DELETE_HABIT, habit }
-}
+//
+// const deleteHabit = habit => {
+//   return { type: DELETE_HABIT, habit }
+// }
 
 export function addHabit(habit) {
   return { type: ADD_HABIT, habit }
@@ -30,7 +30,6 @@ export const postHabit = (userId, categoryId, habit) => {
   return dispatch => {
     return axios.post(`/api/habits/${userId}/${categoryId}`, habit)
       .then(res => {
-        console.log("INSIDE POST THUNK", res.data)
         return res.data
       })
       .then((newHabit) => {
@@ -39,7 +38,6 @@ export const postHabit = (userId, categoryId, habit) => {
       .catch(err => console.log(err))
   }
 }
-
 
 
 // THUNK CREATORS
