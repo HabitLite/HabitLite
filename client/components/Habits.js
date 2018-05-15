@@ -69,16 +69,8 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-    // console.log("HABITS .... STATE", this.state)
-    // console.log("HABITS .... PROPS", this.props)
-    // console.log("false habits", toDos)
-    // console.log("true habits ", myHabits)
-    // const addHPFromIncompleteHabits = () => {
-
-    // }
-    // need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
+    
     return (
-
       <div className="all-habits-container">
         <div className="habits-list">
           <label className="habits-label">My To-Dos</label>

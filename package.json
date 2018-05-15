@@ -14,7 +14,7 @@
     "postinstall": "touch secrets.js",
     "seed": "node server/seed.js",
     "start": "node server",
-    "start-dev": "NODE_ENV='development' concurrently \"npm run build-client-watch\" \"npm run start-server\"",
+    "start-dev": "NODE_ENV='development' concurrently \"npm run build-client-watch\" \"npm run start-server\" \"node server/time\"",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha -w ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
@@ -33,6 +33,7 @@
     "jquery": "^3.3.1",
     "material-ui": "^0.20.0",
     "morgan": "^1.8.1",
+    "node-schedule": "^1.3.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "personality-text-summary": "^2.2.0",
