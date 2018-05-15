@@ -58,7 +58,7 @@ export const logout = () => dispatch =>
     })
     .catch(err => console.log(err));
 
-export const update = (categoryId, incrXP = 0, HP = 0) => {
+export const updateUser = (categoryId, incrXP = 0, HP = 0) => {
   console.log("TTTTTTTTTTTTTTTTTTTT")
   return dispatch => {
     axios

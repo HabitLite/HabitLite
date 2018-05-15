@@ -3,7 +3,6 @@ const User = require('../db/models/user')
 module.exports = router
 
 router.put('/', async (req, res, next) => {
-  console.log("TTTTTTTTTTTTTTHHHHHHHHHHHHIS")
   await req.user.addXP(+req.body.categoryId, +req.body.incrXP)
   User.find({
     where: {
@@ -12,7 +11,6 @@ router.put('/', async (req, res, next) => {
   })
     .then(user => user.reload())
     .then(user => {
-      console.log("USER!!!!!!!!!!!!!!!", user)
       res.json(user)
     })
 

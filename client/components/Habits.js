@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { update, fetchHabits } from '../store';
+import { updateUser, fetchHabits, updateHabit } from '../store';
 import { postHabit } from '../store/habits';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -41,7 +41,7 @@ class Habits extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const habit = {
-      habitGroup:'Custom',
+      habitGroup: 'Custom',
       description: this.state.description,
       complete: false
     }
@@ -103,9 +103,11 @@ class Habits extends Component {
                   <li key={habit.id}>
                     <Checkbox
                       className="unChecked"
-                      onClick={this.props.updateUser.bind(
+                      onClick={this.props.update.bind(
                         this,
-                        habit.habit.categoryId,
+                        habit,
+                        this.props.userId,
+                        this.props.categoryId,
                         this.props.habitXP
                       )}
                       style={{
@@ -131,10 +133,12 @@ class Habits extends Component {
                 return (
                   <li key={habit.id}>
                     <Checkbox
-                      className="unChecked"
-                      onClick={this.props.updateUser.bind(
+                      checked = {habit.complete}
+                      onClick={this.props.update.bind(
                         this,
-                        habit.habit.categoryId,
+                        habit,
+                        this.props.userId,
+                        this.props.categoryId,
                         this.props.habitXP
                       )}
                       style={{
@@ -159,7 +163,6 @@ class Habits extends Component {
 }
 
 const mapState = state => {
-  console.log('STATE!!!!!!!', state)
   return {
     userId: state.user.id,
     progress: state.user.progress,
@@ -169,7 +172,6 @@ const mapState = state => {
     categoryId: 1,
     habits: state.habits,
     habitXP: 5,
-
   };
 };
 
@@ -181,13 +183,11 @@ const mapDispatch = dispatch => {
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));
     },
-    updateUser(categoryId, incrXP, evt) {
+    update(userHabit, userId, categoryId, incrXP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
-      console.log("THIS RUNS")
       if (!evt.target.checked) incrXP = -incrXP;
-      console.log("INCRXP", incrXP)
-      dispatch(update(categoryId, incrXP));
-
+      dispatch(updateUser(userHabit.habit.categoryId, incrXP));
+      dispatch(updateHabit(userId, categoryId, userHabit.id, evt.target.checked));
     }
   };
 };
