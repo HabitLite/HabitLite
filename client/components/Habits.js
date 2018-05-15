@@ -69,15 +69,11 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-    // const addHPFromIncompleteHabits = () => {
 
-    // }
-    // need to have logic for HP decreasing upon checkboxes remaining unchecked by 00:00 every day; need to ensure that XP remain unaffected when checklist is reset
     return (
-
       <div className="all-habits-container">
         <div className="habits-list">
-          <label className="habits-label">My To-Dos</label>
+          <label className="habits-label">To-Dos</label>
           <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
           {this.state.isClicked &&
             <div className="input-field-habit">
@@ -93,7 +89,7 @@ class Habits extends Component {
               </form>
             </div>
           }
-          <ul>
+          <ul className="to-does-ul">
 
             {toDos &&
               toDos.map(habit => {
@@ -124,8 +120,8 @@ class Habits extends Component {
           </ul>
         </div>
         <div className="to-dos-list">
-          <label className="habits-label">My Habits</label>
-          <ul>
+          <label className="habits-label">Completed</label>
+          <ul className="my-habits-ul">
             {myHabits &&
               myHabits.map(habit => {
                 return (
@@ -161,6 +157,7 @@ class Habits extends Component {
 }
 
 const mapState = state => {
+  // console.log('STATE!!!!!!!', state)
   return {
     userId: state.user.id,
     progress: state.user.progress,
@@ -183,6 +180,7 @@ const mapDispatch = dispatch => {
     },
     update(userHabit, userId, categoryId, incrXP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
+      // console.log("TARGET", evt)
       if (!evt.target.checked) incrXP = -incrXP;
       dispatch(updateUser(userHabit.habit.categoryId, incrXP));
       dispatch(updateHabit(userId, categoryId, userHabit.id, evt.target.checked));

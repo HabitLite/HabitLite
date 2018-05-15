@@ -30,6 +30,23 @@ form div {
   display: inline-block;
 }
 
+main{
+  /* background-image: url('./images/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left; */
+}
+
+select{
+  width: 320px;
+  height: 35px;
+  margin-top: 95px;
+  margin-left: 108px;
+  margin-bottom: 20px;
+}
+
+
+
 
 .container {
   display: block;
@@ -295,7 +312,7 @@ span{
     overflow: scroll;
     /* height: 20%; */
     width: 365px;
-    height: 600px;
+    height: 500px;
     background: white;
     margin: 20px -20px 35px 87px;
     box-shadow: 11px 13px 18px -8px #999;
@@ -307,7 +324,7 @@ span{
     overflow: scroll;
     /* height: 20%; */
     width: 365px;
-    height: 600px;
+    height: 500px;
     background: white;
     margin: 20px -20px 35px 105px;
     box-shadow: 11px 13px 18px -8px #999;
@@ -315,7 +332,8 @@ span{
 .habits-label{
   text-align: center;
   font-size: 1.5em;
-  margin: 42px -3px 21px 0px;
+  /* margin: 42px -3px 21px 0px; */
+  margin: 42px -3px -97px 0px;
   color: #a7a5a5;
   /* color: #782F4D; */
 }
@@ -324,7 +342,8 @@ span{
   height: 50px;
   border-radius: 50%;
   position: relative;
-  margin: -32px 10px -20px 287px;
+  margin: 23px 10px -107px 287px;
+    /* margin: -32px 10px -20px 287px; */
   border: none;
   background: white;
   box-shadow: 7px 9px 34px -6px #999;
@@ -364,8 +383,12 @@ span{
   /* margin-left: -230px;
   margin-top: 010px; */
 }
-ul{
-  margin: 31px 10px 20px -55px;
+.my-habits-ul{
+  margin: 81px 10px 180px -55px;
+  list-style: none;
+}
+.to-does-ul{
+  margin: 12px 10px 180px -55px;
   list-style: none;
 }
 
