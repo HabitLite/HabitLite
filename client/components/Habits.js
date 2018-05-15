@@ -69,11 +69,11 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-    
+
     return (
       <div className="all-habits-container">
         <div className="habits-list">
-          <label className="habits-label">My To-Dos</label>
+          <label className="habits-label">To-Dos</label>
           <button className="add-habit-btn" onClick={this.onBtnClick}><span className="plus">+</span></button>
           {this.state.isClicked &&
             <div className="input-field-habit">
@@ -120,7 +120,7 @@ class Habits extends Component {
           </ul>
         </div>
         <div className="to-dos-list">
-          <label className="habits-label">My Habits</label>
+          <label className="habits-label">Completed</label>
           <ul className="my-habits-ul">
             {myHabits &&
               myHabits.map(habit => {
