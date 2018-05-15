@@ -53,13 +53,13 @@ const Progress = props => {
  * CONTAINER
  */
 const mapState = (state, ownProps) => {
-  console.log("STATEINPROGRESSIS", state)
+  // console.log("STATEINPROGRESSIS", state)
   let progress
   if (ownProps.category) {
-    console.log("state.user.xp", state.user.xp)
-    console.log("ownProps.category", ownProps.category)
+    // console.log("state.user.xp", state.user.xp)
+    // console.log("ownProps.category", ownProps.category)
     progress = state.user.xp ? ((ownProps.category.XP / state.user.xp) * 100) : 0
-    console.log("PROGRESS IS", progress)
+    // console.log("PROGRESS IS", progress)
   }
   else {
     progress = state.user.progress

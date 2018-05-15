@@ -7,7 +7,7 @@ import { User, Categories, Habits, Progress } from './index'
 
 /* *** COMPONENT *** */
 export const UserHome = (props) => {
-  console.log("!!!!!!!!PROPS in user home ", props)
+  // console.log("!!!!!!!!PROPS in user home ", props)
   return (
     <div className="main-page">
 
