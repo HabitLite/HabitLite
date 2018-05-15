@@ -53,10 +53,10 @@ export const fetchHabits = (userId, categoryId) => {
   };
 };
 
-export const updateHabit = (habitId, checked) => {
+export const updateHabit = (userId, categoryId, habitId, checked) => {
   return dispatch => {
     axios
-      .put(`/api/habits/${habitId}`, {checked})
+      .put(`/api/habits/${habitId}`, {checked, userId, categoryId})
       .then(res => res.data)
       .then(habits => {
         dispatch(getHabits(habits));

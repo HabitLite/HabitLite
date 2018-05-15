@@ -106,6 +106,8 @@ class Habits extends Component {
                       onClick={this.props.update.bind(
                         this,
                         habit,
+                        this.props.userId,
+                        this.props.categoryId,
                         this.props.habitXP
                       )}
                       style={{
@@ -135,6 +137,8 @@ class Habits extends Component {
                       onClick={this.props.update.bind(
                         this,
                         habit,
+                        this.props.userId,
+                        this.props.categoryId,
                         this.props.habitXP
                       )}
                       style={{
@@ -179,11 +183,11 @@ const mapDispatch = dispatch => {
     getHabits(userId, categoryId) {
       dispatch(fetchHabits(userId, categoryId));
     },
-    update(userHabit, incrXP, evt) {
+    update(userHabit, userId, categoryId, incrXP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
       if (!evt.target.checked) incrXP = -incrXP;
       dispatch(updateUser(userHabit.habit.categoryId, incrXP));
-      dispatch(updateHabit(userHabit.id, evt.target.checked));
+      dispatch(updateHabit(userId, categoryId, userHabit.id, evt.target.checked));
     }
   };
 };

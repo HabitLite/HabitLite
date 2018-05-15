@@ -16,20 +16,20 @@ router.put('/:habitId', (req, res, next) => {
       habit.complete = req.body.checked;
       return habit.save();
     })
-    .then(() =>
+    .then(() => {
       UserHabit.findAll({
         where: {
-          userId: req.params.userId
+          userId: req.body.userId
         },
         include: [{
           model: Habit,
           where: {
-            categoryId: req.params.categoryId
+            categoryId: req.body.categoryId
           }
         }]
       })
-    )
-    .then(habits => res.json(habits))
+        .then(habits => res.json(habits))
+    })
     .catch(next)
 })
 
