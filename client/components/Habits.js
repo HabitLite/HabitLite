@@ -70,10 +70,10 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-    console.log("HABITS .... STATE", this.state)
-    console.log("HABITS .... PROPS", this.props)
-    console.log("false habits", toDos)
-    console.log("true habits ", myHabits)
+    // console.log("HABITS .... STATE", this.state)
+    // console.log("HABITS .... PROPS", this.props)
+    // console.log("false habits", toDos)
+    // console.log("true habits ", myHabits)
     // const addHPFromIncompleteHabits = () => {
 
     // }
@@ -163,7 +163,7 @@ class Habits extends Component {
 }
 
 const mapState = state => {
-  console.log('STATE!!!!!!!', state)
+  // console.log('STATE!!!!!!!', state)
   return {
     userId: state.user.id,
     progress: state.user.progress,
@@ -187,7 +187,7 @@ const mapDispatch = dispatch => {
     },
     updateUser(categoryId, incrXP, evt) {
       //make sure class doesn't reset to unchecked every time refresh is hit -- not a problem right now since check doesn't persist anyway
-      console.log("TARGET", evt)
+      // console.log("TARGET", evt)
       if (!evt.target.checked) incrXP = -incrXP;
       dispatch(update(categoryId, incrXP));
 

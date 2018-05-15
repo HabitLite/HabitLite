@@ -30,7 +30,13 @@ form div {
   display: inline-block;
 }
 
+main{
+  /* background-image: url('./images/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left; */
 
+}
 .container {
   display: block;
   position: relative;

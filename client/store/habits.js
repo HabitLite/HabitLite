@@ -43,13 +43,15 @@ export const postHabit = (userId, categoryId, habit) => {
 
 
 // THUNK CREATORS
-export const fetchHabits = (userId, categoryId) => {
+export const fetchHabits = (userId, categoryId, history) => {
   return dispatch => {
     axios
       .get(`/api/habits/${userId}/${categoryId}`)
       .then(res => res.data)
       .then(habits => {
         dispatch(getHabits(habits)); //Something goes wrong after this point
+        // console.log('hist', history)
+        history.push(`/${userId}/${categoryId}`)
       })
       .catch(console.error);
   };
