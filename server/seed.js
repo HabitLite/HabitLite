@@ -7,60 +7,60 @@ async function seed() {
 
 
   const users = await Promise.all([
-    User.create({ email: 'tania@gmail.com', password: '123', username: 'tania', level: 1 }),
-    User.create({ email: 'ginny@gmail.com', password: '123', username: 'ginny', level: 1 }),
-    User.create({ email: 'palina@email.com', password: '123', username: 'palina', level: 1 }),
-    User.create({ email: 'priya@email.com', password: '123', username: 'priya', level: 1 }),
-    User.create({ email: 'cody@email.com', password: '123', username: 'cody', level: 1 }),
-    User.create({ email: 'murphy@email.com', password: '123', username: 'dops', level: 1 })
+    User.create({ id: 1, email: 'tania@gmail.com', password: '123', username: 'tania', level: 1 }),
+    User.create({ id: 2, email: 'ginny@gmail.com', password: '123', username: 'ginny', level: 1 }),
+    User.create({ id: 3, email: 'palina@email.com', password: '123', username: 'palina', level: 1 }),
+    User.create({ id: 4, email: 'priya@email.com', password: '123', username: 'priya', level: 1 }),
+    User.create({ id: 5, email: 'cody@email.com', password: '123', username: 'cody', level: 1 }),
+    User.create({ id: 6, email: 'murphy@email.com', password: '123', username: 'dops', level: 1 })
 
 
   ])
 
   const categories = await Promise.all([
-    Category.create({ name: 'Eat Healthy' }),
-    Category.create({ name: 'Increase Physical Activity' }),
-    Category.create({ name: 'Code more, become a code ninja' })
+    Category.create({ id: 1, name: 'Eat Healthy' }),
+    Category.create({ id: 2, name: 'Increase Physical Activity' }),
+    Category.create({ id: 3, name: 'Code more, become a code ninja' })
   ])
 
   const habits = await Promise.all([
-    Habit.create({ description: 'Eat broccoli', habitGroup: "Default", categoryId: 1, userId: 1 }),
-    Habit.create({ description: 'Avoid Pasta', habitGroup: "Default", categoryId: 1, userId: 2 }),
-    Habit.create({ description: 'Drink water instead of soda', habitGroup: "Default", categoryId: 1, userId: 3 }),
-    Habit.create({ description: 'Eat more snacks', habitGroup: "Default", categoryId: 1, userId: 4 }),
-    Habit.create({ description: 'Do Yoga', habitGroup: "Default", categoryId: 2, userId: 1 }),
-    Habit.create({ description: 'Do 10 situps', habitGroup: "Default", categoryId: 2, userId: 2 }),
-    Habit.create({ description: 'Do a tech talk', habitGroup: "Default", categoryId: 3, userId: 2 }),
-    Habit.create({ description: 'Complete 10k codewars', habitGroup: "Default", categoryId: 3, userId: 4 }),
-    Habit.create({ description: 'Eat a new vegetabe today', habitGroup: "ChallengeD", categoryId: 1 }),
-    Habit.create({ description: 'Complete a eating rockstar challenge', habitGroup: "ChallengeD", categoryId: 1 }),
-    Habit.create({ description: 'Cook and share a meal for a loved one', habitGroup: "LoveD", categoryId: 1 }),
-    Habit.create({ description: 'Trade a new healthy recipe in community forum', habitGroup: "LoveD", categoryId: 1 }),
-    Habit.create({ description: 'Eat a hearty breakfast', habitGroup: "StructureD", categoryId: 1 }),
-    Habit.create({ description: 'Have 5 small meals instead of 3 big meals today', habitGroup: "StructureD", categoryId: 1 })
+    Habit.create({ id: 1, description: 'Eat broccoli', habitGroup: "Default", categoryId: 1, userId: 1 }),
+    Habit.create({ id: 2, description: 'Avoid Pasta', habitGroup: "Default", categoryId: 1, userId: 2 }),
+    Habit.create({ id: 3, description: 'Drink water instead of soda', habitGroup: "Default", categoryId: 1, userId: 3 }),
+    Habit.create({ id: 4, description: 'Eat more snacks', habitGroup: "Default", categoryId: 1, userId: 4 }),
+    Habit.create({ id: 5, description: 'Do Yoga', habitGroup: "Default", categoryId: 2, userId: 1 }),
+    Habit.create({ id: 6, description: 'Do 10 situps', habitGroup: "Default", categoryId: 2, userId: 2 }),
+    Habit.create({ id: 7, description: 'Do a tech talk', habitGroup: "Default", categoryId: 3, userId: 2 }),
+    Habit.create({ id: 8, description: 'Complete 10k codewars', habitGroup: "Default", categoryId: 3, userId: 4 }),
+    Habit.create({ id: 9, description: 'Eat a new vegetabe today', habitGroup: "ChallengeD", categoryId: 1 }),
+    Habit.create({ id: 10, description: 'Complete a eating rockstar challenge', habitGroup: "ChallengeD", categoryId: 1 }),
+    Habit.create({ id: 11, description: 'Cook and share a meal for a loved one', habitGroup: "LoveD", categoryId: 1 }),
+    Habit.create({ id: 12, description: 'Trade a new healthy recipe in community forum', habitGroup: "LoveD", categoryId: 1 }),
+    Habit.create({ id: 13, description: 'Eat a hearty breakfast', habitGroup: "StructureD", categoryId: 1 }),
+    Habit.create({ id: 14, description: 'Have 5 small meals instead of 3 big meals today', habitGroup: "StructureD", categoryId: 1 })
   ])
 
   const userCategories = await Promise.all([
-    UserCategory.create({ userId: 4, categoryId: 1, XP: 5, HP: 123 }),
-    UserCategory.create({ userId: 1, categoryId: 1, XP: 20, HP: 234 }),
-    UserCategory.create({ userId: 1, categoryId: 2, XP: 0, HP: 134 }),
-    UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 345 }),
-    UserCategory.create({ userId: 3, categoryId: 1, XP: 0, HP: 456 }),
-    UserCategory.create({ userId: 5, categoryId: 1, XP: 0, HP: 567 }),
-    UserCategory.create({ userId: 6, categoryId: 1, XP: 0, HP: 678 })
+    UserCategory.create({ id: 1, userId: 4, categoryId: 1, XP: 5, HP: 123 }),
+    UserCategory.create({ id: 2, userId: 1, categoryId: 1, XP: 20, HP: 234 }),
+    UserCategory.create({ id: 3, userId: 1, categoryId: 2, XP: 0, HP: 134 }),
+    UserCategory.create({ id: 4, userId: 2, categoryId: 1, XP: 0, HP: 345 }),
+    UserCategory.create({ id: 5, userId: 3, categoryId: 1, XP: 0, HP: 456 }),
+    UserCategory.create({ id: 6, userId: 5, categoryId: 1, XP: 0, HP: 567 }),
+    UserCategory.create({ id: 7, userId: 6, categoryId: 1, XP: 0, HP: 678 })
   ])
 
   const userHabit = await Promise.all([
-    UserHabit.create({ userId: 4, habitId: 13, XP: 5, HP: 123, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 14, XP: 5, HP: 234, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 1, XP: 5, HP: 345, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 2, XP: 5, HP: 456, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 3, XP: 5, HP: 567, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 4, XP: 5, HP: 678, complete: false }),
-    UserHabit.create({ userId: 1, habitId: 5, XP: 5, HP: 345, complete: false }),
-    UserHabit.create({ userId: 1, habitId: 6, XP: 5, HP: 456, complete: false }),
-    UserHabit.create({ userId: 5, habitId: 7, XP: 5, HP: 567, complete: false }),
-    UserHabit.create({ userId: 6, habitId: 8, XP: 5, HP: 678, complete: false })
+    UserHabit.create({ id: 1, userId: 4, habitId: 13, XP: 5, HP: 123, complete: true }),
+    UserHabit.create({ id: 2, userId: 1, habitId: 14, XP: 5, HP: 234, complete: true }),
+    UserHabit.create({ id: 3, userId: 1, habitId: 1, XP: 5, HP: 345, complete: true }),
+    UserHabit.create({ id: 4, userId: 1, habitId: 2, XP: 5, HP: 456, complete: true }),
+    UserHabit.create({ id: 5, userId: 1, habitId: 3, XP: 5, HP: 567, complete: true }),
+    UserHabit.create({ id: 6, userId: 1, habitId: 4, XP: 5, HP: 678, complete: false }),
+    UserHabit.create({ id: 7, userId: 1, habitId: 5, XP: 5, HP: 345, complete: false }),
+    UserHabit.create({ id: 8, userId: 1, habitId: 6, XP: 5, HP: 456, complete: false }),
+    UserHabit.create({ id: 9, userId: 5, habitId: 7, XP: 5, HP: 567, complete: false }),
+    UserHabit.create({ id: 10, userId: 6, habitId: 8, XP: 5, HP: 678, complete: false })
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
