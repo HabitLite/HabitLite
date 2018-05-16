@@ -169,7 +169,7 @@ const mapState = state => {
     HP: state.user.HP,
     categoryId: 1,
     habits: state.habits,
-    habitXP: 5,
+    habitXP: 5
   };
 };
 
