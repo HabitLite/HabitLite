@@ -13,9 +13,9 @@ const divStyle = {
 };
 const navStyle = {
   display: 'inline-flex',
-  marginLeft: '1014px',
+  marginLeft: '67%',
   width: '450px',
-  fontSize: '1.3em'
+  fontSize: '1.7em'
 
 }
 

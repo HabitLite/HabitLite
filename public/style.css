@@ -9,6 +9,7 @@ a {
 
 label {
   display: block;
+  margin-top: 10px;
 }
 nav{
   /* display: inline-flex; */
@@ -65,13 +66,21 @@ select{
 /* Login / Sing Up Page   ------- >>>>> */
 /* App.js */
 .login-page-container{
-  display: inline-flex;
+  /* display: inline-flex;
   background-image: url('./images/back3.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
   height: 600px; 
-  width: 1350px;
+  width: 1350px; */
+  display: inline-flex;
+    background-image: url(./images/back3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    height: 700px;
+    width: 1650px;
+    margin-left: 100px;
 }
 .login-welcome{
   margin-left: 40px;
@@ -80,8 +89,8 @@ select{
   margin-right: -95px; */
 }
 .login-page-text{
-  margin-left: 150px;
-  margin-top: 105px;
+  margin-left: 223px;
+  margin-top: 81px;
   color: #5a5959;
 }
 .login-paragraph{
@@ -90,9 +99,9 @@ select{
 .login-form{
   display: inline-block;
   height: 500px;
-  width: 430px;
-  margin-top: 40px;
-  margin-left: 15%;
+  width: 400px;
+  margin-top: 99px;
+  margin-left: 20%;
   margin-bottom: 90px;
   /* border: 1px solid; */
   box-shadow: 7px 9px 34px -6px #999;
@@ -107,7 +116,7 @@ select{
   margin-left: 580px;
 }
 .form-fields{
-  margin: 85px 0px 0px 18px;
+  margin: 85px 0px 0px 14px;
 }
 .form-user-name{
   margin: 10px 0 10px 0;
@@ -131,7 +140,7 @@ small{
 .login-btn{
   width: 198px;
   height: 48px;
-  margin: 64px 98px;
+  margin: 77px 87px;
   border: none;
   font-size: 1em;
   color: #5a5959;
@@ -142,6 +151,7 @@ small{
 }
 .login-btn:hover{
   background: #8099a0;
+  color: white;
 }
 
 
@@ -366,7 +376,7 @@ span{
 .habit-input{
   width: 202px;
   border: none;
-  background: white;
+  background: #f5f5f4;
   border-bottom: 2px solid #a7a5a5;
 }
 
@@ -432,9 +442,44 @@ span{
 }
 
 
+/* .habit-input{
+  background: 
+} */
+.recipes-btn{
+  width: 90px;
+  height: 30px;
+  margin: 7px -82px 0px 38px;
+  color: #5a5959;
+  background: #f5f5f4;
+  border: 1px solid #8099a0;
+  background-color: transparent;
+  transition: all 0.3s ease 0s;
+}
+.recipes-btn:hover{
+  background: #8099a0;
+  color: white;
+}
+.recipes-container{
+  display: flex;
+  justify-content: center;
+}
+.recipes{
+  display: -webkit-inline-box;
+    /* order: 1; */
+    margin: 250px 50px 40px 690px;
+}
+.photo-constainer{
+  display: flex;
+  flex-direction: unset;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 450px;
+  margin-left: -652px;
+  margin-right: 415px;
+}
+.photo-list{
 
-
-
+}
 
 /* Group Page   ------- >>>>>  */
 
@@ -446,9 +491,9 @@ span{
 }
 .images-div{
   display: inline-flex;
-  width: 35%;
+  width: 26%;
   height: 300px;
-  margin: 10px 457px;
+  margin: 10px 704px;
   box-shadow: 7px 9px 34px -6px #999;
 }
 .group-img{
