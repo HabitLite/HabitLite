@@ -47,3 +47,15 @@ router.get('/', (req, res, next) => {
     .catch(next);
 })
 
+router.get('/:userId', (req, res, next) => {
+  UserCategory.findAll({
+    where: {
+      userId: req.params.userId
+    },
+    include: [{
+      model: Category,
+    }]
+  })
+    .then(categories => res.send(categories))
+    .catch(next);
+})

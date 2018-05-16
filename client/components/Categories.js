@@ -38,9 +38,8 @@ class Categories extends Component {
     render() {
         const categories = this.props.categories;
         const listOpen = this.props
-        // console.log('State: ', listOpen)
         // console.log('selected categ: ', this.state.selectedCategory)
-        // console.log("props ", this.props)
+        console.log("props user ID", this.props.user)
         return (
             <div className="categories">
                 {/* <SelectField className="select-field"
@@ -84,7 +83,6 @@ const mapState = (state, ownProps) => {
       categories: state.categories,
       categoryId: ownProps.props.match.params.categoryId,
       userCategories: state.user.userCategories,
-
     }
 }
   
