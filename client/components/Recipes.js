@@ -38,8 +38,8 @@ class Recipes extends Component {
 
 
         return (
-            <div>
-                <span>
+            <div className="recipes-container">
+                <span className="recipes">
                     <h3>Get inspired:  </h3>
                     {/* <div className="input-field-habit"> */}
                     <form onSubmit={this.handleSubmit}>
@@ -50,21 +50,23 @@ class Recipes extends Component {
                             value={this.tags}
                             className="habit-input"
                         />
-                        <button type="submit">Search</button>
+                        <button type="submit" className="recipes-btn">Search</button>
                     </form>
                     {/* </div> */}
                 </span>
-                {recipeList.map((recipe, idx) => {
-                    return (
-                        <span key={idx}>
-                            <h2>{recipe.label}</h2>
-                            <Link to={`${recipe.shareAs}`}>
-                                <img key={idx} src={recipe.image} />
-                            </Link>
-                        </span>
-                    )
-                })
-                }
+                <div className="photo-constainer">
+                    {recipeList.map((recipe, idx) => {
+                        return (
+                            <div key={idx} className="photo-list">
+                                <h2>{recipe.label}</h2>
+                                <Link to={`${recipe.shareAs}`}>
+                                    <img key={idx} src={recipe.image} />
+                                </Link>
+                            </div>
+                        )
+                    })
+                    }
+                </div>
             </div>
         )
     }
