@@ -61,6 +61,7 @@ const mapState = (state, ownProps) => {
   else {
     progress = state.user.progress
   }
+
   return {
     progress: progress,
     levelledUp: state.user.levelledUp,

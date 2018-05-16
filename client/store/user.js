@@ -72,6 +72,7 @@ export const updateUser = (categoryId, incrXP = 0, HP = 0) => {
  * REDUCER
  */
 export default function(state = defaultUser, action) {
+
   switch (action.type) {
     case GET_USER:
       return {

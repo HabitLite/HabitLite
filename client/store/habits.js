@@ -1,7 +1,7 @@
 'use strict';
 
 import axios from 'axios';
-// import history from '../history'
+import history from '../history'
 
 // ACTION TYPES
 // const WRITE_CATEGORY_NAME = 'WRITE_CATEGORY_NAME';
@@ -48,7 +48,10 @@ export const fetchHabits = (userId, categoryId) => {
       .then(res => res.data)
       .then(habits => {
         dispatch(getHabits(habits));
+        history.push(`/${userId}/${categoryId}`)
+        // console.log('log!!!', categoryId)
       })
+      
       .catch(console.error);
   };
 };
