@@ -41,8 +41,8 @@ export const auth = (
       res => {
         dispatch(getUser(res.data, false));
         console.log('RESULTS FROM FREAKING THUNK ME', res.data)
-        history.push('/home');
-        // history.push(`/personality/profile/${userId}`);
+        // history.push('/home');
+        history.push('/personality/profile/1');
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
