@@ -16,5 +16,6 @@ export { default as Group } from './Group'
 export { default as Personality } from './Personality'
 export { default as Resources } from './Resources'
 export { default as Recipes } from './Recipes'
+export { default as Challenges } from './Challenges'
 
 

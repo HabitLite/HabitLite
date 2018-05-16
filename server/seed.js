@@ -32,12 +32,12 @@ async function seed() {
     Habit.create({ description: 'Do 10 situps', habitGroup: "Default", categoryId: 2, userId: 2 }),
     Habit.create({ description: 'Do a tech talk', habitGroup: "Default", categoryId: 3, userId: 2 }),
     Habit.create({ description: 'Complete 10k codewars', habitGroup: "Default", categoryId: 3, userId: 4 }),
-    Habit.create({ description: 'Eat a new vegetabe today', habitGroup: "ChallengeD", categoryId: 1 }),
-    Habit.create({ description: 'Complete a eating rockstar challenge', habitGroup: "ChallengeD", categoryId: 1 }),
-    Habit.create({ description: 'Cook and share a meal for a loved one', habitGroup: "LoveD", categoryId: 1 }),
+    Habit.create({ description: 'Eat a new vegetable today', habitGroup: "ChallengeD", categoryId: 1 }),
+    Habit.create({ description: 'Complete a Healthy Eating Challenge', habitGroup: "ChallengeD", categoryId: 1 }),
+    Habit.create({ description: 'Cook and share a meal with a loved one', habitGroup: "LoveD", categoryId: 1 }),
     Habit.create({ description: 'Trade a new healthy recipe in community forum', habitGroup: "LoveD", categoryId: 1 }),
     Habit.create({ description: 'Eat a hearty breakfast', habitGroup: "StructureD", categoryId: 1 }),
-    Habit.create({ description: 'Have 5 small meals instead of 3 big meals today', habitGroup: "StructureD", categoryId: 1 })
+    Habit.create({ description: 'Have 5 small meals every 2 hours', habitGroup: "StructureD", categoryId: 1 })
   ])
 
   const userCategories = await Promise.all([
@@ -58,6 +58,8 @@ async function seed() {
     UserHabit.create({ userId: 1, habitId: 3, XP: 5, HP: 567, complete: true }),
     UserHabit.create({ userId: 1, habitId: 4, XP: 5, HP: 678, complete: false }),
     UserHabit.create({ userId: 1, habitId: 5, XP: 5, HP: 345, complete: false }),
+    UserHabit.create({ userId: 1, habitId: 9, XP: 5, HP: 345, complete: false }),
+    UserHabit.create({ userId: 1, habitId: 10, XP: 5, HP: 345, complete: false }),
     UserHabit.create({ userId: 1, habitId: 6, XP: 5, HP: 456, complete: false }),
     UserHabit.create({ userId: 5, habitId: 7, XP: 5, HP: 567, complete: false }),
     UserHabit.create({ userId: 6, habitId: 8, XP: 5, HP: 678, complete: false })

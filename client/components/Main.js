@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BroserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group, Resources, Recipes } from './index.js'
+import { Login, Signup, UserHome, UserSummary, Personality, Navbar, Group, Resources, Recipes, Challenges } from './index.js'
 import { me } from '../store'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { withStyles } from 'material-ui/styles';
@@ -45,6 +45,7 @@ class Main extends Component {
                                     <Route exact path="/:userId/:categoryId/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
                                     <Route exact path="/resources" component={Recipes} />
+                                    <Route exact path="/challenges" component={Challenges} />
                                 </Switch>
                             }
                             {/* Displays our Login component as a fallback */}
