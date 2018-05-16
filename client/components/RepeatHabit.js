@@ -16,27 +16,28 @@ export class RepeatHabit extends React.Component {
   };
 
   setIntervalOption = option => {
+    let today = new Date();
     switch (option) {
       case 'daily':
-        return;
+        return {
+          hour: today.getHours(),
+          minute: today.getMinutes()
+        };
       case 'weekly':
-        return;
+        return {
+          dayOfWeek: today.getDay()
+        };
       case 'monthly':
-        return;
+        return {
+          month: today.getDate()
+        };
       default:
-        return;
+        return null;
     }
   };
 
-  handleChange = () => {
-    // schedule.scheduleJob(
-    //   {
-    //     hour: 14, // need func to generate these nums from selection form?
-    //     minute: 30,
-    //     dayOfWeek: 0
-    //   },
-    //   resetHabit
-    // );
+  handleChange = event => {
+    schedule.scheduleJob(setIntervalOption(event.target.value), resetHabit);
   };
 
   render() {
