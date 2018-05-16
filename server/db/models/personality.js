@@ -9,6 +9,9 @@ const Personality = db.define('personality', {
     habitGroup: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    analysis: {
+        type: Sequelize.TEXT
     }
 })
 

@@ -12,6 +12,7 @@ class Habits extends Component {
 
       isClicked: false,
       habit: {},
+      habitGroup: "Custom",
       description: '',
       complete: false
 
@@ -20,17 +21,6 @@ class Habits extends Component {
   componentDidMount() {
     this.props.getHabits(this.props.userId, this.props.categoryId);
   }
-
-  // componentDidUpdate() {
-  //   this.props.getHabits(this.props.userId, this.props.categoryId);
-  // }
-  // componentWillUpdate() {
-  //   this.props.getHabits(this.props.userId, this.props.categoryId);
-  // }
-  // shouldComponentUpdate(nextState) {
-  //   return nextState !== this.state
-  // }
-
   onBtnClick = () => {
     this.setState({ isClicked: true })
   }
