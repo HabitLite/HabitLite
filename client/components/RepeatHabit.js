@@ -15,6 +15,19 @@ export class RepeatHabit extends React.Component {
     });
   };
 
+  setIntervalOption = option => {
+    switch (option) {
+      case 'daily':
+        return;
+      case 'weekly':
+        return;
+      case 'monthly':
+        return;
+      default:
+        return;
+    }
+  };
+
   handleChange = () => {
     // schedule.scheduleJob(
     //   {
