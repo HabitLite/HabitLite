@@ -2,11 +2,15 @@ import axios from 'axios';
 
 //ACTION TYPES
 const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
+const GET_USER_CATEGORIES = 'GET_USER_CATEGORIES'
 const ADD_CATEGORY = 'ADD_CATEGORY'
 
 //ACTION CREATORS
 export function getAllCategories(categories) {
   return { type: GET_ALL_CATEGORIES, categories }
+}
+export function getUserCategories(allUserCategories) {
+  return { type: GET_USER_CATEGORIES, allUserCategories }
 }
 export function addCategory(category) {
   return { type: ADD_CATEGORY, category }
@@ -22,6 +26,20 @@ export const fetchAllCategories = () => {
       })
       .then(categories => {
         dispatch(getAllCategories(categories))
+      })
+      .catch(console.error);
+  }
+}
+
+export const fetchUserCategories = (userId) => {
+  return dispatch => {
+    axios.get(`/api/categories/${userId}`)
+      .then(res => {
+        // console.log("Getting categories", res.data)
+        return res.data
+      })
+      .then(categories => {
+        dispatch(getUserCategories(categories))
       })
       .catch(console.error);
   }
@@ -51,6 +69,8 @@ export default function reducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_CATEGORIES:
       return action.categories
+    case GET_USER_CATEGORIES:
+      return action.allUserCategories
     case ADD_CATEGORY:
       return [...state, action.category]
     default:
