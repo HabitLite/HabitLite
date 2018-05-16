@@ -175,8 +175,8 @@ small{
   height: 50px;
   border-radius: 50%;
   position: absolute;
-  margin: -184px 10px 30px 1155px;
-  background: #f5f5f4;
+  margin: -59px 10px 30px 1593px;
+    background: #f5f5f4;
   border: none;
   box-shadow: 7px 9px 34px -6px #999;
   /* box-shadow: 11px 13px 18px -8px #999; */
@@ -477,9 +477,26 @@ span{
   margin-left: -652px;
   margin-right: 415px;
 }
-.photo-list{
 
+.radio{
+  width: 450px;
 }
+
+.watson{
+  margin-top: 150px;
+    margin-left: 254px;
+    font-size: 1.5em;
+    color: #a7a5a5;
+}
+.watson-paragraph{
+  margin: 10px 182px 10px 0px;
+  font-size: 0.6em;
+  color: #5a5959;
+}
+
+
+
+
 
 /* Group Page   ------- >>>>>  */
 
@@ -522,8 +539,8 @@ span{
   width: 40%;
 }
 .form{
-  margin-top: 250px;
-    /* margin-left: 500px; */
+  margin-top: 150px;
+      /* margin-left: 500px; */
     /* margin: auto; */
     text-align: center;
   text-align: center;
@@ -534,9 +551,16 @@ form div{
 
 .submit-quiz{
   border: none;
-  font-size: 1.2em;
+    font-size: 1.2em;
+    margin-left: 809px;
+    margin-right: 1453px;
+    margin-top: 120px;
 }
-
+.quiz-header{
+  margin-top: 250px;
+  text-align: center;
+  font-size: 2.5em;
+}
 /* Responsive    ------- >>>>> */
 @media screen and (max-width:580px) {
   /* form */
