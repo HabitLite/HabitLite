@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Progress } from './index'
 import { fetchAllCategories, postCategory } from '../store/categories'
+import { fetchPersonality } from '../store/personality'
 import { me } from '../store'
 
 const divStyle = {
@@ -17,7 +18,8 @@ class UserSummary extends Component {
             name: '',
             isClicked: false,
             username: '',
-            userId: ''
+            userId: '',
+
         }
     }
     onBtnClick = () => {
@@ -36,18 +38,30 @@ class UserSummary extends Component {
     }
     componentDidMount() {
         this.props.getAllCategories();
-        this.props.loadInitialData()
+        this.props.loadInitialData();
+        const userId = this.props.user.id
+        this.props.getUserPersonality(userId);
     }
 
     render() {
 
         const categories = this.props.categories
         const username = this.props.username || ''
+        const personality = this.props.personality
         console.log("STATE IN USER SUMMARY", this.state)
+        console.log("props IN USER SUMMARY", this.props)
+        console.log("at0", personality[0])
 
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
+
+                <div>
+                    <h4>IBM Watson Personality Insight: </h4>
+                    <h5>
+                        {personality[0] ? personality[0].analysis : null}
+                    </h5>
+                </div>
                 <div className="container-progress">
                     {
                         categories.map(category => {
@@ -96,7 +110,8 @@ const mapState = state => {
         username: state.user.username,
         userCategories: state.user.userCategories,
         user: state.user,
-        userId: state.user.id
+        userId: state.user.id,
+        personality: state.personality || ''
     }
 }
 const mapDispatch = dispatch => {
@@ -109,6 +124,9 @@ const mapDispatch = dispatch => {
         },
         postNewCategory: (userId, name) => {
             dispatch(postCategory(userId, name))
+        },
+        getUserPersonality: (userId) => {
+            dispatch(fetchPersonality(userId))
         }
     }
 }
