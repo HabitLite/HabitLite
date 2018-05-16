@@ -33,14 +33,15 @@ class Main extends Component {
                             {/* Routes placed here are available to all visitors */}
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
-                            <Route path="/personality/profile/:userId" component={Personality} />
-                            {/* </div> */}
+
+
                             {
                                 isLoggedIn &&
                                 <Switch>
                                     {/* Routes placed here are only available after logging in */}
                                     {/* <Route path="/home" component={UserHome} /> */}
-                                    <Route exact path="/home/" component={UserSummary} />
+                                    <Route path="/personality/profile/:userId" component={Personality} />
+                                    <Route exact path="/home" component={UserSummary} />
                                     <Route exact path="/:userId/:categoryId/" component={UserHome} />
                                     <Route exact path="/group" component={Group} />
                                     <Route exact path="/resources" component={Recipes} />

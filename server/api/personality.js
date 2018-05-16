@@ -32,33 +32,12 @@ module.exports = router
 const getTextSummary = personalityProfile => {
     let textSummary = v3EnglishTextSummaries.getSummary(personalityProfile);
     if (typeof (textSummary) !== 'string') {
-        console.log("Could not get summary.");
+        console.log("Could not get summary.")
     } else {
         return textSummary;
     }
-};
-// personality_insights.profile(params, function (error, response) {
-//     if (error)
-//         console.log('Error:', error);
-//     else
-//         console.log(getTextSummary(response));
-//     //console.log(JSON.stringify(response, null, 2));
-// });
-
-const personalityResult = (insight) => {
-    personalityInsights.profile({
-        content: insight, content_type: 'text/plain',
-        raw_scores: true,
-        consumption_preferences: true
-    }, function (error, response) {
-        if (error)
-            console.log('Error:', error);
-        else {
-            console.log("IM IN ", getTextSummary(response));
-            return getTextSummary(response)
-        }
-    })
 }
+
 ////This is the route trying to incorporate with above 
 
 
@@ -71,28 +50,41 @@ router.put('/profile/:userId', (req, res, next) => {
             defaults: {
                 insight: req.body.insight,
                 habitGroup: "DC",
-                // analysis: personalityResult(req.body.insight)
             }
         })
         .then(profile => {
-            Personality.update({
-                where: {
-                    userId: Number(req.params.userId)
-                },
-                defaults: {
-                    analysis: personalityResult(profile.insight)
+            console.log("TEST!!!!! inside PUT route", profile[0].dataValues.insight)
+            const insight = profile[0].dataValues.insight
+            personalityInsights.profile({
+                text: insight
+            }, function (error, response) {
+                if (error)
+                    console.log('Error:', error);
+                else {
+                    console.log("IM IN ", getTextSummary(response));
+                    const analysis = getTextSummary(response)
+
+                    return Personality.update({
+                        analysis: analysis
+                    },
+                        {
+                            where: { userId: Number(req.params.userId) },
+                            returning: true,
+                            plain: true
+                        })
+
+                        .then(results => res.json(results))
+                        .catch(next)
                 }
-            })
+            }
+            )
+
+
         })
-        .then(latest => res.json(latest))
-        .catch(next)
 })
-//         .then(profile => res.status(201).json(profile))
-//         .catch(next)
-// 
 
 
-//This by itself is working to get wtson 
+//This by itself is working to get watson 
 // router.post('/profile', (req, res, next) => {
 
 //     const insight = req.body.insight;
@@ -131,8 +123,3 @@ router.get('/profile/:userId', (req, res, next) => {
         .then(personality => res.json(personality))
         .catch(next)
 })
-
-
-
-
-

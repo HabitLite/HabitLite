@@ -32,21 +32,24 @@ export const me = () => dispatch =>
 export const auth = (
   email,
   password,
-  method //Can make shorter
+  method, //Can make shorter
+  // userId
 ) => dispatch =>
-  axios
-    .post(`/auth/${method}`, { email, password })
-    .then(
+    axios
+      .post(`/auth/${method}`, { email, password })
+      .then(
       res => {
         dispatch(getUser(res.data, false));
+        console.log('RESULTS FROM FREAKING THUNK ME', res.data)
         history.push('/home');
+        // history.push(`/personality/profile/${userId}`);
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({ error: authError }));
       }
-    )
-    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+      )
+      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const logout = () => dispatch =>
   axios
@@ -71,13 +74,14 @@ export const updateUser = (categoryId, incrXP = 0, HP = 0) => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
 
   switch (action.type) {
     case GET_USER:
       return {
         ...action.user,
-        levelledUp: action.levelledUp};
+        levelledUp: action.levelledUp
+      };
     case REMOVE_USER:
       return {};
     default:

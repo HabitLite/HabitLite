@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Progress } from './index'
 import { fetchAllCategories, postCategory, fetchUserCategories } from '../store/categories'
+import { fetchPersonality } from '../store/personality'
 import { me } from '../store'
 
 const divStyle = {
@@ -17,7 +18,8 @@ class UserSummary extends Component {
             name: '',
             isClicked: false,
             username: '',
-            userId: ''
+            userId: '',
+
         }
     }
     onBtnClick = () => {
@@ -38,6 +40,9 @@ class UserSummary extends Component {
         const userId = this.props.user.id
         // console.log("this.props.user", this.props.user.id)
         this.props.getAllCategories();
+        this.props.loadInitialData();
+
+        this.props.getUserPersonality(userId);
         this.props.getUserCategories(userId);
         this.props.loadInitialData()
     }
@@ -46,32 +51,39 @@ class UserSummary extends Component {
 
         const categories = this.props.categories
         const username = this.props.username || ''
-        console.log("STATE IN USER SUMMARY", this.state)        
-        console.log('allUserCategories ', this.props.categories)
-        console.log('user Cater' , this.props.userCategories)
-
+        const personality = this.props.personality
+        console.log("STATE IN USER SUMMARY", this.state)
+        console.log("props IN USER SUMMARY", this.props)
+        console.log("at0", personality[0])
 
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
+
+                <div>
+                    <h4>IBM Watson Personality Insight: </h4>
+                    <h5>
+                        {personality[0] ? personality[0].analysis : null}
+                    </h5>
+                </div>
                 <div className="container-progress">
                     {
                         this.props.userCategories.map(category => {
                             // console.log('Categ ID', category.id)
                             console.log('userCategory  ', category)
-                           
-                                // console.log('Category ID ', category.id)
-                                // return (
-                                //     <div className="category-name" style={divStyle} key={category.id}>
-                                //         <Link to={{ pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
-                                //             <div className="progress-list">
-                                //                 {category.name}
-                                //                 <Progress category={userCategory} />
-                                //             </div>
-                                //         </Link>
-                                //     </div>
-                                // )
-                            
+
+                            // console.log('Category ID ', category.id)
+                            // return (
+                            //     <div className="category-name" style={divStyle} key={category.id}>
+                            //         <Link to={{ pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
+                            //             <div className="progress-list">
+                            //                 {category.name}
+                            //                 <Progress category={userCategory} />
+                            //             </div>
+                            //         </Link>
+                            //     </div>
+                            // )
+
                         })
                     }
                 </div>
@@ -105,6 +117,7 @@ const mapState = state => {
         userCategories: state.user.userCategories,
         user: state.user,
         userId: state.user.id,
+        personality: state.personality || '',
         allUserCategories: state.user.allUserCategories
     }
 }
@@ -121,6 +134,9 @@ const mapDispatch = dispatch => {
         },
         postNewCategory: (userId, name) => {
             dispatch(postCategory(userId, name))
+        },
+        getUserPersonality: (userId) => {
+            dispatch(fetchPersonality(userId))
         }
     }
 }
