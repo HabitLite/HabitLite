@@ -44,16 +44,17 @@ class Personality extends Component {
         console.log("PROPS ", this.props.match.params.userId)
         const { quiz = defaultquiz } = this.props
         return (
-            // <Link to="/home">
-            <form onSubmit={this.handleSubmit} className='form'>
-                {
-                    quiz.map((question, idx) => <Question key={question.question} {...question} onChange={this.handleQuestion(idx)} />)
-                }
+            <div className="quiz-wrapper">
+                <h1 className="quiz-header">Fill out the quiz to personalize your motivator!</h1>
+                <form onSubmit={this.handleSubmit} className='form'>
+                    {
+                        quiz.map((question, idx) => <Question key={question.question} {...question} onChange={this.handleQuestion(idx)} />)
+                    }
 
-                <input type="submit" className="submit-quiz" />
+                    <input type="submit" className="submit-quiz" />
 
-            </form>
-            // </Link> 
+                </form>
+            </div>
         )
     }
 }
@@ -63,7 +64,7 @@ const Question = ({ question, answers, onChange }) =>
         <h3 className="question">{question}: </h3>
         <RadioButtonGroup defaultSelected="not_light" onChange={onChange}>{
             answers.map((ans, id) =>
-                <RadioButton key={ans.content}
+                <RadioButton key={ans.content} className="radio"
                     value={question + ans.content}
                     label={ans.content}
                     style={styles.radioButton}
