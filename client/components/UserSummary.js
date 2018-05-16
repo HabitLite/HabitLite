@@ -54,7 +54,7 @@ class UserSummary extends Component {
         const personality = this.props.personality
         console.log("STATE IN USER SUMMARY", this.state)
         console.log("props IN USER SUMMARY", this.props)
-        console.log("at0", personality[0])
+        console.log("categories", categories)
 
         return (
             <div className="summary-container">
@@ -66,31 +66,65 @@ class UserSummary extends Component {
                         {personality[0] ? personality[0].analysis : null}
                     </h5>
                 </div>
+                {/* <div className="container-progress">
+                    {
+                        categories.map(category => {
+                            console.log("CATEGORY", category)
+                            return (
+                                <div className="category-name" style={divStyle} key={category.id}>
+                                    <Link to={{ pathname: `/${category.userId}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
+                                        <div className="progress-list">
+                                            <h2>{category.name}</h2>
+                                            <Progress category={category} />
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        })
+                    } */}
+
                 <div className="container-progress">
                     {
-                        this.props.userCategories.map(category => {
-                            // console.log('Categ ID', category.id)
-                            console.log('userCategory  ', category)
-
-                            // console.log('Category ID ', category.id)
-                            // return (
-                            //     <div className="category-name" style={divStyle} key={category.id}>
-                            //         <Link to={{ pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
-                            //             <div className="progress-list">
-                            //                 {category.name}
-                            //                 <Progress category={userCategory} />
-                            //             </div>
-                            //         </Link>
-                            //     </div>
-                            // )
-
-                        })
+                        categories.map(indivCat => {
+                            console.log("CATEGORIES", indivCat)
+                            return (
+                                <div className="category-name" style={divStyle} key={indivCat.id}>
+                                    <Link to={{ pathname: `/${indivCat.userId}/${indivCat.id}`, state: { categoryId: indivCat.id } }}
+                                        className="category" key={indivCat.id}>
+                                        <div className="progress-list">
+                                            {indivCat[0] ? indivCat[0].category.name : null}
+                                            <Progress category={indivCat.category} />
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        }
+                        )
                     }
                 </div>
+                {/* <div className="container-progress">
+                    {
+                        categories.map(category => {
+                            const userCategory = this.props.userCategories.find(userCat => { return (userCat.categoryId === category.id) })
+                            if (userCategory) {
+                                return (
+                                    <div className="category-name" style={divStyle} key={category.id}>
+                                        <Link to={{ pathname: `/${category.userId}/${category.id}`, state: { name: category.name } }}
+                                            className="category" key={category.id}>
+                                            <div className="progress-list">
+                                                {category.name}
+                                                <Progress category={userCategory} />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
+                </div> */}
                 <div>
                     <button className="add-category" onClick={this.onBtnClick}><span className="plus">+</span></button>
-                    {
-                        this.state.isClicked &&
+                    {this.state.isClicked &&
                         <div className="input-field">
                             <form onSubmit={this.handleSubmit}>
                                 <input
@@ -110,6 +144,8 @@ class UserSummary extends Component {
     }
 
 }
+
+
 const mapState = state => {
     return {
         categories: state.categories,
