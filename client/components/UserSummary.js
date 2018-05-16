@@ -41,7 +41,7 @@ class UserSummary extends Component {
         // console.log("this.props.user", this.props.user.id)
         this.props.getAllCategories();
         this.props.loadInitialData();
-        const userId = this.props.user.id
+
         this.props.getUserPersonality(userId);
         this.props.getUserCategories(userId);
         this.props.loadInitialData()
