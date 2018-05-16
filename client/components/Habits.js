@@ -12,6 +12,7 @@ class Habits extends Component {
 
       isClicked: false,
       habit: {},
+      habitGroup: "Custom",
       description: '',
       complete: false
 
@@ -20,17 +21,6 @@ class Habits extends Component {
   componentDidMount() {
     this.props.getHabits(this.props.userId, this.props.categoryId);
   }
-
-  // componentDidUpdate() {
-  //   this.props.getHabits(this.props.userId, this.props.categoryId);
-  // }
-  // componentWillUpdate() {
-  //   this.props.getHabits(this.props.userId, this.props.categoryId);
-  // }
-  // shouldComponentUpdate(nextState) {
-  //   return nextState !== this.state
-  // }
-
   onBtnClick = () => {
     this.setState({ isClicked: true })
   }
@@ -69,7 +59,7 @@ class Habits extends Component {
     let myHabits = []
     toDos = habits.filter(habit => habit.complete === false)
     myHabits = habits.filter(habit => habit.complete === true)
-
+    console.log("PROPS in habits ", this.props)
     return (
       <div className="all-habits-container">
         <div className="habits-list">
@@ -127,7 +117,7 @@ class Habits extends Component {
                 return (
                   <li key={habit.id}>
                     <Checkbox
-                      checked = {habit.complete}
+                      checked={habit.complete}
                       onClick={this.props.update.bind(
                         this,
                         habit,

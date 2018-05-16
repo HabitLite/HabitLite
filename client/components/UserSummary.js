@@ -16,11 +16,12 @@ class UserSummary extends Component {
         this.state = {
             name: '',
             isClicked: false,
-            username: ''
+            username: '',
+            userId: ''
         }
     }
     onBtnClick = () => {
-        this.setState({isClicked: true})
+        this.setState({ isClicked: true })
     }
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
@@ -29,7 +30,8 @@ class UserSummary extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const name = this.state.name
-        this.props.postNewCategory({ name })
+        const userId = this.props.user.id
+        this.props.postNewCategory(userId, { name })
         this.setState({ name: '' })
     }
     componentDidMount() {
@@ -41,49 +43,48 @@ class UserSummary extends Component {
 
         const categories = this.props.categories
         const username = this.props.username || ''
-
+        console.log("STATE IN USER SUMMARY", this.state)
 
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
                 <div className="container-progress">
-                {
-                    categories.map(category => {
-                      const userCategory = this.props.userCategories.find(userCat => {return (userCat.categoryId === category.id)})
-                      console.log("User Category ", userCategory)
-                      if (userCategory) {
-                        return (
-                            <div className="category-name" style={divStyle} key={category.id}>
-                                <Link to={{pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id}}} className="category" key={category.id}>
-                                <div className="progress-list">
-                                  {category.name}
-                                  <Progress category={userCategory} /> 
-                                </div>
-                                </Link>
-                            </div>
-                        )
-                      }
-                    })
-                }
+                    {
+                        categories.map(category => {
+                            const userCategory = this.props.userCategories.find(userCat => { return (userCat.categoryId === category.id) })
+                            if (userCategory) {
+                                return (
+                                    <div className="category-name" style={divStyle} key={category.id}>
+                                        <Link to={{ pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
+                                            <div className="progress-list">
+                                                {category.name}
+                                                <Progress category={userCategory} />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
                 </div>
                 <div>
                     <button className="add-category" onClick={this.onBtnClick}><span className="plus">+</span></button>
                     {
-                      this.state.isClicked &&
-                      <div className="input-field">
-                        <form onSubmit={this.handleSubmit}>
-                          <input
-                            name="name"
-                            type="text"
-                            onChange={this.handleChange}
-                            value={this.category}
-                            className="cat-input"
-                          />
-                          <button type="submit" className="cat-add">Add</button>
-                        </form>
-                      </div>
+                        this.state.isClicked &&
+                        <div className="input-field">
+                            <form onSubmit={this.handleSubmit}>
+                                <input
+                                    name="name"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.category}
+                                    className="cat-input"
+                                />
+                                <button type="submit" className="cat-add">Add</button>
+                            </form>
+                        </div>
                     }
-                 </div>
+                </div>
             </div>
         )
     }
@@ -91,25 +92,25 @@ class UserSummary extends Component {
 }
 const mapState = state => {
     return {
-      categories: state.categories,
-      username: state.user.username,
-      userCategories: state.user.userCategories,
-      user: state.user
+        categories: state.categories,
+        username: state.user.username,
+        userCategories: state.user.userCategories,
+        user: state.user,
+        userId: state.user.id
     }
-  }
-  const mapDispatch = dispatch => {
-   return {
-     loadInitialData() {
-       dispatch(me())
-     },
-     getAllCategories: () => {
-       dispatch(fetchAllCategories());
-     },
-     postNewCategory: (name) => {
-        dispatch(postCategory(name))
-     }
+}
+const mapDispatch = dispatch => {
+    return {
+        loadInitialData() {
+            dispatch(me())
+        },
+        getAllCategories: () => {
+            dispatch(fetchAllCategories());
+        },
+        postNewCategory: (userId, name) => {
+            dispatch(postCategory(userId, name))
+        }
     }
-  }
+}
 
 export default connect(mapState, mapDispatch)(UserSummary)
-

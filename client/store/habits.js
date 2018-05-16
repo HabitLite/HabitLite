@@ -32,7 +32,7 @@ export const postHabit = (userId, categoryId, habit) => {
       .then(res => {
         return res.data
       })
-      .then((newHabit) => {
+      .then(newHabit => {
         dispatch(addHabit(newHabit))
       })
       .catch(err => console.log(err))
@@ -51,7 +51,7 @@ export const fetchHabits = (userId, categoryId) => {
         history.push(`/${userId}/${categoryId}`)
         // console.log('log!!!', categoryId)
       })
-      
+
       .catch(console.error);
   };
 };
@@ -59,7 +59,7 @@ export const fetchHabits = (userId, categoryId) => {
 export const updateHabit = (userId, categoryId, habitId, checked) => {
   return dispatch => {
     axios
-      .put(`/api/habits/${habitId}`, {checked, userId, categoryId})
+      .put(`/api/habits/${habitId}`, { checked, userId, categoryId })
       .then(res => res.data)
       .then(habits => {
         dispatch(getHabits(habits));
