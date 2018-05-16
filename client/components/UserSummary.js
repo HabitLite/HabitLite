@@ -68,7 +68,6 @@ class UserSummary extends Component {
                     </h5>
                 </div>
 
-
                 <div className="container-progress">
                     {
                         categories.map((category, i) => {

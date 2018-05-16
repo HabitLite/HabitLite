@@ -44,7 +44,7 @@ class Personality extends Component {
         console.log("PROPS ", this.props.match.params.userId)
         const { quiz = defaultquiz } = this.props
         return (
-            <div>
+            <div className="quiz-wrapper">
                 <h1 className="quiz-header">Fill out the quiz to personalize your motivator!</h1>
                 <form onSubmit={this.handleSubmit} className='form'>
                     {
