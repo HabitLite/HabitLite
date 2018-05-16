@@ -13,8 +13,9 @@ const divStyle = {
 };
 const navStyle = {
   display: 'inline-flex',
-  marginLeft: '952px',
-  width: '450px'
+  marginLeft: '1014px',
+  width: '450px',
+  fontSize: '1.3em'
 
 }
 
@@ -23,7 +24,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
   <div>
     <nav>
-
       {isLoggedIn ? (
         <div className="user-navbar" style={divStyle}>
           {/* The navbar will show these links after you log in */}
@@ -41,8 +41,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <Link to="/signup" className="sign-up">Sign Up</Link>
           </div>
         )}
-
-
     </nav>
   </div>
 )

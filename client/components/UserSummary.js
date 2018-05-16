@@ -41,7 +41,7 @@ class UserSummary extends Component {
 
         const categories = this.props.categories
         const username = this.props.username || ''
-        // console.log("STATE IN USER SUMMARY", this.props)
+
 
         return (
             <div className="summary-container">
@@ -50,13 +50,14 @@ class UserSummary extends Component {
                 {
                     categories.map(category => {
                       const userCategory = this.props.userCategories.find(userCat => {return (userCat.categoryId === category.id)})
+                      console.log("User Category ", userCategory)
                       if (userCategory) {
                         return (
                             <div className="category-name" style={divStyle} key={category.id}>
                                 <Link to={{pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id}}} className="category" key={category.id}>
                                 <div className="progress-list">
                                   {category.name}
-                                  <Progress category={userCategory} />
+                                  <Progress category={userCategory} /> 
                                 </div>
                                 </Link>
                             </div>
