@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Progress } from './index'
-import { fetchAllCategories, postCategory } from '../store/categories'
+import { fetchAllCategories, postCategory, fetchUserCategories } from '../store/categories'
 import { me } from '../store'
 
 const divStyle = {
@@ -35,7 +35,10 @@ class UserSummary extends Component {
         this.setState({ name: '' })
     }
     componentDidMount() {
+        const userId = this.props.user.id
+        // console.log("this.props.user", this.props.user.id)
         this.props.getAllCategories();
+        this.props.getUserCategories(userId);
         this.props.loadInitialData()
     }
 
@@ -43,27 +46,32 @@ class UserSummary extends Component {
 
         const categories = this.props.categories
         const username = this.props.username || ''
-        console.log("STATE IN USER SUMMARY", this.state)
+        console.log("STATE IN USER SUMMARY", this.state)        
+        console.log('allUserCategories ', this.props.categories)
+        console.log('user Cater' , this.props.userCategories)
+
 
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
                 <div className="container-progress">
                     {
-                        categories.map(category => {
-                            const userCategory = this.props.userCategories.find(userCat => { return (userCat.categoryId === category.id) })
-                            if (userCategory) {
-                                return (
-                                    <div className="category-name" style={divStyle} key={category.id}>
-                                        <Link to={{ pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
-                                            <div className="progress-list">
-                                                {category.name}
-                                                <Progress category={userCategory} />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                )
-                            }
+                        this.props.userCategories.map(category => {
+                            // console.log('Categ ID', category.id)
+                            console.log('userCategory  ', category)
+                           
+                                // console.log('Category ID ', category.id)
+                                // return (
+                                //     <div className="category-name" style={divStyle} key={category.id}>
+                                //         <Link to={{ pathname: `/${this.props.user.id}/${category.id}`, state: { categoryId: category.id } }} className="category" key={category.id}>
+                                //             <div className="progress-list">
+                                //                 {category.name}
+                                //                 <Progress category={userCategory} />
+                                //             </div>
+                                //         </Link>
+                                //     </div>
+                                // )
+                            
                         })
                     }
                 </div>
@@ -96,7 +104,8 @@ const mapState = state => {
         username: state.user.username,
         userCategories: state.user.userCategories,
         user: state.user,
-        userId: state.user.id
+        userId: state.user.id,
+        allUserCategories: state.user.allUserCategories
     }
 }
 const mapDispatch = dispatch => {
@@ -106,6 +115,9 @@ const mapDispatch = dispatch => {
         },
         getAllCategories: () => {
             dispatch(fetchAllCategories());
+        },
+        getUserCategories: (userId) => {
+            dispatch(fetchUserCategories(userId));
         },
         postNewCategory: (userId, name) => {
             dispatch(postCategory(userId, name))

@@ -473,9 +473,16 @@ span{
 
 /* Personality  Page*/
 .question{
-  margin-left: 130px;
+  margin-left: 570px;
+  width: 40%;
 }
-
+.form{
+  margin-top: 250px;
+    /* margin-left: 500px; */
+    /* margin: auto; */
+    text-align: center;
+  text-align: center;
+}
 form div{
   margin: 0;
 }
@@ -550,3 +557,5 @@ form div{
   margin-left: 120px;
 margin-top: -29px;
 }
+
+
