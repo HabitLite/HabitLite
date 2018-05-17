@@ -1,4 +1,4 @@
-const { UserHabit } = require('./db/models');
+const { UserHabit, Habit, UserCategory } = require('./db/models');
 const schedule = require('node-schedule');
 
 // const time = new Date()
@@ -7,15 +7,32 @@ const schedule = require('node-schedule');
 //
 // }
 
-// console.log("***********************************************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**********************!!!!!!!!!!!!!!!!")
 
 /* *** RESETTING ALL HABITS AT MIDNIGHT *** */
 schedule.scheduleJob('0 0 * * *', function() {
-  // console.log("DAISYDAISYDAISYDAISYDAISYDAISYDAISYDAISYDAISY")
-  UserHabit.findAll().then(habits => {
-    habits.forEach(habit => {
-      habit.complete = false;
-      habit.save();
+
+  UserHabit.findAll({
+    include: [Habit]
+  })
+    .then(habits => {
+      habits.forEach(userHabit => {
+        if (userHabit.complete === false) {
+
+          UserCategory.find({
+            where: {
+              categoryId: userHabit.habit.categoryId,
+              userId: userHabit.userId
+            }
+          })
+        .then(userCategory => {
+
+          userCategory.HP -= 5
+
+          userCategory.save()
+        })
+      }
+      userHabit.complete = false;
+      userHabit.save();
     });
   });
 });
