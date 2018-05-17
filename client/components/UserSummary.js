@@ -72,22 +72,6 @@ class UserSummary extends Component {
 
                 <div className="container-progress">
                     {
-<<<<<<< HEAD
-                        categories.map((category, i) => {
-                            return (
-
-                                <div className="category-name" style={divStyle} key={i}>
-                                    <Link to={{
-                                        pathname: `/${category.userId}/${category.name}`,
-                                        state: { name: category.name }
-                                    }} className='category' key={category.id}>
-                                        <div className="progress-list">
-                                            <Progress name={category.name} />
-                                        </div>
-                                    </Link>
-                                </div>
-                            )
-=======
                         categories.map(category => {
                             const userCategory = this.props.userCategories.find(userCat => { return (userCat.categoryId === category.id) })
                             if (userCategory) {
@@ -106,7 +90,6 @@ class UserSummary extends Component {
                                     </div>
                                 )
                             }
->>>>>>> b4832feb74ab8afa14316b5ba7518136e0c2785e
                         })
                     }
                 </div>
