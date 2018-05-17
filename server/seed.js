@@ -37,10 +37,83 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      id: 2,
-      email: faker.fake('{{name.firstName}}@email.com'),
+      id: 1,
+      email: 'gh@email.com',
       password: '123',
-      username: faker.fake('{{name.firstName}}'),
+      username: 'gh',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 2,
+      email: 'bob@email.com',
+      password: '123',
+      username: 'bob',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 3,
+      email: 'cate@email.com',
+      password: '123',
+      username: 'cate',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 4,
+      email: 'danielk@email.com',
+      password: '123',
+      username: 'daniel',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 5,
+      email: 'ernie@email.com',
+      password: '123',
+      username: 'ernie',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 6,
+      email: 'fran@email.com',
+      password: '123',
+      username: 'fran',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 7,
+      email: 'grace@email.com',
+      password: '123',
+      username: 'grace',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 8,
+      email: 'gh@email.com',
+      password: '123',
+      username: 'grace',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 9,
+      email: 'howie@email.com',
+      password: '123',
+      username: 'howie',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
+    }),
+    User.create({
+      id: 10,
+      email: 'isabelle@email.com',
+      password: '123',
+      username: 'isabelle',
+      lives: 3,
       level: Math.floor(Math.random() * 100)
     })
   ]);
@@ -132,15 +205,15 @@ async function seed() {
     })
   ]);
 
-  // const userCategories = await Promise.all([
-  //   UserCategory.create({ userId: 4, categoryId: 1, XP: 5, HP: 123 }),
-  //   UserCategory.create({ userId: 1, categoryId: 1, XP: 20, HP: 234 }),
-  //   UserCategory.create({ userId: 1, categoryId: 2, XP: 0, HP: 134 }),
-  //   UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 345 }),
-  //   UserCategory.create({ userId: 3, categoryId: 1, XP: 0, HP: 456 }),
-  //   UserCategory.create({ userId: 5, categoryId: 1, XP: 0, HP: 567 }),
-  //   UserCategory.create({ userId: 6, categoryId: 1, XP: 0, HP: 678 })
-  // ]);
+  const userCategories = await Promise.all([
+    UserCategory.create({ userId: 4, categoryId: 1, XP: 5, HP: 123 }),
+    UserCategory.create({ userId: 1, categoryId: 1, XP: 20, HP: 234 }),
+    UserCategory.create({ userId: 1, categoryId: 2, XP: 0, HP: 134 }),
+    UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 345 }),
+    UserCategory.create({ userId: 3, categoryId: 1, XP: 0, HP: 456 }),
+    UserCategory.create({ userId: 5, categoryId: 1, XP: 0, HP: 567 }),
+    UserCategory.create({ userId: 6, categoryId: 1, XP: 0, HP: 678 })
+  ]);
 
   const userHabit = await Promise.all([
     UserHabit.create({
@@ -209,7 +282,7 @@ async function seed() {
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${categories.length} categories`);
   console.log(`seeded ${habits.length} habit`);
-  // console.log(`seeded ${userCategories.length} userCategories`);
+  console.log(`seeded ${userCategories.length} userCategories`);
   console.log(`seeded ${userHabit.length} userHabits`);
   console.log(`seeded successfully`);
 }
