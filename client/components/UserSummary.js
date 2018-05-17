@@ -5,6 +5,7 @@ import { Progress } from './index'
 import { fetchAllCategories, postCategory, fetchUserCategories } from '../store/categories'
 import { fetchPersonality } from '../store/personality'
 import { me } from '../store'
+import { VictoryPie, VictoryAnimation, VictoryLabel } from 'victory'
 
 const divStyle = {
     marginTop: '590px'
@@ -61,10 +62,12 @@ class UserSummary extends Component {
                 <h2 className="category-list">Your Summary</h2>
 
                 <div className="watson">
-                    <h4>IBM Watson Personality Insight: </h4>
+                    <h4 className="wats-title">IBM Watson Personality Insight: </h4>
+                    <div className="wats">
                     <h5 className="watson-paragraph">
                         {personality[0] ? personality[0].analysis : null}
                     </h5>
+                    </div>
                 </div>
 
                 <div className="container-progress">
