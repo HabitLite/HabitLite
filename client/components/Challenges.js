@@ -6,29 +6,48 @@ import PropTypes from 'prop-types'
 
 class Challenges extends React.Component {
 
-
+    state = {
+        src: "./images/checked-filled.png",
+        isClicked: false
+    }
+    onBtnClick = (e) => {
+        this.setState({ isClicked: true })
+    }
+    // handleClick = (e) => {
+    //   e.preventDefault();
+    //   const src = this.state.src;
+    // }
     render() {
 
         return (
-            // <div>
-            //     <div className="group"><b>Challengess You Can Join</b></div>
-            //     <div>
-            //         <div className="images-div">
-            //             <img src="https://openclipart.org/image/2400px/svg_to_png/293844/under-construction_geek_man_01.png" />
-            //         </div>
-            //         <span>We're under construction</span>
-            //     </div>
-            // </div>
             <div>
+                <div className="group"><b>Weekly Challenges:</b></div>
+                <div>
+                    <div className="points">Eat Healthy </div>
+                    <div className="images-div">
+                        <div><img src="./images/run.png" className="group-img"></img></div>
+                        {this.state.isClicked ? <div><img src="./images/checked-filled.png" className="checked-filled"></img><span className="accept">Joined!</span></div> :
+                            <div><img src="./images/checked.png" className="group-ckeck" onClick={this.onBtnClick}></img></div>
+                        }
+                    </div>
+                    <div className="points">Coding Ninja</div>
+                    <div className="images-div">
 
-                <img src="https://openclipart.org/image/2400px/svg_to_png/293844/under-construction_geek_man_01.png" className="challenge" />
+                        <div><img src="./images/yoga.png" className="group-img"></img></div>
+                        <div><img src="./images/checked.png" className="group-ckeck"></img></div>
+                    </div>
+                    <div className="points">Increase Physical Activity</div>
+                    <div className="images-div">
 
-                <h3>We're under construction</h3>
-
+                        <div><img src="./images/cook.png" className="group-img"></img></div>
+                        <div><img src="./images/checked.png" className="group-ckeck"></img></div>
+                    </div>
+                </div>
             </div>
         )
     }
 }
+
 // const mapState = state => {
 //     return {
 

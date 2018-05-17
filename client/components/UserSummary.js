@@ -5,7 +5,6 @@ import { Progress } from './index'
 import { fetchAllCategories, postCategory, fetchUserCategories } from '../store/categories'
 import { fetchPersonality } from '../store/personality'
 import { me } from '../store'
-import { VictoryPie, VictoryAnimation, VictoryLabel } from 'victory'
 
 const divStyle = {
     marginTop: '590px'
@@ -67,6 +66,26 @@ class UserSummary extends Component {
                         {personality[0] ? personality[0].analysis : null}
                     </h5>
                 </div>
+
+                {/* <div className="container-progress">
+                    {categories.map(category => {
+                        const userCategory = this.props.userCategories.find(userCat => { return (userCat.categoryId === category.id) })
+                        if (userCategory) {
+                            return (<div className="category-name" style={divStyle} key={category.id}>
+                                <Link to={{
+                                    pathname: `/${category.userId}/${category.name}`,
+                                    state: { name: category.name }
+                                }} className="category" key={category.id}>
+                                    <div className="progress-list">
+                                        <Progress category={userCategory} />
+                                    </div>
+                                </Link>
+                            </div>
+                            )
+                        }
+                    })
+                    }
+                </div> */}
 
                 <div className="container-progress">
                     {
