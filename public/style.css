@@ -198,7 +198,7 @@ small{
   flex-wrap: wrap;
   justify-content: flex-start;
   /* margin-top: -370px; */
-  margin-top: -330px;
+  margin-top: -403px;
   margin-left: -249px;
 }
 .category-list{
@@ -218,7 +218,7 @@ small{
   width: 280px;
   height: 33px;
   position: absolute;
-  margin: -177px 10px 10px 794px;
+  margin: -117px 10px 10px 1247px;
 }
 .cat-input{
   border: none;
@@ -330,12 +330,13 @@ span{
     height: 500px;
     background: white;
     margin: 20px -20px 35px 301px;
-        box-shadow: 11px 13px 18px -8px #999;
+    box-shadow: 11px 13px 18px -8px #999;
 }
 .to-dos-list{
   display: grid;
     /* border: 1px solid; */
     height: 30%;
+    position: relative;
     overflow: scroll;
     /* height: 20%; */
     width: 365px;
@@ -346,7 +347,8 @@ span{
 }
 .habits-label{
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.5em;   
+   position: inherit;
   /* margin: 42px -3px 21px 0px; */
   margin: 42px -3px -97px 0px;
   color: #a7a5a5;
@@ -354,14 +356,14 @@ span{
 }
 .add-habit-btn{
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: relative;
-  margin: 23px 10px -107px 287px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    margin: 72px 10px -107px 287px;
     /* margin: -32px 10px -20px 287px; */
-  border: none;
-  background: white;
-  box-shadow: 7px 9px 34px -6px #999;
+    border: none;
+    background: white;
+    box-shadow: 7px 9px 34px -6px #999;
 }
 .plus{
   font-size: 2.1em;
@@ -399,12 +401,14 @@ span{
   margin-top: 010px; */
 }
 .my-habits-ul{
-  margin: 81px 10px 180px -55px;
+  margin: 115px 10px 180px -55px;
+  position: absolute;
   list-style: none;
 }
 .to-does-ul{
-  margin: 12px 10px 180px -55px;
+  margin: 125px 10px 180px -55px;
   list-style: none;
+  position: absolute;
 }
 
 .delete-habit{
@@ -495,10 +499,12 @@ span{
     color: linear-gradient(to right, red , yellow);
     color: transparent;
     /* font-size: 20vw; */
+    box-shadow: 11px 13px 18px -8px #e8dede;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(to right, #5599b1 0%, #d6d85b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding-bottom: 20px;
 }
 
 

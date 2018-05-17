@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {VictoryPie, VictoryAnimation, VictoryLabel} from 'victory'
 
+
+
 const getData = percent => {
   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
 }
 
-/**
- * COMPONENT
- */
 const Progress = props => {
-
+  
     return (
       <div >
         {props.levelledUp ? (<div>Level {props.level + 1}!</div>) : (<div />)}

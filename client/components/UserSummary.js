@@ -60,7 +60,6 @@ class UserSummary extends Component {
         return (
             <div className="summary-container">
                 <h2 className="category-list">Your Summary</h2>
-
                 <div className="watson">
                     <h4>IBM Watson Personality Insight: </h4>
                     <h5 className="watson-paragraph">
