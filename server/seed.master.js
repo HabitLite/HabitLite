@@ -7,30 +7,6 @@ const {
   UserHabit
 } = require('../server/db/models');
 
-// const faker = require('faker');
-
-// const userCreatePromisesArray = () => {
-//   const userCreatePromiseCreator = i => {
-//     return User.create({
-//       id: i,
-//       email: faker.fake('{{name.firstName}}@email.com'),
-//       password: '123',
-//       username: faker.fake('{{name.firstName}}'),
-//       level: Math.floor(Math.random() * 100)
-//     });
-//   };
-
-//   const promises = [];
-
-//   for (let i = 2; i < 5; i++) {
-//     promises.push(userCreatePromiseCreator(i));
-//   }
-//   console.log(promises);
-//   return promises;
-// };
-
-// console.log('!!!!!!!!!!!!!!!', userCreatePromisesArray());
-
 async function seed() {
   await db.sync({ force: true });
   console.log('db synced!');
@@ -40,81 +16,50 @@ async function seed() {
       id: 1,
       email: 'gh@email.com',
       password: '123',
-      username: 'gh',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
-    }),
-    User.create({
-      id: 2,
-      email: 'bob@email.com',
-      password: '123',
-      username: 'bob',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
-    }),
-    User.create({
-      id: 3,
-      email: 'cate@email.com',
-      password: '123',
-      username: 'cate',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
-    }),
-    User.create({
-      id: 4,
-      email: 'danielk@email.com',
-      password: '123',
-      username: 'daniel',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
-    }),
-    User.create({
-      id: 5,
-      email: 'ernie@email.com',
-      password: '123',
-      username: 'ernie',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
-    }),
-    User.create({
-      id: 6,
-      email: 'fran@email.com',
-      password: '123',
-      username: 'fran',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
+      username: 'Grace Hopper',
+      level: 1
     }),
     User.create({
       id: 7,
-      email: 'grace@email.com',
+      email: 'tania@gmail.com',
       password: '123',
-      username: 'grace',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
+      username: 'tania',
+      level: 1
     }),
     User.create({
-      id: 8,
-      email: 'gh@email.com',
+      id: 2,
+      email: 'ginny@gmail.com',
       password: '123',
-      username: 'grace',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
+      username: 'ginny',
+      level: 1
     }),
     User.create({
-      id: 9,
-      email: 'howie@email.com',
+      id: 3,
+      email: 'palina@email.com',
       password: '123',
-      username: 'howie',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
+      username: 'palina',
+      level: 1
     }),
     User.create({
-      id: 10,
-      email: 'isabelle@email.com',
+      id: 4,
+      email: 'priya@email.com',
       password: '123',
-      username: 'isabelle',
-      lives: 3,
-      level: Math.floor(Math.random() * 100)
+      username: 'priya',
+      level: 1
+    }),
+    User.create({
+      id: 5,
+      email: 'cody@email.com',
+      password: '123',
+      username: 'cody',
+      level: 1
+    }),
+    User.create({
+      id: 6,
+      email: 'murphy@email.com',
+      password: '123',
+      username: 'dops',
+      level: 1
     })
   ]);
 
