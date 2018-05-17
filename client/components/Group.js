@@ -50,22 +50,21 @@ class Group extends React.Component {
 
         <div className="group"><b>Groups You Can Join</b></div>
         <div>
-          <div className="points">Points to unlock: 350</div>
+
+          <div className="points">5K Trainning <br /> Points to unlock: 350</div>
           <div className="images-div">
             <div><img src="./images/run.png" className="group-img"></img></div>
             {this.state.isClicked ? <div><img src="./images/checked-filled.png" className="checked-filled"></img><span className="accept">Joined!</span></div> :
               <div><img src="./images/checked.png" className="group-ckeck" onClick={this.onBtnClick}></img></div>
             }
           </div>
-          <div className="points">Points to unlock: 450</div>
+          <div className="points">Free Yoga Lesson <br />Points to unlock: 450</div>
           <div className="images-div">
-
             <div><img src="./images/yoga.png" className="group-img"></img></div>
             <div><img src="./images/checked.png" className="group-ckeck"></img></div>
           </div>
-          <div className="points">Points to unlock: 550</div>
+          <div className="points">Healthy Baking Class <br />Points to unlock: 550</div>
           <div className="images-div">
-
             <div><img src="./images/cook.png" className="group-img"></img></div>
             <div><img src="./images/checked.png" className="group-ckeck"></img></div>
           </div>
