@@ -3,30 +3,17 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { VictoryPie, VictoryAnimation, VictoryLabel } from 'victory'
 
+
+
 const getData = percent => {
   return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
 }
 
-
-function timer() {
-  setTimeout(function () { alert(); }, 2000);
-}
-
-
-
-
-
-
-/**
- * COMPONENT
- */
 const Progress = props => {
-  const level = props.level + 1;
-  return (
 
+  return (
     <div >
-      {props.levelledUp ? (timer(setTimeout(function () { alert('Level ' + level + '!') }, 2000))) : null}
-      {/* {props.levelledUp ? (<div>Level {props.level + 1}!</div>) : (<div />)} */}
+      {props.levelledUp ? (<div>Level {props.level + 1}!</div>) : (<div />)}
       <h1 className="total-progress">{props.name}</h1>
       <svg viewBox="0 0 400 400" width="100%" height="100%">
         <VictoryPie
@@ -44,7 +31,8 @@ const Progress = props => {
                 return d.x === 1 ? color : 'transparent'
               }
             }
-          }}
+          }
+          }
         />
         <VictoryAnimation duration={1000} data={props}>
           {() => {
