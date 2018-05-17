@@ -67,7 +67,7 @@ class UserSummary extends Component {
                     </h5>
                 </div>
 
-                {/* <div className="container-progress">
+                <div className="container-progress">
                     {categories.map(category => {
                         const userCategory = this.props.userCategories.find(userCat => { return (userCat.categoryId === category.id) })
                         if (userCategory) {
@@ -85,8 +85,8 @@ class UserSummary extends Component {
                         }
                     })
                     }
-                </div> */}
-
+                </div>
+                {/* 
                 <div className="container-progress">
                     {
                         categories.map((category, i) => {
@@ -105,7 +105,7 @@ class UserSummary extends Component {
                             )
                         })
                     }
-                </div>
+                </div> */}
 
 
                 <div>
