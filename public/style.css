@@ -720,4 +720,11 @@ margin-top: -29px;
   color: #5a5959;
   font-size: 1em;
 }
+.points{
+  text-align: center;
+  margin: 130px 0 90px 0;
+  color: #5a5959;
+  /* font-size: 2em;
+  margin: 130px 0 90px 0; */
+}
 }

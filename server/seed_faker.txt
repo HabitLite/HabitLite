@@ -7,6 +7,30 @@ const {
   UserHabit
 } = require('../server/db/models');
 
+// const faker = require('faker');
+
+// const userCreatePromisesArray = () => {
+//   const userCreatePromiseCreator = i => {
+//     return User.create({
+//       id: i,
+//       email: faker.fake('{{name.firstName}}@email.com'),
+//       password: '123',
+//       username: faker.fake('{{name.firstName}}'),
+//       level: Math.floor(Math.random() * 100)
+//     });
+//   };
+
+//   const promises = [];
+
+//   for (let i = 2; i < 5; i++) {
+//     promises.push(userCreatePromiseCreator(i));
+//   }
+//   console.log(promises);
+//   return promises;
+// };
+
+// console.log('!!!!!!!!!!!!!!!', userCreatePromisesArray());
+
 async function seed() {
   await db.sync({ force: true });
   console.log('db synced!');
@@ -16,71 +40,81 @@ async function seed() {
       id: 1,
       email: 'gh@email.com',
       password: '123',
-      username: 'Grace Hopper',
-      level: 1
+      username: 'gh',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 2,
-      email: 'tania@gmail.com',
+      email: 'bob@email.com',
       password: '123',
-      username: 'tania',
-      level: 1
+      username: 'bob',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 3,
-      email: 'ginny@gmail.com',
+      email: 'cate@email.com',
       password: '123',
-      username: 'ginny',
-      level: 1
+      username: 'cate',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 4,
-      email: 'palina@email.com',
+      email: 'danielk@email.com',
       password: '123',
-      username: 'palina',
-      level: 1
+      username: 'daniel',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 5,
-      email: 'priya@email.com',
+      email: 'ernie@email.com',
       password: '123',
-      username: 'priya',
-      level: 1
+      username: 'ernie',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 6,
-      email: 'cody@email.com',
+      email: 'fran@email.com',
       password: '123',
-      username: 'cody',
-      level: 1
+      username: 'fran',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 7,
-      email: 'murphy@email.com',
+      email: 'grace@email.com',
       password: '123',
-      username: 'murphy',
-      level: 1
+      username: 'grace',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 8,
-      email: 'daniel@email.com',
+      email: 'gh@email.com',
       password: '123',
-      username: 'daniel',
-      level: 1
+      username: 'grace',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 9,
-      email: 'sebastian@email.com',
+      email: 'howie@email.com',
       password: '123',
-      username: 'sebastian',
-      level: 1
+      username: 'howie',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     }),
     User.create({
       id: 10,
-      email: 'nancy@email.com',
+      email: 'isabelle@email.com',
       password: '123',
-      username: 'nancy',
-      level: 1
+      username: 'isabelle',
+      lives: 3,
+      level: Math.floor(Math.random() * 100)
     })
   ]);
 
@@ -91,49 +125,6 @@ async function seed() {
   ]);
 
   const habits = await Promise.all([
-    Habit.create({
-      description: 'Eat your least favorite vegetable',
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
-    Habit.create({
-      description: 'Eat 3 servings of fruits and vegetables -- before noon!',
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
-    Habit.create({
-      description: "Eat a vegetable you've never tried before",
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
-    Habit.create({
-      description: 'Eat a meal with 5 colors in it',
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
-    Habit.create({
-      description: 'Resist sweets for a week',
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
-    Habit.create({
-      description: 'Substitute your favorite dessert with a healthy option',
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
-    Habit.create({
-      description:
-        'Eat a meal that has 10 grams of fiber -- with plenty of water!',
-      habitGroup: 'ChallengeD',
-      categoryId: 1,
-      userId: 1
-    }),
     Habit.create({
       description: 'Eat broccoli',
       habitGroup: 'Default',
@@ -215,13 +206,13 @@ async function seed() {
   ]);
 
   const userCategories = await Promise.all([
-    UserCategory.create({ userId: 4, categoryId: 1, XP: 5, HP: 10 }),
-    UserCategory.create({ userId: 1, categoryId: 1, XP: 20, HP: 20 }),
-    UserCategory.create({ userId: 1, categoryId: 2, XP: 10, HP: 20 }),
-    UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 35 }),
-    UserCategory.create({ userId: 3, categoryId: 1, XP: 0, HP: 45 }),
-    UserCategory.create({ userId: 5, categoryId: 1, XP: 0, HP: 55 }),
-    UserCategory.create({ userId: 6, categoryId: 1, XP: 0, HP: 65 })
+    UserCategory.create({ userId: 4, categoryId: 1, XP: 5, HP: 123 }),
+    UserCategory.create({ userId: 1, categoryId: 1, XP: 20, HP: 234 }),
+    UserCategory.create({ userId: 1, categoryId: 2, XP: 0, HP: 134 }),
+    UserCategory.create({ userId: 2, categoryId: 1, XP: 0, HP: 345 }),
+    UserCategory.create({ userId: 3, categoryId: 1, XP: 0, HP: 456 }),
+    UserCategory.create({ userId: 5, categoryId: 1, XP: 0, HP: 567 }),
+    UserCategory.create({ userId: 6, categoryId: 1, XP: 0, HP: 678 })
   ]);
 
   const userHabit = await Promise.all([
@@ -229,62 +220,62 @@ async function seed() {
       userId: 4,
       habitId: 13,
       XP: 5,
-      HP: 125,
+      HP: 123,
       complete: true
     }),
     UserHabit.create({
       userId: 1,
       habitId: 14,
       XP: 5,
-      HP: 235,
+      HP: 234,
       complete: true
     }),
-    UserHabit.create({ userId: 1, habitId: 1, XP: 5, HP: 35, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 2, XP: 5, HP: 40, complete: true }),
-    UserHabit.create({ userId: 1, habitId: 3, XP: 5, HP: 54, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 1, XP: 5, HP: 345, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 2, XP: 5, HP: 456, complete: true }),
+    UserHabit.create({ userId: 1, habitId: 3, XP: 5, HP: 567, complete: true }),
     UserHabit.create({
       userId: 1,
       habitId: 4,
       XP: 5,
-      HP: 60,
+      HP: 678,
       complete: false
     }),
     UserHabit.create({
       userId: 1,
       habitId: 5,
       XP: 5,
-      HP: 35,
+      HP: 345,
       complete: false
     }),
     UserHabit.create({
       userId: 1,
       habitId: 9,
       XP: 5,
-      HP: 35,
+      HP: 345,
       complete: false
     }),
     UserHabit.create({
       userId: 1,
       habitId: 10,
       XP: 5,
-      HP: 35,
+      HP: 345,
       complete: false
     }),
     UserHabit.create({
       userId: 1,
       habitId: 6,
       XP: 5,
-      HP: 45,
+      HP: 456,
       complete: false
     }),
     UserHabit.create({
       userId: 5,
       habitId: 7,
       XP: 5,
-      HP: 55,
+      HP: 567,
       complete: false
     }),
-    UserHabit.create({ userId: 6, habitId: 8, XP: 5, HP: 60, complete: false })
+    UserHabit.create({ userId: 6, habitId: 8, XP: 5, HP: 678, complete: false })
   ]);
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
