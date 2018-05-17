@@ -80,6 +80,7 @@ class UserSummary extends Component {
                                   state: {name: category.name}
                                 }} className="category" key={category.id}>
                                   <div className="progress-list">
+                              {category.name}
                                     <Progress category={userCategory} />
                                   </div>
                                 </Link>
