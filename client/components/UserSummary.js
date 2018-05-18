@@ -5,7 +5,6 @@ import { Progress } from './index'
 import { fetchAllCategories, postCategory, fetchUserCategories } from '../store/categories'
 import { fetchPersonality } from '../store/personality'
 import { me } from '../store'
-import { VictoryPie, VictoryAnimation, VictoryLabel } from 'victory'
 
 const divStyle = {
     marginTop: '590px'
@@ -70,20 +69,23 @@ class UserSummary extends Component {
 
                 <div className="container-progress">
                     {
-                        categories.map((category, i) => {
+                        categories.map(category => {
+                          const userCategory = this.props.userCategories.find(userCat => {return (userCat.categoryId === category.id)})
+                          if (userCategory) {
                             return (
 
-                                <div className="category-name" style={divStyle} key={i}>
-                                    <Link to={{
-                                        pathname: `/${category.userId}/${category.name}`,
-                                        state: { name: category.name }
-                                    }} className='category' key={category.id}>
-                                        <div className="progress-list">
-                                            <Progress name={category.name} />
-                                        </div>
-                                    </Link>
-                                </div>
+                              <div className="category-name" style={divStyle} key={category.id}>
+                                <Link to={{
+                                  pathname: `/${category.userId}/${category.name}`,
+                                  state: {name: category.name}
+                                }} className="category" key={category.id}>
+                                  <div className="progress-list">
+                                    <Progress category={userCategory} />
+                                  </div>
+                                </Link>
+                              </div>
                             )
+                          }
                         })
                     }
                 </div>
