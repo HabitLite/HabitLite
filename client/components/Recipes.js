@@ -12,7 +12,7 @@ class Recipes extends Component {
         super(props)
 
         this.state = {
-            tags: ["chicken"],
+            tags: ["cauliflower"],
             preferences: []
         }
     }

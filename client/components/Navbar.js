@@ -8,7 +8,7 @@ const divStyle = {
   display: 'inline-flex',
   top: '0',
   width: '100%',
-  marginLeft: '-8px',
+  marginLeft: '-25px',
   height: '50px'
 };
 const navStyle = {
