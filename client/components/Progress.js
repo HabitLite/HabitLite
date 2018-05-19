@@ -12,8 +12,8 @@ const getData = percent => {
 const Progress = props => {
 
   return (
-    <div >
-      {props.levelledUp ? (<div>Level {props.level + 1}!</div>) : (<div />)}
+    <div className="chart">
+      {props.levelledUp ? (<div className="level-up">Level {props.level + 1}!</div>) : (<div />)}
       <h1 className="total-progress">{props.name}</h1>
       <svg viewBox="0 0 400 400" width="100%" height="100%">
         <VictoryPie
@@ -31,8 +31,7 @@ const Progress = props => {
                 return d.x === 1 ? color : 'transparent'
               }
             }
-          }
-          }
+          }}
         />
         <VictoryAnimation duration={1000} data={props}>
           {() => {
