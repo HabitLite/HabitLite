@@ -62,11 +62,11 @@ class UserSummary extends Component {
                 <h2 className="category-list">Your Summary</h2>
 
                 <div className="watson">
-                    <h4 className="wats-title">IBM Watson Personality Insight: </h4>
+                    <h4 className="wats-title">Personality Results: </h4>
                     <div className="wats">
-                    <h5 className="watson-paragraph">
-                        {personality[0] ? personality[0].analysis : null}
-                    </h5>
+                        <h5 className="watson-paragraph">
+                            {personality[0] ? personality[0].analysis : null}
+                        </h5>
                     </div>
                 </div>
 
